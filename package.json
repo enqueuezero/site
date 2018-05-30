@@ -1,0 +1,23 @@
+{
+  "name": "enqueue-zero",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "tiddlywiki": "^5.1.17"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soasme/EnqueueZero.git"
+  },
+  "author": "",
+  "license": "CC-BY-NC-SA 3.0",
+  "bugs": {
+    "url": "https://github.com/soasme/EnqueueZero/issues"
+  },
+  "homepage": "https://github.com/soasme/EnqueueZero#readme"
+}
