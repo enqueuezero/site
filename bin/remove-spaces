@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+for file in ./wiki/tiddlers/*;
+do
+    mv "$file" `echo $file | tr ' ' '-'`;
+done
