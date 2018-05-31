@@ -1,5 +1,5 @@
 created: 20180531093358019
-modified: 20180531093458335
+modified: 20180531094537550
 title: count-distinct
 type: text/vnd.tiddlywiki
 
@@ -79,7 +79,7 @@ Reference
 
 !!! Redis HyperLogLog Commands
 
-Applying dataset with HyperLogLog algorithm when inserting data. HyperLogLog can gives estimated counting results.
+Applying dataset with HyperLogLog algorithm when inserting data. HyperLogLog can give estimated counting results.
 
 ```
 redis> PFADD dataset  1 3 2 1 5 2 4
