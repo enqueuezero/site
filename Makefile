@@ -8,6 +8,7 @@ clean:
 build: clean
 	#docker run --rm -v `pwd`/wiki:/data soasme/tiddlywiki tiddlywiki /data --build static
 	./node_modules/.bin/tiddlywiki wiki --build static
+	cp ./wiki/tiddlers/favicon.ico wiki/output/static
 
 
 publish: build
