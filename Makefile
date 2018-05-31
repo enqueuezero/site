@@ -1,11 +1,14 @@
 start:
-	docker run -d --rm -p 9000:8080 -v `pwd`/wiki:/data soasme/tiddlywiki
+	#docker run -d --rm -p 9000:8080 -v `pwd`/wiki:/data soasme/tiddlywiki
+	./node_modules/.bin/tiddlywiki wiki --server 9000
 
 clean:
 	rm -rf ./wiki/output
 
 build: clean
-	docker run --rm -v `pwd`/wiki:/data soasme/tiddlywiki tiddlywiki /data --build static
+	#docker run --rm -v `pwd`/wiki:/data soasme/tiddlywiki tiddlywiki /data --build static
+	./node_modules/.bin/tiddlywiki wiki --build static
+
 
 publish: build
 	pipenv run ghp-import -c enqueuezero.com -m 'Sync Enqueue Zero Articles.' -b gh-pages ./wiki/output/static
