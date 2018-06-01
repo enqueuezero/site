@@ -1,5 +1,5 @@
 created: 20180531093358019
-modified: 20180531094537550
+modified: 20180601074715562
 title: count-distinct
 type: text/vnd.tiddlywiki
 
@@ -21,7 +21,7 @@ $ echo '1
 5
 2
 4' > data.txt
-$ cat data.txt | sort | uniq | wc -l
+$ sort data.txt | uniq | wc -l
        5
 ```
 
