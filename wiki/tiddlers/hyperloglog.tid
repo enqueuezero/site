@@ -1,5 +1,5 @@
 created: 20180601085323311
-modified: 20180601101628559
+modified: 20180601103607069
 title: hyperloglog
 type: text/vnd.tiddlywiki
 
@@ -44,7 +44,7 @@ HyperLogLogPlusPlus is an enhancement of HyperLogLog.
 
 !!! Redis
 
-Commands `PFADD`, `PFCOUNT`, and `PFMERGE` are the main interface for manipulating HyperLogLog data structure in Redis.
+Commands `PFADD`, `PFCOUNT`, and `PFMERGE` are the main interfaces for manipulating HyperLogLog data structure in Redis.
 
 ```
 redis> PFADD hll a b c d e f g
