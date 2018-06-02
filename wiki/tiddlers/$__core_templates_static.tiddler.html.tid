@@ -27,13 +27,24 @@ type: text/vnd.tiddlywiki
 <section class="tc-story-river">
 
 <!-- begin customized -->
-<h1 style="padding-left: 15px;">Enqueue Zero <span style="font-size: 0.5em;"><a href="https://www.patreon.com/bePatron?u=11258749" data-patreon-widget-type="become-patron-button">Become a Patron!</a>❤</span></h1>
+<h1 style="padding-left: 15px;"><a href="/" style="text-decoration: none;color:#000;">Enqueue Zero</a> <span style="font-size: 0.5em;"><a href="https://www.patreon.com/bePatron?u=11258749" data-patreon-widget-type="become-patron-button">Become a Patron!</a>❤</span></h1>
 <!-- end customized -->
 
 `<$importvariables filter="[[$:/core/ui/PageMacros]] [all[shadows+tiddlers]tag[$:/tags/Macro]!has[draft.of]]">
 <$view tiddler="$:/core/ui/ViewTemplate" format="htmlwikified"/>
 </$importvariables>`
 </section>
+
+<!-- begin customized -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-36183732-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-36183732-4');
+</script>
+<!-- end customized -->
+
 </body>
 </html>
 `
