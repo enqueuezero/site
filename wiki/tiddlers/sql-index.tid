@@ -1,0 +1,55 @@
+created: 20180603085934868
+modified: 20180603115604203
+title: sql-index
+type: text/vnd.tiddlywiki
+
+!! Context
+
+A properly configured index can make the SQL query fast. An index is a data structure in the database that created by `CREATE INDEX` statement. 
+
+The theory is that finding an ordered dataset is faster than unordered. It stores redundant row fields to the disk in a ordered manner. 
+
+[img[sql-index-ordered-is-fast.jpg]]
+
+The basic data structures for an index are Doubly LinkedList and B-Tree. 
+
+Using Doubly LinkedList rather than ArrayList mainly because it's inefficient to make room sequential when you do `INSERT` data. In Doubly LinkedList, every node has two links referring to preceding and the following node. Usually, databases index leaf nodes are connected into doubly linked lists. Each leaf node is in a database block, which is in same size.
+
+An index B-Tree data structure can find a leaf node quickly by traversing from root in as least block as possible. A nice feature of B-Tree is that even with huge nodes the tree depth grows slowly.
+
+[img[sql-index-data-structure.jpg]]
+
+!! Advantage
+
+Run the WHERE clause faster if you do it right.
+
+Queries with unique field detected like `WHERE id = 123345` can be faster If you set a PRIMARY KEY for it. 
+
+Queries with concatenated unique fields detected like `WHERE category_id=1 and sub_category_id=2` can be faster if you set a concatenated Index. 
+
+```
+> CREATE UNIQUE INDEX category_pk ON products (category_id, sub_category_id);
+> SELECT name FROM product where category_id=1 and sub_category_id=2;
+```
+
+Although we created an index with two more more fields, the index itself is still a B-tree index, only storing multiple field values in one leaf node. And more importantly, concat order matters. Creating an index with `(category_id, sub_category_id)` can help you run query `where category_id=1 and sub_category_id=2` and query `where category_id=1` faster, but not query `where sub_category_id=2`.
+
+!! Disadvantage
+
+After introducing index, the speed of `INSERT`, `DELETE`, and `UPDATE` gets slower.
+
+The more indexes you created, the slower the `INSERT` statement takes, for the simple reason that it needs to write more index data to disk, not to mention it also needs to  keep index order and tree balance.
+
+The `DELETE` statement is the happy one, for it shares the benefit of the boosted where clause querying, unless you are querying without where clause. Think of it as a `SELECT` plus deletions. The actual deletion is a reverse operation of `INSERT`: remove references in index and keep tree balance.
+
+The `UPDATE` statement is impacted when the indexed fields are modified. Usually the database remove old entry and add new one into index, which is similar to `DELETE` + `INSERT`.
+
+All three statement are somewhat related to the number of indexes.
+
+!! Inspect
+
+We might have multiple indexes on a table and do not know which one will be applied on a query. Apply a wrong index might get the query slower than expected, which is because database will scan much more rows. Usually in MySQL, we can prefix the query with `EXPLAIN` to check if a query is applied with the index we want.
+
+```
+EXPLAIN SELECT name FROM product where category_id=1 and sub_category_id=2;
+```
