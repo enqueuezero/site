@@ -1,9 +1,10 @@
 created: 20180601080821381
-modified: 20180603085922382
+modified: 20180604081532331
 tags: 
 title: table-of-contents
 type: text/vnd.tiddlywiki
 
 * [[Count Distinct|count-distinct]]
+* [[Data Serialization|data-serialization]]
 * [[HyperLogLog|hyperloglog]]
 * [[SQL Index|sql-index]]
