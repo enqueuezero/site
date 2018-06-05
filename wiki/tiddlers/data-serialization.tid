@@ -1,5 +1,5 @@
 created: 20180604081556993
-modified: 20180604112856705
+modified: 20180605015507409
 title: data-serialization
 type: text/vnd.tiddlywiki
 
@@ -56,9 +56,9 @@ Deserialize (in Python 3):
 
 * Advantages:
 ** Most languages support XML well.
-** Good performance for large data set.
 ** Well adopted in SOAP methodology.
 ** Support attributes in a data structure.
+** Good IDE integration.
 * Disadvantages:
 ** Serialized content is tedious and long. For example, it requires closing tags like `</isbn>`.
 ** Usually needs to write extra code to turn XML to code objects.
@@ -95,9 +95,10 @@ Serialize and deserialize (in Python 3):
 ** Simple and straightforward specification.
 ** Widespread Support. Almost all programming languages support serializing and deserializing JSON in their standard libraries.
 ** Human readable.
+** Good IDE integration.
 * Disadvantages:
-** Limited data types: null, boolean, string, integer, float, object, array. When serializing some non-supported data types, we converted them into string instead, for example, `datetime(1989, 6, 4, 0, 0, 0)` can be translated into ISO8601 format first `1989-06-04T00:00:00+0800`.
-** Performance is not good when dataset is huge. Program usually needs to load all data into memory first.
+** Limited data types: null, boolean, string, integer, float, object, array. When serializing some non-supported data types, we converted them into string instead, for example, `datetime(1989, 6, 4, 0, 0, 0)` can be translated into ISO8601 format first: `"1989-06-04T00:00:00+0800"`.
+** Performance is not good generally when dataset is huge unless you use a library support streaming parsing or writing.
 
 !!! MsgPack
 
@@ -127,10 +128,10 @@ Serialize and deserialize (in Python 3):
 
 * Advantages:
 ** Very efficient.
-** Good performance.
 ** Support streaming API.
 * Disadvantages:
 ** No built-in support in most languages.
+** Hard to debug.
 
 !!! Protobuf
 
@@ -176,12 +177,12 @@ Serialize:
 ```
 
 * Advantages:
-** Very efficient.
-** Good performance.
+** Very efficient and impact data.
 ** Has tested at scale in industry-level environments.
 * Disadvantages:
 ** Complicated. Need define `proto` and generate library first.
-** It requires the program doing data parsing work to have the generated library as well. This would generally cause problem when schema modified.
+** It requires the tool generating library as well. In addition, the generated library needs to exist in both client and server side. This would generally cause problem when schema modified.
+** Hard to debug.
 
 !!! Thrift
 
@@ -226,13 +227,61 @@ pickle.loads(data)
 * Disadvantage
 ** DANGEROUS!
 ** Can't be used in other languages.
+** Hard to debug.
+
+!!! Others
+
+INI, TOML and YAML are also human readable serialization formats.
+
+|INI|TOML|YAML|
+|[section]|[section]|section:|
+|key=value|key="value"|key: value|
+
+The three serialization formats listed above are often used as configuration file format.
+
+* Advantages
+** Human readable and writable.
+** Well-support libraries.
+* Disadvantages
+** Not designed for large dataset.
+
+CSV is also a popular serialization format. It's in plain text format and pretty good for tabular data. Below is an example one row csv file with a header as first line.
+
+```
+ISBN,Title
+9780262510875,Structure and Interpretation of Computer Programs - 2nd Edition
+```
+
+Serializing CSV are pretty easy in Python 3:
+
+```
+>>> import csv
+>>> with open('/tmp/demo.csv', 'w') as f:
+...     writer = csv.writer(f)
+...     writer.writerow(['ISBN', 'Title'])
+...     writer.writerow(['9780262510875', 'Structure and Interpretation of Computer Programs - 2nd Edition'])
+```
+
+* Advantage
+** Human readable and writable.
+** Good for streaming parsing and large dataset.
+** Good for data with same schema.
+** Non-technical folks can open it in Excel or Google Spreadsheet.
+* Disadvantage
+** Type is limited. Usually values are considered as string only.
+** No good support for binary data.
+** Data structure is limited. It only fits tabular data.
 
 !! Conclusion
 
 * JSON is usually your first choice. It's simple, human readable, and has most widespread support.
 * Use MsgPack instead of JSON if performance is an issue.
-* Use Protobuf if type check and schema check is essential.
-* Use Thrift if you're developing RPC services.
+* Use Protobuf if type check and schema check is essential. gRPC is recommended as an RPC framework based on Protobuf.
+** Use Thrift if you're developing RPC services and don't like Protobuf syntax.
+* Use TOML if you're serializing some config files.
+* Use CSV if you're serializing data to non-technical people.
+** Use INI if you want something simpler.
+** Use YAML if you want something more complex.
 * Use language built-in serialization functions or methods if the use case is only limited in a single language, and you don't care security that much (not good). 
 
 !! References
@@ -254,3 +303,14 @@ pickle.loads(data)
 * [[Wikipedia - Serialization|https://en.wikipedia.org/wiki/Serialization]]
 * [[XML|https://www.w3schools.com/xmL/default.asp]]
 * [[You're Using JSON, Why not MessagePack|https://news.ycombinator.com/item?id=2571729]]
+
+!! Credit
+
+* [[@vovanz|https://www.reddit.com/user/vovanz]]: helped on performance and JSON streaming API.
+* [[@Dogeek|https://www.reddit.com/user/Dogeek]]: helped on configuration serialization.
+* [[@tannhaeuser|https://news.ycombinator.com/user?id=tannhaeuser]]: helped on CSV piece.
+
+!! Discussion
+
+* [[Hackernews|https://news.ycombinator.com/item?id=17226781]]
+* [[Reddit|https://www.reddit.com/r/Python/comments/8ogk5o/which_is_your_first_choice_of_data_serialization/]]
