@@ -13,7 +13,7 @@ build: clean
 
 publish: build
 	pipenv run ghp-import -c enqueuezero.com -m 'Sync Enqueue Zero Articles.' -b gh-pages ./wiki/output/static
-	git push origin gh-pages
+	git push -f origin gh-pages
 
 preview:
 	open wiki/output/static/index.html
