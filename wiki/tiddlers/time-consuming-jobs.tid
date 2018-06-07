@@ -1,0 +1,61 @@
+created: 20180607022039841
+modified: 20180607030044079
+title: time-consuming-jobs
+type: text/vnd.tiddlywiki
+
+!! Context
+
+A reactive system needs to respond quickly, for example, less than 500 ms or 1 second. It's an essential trait of request-response model.
+
+However, it's inevitable that some jobs need longer time to be completed. It's unlikely to predict the actual run time, which varies from a few seconds to hours, and obviously often out of the limits.
+
+It's a impossible to achieve both goals without changing the execution model, to keep system responsive and to complete the time-consuming jobs.
+
+!! Solutions
+
+There are at least three solutions: slicing jobs, pre-executing jobs, post-executing jobs.
+
+!!! Slicing Jobs
+
+Slice the job into chunk of small work, each of which can be completed responsively.
+
+For example, deleting user's all comments might need take a while, but the client can keep calling `get_user_comments` and `delete_user_comment` until finish. Each one of the jobs should now be responsive.
+
+* Advantages
+** No need to modify anything on backend system.
+* Disadvantages
+** Limited use case. Many jobs are transactional and thus can't be sliced.
+** Client side needs to split the tasks and aggregate results.
+** Increase system load.
+
+!!! Pre-executing Jobs
+
+Pre-execute jobs ahead of when it needs. Store job results in the database or filesystem first and do the association or reference later.
+
+For example, a ticket-selling website, instead of requesting tickets from upstream supplier every time, might want to obtain a set of tickets before selling, and the actual selling ticket is simply to associate user id with a pre-allocated ticket.
+
+* Advantages
+** Little modification on backend system. It could be a cron script running every now and then.
+* Disadvantages
+** Limited use case.
+** Inefficient. It requires extra storage cost and some task results maybe over-generated.
+
+!!! Post-executing Jobs
+
+Respond job reference immediately and run the job in the background. When necessary, inquiry the job status and result by job reference, or more proactively, send job result back to requester.
+
+For example, after user registering an account, the system kicks off a confirmation email job and display "Please wait for a few minutes and check your confirmation email" on the page. User can check their email inbox later.
+
+Check [[Job Queue|job-queue]] for more information.
+
+* Advantages
+** General solution
+** Fits almost all cases.
+** Good frameworks support.
+* Disadvantages
+** Asynchronous model is complicated.
+** Introduce more monitoring and operation work.
+
+!! Conclusion
+
+Choose Post-executing Jobs strategy if possible. Most of the pitfall have been explored. Check Stackoverflow if needed. Almost all cases that fits Slicing Jobs and Pre-executing Jobs can be applied to Post-executing Jobs as well.

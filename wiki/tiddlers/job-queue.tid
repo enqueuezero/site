@@ -1,0 +1,87 @@
+created: 20180606222008481
+modified: 20180607034046493
+title: job-queue
+type: text/vnd.tiddlywiki
+
+!! Context
+
+Request-response model usually have very short time to run transaction, and thus it doesn't have enough time to handle time-consuming jobs. For example, the web server could be configured with 30 seconds to timeout, while importing his/her data from somewhere in the Internet might need to take 5 minutes.
+
+Job Queue is a general solution to solve this problem.
+
+!! Overview
+
+A Job queue, sometimes task queue or batch queue, is a data structure containing jobs to run outside the common request-response cycle. 
+
+A job is a data structure containing running context, and usually encoded as strings or byte streams in job queue. A job is produced by producer and consumed by consumer.
+
+A job producer is the entity initializing the job, serializing then and ending with sending out. The producer can be the HTTP process, desktop GUI main thread, or anything that should be responsive.
+
+A job consumer is the entity receiving jobs from the job queue, deserializing then and ending with running jobs in isolated environment.
+
+!! Use
+
+* Do offline calculations, for example, training machine learning model, updating loads of records in database, etc.
+* Interact with third-party services, for example, sending emails or text messages.
+* Let backup system do actual work without idling the compute resources.
+
+!! Solutions
+
+Below lists a set of popular job queue framework. By comparing their APIs and design philosophy, we can have a deeper understanding of job queue.
+
+!!! Celery
+
+* Advantage
+* Disadvantage
+
+!!! Python-RQ
+
+* Advantage
+* Disadvantage
+
+!!! Dramatiq
+
+* Advantage
+* Disadvantage
+
+!!! Sidekiq
+
+* Advantage
+* Disadvantage
+
+!!! Resque
+
+* Advantage
+* Disadvantage
+
+!!! DelayedJob
+
+* Advantage
+* Disadvantage
+
+!!! Quartz
+
+* Advantage
+* Disadvantage
+
+!!! JQM
+
+* Advantage
+* Disadvantage
+
+!!! Bee-Queue
+
+* Advantage
+* Disadvantage
+
+!!! bull
+
+* Advantage
+* Disadvantage
+
+!!! kue
+
+* Advantage
+* Disadvantage
+
+!! Conclusion
