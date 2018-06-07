@@ -1,5 +1,5 @@
 created: 20180607022039841
-modified: 20180607030044079
+modified: 20180607055016378
 title: time-consuming-jobs
 type: text/vnd.tiddlywiki
 
@@ -46,7 +46,7 @@ Respond job reference immediately and run the job in the background. When necess
 
 For example, after user registering an account, the system kicks off a confirmation email job and display "Please wait for a few minutes and check your confirmation email" on the page. User can check their email inbox later.
 
-Check [[Job Queue|job-queue]] for more information.
+Check [[Job Queue|index]] for more information.
 
 * Advantages
 ** General solution
