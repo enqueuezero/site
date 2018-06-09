@@ -1,23 +1,23 @@
 created: 20180606222008481
-modified: 20180608121230567
+modified: 20180609120411917
 title: job-queue
 type: text/vnd.tiddlywiki
 
 !! Context
 
-Request-response model usually have very short time to run transaction, and thus it doesn't have enough time to handle time-consuming jobs. For example, the web server could be configured with 30 seconds to timeout, while importing his/her data from somewhere in the Internet might need to take 5 minutes.
+In request-response model server usually has  very short time to run transactions, and thus it doesn't have enough time to handle time-consuming jobs. For example, the web server needs to respond in less than 30 seconds, while an API importing his/her data might need to take 5 minutes.
 
-Job Queue is a general solution to solve this problem.
+Job Queue is a general solution to solve the problem.
 
 !! Overview
 
 A Job queue, sometimes task queue or batch queue, is a data structure containing jobs to run outside the common request-response cycle. 
 
-A job is a data structure containing running context, and usually encoded as strings or byte streams in job queue. A job is produced by producer and consumed by consumer.
+A job is a data structure containing running context, and usually encoded as strings or byte streams in job queue.
 
-A job producer initializes the jobs, serialize them and ending with sending them out. The producer can be the HTTP process, desktop GUI main thread, or anything that is required to be responsive.
+A job producer initializes jobs, serializes them and sends them out. The producer can be the HTTP process, desktop GUI main process, or anything that is required to be responsive.
 
-A job consumer receives jobs from the job queue, deserialize them and runs jobs in isolated environment.
+A job consumer receives jobs from the job queue, deserializes them and runs jobs in isolated environment.
 
 !! Use
 
@@ -27,15 +27,15 @@ A job consumer receives jobs from the job queue, deserialize them and runs jobs 
 
 !! Common Pattern
 
-Below involves a set of popular job queue frameworks like Python-RQ, Celery, and Sidekiq. By comparing their APIs and design philosophy, we can have a deeper understanding of job queue.
+Below involves a set of popular job queue frameworks like Python-RQ, Celery, and Sidekiq. By comparing their APIs and design philosophies, we could have a deeper understanding of job queue.
 
-!!! Prepare a Message Queue
+!!! Setup Message Queue
 
-First, run a Message Queue software. It can be Redis, RabbitMQ, ZeroMQ, etc. Without the Message Queue running, the publisher can't publish jobs and the consumer would very likely crash. However, Job Queue won't launch Message Queue for you, meaning you need to manually bring up Message Queue instance before running Job Queue.
+First, run a Message Queue software. It can be Redis, RabbitMQ, ZeroMQ, Disque, etc. Without the Message Queue running, the publisher can't publish jobs and the consumer would very likely crash. However, Job Queue won't launch Message Queue for you usually, meaning you need to manually bring up Message Queue instance before running a Job Queue.
 
 !!! Setup Queue and Connection
 
-Job Queue usually requires you to define a `queue` object. The setup usually focuses on what Message Queue will you use and ends up with an object. This queue object encapsulates all functionalities a producer needs.
+Job Queue usually requires you to define a `queue` object. The setup function usually needs the connection parameters of Message Queue and return the job queue object. This queue object encapsulates all functionalities a producer needs.
 
 For example, in Python-RQ,
 
@@ -54,7 +54,7 @@ from celery import Celery
 celery = Celery('tasks', broker='pyamqp://guest@localhost//')
 ```
 
-Note that some frameworks have already created a Job Queue for you so that you only need to configure the queue. For example, in Sidekiq,
+Note that some frameworks many have already created a Job Queue so you only need to configure it. For example, in Sidekiq,
 
 ```
 require 'sidekiq'
@@ -115,7 +115,7 @@ CountWordsAtURLWorker.perform_async('https://enqueuezero.com')
 
 !!! Dedicated Worker as Consumer
 
-Most Job Queue software take over the worker completely, meaning you only need to start the worker and let it run. The worker will start executing a enqueued function call in the background whenever it found one from MQ. You might want to run it as a daemon.
+Most Job Queue softwares take over the worker completely, meaning you only need to start the workers and let them run. The worker will start executing the job in the background on fetching one from MQ. You might want to run it as a daemon or under process supervisors.
 
 For example, in Python-RQ,
 
@@ -137,7 +137,7 @@ $ bundle exec sidekiq
 
 !!! Monitoring
 
-Since Job Queue process is not responding request, monitoring is often a battery-included feature. It usually tells you at least below information:
+Since Job Queue process runs in the background, so monitoring is a battery-included feature. It often provides you some job statistics like below:
 
 * How many jobs in progress, or failed.
 * How many workers in idle, or busy.
@@ -146,8 +146,8 @@ Since Job Queue process is not responding request, monitoring is often a battery
 
 The Job Queue framework often provides two kinds of interfaces:
 
-* A web dashboard running in parallel with worker processes.
 * A command-line interface that can show job statistics, often with color bars.
+* A web dashboard running in parallel with worker processes. This also requires to run an extra admin web process alongside with the Job Queue. The basic theory is to let the admin web process connect to Message Queue for statistics.
 
 !!! Job Context
 
@@ -163,12 +163,13 @@ Below lists some common seen job context data:
 
 !!! Result Storage
 
-Job functions may return values. Some Job Queue frameworks support storing results into a backend. Some frameworks simply have no support for result storage for it might increase the complexity of implementation. Anyway, we have the job id in the context, so it's quite easy to store the id-result into key-value database.
+Job functions may return values. Some Job Queue frameworks support storing results into a backend. Some frameworks simply have no support for result storage for it might increase the complexity of implementation. Anyway, since we have the job id in the context, it's quite easy to store the id-result into key-value database for the Job Queue. It requires setting a storage backend when the Job Queue is setup.
 
 !!! Error Handling
 
-Job Queue have often below solutions for failed jobs:
+Job Queue has below solutions for failed jobs usually:
 
+* Customize error hook function.
 * Log error tracebacks or integrate with Error Tracing system.
 * Backoff and retry the job if necessary.
 * Move dead jobs to a failed queue.
@@ -183,16 +184,18 @@ Below lists popular Job Queue frameworks.
 ** Advantages
 *** Popular.
 ** Disadvantages
-*** Over-engineering.
+*** Over-engineering. Do you really need Celery? Give Python-RQ a look.
 *** Complex dependencies and code layers.
 *** Hard to debug.
+*** Complicated configuration.
+*** Can build an async call hell if you wish.
 * [[Python-RQ|https://python-rq.org/]]
 ** Advantages
 *** Simple, all document read through in 15min.
 *** Easy to debug.
 ** Disadvantages
 *** Support only Redis as broker.
-*** No delayed jobs.
+*** No delayed jobs. Do you think RQ is enough for you? Give celery a look.
 *** Unreliable delivery.
 * [[Dramatiq|https://dramatiq.io/]]
 ** Advantages
