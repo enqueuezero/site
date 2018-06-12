@@ -1,0 +1,89 @@
+created: 20180612050317783
+modified: 20180612050326677
+title: secure-socks5-proxy
+type: text/vnd.tiddlywiki
+
+!! Context
+
+In an HTTP / HTTPS world, the source and  destination of a TCP/IP packet is in public. A malicious party can interfere the network connection and send the source with a poisoned packet to deter or abort the connection.
+
+Some know attacks includes:
+
+* IP blocking. Malicious party blocks any connection attempt to designated IP addresses.
+* DNS spoofing. Malicious party returns incorrect IP addresses instead.
+* Packet filtering. Malicious party drops or terminate the packet whenever it detects designated words in the URL or data packet.
+* TCP RST. Any future request to the destination of previous terminated will be sent with TCP RST.
+* Deep Learning. By apply deep learning cluster, malicious party can find suspicious IP addresses quickly.
+
+Under such blockade, whoever wants to take a fresh air in the free Internet might sounds like dreaming. But geeks are apparently reluctant to lose even one single data packet for this cause. 
+
+The solution is to leverage SOCKS5 protocol by strong cipher algorithms.
+
+!! Use
+
+* Secretly penetrate firewall blockade.
+* Hide all packet data including source, destination, payload.
+
+!! Common Patterns
+
+Below lists some common seen techniques on developing a secure SOCKS5 proxy.
+
+!!! LocalProxy-RemoteProxy Model
+
+!!!! Free Client-Server
+
+!!!! Blocking
+
+!!!! Proxying
+
+!!!! Secure Proxying
+
+!!! Socks5 as LocalProxy Protocol
+
+!!! HTTP as Transmission Protocol
+
+!!! Cipher Algorithms
+
+!!! Pluggable Design
+
+!! Solutions
+
+!! Challenges and Risks
+
+!!! Untrusted Client
+
+* Malicious party could install interference software in the client side to deter the connection in between local softwares and LocalProxy.
+** This can be achieved by forcing installation.
+** It can also be achieved by embed into widely installed softwares.
+* Malicious party could force the person uninstalling LocalProxy.
+
+!!! Untrusted Server
+
+The server side must be  deployed into an environment without firewall blockade.
+
+* Malicious party could force cloud provider or sneak into the cloud servers doing below things:
+** Steal server logging files.
+** Kill the ServerProxy process.
+* Malicious party can also be the cloud provider.
+
+!!! Insecure Cipher Algorithms
+
+It's up to the end user's choice to choose which cipher algorithms to be used. If end user chooses insecure cipher algorithms, he/she might leak the fact or increase the suspicious degree that the server is being used as a Proxy server. When being detected, the server used as proxy server will be blocked.
+
+!!! IP Whitelist
+
+If end user can only connect to a selected range of IP lists, aka, IP whitelist, then there is no chance for the end user to use the SOCKS5 server, for SOCKS5 server IP will very unlikely to be included in the IP whitelist.
+
+!!! Forward Security
+
+When end users leaks both the cipher key and the traffic history, malicious party could decrypts all traffics in the past.
+
+!!! Law Enforcement
+
+Be aware of leaking no personal information even when using the secured SOCKS5 proxy. End user also might want to uninstall any untrusted certificates and softwares.
+
+It's said that the inventor of Shadowsocks was invited to "have a cup of tea" with law enforcement, for he was chatting with friends via QQ, a widely installed Tencent software. Since that, he deleted the code and quited developing the software.
+
+!! Conclusion
+
+By secretly deploying a secure SOCKS5 proxy server and choosing a strong cipher algorithm onto local computer and remote server, people can break through severe network blockade.
