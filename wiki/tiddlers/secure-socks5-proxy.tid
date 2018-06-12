@@ -1,5 +1,5 @@
 created: 20180612050317783
-modified: 20180612111811418
+modified: 20180612112737747
 title: secure-socks5-proxy
 type: text/vnd.tiddlywiki
 
@@ -148,4 +148,4 @@ It's said that the inventor of Shadowsocks was invited to "have a cup of tea" wi
 
 !! Conclusion
 
-By secretly deploying a secure SOCKS5 proxy server and choosing a strong cipher algorithm onto local computer and remote server, people can break through severe network blockade. Choose shadowsocks if you need to browse the free Internet.
+By secretly deploying a secure SOCKS5 proxy server and choosing a strong cipher algorithm, people can break through severe network blockade. Shadowsocks could be your first choice.
