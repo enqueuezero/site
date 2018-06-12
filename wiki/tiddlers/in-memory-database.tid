@@ -1,5 +1,5 @@
 created: 20180611110456898
-modified: 20180611111134587
+modified: 20180612012004906
 title: in-memory-database
 type: text/vnd.tiddlywiki
 
@@ -80,7 +80,6 @@ Consistent hashing is a special technique of hashing such that when the server n
 With the help of consistent hashing algorithm, hive availability can be achieved by simply deploying in-memory databases across multiple servers. It's the client's responsibility to ensure the key scattered properly.
 
 
-
 !!! Snapshotting
 
 Recoverability is a big challenge for In-memory databases. Imaging we're experiencing server reboot or process crash, then the data is lost.
@@ -88,43 +87,45 @@ Recoverability is a big challenge for In-memory databases. Imaging we're experie
 Below lists two snapshotting strategies:
 
 * No snapshotting
-* Snapshotting regularly
+* Regular Snapshotting
 
 !!!! No Snapshotting
 
 Some choose no snapshotting at all. It means all data in in-memory database should be durable to lose.
 
-A workaround of no snapshotting is to deploy in-memory database as a cluster. Each node in the cluster caches a portion of the entire dataset. The dataset might be replicated to multiple nodes. A few nodes crashing won't affect the function of the entire in-memory database cluster.
+!!!! Regular Snapshotting
 
-!!!! Snapshotting Strategy
+Some offer an alternative solution of persisting data from memory to disk. The requirement is it won't harm the advantage of in-memory. The trick is to sync data in a forked process at an preset interval frequency.
 
-Some offer an alternative solution of persisting data to disk. The requirement is it won't harm the advantage of in-memory. The trick is to sync data in a different thread at an interval frequency.
-
-For example, Redis snapshotting can be achieved by setting in below command. It means Redis dump the dataset to disk every 6000 seconds if at least 1000 keys changed:
+For example, Redis snapshotting can be achieved in below command. It means Redis dumps the dataset to disk every 6000 seconds if at least 1000 keys changed:
 
 ```
 save 60 1000
 ```
 
-It works by forking a child process for dumping. The child process writes all data in memory inherited from parent process to a file in disk.
+It works by forking a child process for dumping. The child process writes all data in memory inherited from parent process to a file in disk. It writes data to a new file and replace the new with old when complete. Such process is so-called copy-on-write.
 
 It's recommended to always enable snapshotting. It's for faster reboot that heating the dataset slowing.
 
 !!! Transaction Logging
 
-Sometimes snapshotting entire dataset can take a huge amount of time. Another approach to boot disaster recovery is to do transaction logging. The theory of transaction logging is to save all UPDATE operations into disk. There are generally three options to flush the data to the disk:
+Sometimes snapshotting entire dataset can take a huge amount of time. Another approach to boot disaster recovery is to do transaction logging. The theory of transaction logging is to save all WRITE operations into disk. When recovering the data, we replay the WRITE operations. There are generally three options to flush the data to the disk:
 
 * Save but slow: Flush to disk on every update.
 * Less save but faster: Flush every a few seconds.
 * Least save but fastest: Let Operating System do the flush.
 
-The data consistency in in-memory database is often not a strong requirement. So we might possibly see the transaction logging file broken when process crashing. The solution of Redis is to run a command to fix the broken file:
+Note that in some case, the transaction replay might leads to different result set. It's not as safety as Snapshotting in data consistency perspective.
+
+The data consistency in in-memory database is often not a strong requirement. So we might possibly see the latest line of transaction logging item is not complete. The solution of Redis is to run a command to fix the broken file:
 
 ```
 $ redis-check-aof --fix
+$ diff old new # check the change manually
+$ mv new old # cover the backup file
 ```
 
-In this case, AOF means append-only fashion. It's a way of describing adding new transaction by appending to logs only, no update and no deletion.
+In this case, AOF means append-only fashion. It's a way of describing adding new transactions by appending to logs only, with no update and no deletion on appended transactions.
 
 !!! Hybrids with on-disk databases
 
@@ -136,9 +137,9 @@ def get_my_model(id):
     return Model.query.get(id)
 ```
 
-Without changing too much on the logic, the function can now resolve data from cache first and only fetch data from on-disk database when cache missed.
+Without changing too much to the logic, the function now tries to get data from cache first and only query data from on-disk database when cache missed.
 
-It's a good strategy to reduce QoS on on-disk databases. The downside is that we might need to clean the cache when data needs to be updated.
+It's a good strategy to reduce QoS on on-disk databases. The downside is that the code become complicated when we need to clean the cache on data updated.
 
 !! Comparisons
 
@@ -150,7 +151,7 @@ Memcached is a free & open source, high-performance, distributed memory object c
 ** Very simple.
 ** Widely supported.
 * Disadvantages
-** Sometimes operations might not operate successfully.
+** Commands are not guarantee to be operated successfully, leading to cache inconsitency.
 
 !!! Redis
 
@@ -160,15 +161,14 @@ Memcached is a free & open source, high-performance, distributed memory object c
 ** Rich document.
 ** Rich data structures and features.
 ** Small memory footprint.
-** Good community.
+** Friendly community.
 ** A nice inventor @antirez.
 * Disadvantages
-** Neither RDB and AOF is save. Although we must accept such trade-off.
-
+** Neither RDB and AOF is safe, although we must accept such trade-off.
 
 !!! InMemory Engines
 
-On-disk Databases like SQLite, MySQL also ship with an in-memory engine. For example, you can open a sqlite database only in memory: 
+On-disk databases like SQLite, MySQL also ship with an in-memory engine by default. For example, you can open a sqlite database in memory only: 
 
 ```
 rc = sqlite3_open(":memory:", &db);
@@ -177,9 +177,9 @@ rc = sqlite3_open(":memory:", &db);
 * Advantages
 ** No need to introduce more thing.
 * Disadvantages
-** Complicated compare to key-value option.
-** No good support for in-memory database clustering. It's more often used as testing purpose.
+** Limited use case.
+** No good support for in-memory database clustering. It's more often used for testing purpose.
 
 !! Conclusion
 
-An in-memory databases are faster than on-disk databases because disk access is slower than memory access. Meanwhile, to overcome the drawback of data losing easily, we have to invent things like snapshotting, transaction logging, consistent hashing, high availability. Still, people love in-memory databases when response time is really a criterion since it's probably the best solution. And in most case, Redis could be first choice.
+In-memory databases are faster than on-disk databases because disk access is slower than memory access. Meanwhile, to overcome the drawback of data losing from crashing, we have to introduce strategies like snapshotting, transaction logging, consistent hashing, high availability. Despite of all the complexity introduced, people love in-memory databases when response time is really a criterion since it's probably the best solution. And in most case, Redis could be the first choice.
