@@ -1,13 +1,13 @@
 start:
-	#docker run -d --rm -p 9000:8080 -v `pwd`/wiki:/data soasme/tiddlywiki
-	./node_modules/.bin/tiddlywiki wiki --server 9000
+	docker run -d --rm -p 9000:8080 -v `pwd`/wiki:/data soasme/tiddlywiki
+	#./node_modules/.bin/tiddlywiki wiki --server 9000
 
 clean:
 	rm -rf ./wiki/output
 
 build: clean
-	#docker run --rm -v `pwd`/wiki:/data soasme/tiddlywiki tiddlywiki /data --build static
-	./node_modules/.bin/tiddlywiki wiki --build static
+	docker run --rm -v `pwd`/wiki:/data soasme/tiddlywiki tiddlywiki /data --build static
+	#./node_modules/.bin/tiddlywiki wiki --build static
 	cp ./wiki/tiddlers/favicon.ico wiki/output/static
 
 
