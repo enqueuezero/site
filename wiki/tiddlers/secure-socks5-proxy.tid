@@ -1,5 +1,5 @@
 created: 20180612050317783
-modified: 20180615073812629
+modified: 20180615110157586
 title: secure-socks5-proxy
 type: text/vnd.tiddlywiki
 
@@ -146,7 +146,7 @@ When end users leaks both the cipher key and the traffic history, malicious part
 
 Be aware of leaking no personal information even when using the secured SOCKS5 proxy. End user also might want to uninstall any untrusted certificates and softwares.
 
-It's said that the inventor of Shadowsocks was invited to "have a cup of tea" with law enforcement, for he was chatting with friends via QQ, a widely installed Tencent software. Since that, he deleted the code and quited developing the software.
+It's said that the inventor of Shadowsocks was invited to "have a cup of tea" with law enforcement, for he was chatting with friends via QQ, a widely installed Tencent software. Since that, he quitted developing the software.
 
 !! Conclusion
 
