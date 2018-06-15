@@ -1,5 +1,5 @@
 created: 20180612050317783
-modified: 20180612112737747
+modified: 20180615073812629
 title: secure-socks5-proxy
 type: text/vnd.tiddlywiki
 
@@ -14,6 +14,8 @@ Known attack techniques include:
 * Packet filtering. Malicious party drops or terminates the packet whenever it detects designated words in the URL or data packet.
 * TCP RST. Any future request to the destination blacklisted will be sent with TCP RST. The request will lost TCP connection immediately.
 * Deep Learning. By applying deep learning cluster, malicious party can find suspicious IP addresses quickly.
+
+[img[secure-socks5-proxy-attackers.png]]
 
 Under such blockade, whoever wants to take a fresh air in the free Internet might sounds like dreaming. But geeks are apparently reluctant to lose even one single data packet for this cause. 
 
