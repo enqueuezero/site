@@ -1,0 +1,25 @@
+created: 20180615103202954
+modified: 20180615103304228
+title: circuit-breaker
+type: text/vnd.tiddlywiki
+
+!! Context
+
+In a distributed system, an application often has at least one upstream system. When upstream is overloaded, or doomed to be failure, the application is very likely to be bogged down as well. Such circumstance is called cascading failure.
+
+[img[circuit-breaker-cascading-failure.png]]
+
+As an example, we have an application requiring a remote service. Somehow, the remote service is experiencing performance issue and takes very long time to send response back to the application. Meanwhile, in the application side, it's holding all of the connections that get stuck.  Such behavior eventually causes the web application overloaded.
+
+There are several techniques that can solve cascading failures. Circuit Breaker is among one of them.
+
+!! Introduction
+
+Circuit Breaker solves the problem based on below assumptions:
+
+* Giving something is better than nothing.
+** Provide default fallback values.
+** Provide cached values.
+* Isolate the system.
+** Fail fast for the features that are using functionalities dependent on upstream.
+** Keep other features all available that are not using functionalities dependent on upstream.
