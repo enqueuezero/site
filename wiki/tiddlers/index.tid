@@ -1,5 +1,5 @@
 created: 20180530090523293
-modified: 20180616114435125
+modified: 20180617105135198
 tags: 
 title: index
 type: text/vnd.tiddlywiki
@@ -16,7 +16,7 @@ In return I will pick a random patron to discuss with some technical questions r
 
 Come join Enqueue Zero! 
 
-* [[12 Factor|12-factor]]
+* [[12 Factor|12-factor]] 🍰✨
 * [[2PL and MVCC|2pc-and-mvcc]]
 * [[ACID and BASE|acid-and-base]]
 * [[Agile|agile]]

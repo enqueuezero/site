@@ -1,0 +1,46 @@
+created: 20180617094159842
+modified: 20180617105109684
+title: 12-factor
+type: text/vnd.tiddlywiki
+
+!! Context
+
+Software as a service, or Saas, requires the application to be built with portability and resilience when porting itself as a web service. The application can be varies from functions to forms but they can share some same design principles to become modern web-based services.
+
+
+!! Introduction
+
+12-Factor manifesto was first published in 2011 and widely adopted by many application. Note that the factors introduced does not necessarily to be applied all at once. it d
+
+!! Solutions
+
+Below table is a short description:
+
+| Factor | Name | Description | Memo |
+| I | Codebase | One codebase tracked in revision control, many deploys | Pull all code in Git or SVN or HG, etc. |
+| II | Dependencies | Explicitly declare and isolate dependencies | Write all software dependencies in file such as `requirements.txt`, `Gemfile` etc, and vendor system tools|
+| III | Config | Store config in the environment | Read config in the form like `redis_url = os.environ['REDIS_URL']` in the application|
+| IV | Backing services | Treat backing services as attached resources | Read service reference in config, such as `mysql://localhost:3306`, `memcache://10.0.1.1:10010`, `redis://192.168.10.1:6379/0`, etc|
+| V | Build, release, run | Strictly separate build and run stages | Turning the code into package (build) somewhere first, and then install the package (release) in production|
+| VI | Processes | Execute the app as one or more stateless processes | Make sure the application can run standalone in every server |
+| VII | Port binding | Export services via port binding | Expose your service in the form like `ip:port`|
+| VIII | Concurrency | Scale out via the process model | Run application in a set of different types, such as `web` processes, `worker` processes, and `clock` process|
+| IX | Disposability | Maximize robustness with fast startup and graceful shutdown | Start and shutdown quickly|
+| X | Dev/prod parity | Keep development, staging, and production as similar as possible | Use vagrant or docker to diminish the difference among different environments|
+| XI | Logs | Treat logs as event streams | Write logs and errors into stdin and stderr|
+| XII | Admin processes | Run admin/management tasks as one-off processes | Provide CLI for application|
+
+* Advantages
+** Can be applied to any programming languages
+** Can mix with different backend services, such as database, queue, cache, etc.
+* Disadvantages
+** Some rules such as Config, Logs are not must-have requirements in some case.
+
+!! Conclusion
+
+12-Factor methodology describes how to turn your application as a robust, reliable and least-astonishment web service.
+
+!! References
+
+* [[12factor.net|https://12factor.net/]]
+* [[12-Factor Apps in Plain English|http://www.clearlytech.com/2014/01/04/12-factor-apps-plain-english/]]
