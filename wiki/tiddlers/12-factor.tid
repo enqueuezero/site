@@ -1,5 +1,5 @@
 created: 20180617094159842
-modified: 20180617105109684
+modified: 20180617111317709
 title: 12-factor
 type: text/vnd.tiddlywiki
 
@@ -10,11 +10,11 @@ Software as a service, or Saas, requires the application to be built with portab
 
 !! Introduction
 
-12-Factor manifesto was first published in 2011 and widely adopted by many application. Note that the factors introduced does not necessarily to be applied all at once. it d
+12-Factor manifesto was first published in 2011 and widely adopted by many applications. Note that the factors introduced don't necessarily to be applied all at once.
 
 !! Solutions
 
-Below table is a short description:
+Below table show all factors:
 
 | Factor | Name | Description | Memo |
 | I | Codebase | One codebase tracked in revision control, many deploys | Pull all code in Git or SVN or HG, etc. |
@@ -31,14 +31,14 @@ Below table is a short description:
 | XII | Admin processes | Run admin/management tasks as one-off processes | Provide CLI for application|
 
 * Advantages
-** Can be applied to any programming languages
+** Can be applied to any programming languages.
 ** Can mix with different backend services, such as database, queue, cache, etc.
 * Disadvantages
-** Some rules such as Config, Logs are not must-have requirements in some case.
+** Some rules such as Config, Logs are not must-have in some cases.
 
 !! Conclusion
 
-12-Factor methodology describes how to turn your application as a robust, reliable and least-astonishment web service.
+12-Factor methodology describes how to turn your application as a robust, reliable and least-astonishment web service. Some of the rules are absorbed in web frameworks or online platforms. Although some cause debates, it has spread widely. Choose the factors you like when porting your application as service!
 
 !! References
 
