@@ -1,0 +1,83 @@
+created: 20180621082526666
+modified: 20180621091622005
+title: lock-free-queues
+type: text/vnd.tiddlywiki
+
+!! Context
+
+FIFO queue is an important data structure. Queues are also being implemented in many other algorithms, such as quick-sort.
+
+Applying queue data structure to concurrency is important. This data structure enables us to distribute information from one execution unit to another. However, it enforces us to make sure data in queue are well synchronized without being overwritten by another process or thread.
+
+Other than trivial and tedious locking solution, there is another way to do it. It's called Lock-Free Queue.
+
+!! Introduction
+
+Lock-free queue is a queue applying to concurrency but without locking. When using lock-free queue, slow or stopped processes do not prevent other processes from accessing data in it.
+
+Lock-free queue has two main interfaces just like normal queue:
+
+* Enqueue. Append a new data to the end of the queue.
+* Dequeue. Pop out the first data in the head of the queue.
+
+* Advantage
+** Faster
+** No dead-lock
+** Reentrant
+* Disadvantage
+* Hard to set priority.
+* Need CPU support CAS.
+
+!! Solutions
+
+!!! Compare & Swap
+
+Compare & Swap, or CAS, is among one of modern CPU instruction set. It's used as an atom operation to change a value in memory if it's not modified.
+
+```
+def cas(addr, expect, new):
+    current = ram.get(addr)
+    if current == expect:
+        ram.set(addr, new)
+    return current
+```
+
+It's the fundamental instruction of lock-free queue algorithm. Without this, we have to apply a lock onto the queue.
+
+!!! Linked-List based
+
+The linked-list-based lock-free queue algorithm appears below.
+
+```
+Enqueue(x):
+  q = new record
+  q.value = x
+  q.next = null
+
+  repeat
+    p = tail
+    ok = CAS(p.next, null, q)
+  until ok
+
+  CAS(tail, p, q)    
+```
+
+Dequeue:
+
+```
+Dequeue():
+  repeat
+    p = head
+    if p.next == null
+      return ERR_EMPTY
+  until not CAS(head, p, p.next)
+  return p.next.value
+```
+
+!!! Array based
+
+!!! Hazard Version
+
+!!! ABA problem
+
+!! Conclusions

@@ -1,21 +1,24 @@
 created: 20180619110229072
-modified: 20180619110320583
+modified: 20180621082147575
 title: async-and-sync
 type: text/vnd.tiddlywiki
 
 !! Context
 
-In computing, program doing input / output, or I/O, has two major ways:
+In computing, program doing input / output, or I/O, has five major ways:
 
-* Blocking;
-* Non-blocking.
+* Blocking I/O
+* Nonblocking I/O
+* I/O Multiplex
+* Signal-driven I/O
+* Asynchronous I/O
 
-Check [[Blocking and Non-blocking|blocking-and-non-blocking]] if you don't understand them.
+Check [[I/O Models|io-models]] if you don't understand them.
 
-In programming language, blocking and non-blocking derives two programming models: synchronous and asynchronous.
+In programming language, the last I/O - Asynchronous I/O and others derive two programming models: synchronous and asynchronous.
 
-* Blocking methods executes synchronously.
-* Non-blocking methods executes asynchronously.
+* Synchronous execution.
+* Asynchronous execution.
 
 !! Introduction
 
@@ -27,8 +30,7 @@ Executing synchronously describes the sequence of code execution in one-by-one o
 
 !!! Asynchronous
 
-Executing asynchronously describes no deterministic execution order among tasks.The execution of code can start at almost same time but ends differently. In general, asynchronous refers to as submitting a task to a runner, and then immediately running next task without knowing the result of previous task. The submitted task will be completed or aborted at a certain time later.
-
+Executing asynchronously refers to as submitting a task to a runner, and then immediately running next task without knowing the result of previous task. The submitted task will be completed or aborted at a certain time later.
 
 !! Solutions
 
