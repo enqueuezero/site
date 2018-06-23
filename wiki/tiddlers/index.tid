@@ -1,5 +1,5 @@
 created: 20180530090523293
-modified: 20180621082513310
+modified: 20180623234840224
 tags: 
 title: index
 type: text/vnd.tiddlywiki
@@ -97,7 +97,7 @@ Come join Enqueue Zero!
 * [[Latency and Throughput|latency-throughput]]
 * [[License|license]]
 * [[Load Balance|load-balance]]
-* [[Lock-free Queues|lock-free-queues]]
+* [[Lock-free Queues|lock-free-queues]]  🍰✨
 * [[Logging|logging]]
 * [[Machine Learning|machine-learning]]
 * [[macOS Dev Env Setup|macos-dev-env-setup]]

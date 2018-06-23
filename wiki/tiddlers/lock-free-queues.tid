@@ -1,5 +1,5 @@
 created: 20180621082526666
-modified: 20180621091622005
+modified: 20180623234256158
 title: lock-free-queues
 type: text/vnd.tiddlywiki
 
@@ -76,8 +76,61 @@ Dequeue():
 
 !!! Array based
 
-!!! Hazard Version
+Array-based lock-free queue is simpler than linkedlist-based. It requires a ring array. The rules are described below:
+
+* Each element can have for possible values: HEAD, TAIL, EMPTY, and data.
+* When initialized, all elements are EMPTY except two of them are HEAD and TAIL. It means this is an empty ring array.
+* Enqueue operation is to update (TAIL, EMPTY) to (data, TAIL) via CAS. The queue is full if (TAIL, EMPTY) is not found.
+* Dequeue operation is to update (HEAD, data) to (EMPTY, HEAD) via CAS. The queue is empty if (HEAD, TAIL) is found.
+
+!!! Retry-Loop
+
+In linkedlist-based solution, `p = tail` has a potential problem. If other threads are hanging after CAS operation but before executing `p = tail`, then current thread will be blocked.
+
+The solution can be introducing a retry-loop:
+
+```
+Enqueue(x):
+  q = new record
+  q.value = x
+  q.next = null
+
+  repeat
+    while (p->next != null):
+      p = next
+    ok = CAS(p.next, null, q)
+  until ok
+
+  CAS(tail, p, q)   
+```
 
 !!! ABA problem
 
+CAS instruction introduces one problem: if one value is being modified twice and back to its origin value at the second time, then CAS cannot find it's being modified.
+
+We have at least two solutions:
+
+* Double-CAS: add a counter in parallel with data. When the data is modified, the counter has to being increased.
+* Ref-Count: we keep track of when it is safe to recycle a node by assigning each node a reference count, and not reusing a node until its reference count has gone to zero.
+
+```
+RefCount_SafeRead (q):
+  loop:
+    p = q.next
+    if p == null:
+      return p
+    fetch_add(p.refcnt, 1)
+    if p == q.next:
+      return p
+    else:
+      release(p)
+    goto loop
+```
+
 !! Conclusions
+
+Lock-Free queues provides us better performance for concurrent queue which is non-blocking and linearizable. Although it introduces ABA problem, we have some workaround solutions for it. In general, if if don't want to lock your queue in concurrent programming, try lock-free queue algorithm.
+
+!! References
+
+* [[Implementing Lock-Free Queues|http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.53.8674&rep=rep1&type=pdf]]
