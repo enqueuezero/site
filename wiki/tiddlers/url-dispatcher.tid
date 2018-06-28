@@ -1,5 +1,5 @@
 created: 20180628110229584
-modified: 20180628111115323
+modified: 20180628111344711
 title: url-dispatcher
 type: text/vnd.tiddlywiki
 
@@ -108,7 +108,7 @@ dispatch:
 
 Based on the similarity of the `/` in the path, some frameworks map url to script files in exact the same structure as they are in the filesystem. For example:
 
-* URL `/posts/comments/` is handled by script ./posts/comments.php`.
+* URL `/posts/comments/` is handled by script `./posts/comments.php`.
 * URL `/posts/42` is handled by function `_q_lookup` in script `./posts.py` (Quixote framework).
 
 !!! Nested Definition
