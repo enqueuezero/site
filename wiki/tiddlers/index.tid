@@ -1,5 +1,5 @@
 created: 20180530090523293
-modified: 20180703094544138
+modified: 20180703102102461
 tags: 
 title: index
 type: text/vnd.tiddlywiki
@@ -80,7 +80,6 @@ Come join Enqueue Zero!
 * [[Incident Management|incident-management]]
 * [[GitHub Architecture|github-architecture]]
 * [[Golang|golang]]
-* [[Grammar Syntax|grammar-syntax]]
 * [[Graph Database|graph-database]]
 * [[gRPC|grpc]]
 * [[Haskell|haskell]]
@@ -88,6 +87,7 @@ Come join Enqueue Zero!
 * [[HTTP|http]]
 * [[HTTPS|https]]
 * [[HyperLogLog|hyperloglog]] 🍰✨ 
+* [[Language Grammar|language-grammar]] 🍰✨
 * [[Immutable Infrastructure|immutable-infrastructure]]
 * [[Infrastructure as Code|infrastructure-as-code]]
 * [[In-Memory Database|in-memory-database]] 🍰✨
