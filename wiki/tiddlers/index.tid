@@ -1,5 +1,5 @@
 created: 20180530090523293
-modified: 20180714113116785
+modified: 20180714114217856
 tags: 
 title: index
 type: text/vnd.tiddlywiki
@@ -98,7 +98,7 @@ Come join Enqueue Zero!
 * [[Job Scheduler|job-scheduler]]
 * [[Latency and Throughput|latency-throughput]]
 * [[License|license]]
-* [[Load]] 🍰✨
+* [[Load|load]] 🍰✨
 * [[Load Balance|load-balance]] 🍰✨
 * [[Lock-free Queues|lock-free-queues]]  🍰✨
 * [[Logging|logging]]
