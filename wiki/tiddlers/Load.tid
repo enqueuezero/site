@@ -1,5 +1,5 @@
 created: 20180714113005563
-modified: 20180714113037069
+modified: 20180714114127250
 title: Load
 type: text/vnd.tiddlywiki
 
@@ -73,7 +73,7 @@ Are three load metrics can get in one command `uptime`. If you want to know real
 
 !! Conclusions
 
-If you are maintaining a production system, the high load averages or percentiles are things to worry about. When they're high, either identify the bottleneck or simply dispatch more resources.
+If you are maintaining a production system, the high load averages or percentiles are things to worry about. When they're high, either identify the bottleneck or simply assign more servers or instances.
 
 !! References
 
