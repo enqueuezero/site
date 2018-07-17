@@ -1,0 +1,56 @@
+created: 20180717110417939
+modified: 20180717110435002
+title: ffi
+type: text/vnd.tiddlywiki
+
+!! Context
+
+After compiled, C source code gets transformed to binary instructions. During this process, we drop all calling context. Some other programs may not know what arguments are to be passed to a function in this program.
+
+Here is an example. First we save our source code in `module.h` and `module.c`. Header file `module.h` has all function signatures like below:
+
+```
+#ifndef MODULE_H
+#define MODULE_H
+typedef struct point point_t;
+struct point {
+  int x;
+  int y;
+};
+double point_distance(const point_t* p1, const point_t* p2);
+#endif
+```
+
+The implementation of `module.c` gets compiled into `libmodule.so`.
+
+In Python or Lua or Ruby, we can dynamically load `libmodule.so` via `dlopen` in Unix and `LoadLibrary` in Windows. 
+
+```
+void (*f)(void);
+
+void* lib = dlopen("libmodule.so", RTLD_LAZY);
+if (lib == NULL)
+    fatal("dlopen failed: %s", dlerror());
+
+f = (void (*)(void)) dlsym(lib, "point_distance");
+```
+
+In `libmodule.so`, we have only registers like `%esi`, `%xmm0`. We now have the address of function in dynamic library. However, we actually don't know what parameters to send and what is return type. 
+
+It's easy to know such information in C by sharing header file definition, but calling it in another language might seems a big challenge.
+
+FFI is a technology that solved this problem.
+
+!! Overview
+
+FFI, or Foreign Function Interface, allows code written in one language to call code written in another language. The major use case is for dynamic VM languages. For example, Python has CFFI, same as Ruby, Java, Lua using it in similar C FFI libraries.
+
+Basically after dynamically loaded and resolved symbols in `.so` or `.ddl` file, we use FFI constructing foreign function call.
+
+!! Solutions
+!! Tutorial
+!! Patterns
+!! Conclusions
+!! References
+
+* [[Why use FFI|https://github.com/ffi/ffi/wiki/Why-use-FFI]]

@@ -1,10 +1,10 @@
 created: 20180715095556288
-modified: 20180715095748907
+modified: 20180715100157682
 tags: 
 title: enqueue-zero-introduction
 type: text/vnd.tiddlywiki
 
-We write code. We type commands. And we find patterns so that we can write less code and type less commands. This is why we need code principles.
+We write code. We type commands. And we find patterns so that we can write less code and type less commands. Code principles are all about finding patterns. System Design needs these code principles.
 
 We might learn several programming languages through our entire life, [[C|c]], [[C++|c-plus-plus]], [[Java|java\\, [[Python|python]], [[Ruby|ruby]], [[Perl|perl]], [[Bash|bash]], [[JavaScript|javascript]], [[Closure|closure]], [[Haskell|haskell]], [[Golang|golang]], [[Rust|rust]], [[Erlang|erlang]], [[Scala|scala]]. You name it. Some people even learn one language every year. Under the hood, these languages can be categorized into [[Compiled Language|compiled-language]] and [[Interpreter Language|interpreter-language]]. Knowing [[Programming Language Patterns|programming-language-patterns]] can help you learn other languages faster. In many cases, you just write a new language inside a language, or so-called [[Domain Specific Language|dsl]], so you will need to learn things like [[Language-Grammar|language-grammar]], [[Just-in-time|jit]] etc. 
 
