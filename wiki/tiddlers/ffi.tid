@@ -1,5 +1,5 @@
 created: 20180717110417939
-modified: 20180717110435002
+modified: 20180718213245856
 title: ffi
 type: text/vnd.tiddlywiki
 
@@ -7,35 +7,41 @@ type: text/vnd.tiddlywiki
 
 After compiled, C source code gets transformed to binary instructions. During this process, we drop all calling context. Some other programs may not know what arguments are to be passed to a function in this program.
 
-Here is an example. First we save our source code in `module.h` and `module.c`. Header file `module.h` has all function signatures like below:
+Here is an example. First we save our source code in `mymodule.h` and `mymodule.c`. Header file `mymodule.h` has all function signatures like below:
 
 ```
-#ifndef MODULE_H
-#define MODULE_H
+#ifndef MYMODULE_H
+#define MYMODULE_H
+
 typedef struct point point_t;
+
 struct point {
-  int x;
-  int y;
+  double x;
+  double y;
 };
-double point_distance(const point_t* p1, const point_t* p2);
+
+double get_point_distance(const point_t* p1, const point_t* p2);
+
 #endif
 ```
 
-The implementation of `module.c` gets compiled into `libmodule.so`.
+The implementation of `mymodule.c` gets compiled into `libmymodule.so`. (`gcc -shared -o libmymodule.so mymodule.c`)
 
-In Python or Lua or Ruby, we can dynamically load `libmodule.so` via `dlopen` in Unix and `LoadLibrary` in Windows. 
+In Python or Lua or Ruby, we can dynamically load `libmymodule.so` via `dlopen` in Unix and `LoadLibrary` in Windows. 
 
 ```
 void (*f)(void);
 
-void* lib = dlopen("libmodule.so", RTLD_LAZY);
+void* lib = dlopen("libmymodule.so", RTLD_LAZY);
 if (lib == NULL)
     fatal("dlopen failed: %s", dlerror());
 
 f = (void (*)(void)) dlsym(lib, "point_distance");
 ```
 
-In `libmodule.so`, we have only registers like `%esi`, `%xmm0`. We now have the address of function in dynamic library. However, we actually don't know what parameters to send and what is return type. 
+We now have the address of function in dynamic library. However, we actually don't know what parameters to send and what is return type, because all things in `libmodule.so` are machine instructions on top of registers like `%esi`, `%xmm0`, not `const point_t* p1, const point_t* p2` any more.
+
+[img[ffi-after-dlopen.jpg]]
 
 It's easy to know such information in C by sharing header file definition, but calling it in another language might seems a big challenge.
 
@@ -47,10 +53,108 @@ FFI, or Foreign Function Interface, allows code written in one language to call 
 
 Basically after dynamically loaded and resolved symbols in `.so` or `.ddl` file, we use FFI constructing foreign function call.
 
+FFI code can be described in below steps:
+
+* Define C struct fields, C function parameters and return types, etc.
+* Construct an ffi call struct, and run things like `ffi_call`.
+
 !! Solutions
-!! Tutorial
+
+!!! LuaJit - FFI
+
+The LuaJit FFI library allows calling external C functions and using C data structures from pure Lua code. It parses plain C declarations first. The arguments passed to this function are automatically converted from Lua objects to the corresponding C types. After `printf` call, LuaJit automatically converts C return types back to Lua objects.
+
+Below is the `hello world` example.
+
+```
+local ffi = require("ffi")
+ffi.cdef[[
+int printf(const char *fmt, ...);
+]]
+ffi.C.printf("Hello %s!", "world")
+```
+
+Non-trivial C Struct is also supported. `ffi.cdef` below let LuaJit remember the essential field names and field bytesize. `ffi.new` below creates a non-fixed-sized array of a C struct.
+
+```
+ffi.cdef[[
+typedef struct point point_t;
+struct point {
+  double x;
+  double y;
+};
+]]
+local points = ffi.new("point_t[?]", n)
+points[1].x = 1.0
+points[2].y = 3.0
+```
+
+!!! Python - CFFI
+
+Python CFFI provides similar interfaces to LuaJit except that it support more calling conventions including ABI & in-line, ABI & out-of-line, API & in-line, ABI & out-of-line.
+
+Below is its hello-world example:
+
+```
+from cffi import FFI
+ffi = FFI()
+ffi.cdef("""
+    int printf(const char *format, ...);   // copy-pasted from the man page
+""")
+C = ffi.dlopen(None)                     # loads the entire C namespace
+arg = ffi.new("char[]", "world")         # equivalent to C code: char arg[] = "world";
+C.printf("hi there, %s.\n", arg)         # call printf
+```
+
+Below is an equivalent example of C Struct usage.
+
+```
+ffi = FFI()
+ffi.cdef("""
+typedef struct point point_t;
+struct point {
+  double x;
+  double y;
+};
+""")
+points = ffi.new("point_t[]", 2)
+points[0].x = 1.0
+points[1].y = 3.0
+```
+
+!!! Ruby - FFI
+
+!!! Pony - FFI
+
+!!! Common Lisp - FFI
+
+!!! Rust - FFI
+
+!!! C - libffi
+
 !! Patterns
+
+!!! How it works
+!!! ABI v/s API
+!!! CIF Description
+!!! Exchange
+!!! Type Conversion
+!!! Callback
+!!! Garbage Collect
+!!! Thread-safe v/s Thread-unsafe
+!!! Interfaces Comparison
+
 !! Conclusions
+
 !! References
 
+* [[Flexible runtime interface to shared libraries with libffi|https://eli.thegreenplace.net/2013/03/04/flexible-runtime-interface-to-shared-libraries-with-libffi]]
 * [[Why use FFI|https://github.com/ffi/ffi/wiki/Why-use-FFI]]
+* [[LuaJit - FFI|http://luajit.org/ext_ffi.html]]
+* [[Python - CFFI|https://cffi.readthedocs.io/en/latest/overview.html]]
+* [[Using LibFFI|http://www.chiark.greenend.org.uk/doc/libffi-dev/html/Using-libffi.html#Using-libffi]]
+* [[Java JNI example|https://stackoverflow.com/questions/5963266/call-c-function-from-java]]
+* [[Pony - FFI|https://tutorial.ponylang.org/c-ffi/]]
+* [[Rust - FFI|https://doc.rust-lang.org/book/first-edition/ffi.html]]
+* [[CommonLisp - FFI|https://common-lisp.net/project/cffi/manual/cffi-manual.html]]
+* [[Example of source code in this post|https://gist.github.com/soasme/1ddbf4de79e341cbf2e0cf7357a166f7]]
