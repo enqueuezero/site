@@ -1,5 +1,5 @@
 created: 20180530090523293
-modified: 20180717110421023
+modified: 20180720122225773
 tags: 
 title: index
 type: text/vnd.tiddlywiki
@@ -75,7 +75,7 @@ Come join Enqueue Zero!
 * [[Event Driven|event-driven]]
 * [[Event Sourcing|event-sourcing]]
 * [[Facebook Architecture|facebook-architecture]]
-* [[FFI|ffi]]
+* [[FFI|ffi]] 🍰✨ 
 * [[File System|file-system]]
 * [[Linux Kernel|linux-kernel]]
 * [[Incident Management|incident-management]]
