@@ -1,5 +1,5 @@
 created: 20180717110417939
-modified: 20180718213245856
+modified: 20180720105516583
 title: ffi
 type: text/vnd.tiddlywiki
 
@@ -124,19 +124,152 @@ points[1].y = 3.0
 
 !!! Ruby - FFI
 
-!!! Pony - FFI
+Ruby code integrating FFI looks very traditional `Ruby` stylish.
+
+```
+require 'ffi'
+
+module Hello
+  extend FFI::Library
+  ffi_lib FFI::Library::LIBC
+  attach_function :puts, [ :string ], :int
+end
+
+Hello.puts("Hello, World")
+```
+
+`require 'ffi'` loads and initializes FFI library. `extend FFI::Library` attach FFI functionalities to module Hello. Below two lines we declare loading libc and loading `puts` function, which receives string as parameter and return int value.
+
+Defining struct also looks in OO style.
+
+```
+class Point < FFI::Struct
+  layout :x, :int
+  layout :y, :int
+end
+
+attach_function 'get_point_distance', [ :pointer ], :int
+```
 
 !!! Common Lisp - FFI
 
+ANSI Common Lisp has FFI as well. It's CFFI, or Common Foreign Function Interface.  In Common Lisp, we also split the calls into three steps: 1) load c lib, 2) define types, 3) call.
+
+```
+;;; load library
+(asdf:load-system :cffi)
+(defpackage :cffi-user
+    (:use :common-lisp :cffi))
+
+(define-foreign-library libc
+  (t (:default "libc")))
+
+(use-foreign-library libc)
+
+(defcfun "printf" :int (str :pointer) &rest))
+
+(printf "hello world")
+```
+
+Everything expressed in Common Lisp is just in S-expression, even when you're writing CFFI bindings. This make coding a lot easier.
+
 !!! Rust - FFI
 
+Ruby has smart compiler so it doesn't need you to vendor c source code or provide type symbols, instead, you write plain Rust code to `extern` c code. Below is a minimal example of calling a library `snappy`.
+
+```
+extern crate libc;
+use libc::size_t;
+
+#[link(name = "snappy")]
+extern {
+    fn snappy_max_compressed_length(source_length: size_t) -> size_t;
+}
+
+fn main() {
+    let x = unsafe { snappy_max_compressed_length(100) };
+    println!("max compressed length of a 100 byte buffer: {}", x);
+}
+```
+
+`extern { ... }` let you wrap function definition together. `[#link(name="snappy")]` is a hint to Rust compiler to instruct the linker to link against the snappy library.
+
+Note that when we call defined function, the call is actually wrapped by `unsafe` keyword. In Rust, we tend to believe it's unsafe when we write C code since we lost the power of Rust compiler checking type or referencing security.
+
+!!! Pony - FFI
+
+In Pony, you can use FFI directly. The FFI call syntax is very much like normal function call with little difference. Below example shows how to call `fwrite`.
+
+```
+@fwrite[U64](data.cstring(), U64(1), data.size(), _handle)
+```
+
+The benefit of calling without definition looks convenient. Nonetheless, it's very dangerous. Being able to do this doesn't mean that you should do it in this way. Without signature, it might cause potential bug. And hence, it's still recommended to define signature first. Pony declare function signature via `use` keyword.
+
+```
+use @SSL_CTX_ctrl[I32](ctx: Pointer[_SSLContext] tag, op: I32, arg: I32,
+  parg: Pointer[U8] tag) if windows
+
+use @SSL_CTX_ctrl[I64](ctx: Pointer[_SSLContext] tag, op: I32, arg: I64,
+  parg: Pointer[U8] tag) if not windows
+
+class SSLContext val
+  new create() =>
+    // set SSL_OP_NO_SSLv2
+    @SSL_CTX_ctrl(_ctx, 32, 0x01000000, Pointer[U8])
+```
+
+`use @` here tells Pony compiler it's a FFI definition.
+
 !!! C - libffi
+
+libffi is very likely fundamental library that built into majority of VM languages written in C language. It has very basic form. Below code comes from [[libffi simple example|http://www.chiark.greenend.org.uk/doc/libffi-dev/html/Simple-Example.html#Simple-Example]]:
+
+```
+#include <stdio.h>
+#include <ffi.h>
+
+int main()
+{
+  ffi_cif cif;
+  ffi_type *args[1];
+  void *values[1];
+  char *s;
+  ffi_arg rc;
+  
+  /* Initialize the argument info vectors */    
+  args[0] = &ffi_type_pointer;
+  values[0] = &s;
+  
+  /* Initialize the cif */
+  if (ffi_prep_cif(&cif, FFI_DEFAULT_ABI, 1, 
+		       &ffi_type_sint, args) == FFI_OK)
+    {
+      s = "Hello World!";
+      ffi_call(&cif, puts, &rc, values);
+      /* rc now holds the result of the call to puts */
+      
+      /* values holds a pointer to the function's arg, so to 
+         call puts() again all we need to do is change the 
+         value of s */
+      s = "This is cool!";
+      ffi_call(&cif, puts, &rc, values);
+    }
+  
+  return 0;
+}
+```
+
+It has a set of `ffi_` prefixed functions. Especially, `ffi_prep_cif` is used to define signature, `ffi_prep_cif_var` is used to define signature for those varargs needed, `ffi_call` is for making calls.
 
 !! Patterns
 
 !!! How it works
 !!! ABI v/s API
 !!! CIF Description
+!!! Long Long
+!!! Alignment
+!!! 32 v/s 64
 !!! Exchange
 !!! Type Conversion
 !!! Callback
@@ -158,3 +291,4 @@ points[1].y = 3.0
 * [[Rust - FFI|https://doc.rust-lang.org/book/first-edition/ffi.html]]
 * [[CommonLisp - FFI|https://common-lisp.net/project/cffi/manual/cffi-manual.html]]
 * [[Example of source code in this post|https://gist.github.com/soasme/1ddbf4de79e341cbf2e0cf7357a166f7]]
+* [[How libffi actually works?|http://techbrahmana.blogspot.com/2008/08/how-libffi-actually-works.html]]
