@@ -1,5 +1,5 @@
 created: 20180717110417939
-modified: 20180720121826779
+modified: 20180720122129535
 title: ffi
 type: text/vnd.tiddlywiki
 
@@ -367,6 +367,8 @@ Some C operations are not thread-safe. Be careful when calling them when you're 
 ** Portability. Some interfaces might not work in another platform or architect. For example, you can't use Windows `MessageBoxA` in Linux.
 
 !! Conclusions
+
+If you have performance bottleneck when running CPU-intensive calculation in VM language, and ALSO feels VM interpreter runs so slow, take a look at FFI! If you want to write your own interpreter language, also try to integrate libffi as a bonus!
 
 !! References
 
