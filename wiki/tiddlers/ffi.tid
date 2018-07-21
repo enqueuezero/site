@@ -1,5 +1,5 @@
 created: 20180717110417939
-modified: 20180721121007636
+modified: 20180721121129829
 title: ffi
 type: text/vnd.tiddlywiki
 
@@ -20,7 +20,7 @@ In Python, we can dynamically load a dynamic library, resolve FuncPointers by sy
 [1]    47162 segmentation fault  python
 ```
 
-The reason is simple. Everything in the dynamic library is machine instruction. We can have registers like `%esi`, `%xmm0`, not `const point_t* p1, const point_t* p2` at all.
+The reason is simple. Everything in the dynamic library is machine instruction. We have registers like `%esi`, `%xmm0` in dynamic library, but no `const point_t* p1, const point_t* p2` at all.
 
 [img[ffi-after-dlopen.jpg]]
 
