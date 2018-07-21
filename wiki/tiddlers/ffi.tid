@@ -1,45 +1,26 @@
 created: 20180717110417939
-modified: 20180720122129535
+modified: 20180721101253001
 title: ffi
 type: text/vnd.tiddlywiki
 
 !! Context
 
-After compiled, C source code gets transformed to binary instructions. During this process, we drop all calling context. Some other programs may not know what arguments are to be passed to a function in this program.
+C function parameter types and return type are nowhere in compiled shared dynamic library. Some other programs may not know what arguments are to be passed to a function in this program.
 
-Here is an example. First we save our source code in `mymodule.h` and `mymodule.c`. Header file `mymodule.h` has all function signatures like below:
-
-```
-#ifndef MYMODULE_H
-#define MYMODULE_H
-
-typedef struct point point_t;
-
-struct point {
-  double x;
-  double y;
-};
-
-double get_point_distance(const point_t* p1, const point_t* p2);
-
-#endif
-```
-
-The implementation of `mymodule.c` gets compiled into `libmymodule.so`. (`gcc -shared -o libmymodule.so mymodule.c`)
-
-In Python or Lua or Ruby, we can dynamically load `libmymodule.so` via `dlopen` in Unix and `LoadLibrary` in Windows. 
+In Python, we can dynamically load a dynamic library, resolve FuncPointers by symbols of functions and even call it. The only problem is that the program would crash without the right parameters passing into functions.
 
 ```
-void (*f)(void);
-
-void* lib = dlopen("libmymodule.so", RTLD_LAZY);
-if (lib == NULL)
-    fatal("dlopen failed: %s", dlerror());
-
-f = (void (*)(void)) dlsym(lib, "point_distance");
+>>> import ctypes
+>>> libc = ctypes.CDLL('libc.dylib')
+>>> libc.atoi
+<_FuncPtr object at 0x100a509a8>
+>>> libc.atoi("1")
+1
+>>> libc.atoi(1)
+[1]    47162 segmentation fault  python
 ```
 
-We now have the address of function in dynamic library. However, we actually don't know what parameters to send and what is return type, because all things in `libmodule.so` are machine instructions on top of registers like `%esi`, `%xmm0`, not `const point_t* p1, const point_t* p2` any more.
+The reason is simple. Everything in the dynamic library is machine instruction. We can have registers like `%esi`, `%xmm0`, not `const point_t* p1, const point_t* p2` at all.
 
 [img[ffi-after-dlopen.jpg]]
 
