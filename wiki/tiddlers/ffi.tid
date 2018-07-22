@@ -1,5 +1,5 @@
 created: 20180717110417939
-modified: 20180721121129829
+modified: 20180721211918162
 title: ffi
 type: text/vnd.tiddlywiki
 
@@ -113,7 +113,7 @@ In Pony, you can use FFI directly. The FFI call syntax is very much like a funct
 @fwrite[U64](data.cstring(), U64(1), data.size(), _handle)
 ```
 
-Calling FFI without pre-defined signatures looks convenient. Nonetheless, it's very dangerous. Without the signature, it might cause some potential bugs. And hence, it's still recommended to define signature first. Pony declare function signature via `use` keyword.
+Calling FFI without predefined signatures looks convenient. Nonetheless, it's very dangerous. Without the signature, it might cause some potential bugs. And hence, it's still recommended defining signature first. Pony declare function signature via 'use' keyword.
 
 ```
 // define FFI signature
@@ -208,7 +208,7 @@ Ruby and Common Lisp use semantic signatures, that is to explicitly define funct
 
 Pony and Rust allow defining signatures in their language code. They compile code anyway, so the language compilers help you do the dirty work. It makes code styling more unified.
 
-!!! !!! Alignment 32 bit v/s 64 bit
+!!! !!! Alignment in 32-bit v/s 64-bit
 
 We need the size of values, otherwise, we'll get a different binary sequence. Without getting data aligned, the library will get the wrong data and thus lead the application crash.
 
@@ -248,7 +248,7 @@ It's essential to have a way to map VM functions into FFI functions. Luckily, we
 
 You don't need to care about memory management due to GC is usually built-in in VM language. However, when writing FFI calls, you need to worry about low-level memory management problem. 
 
-There is no C stack in FFI. Every data live either in the native heap or VM-managed heap. Free those useless when becomes useless.
+There is no C stack in FFI. All data live either in the native heap or VM-managed heap. Free those useless when becomes useless.
 
 !!! Thread-safe v/s Thread-unsafe
 

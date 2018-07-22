@@ -1,84 +1,29 @@
 created: 20180624003205610
-modified: 20180624003717341
+modified: 20180722053425559
 title: actor-model
 type: text/vnd.tiddlywiki
 
 !! Context
 
-Concurrency means we need to schedule multiple tasks onto one CPU core. It gives us benefit of running multiple tasks at the same time.
+Concurrency means we could run multiple tasks upon single CPU core.
 
-Multiprocess and multithreading are the two most popular ways of doing concurrency. It basically leverages Operating System's process and thread (lightweight process). The problem is that data sharing is a problem, especially in multithreading. We need to apply locks to the shared data, otherwise it would create unexpected data by running unpredictable code sequence. But lock is very hard to use.
+Multiprocess and multithreading are the two most popular ways of doing concurrency. It leverages Operating System's process and thread (lightweight process). The problem is that data sharing is a problem, especially in multithreading. We need to apply locks to the shared data.
 
-One way to solve it is to use actor-model.
+The actor model is another concurrency technology.
 
 !! Introduction
 
-Actor is also an isolated concurrent unit but scheduled by in programming language level. Different from processes or threads in OS, it's far more lightweight. If you can have thousands of OS processes running simultaneously, then you can have hundreds of thousands of actors running simultaneously.
+The actor is an isolated concurrent unit scheduled by the programming language. 
+
+It's far more lightweight than processes or threads, so you can have hundreds of thousands of actors running simultaneously.
 
 Actors are isolated from each other, meaning no actor can access other actors' data in memory. Instead, if needed, they communicate with each other via message passing.
-
-!! Patterns
-
-!!! Small Memory Footprint
-
-A process or thread needs to have minimum a few megabytes memory in OS.
-
-Actors are very small in contrast. It varies from implementations, but it generally needs only a few hundreds of bytes. That's why it can have hundreds of thousands of actors when consuming 1GB memory.
-
-Actor has very few data in its data structure:
-
-* State.
-* Behaviour.
-* Mailbox.
-
-!!! Mailbox and Message Passing
-
-Every actor has a mailbox, just like a mailbox in front of every house. It's a FIFO message queue that stores message sending from other actors.
-
-The synchronizing semantic is fulfilled by the sequence of messages delivered to mailbox. The actor will do nothing until it receives a message. When received a message, it invokes its behavior functions.
-
-Generally the mailbox is implemented in a lock-free queue algorithm. Check [[Lock-Free Queues|lock-free-queues]] If you want to know more.
-
-!!! Schedule System
-
-The schedule system schedules when to run an actor. As a developer, you wouldn't necessarily need to use schedule system generally.
-
-The schedule system can be implemented in two ways:
-
-* By using underlying threading model.
-* Build something in programming language virtual machine (VM) just like Operating System provides: CPU time slicing, actor state machine, etc.
-
-!!! Ready Queue & Waiting Queue
-
-Schedule system maintains two queues:
-
-* `ready_queue`.
-* `waiting_queue`.
-
-The rules are described below:
-
-* Scheduler picks the HEAD of `ready_queue` to run inside VM for a given time slice.
-* Scheduler moves the head of `ready_queue` to the END of `ready_queue` if the Proc can't finish in a given time slice.
-* Scheduler moves the HEAD of `ready_queue` to the END of `waiting_queue` if the Proc is blocked by `recv` or I/O.
-* Scheduler moves a Proc from `waiting_queue` to `ready_queue` if it receives a message or waiting timeout.
-
-Note that at a specific moment, there is only one instruction of a Proc is actually running in single CPU core. On a multiple CPU core machine, VM can create multiple scheduler and hence multiple Proc
-
-!!! Let it crash
-
-Actor might crash, just like process might crash. `Let it crash` is a philosophy of isolating bad actors from crashing but leaving all other actors running as normal. Usually a supervisor watches all actors, if an actor crashed, then it will try to do something based on your configured strategy, for example, restarting the actor.
-
-!!! Distribution
-
-In actor model, message passing doesn't care where the message comes from. It can be from actors in the same process or from another node.
-
-This feature combining let-it-crash philosophy makes actor a perfect solution to build a robust distributed system.
 
 !! Solutions
 
 !!! Erlang, Elixir
 
-Erlang achieves great access in communication industry. The secret is actor model. Below hello world example shows the two fundamental operators: `send` and `receive`.
+In the telecom industry, we find heavy use of Erlang. The actor model makes the system more reliable. Below hello world example shows the two fundamental operators: send and receive.
 
 ```
 pid = spawn fn ->
@@ -94,12 +39,69 @@ send pid, {:hello, "world"}
 
 Akka is de facto actor model implementation in Java and Scala. 
 
-It has similar operator like erlang and elixir. Check [[Akka Quickstart with Scala|https://developer.lightbend.com/guides/akka-quickstart-scala/index.html]] for Hello World example. It's a little bit complicated than elixir example above.
+It has a similar operator like Erlang and Elixir. Check [[Akka Quickstart with Scala|https://developer.lightbend.com/guides/akka-quickstart-scala/index.html]] for Hello World example. It's a little bit complicated than elixir example above.
 
 !!! Skynet
 
 [[Skynet|https://github.com/cloudwu/skynet]] is a lightweight C-implemented actor system. 
 
+!! Patterns
+
+!!! Small Memory Footprint
+
+OS process or thread needs to have minimum a few megabytes memory in OS.
+
+Actors are tiny in contrast. It varies from implementations, but it generally needs only a few hundreds of bytes. That's why it can have hundreds of thousands of actors when consuming 1GB memory.
+
+An actor has very few data in its data structure:
+
+* State
+* Behaviour
+* Mailbox
+
+!!! Mailbox and Message Passing
+
+Every actor has a mailbox, just like a mailbox in front of every house. It's a FIFO message queue that stores message sending from other actors.
+
+The sequence of messages delivered to a mailbox determines the code be synchronized. The actor reacts by the following Message and suspends when no new Message.
+
+Generally, the mailbox is a lock-free queue. Check [[Lock-Free Queues|lock-free-queues]] If you want to know more.
+
+!!! Schedule System
+
+The schedule system schedules when to run an actor. As a developer, you wouldn't necessarily need to use schedule system generally.
+
+The scheduling system has two major implementations:
+
+* Use underlying OS threads.
+* VM implement its micro-threads.
+
+!!! Ready Queue & Waiting Queue
+
+Schedule system maintains two queues:
+
+* `ready_queue`.
+* `waiting_queue`.
+
+Below is a possible set of rules:
+
+* Scheduler picks the HEAD of `ready_queue` to run inside VM for a given time slice.
+* Scheduler moves the head of `ready_queue` to the END of `ready_queue` if the Proc can't finish in a given time slice.
+* Scheduler moves the HEAD of `ready_queue` to the END of `waiting_queue` if `recv` blocks the Proc.
+* Scheduler moves a Proc from `waiting_queue` to `ready_queue` if it receives a message or waiting for the timeout.
+
+Note that at a specific moment, there is only one instruction of a Proc is running in single CPU core. On a multiple CPU core machine, VM can create various schedulers.
+
+!!! Let it crash
+
+An actor might crash, just like process might crash. `Let it crash` is a philosophy of isolating bad actors from crashing but leaving all other actors running as usual. Usually, a supervisor watches all actors. If an actor crashed, then it will try to do something based on your configured strategy, for example, restarting the actor.
+
+!!! Distribution
+
+The actor doesn't care where the message comes. It can be from another actor in the same process or from another process in another machine.
+
+This feature combining let-it-crash philosophy makes actor a perfect solution to build a robust distributed system.
+
 !! Conclusions
 
-Actor model is yet another concurrent programming solution. The benefit is lock-free. The downside is only a few tools or framework support it. Either way, if you're stuck at lock when doing concurrent programming, try actor model.
+The actor model is yet another concurrency solution. The benefit is lock-free. The downside is only a few tools or framework support it. Either way, if you're stuck at lock when doing concurrent programming, try actor model.

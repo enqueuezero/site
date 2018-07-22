@@ -1,11 +1,11 @@
 created: 20180628110229584
-modified: 20180628111344711
+modified: 20180722054907933
 title: url-dispatcher
 type: text/vnd.tiddlywiki
 
 !! Context
 
-URI links live in everywhere outside the website itself, so we tend to change URIs as less as possible, otherwise those would be dead links. Check more on [[Hypertext Style: Cool URIs don't change|https://www.w3.org/Provider/Style/URI]].
+URI links live everywhere outside the website itself, so we tend to change URIs as less as possible. Check more on [[Hypertext Style: Cool URIs don't change|https://www.w3.org/Provider/Style/URI]].
 
 Most modern web frameworks provide a component called `Router` or `URLDispatcher` to resolve a function or method to handle requests to URLs.
 
@@ -13,10 +13,10 @@ Most modern web frameworks provide a component called `Router` or `URLDispatcher
 
 !!! Request Process
 
-A typical request processing routine is described as below:
+A typical request processing routine is as below:
 
-* Web framework loads url resolution rules. Each rule is bound to a handling class, or function, or method.
-* When request coming, web framework runs through each rule, in defining order sequence, and stops at the first one that matches the requested URL.
+* Web framework loads URL resolution map. Each rule is bound to a handling class, or function, or method.
+* When request comes, web framework iterates through each route in defining order sequence and stops at the first matching route.
 * Once the URL rule matches, web framework construct request information and pass it to the handling class, or function, or method.
 * A 404 exception is raised when no rule matches.
 
@@ -29,11 +29,11 @@ There are many means to determine which function to execute for an URL.
 * Directory Resolution
 * Function Resolution
 
-Among them, Regex Resolution and Template Resolution are most popular.
+Among them, Regex Resolution and Template Resolution are the most popular.
 
 !!!! Regex Resolution
 
-Regex is a string pattern matching technique. We define url regex first, and web framework will apply URLs to regex one by one until matching.
+Regex is a string pattern matching technique. We define URL regex first, and web framework will apply URLs to regex one by one until matching.
 
 For example, in Django, you can define rules like below code:
 
@@ -49,11 +49,11 @@ urlpatterns = [
 
 Above code can resolute `/posts/42` to `view.get_post` to execute; resolute `/posts/42/comments` to `view.get_post_comment` to execute.
 
-Regex are generally pre-compiled when loading web application, so they can be very fast!
+Regex is very fast because the expressions are generally pre-compiled when web application loaded.
 
 !!!! Template Resolution
 
-Regex are hard to read, so people invent template string to make it more readable.
+Regex is hard to read, so people invent template string to make it more readable.
 
 [[RFC 6570: URI Template|https://tools.ietf.org/html/rfc6570]] is among one of the most popular solutions. It defines expressions by `{` and `}`. For example,
 
@@ -70,14 +70,14 @@ Some web frameworks also use `:`  to define variables. For example,
 * `/posts/:id` matches `/posts/42`.
 * `/posts/:id/comments` matches `/posts/42/comments`.
 
-Even the glob pattern can be used. For example,
+Some web frameworks even support the glob pattern. For example,
 
 * `/posts/*` matches `/posts/42`.
 * `/posts/*.*` matches `/posts/42.html` or `/posts/42.json`.
 
 !!! Function-based Resolution
 
-To make the resolution more dynamic, a function-based solution is often used as a supplement solution. For example, in [[Sinatra|http://sinatrarb.com/intro.html]], you can add an extra function to the url resolution:
+To make the resolution more generic, a function-based solution is often used as a supplement solution. For example, in [[Sinatra|http://sinatrarb.com/intro.html]], you can add an extra function to the url resolution:
 
 ```
 set(:probability) { |value| condition { rand <= value } }
@@ -91,7 +91,7 @@ get '/win_a_car' do
 end
 ```
 
-Information in the headers, domain can also be used. For example, in [[Google App Engine|https://cloud.google.com/appengine/docs/standard/java/how-requests-are-routed]], you can dispatch requests to `http://simple-sample.appspot.com/mobile/` and `http://simple-sample.appspot.com/work/` by rules define in below code.
+We can even use data in the headers or domain. For example, in [[Google App Engine|https://cloud.google.com/appengine/docs/standard/java/how-requests-are-routed]], you can dispatch requests to `http://simple-sample.appspot.com/mobile/` and `http://simple-sample.appspot.com/work/` by rules defined in below code.
 
 ```
 dispatch:
@@ -106,7 +106,7 @@ dispatch:
 
 !!!! Directory-based Resolution
 
-Based on the similarity of the `/` in the path, some frameworks map url to script files in exact the same structure as they are in the filesystem. For example:
+Based on the similarity of the `/` to file path in the file system, some frameworks map URL to script files in the same structure as they are in the filesystem. For example:
 
 * URL `/posts/comments/` is handled by script `./posts/comments.php`.
 * URL `/posts/42` is handled by function `_q_lookup` in script `./posts.py` (Quixote framework).
@@ -127,9 +127,9 @@ urls = path('/posts/*' , post_urls)
 
 !!! Generating URLs
 
-For generating URLs from patterns, we usually give the pattern a name first. Then, we generate URLs by giving a reversing function name and other arguments.
+We have a demand to get URLs from a given routing URL and parameters. We call such use case reverse.
 
-For example, in Flask, you can use `url_for` in view function to generate a url for redirection:
+For example, in Flask, you can use `url_for` in view function to generate a URL for redirection:
 
 ```
 from flask import url_for, redirect
@@ -145,7 +145,9 @@ In template, we also can use similar functions:
 ```
 !! Solutions
 
-Sinatra framework has probably the most simple and elegant route defining syntax.
+!!! Sinatra
+
+Sinatra framework is simple and elegant.
 
 ```
 get '/posts/:id' do
@@ -161,7 +163,7 @@ def get_post(id):
     # do something
 ```
 
-Sprint has similar syntax but with a lot of boilerplate code.
+Sprint has similar syntax but with much boilerplate code.
 
 ```
 @RestController
@@ -190,7 +192,7 @@ urlpatterns = [
 
 !! Conclusions
 
-Web framework dispatch URLs to a function based on a pre-registered URL rules. It's one of the very core features of any web framework. Either way, Above examples show different ways of doing the same thing.
+Web framework routes URLs to functions based on a pre-registered URL rules. It's one of the very core features in any web framework.
 
 !! References
 
