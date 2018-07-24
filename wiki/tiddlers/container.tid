@@ -1,0 +1,128 @@
+created: 20180724103950285
+modified: 20180724195800157
+title: container
+type: text/vnd.tiddlywiki
+
+Container
+
+Many people have heard of the container for a while or even use it every day. However, a question like "what is container" or "how container works" might still rise.
+
+In this post, we will deep dive into the container.
+
+!! Context
+!! Solutions
+!!! Docker
+!!! CoreOS rkt
+!!! LXC, LXD
+!!! Bocker
+!!! OCI
+!! Patterns
+!!! How it works, Part 1
+
+!!! unshare & container
+
+Unshare is a utility running program with some namespaces unshared from a parent. We create a new PID namespace below.
+
+```
+[user@julin1 ~]$ sudo unshare --fork --pid --mount-proc sh
+[sudo] password for user: 
+sh-4.2# ps aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0 115432  1808 pts/0    S    10:25   0:00 sh
+root         2  0.0  0.0 155324  1848 pts/0    R+   10:25   0:00 ps aux
+sh-4.2# exit
+exit
+```
+
+Let's compare it with Docker. It also creates a new PID namespace.
+
+```
+[user@julin1 ~]$ sudo docker run -it --rm busybox sh
+/ # ps aux
+PID   USER     TIME  COMMAND
+    1 root      0:00 sh
+    5 root      0:00 ps aux
+/ # exit
+```
+
+Ignoring other things, we're doing a similar job here, that is to create a new namespace.
+
+Check manpage of [[unshare.1|http://man7.org/linux/man-pages/man1/unshare.1.html]].
+
+!!! nsenter & container
+
+Nsenter is a utility enters the namespaces of one or more other processes and then executes the specified program. In other words, we jump to the inner side of the namespace.
+
+Keep above unshare command running, and let's create a new session. This time, we run a program in the existing PID namespace created before. It's worth noting that PID 4789 in the regular namespace is the same thing with PID 1 in the new namespace.
+
+```
+[user@julin1 ~]$ ps aux
+... (truncate)
+root      4789  0.0  0.0 115432  1560 pts/1    S+   19:11   0:00 sh
+
+[user@julin1 ~]$ sudo nsenter --target 4789 --mount --uts --ipc --net --pid ps aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0 115432  1848 pts/1    S+   19:22   0:00 sh
+root         7  0.0  0.0 155324  1844 pts/2    R+   19:25   0:00 ps aux
+```
+
+The command `ps aux` runs inside the namespace!
+
+We can also enter docker container space via nsenter! First, figure out PID by docker inspection. Second, enter this PID! It's just pretty much like docker exec.
+
+```
+[user@julin1 ~]$ sudo docker inspect --format {{.State.Pid}} bb7b84c1fb48
+4855
+
+[user@julin1 ~]$ sudo nsenter --target 4855 --mount --uts --ipc --net --pid ps aux
+PID   USER     TIME  COMMAND
+    1 root      0:00 sh
+    5 root      0:00 ps aux
+
+[user@julin1 ~]$ sudo docker exec -it 410db7a6c006 ps aux
+PID   USER     TIME  COMMAND
+    1 root      0:00 sh
+    5 root      0:00 ps aux
+```
+
+Check manpage of [[nsenter.1|http://man7.org/linux/man-pages/man1/nsenter.1.html]].
+
+!!! namespace & container
+
+So far, we have shown how to create a new PID namespace and how to enter an existing PID namespace. It's time to figure out what is a namespace.
+
+Namespace enables us having the same name. For example, A PID namespace empowers the process inside the namespace running with 1 as PID, which at the same time, `init` is running with 1 as PID in the regular namespace.
+
+The namespace has various kinds. You have seen PID namespace. There are some more: IPC namespace, Network namespace, Mount namespace, User namespace, UTS namespace. Each type isolates different system resources. 
+
+It's worth noting that namespace doesn't isolate access to physical resources such as CPU, Memory, and disk I/O. We'll introduce another tool cgroup for this specific use case.
+
+One major use case of the namespace is to implement container.
+
+Each process has a /proc/[pid]/ns/ subdirectory. Go and check one in your Linux system! And also check the man page of [[namespaces.7|http://man7.org/linux/man-pages/man7/namespaces.7.html]].
+
+!!! cgroup & container
+!!! seccomp & container
+
+!!! process & container
+
+Surprisingly, there is no concept of the container in Kernel space.
+
+A container is merely an OS process. However, don't make it wrong, it's different from the processes you launched from the shell. It runs under a namespace, controlled by a cgroup, and secured by seccomp. 
+
+
+!!! How it works, Part 2
+
+!! Comparisons
+!!! Container v/s Process
+!!! Container v/s Virtual Machines
+Virtual
+!! Conclusions
+!! References
+* [[What even is container|https://jvns.ca/blog/2016/10/10/what-even-is-a-container/]]
+* [[Manpage: unshare|http://man7.org/linux/man-pages/man1/unshare.1.html]]
+* [[Manpage: nsenter|http://man7.org/linux/man-pages/man1/nsenter.1.html]]
+* [[Manpage: namespaces|http://man7.org/linux/man-pages/man7/namespaces.7.html]]
+* [[Manpage: cgroup|http://man7.org/linux/man-pages/man7/cgroups.7.html]]
+* [[Why do you need to run sshd in container|https://blog.docker.com/2014/06/why-you-dont-need-to-run-sshd-in-docker/]]
+* [[Linux namespaces|https://medium.com/@teddyking/linux-namespaces-850489d3ccf]]
