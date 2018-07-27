@@ -1,23 +1,39 @@
 created: 20180724103950285
-modified: 20180727094114184
+modified: 20180727114850000
 title: container
 type: text/vnd.tiddlywiki
-
-Container
 
 Many people have heard of the container for a while or even use it every day. However, a question like "what is container" or "how container works" might still rise.
 
 In this post, we will deep dive into the container.
 
 !! Context
+
 !! Solutions
+
 !!! Docker
+
+Docker is the dominant container technology in the industry. Check [[Docker Overview|https://docs.docker.com/engine/docker-overview/]] for more information.
+
 !!! CoreOS rkt
+
+CoreOS rkt is yet another application container engine. The advantage of rkt is its cloud-native nature. Check [[A security-minded, standards-based container engine: rkt|https://coreos.com/rkt/]].
+
 !!! LXC, LXD
+
+LXC and LXD is system container engine.  It offers an environment as close as possible as the one you'd get from a VM but without the overhead that comes with running a separate kernel and simulating all the hardware. Check [[linuxcontainer.org|https://linuxcontainers.org/]].
+
 !!! Bocker
+
+Bocker is a container engine implemented in 100 lines of Bash code. It's mainly for education. Check [[p8952/bocker|https://github.com/p8952/bocker]].
+
 !!! OCI
+
+The Open Container Initiative or OCI develops specifications for standards on Operating System process and application containers. It defines two specs: the Runtime Specification ([[runtime-spec|https://github.com/opencontainers/runtime-spec]]) and the Image Specification ([[image-spec|https://github.com/opencontainers/image-spec]]). 
+
 !! Patterns
-!!! How it works, Part 1
+
+We will demonstrate that container technology is not shiny new thing. It provides so much values by simply combining several old technologies: namespace, cgroup, and union filesystem.
 
 !!! unshare & container
 
@@ -33,20 +49,15 @@ So far, we have shown how to create a new PID namespace and how to enter an exis
 
 {{Container and Namespace}}
 
-!!! unionfs & container
+!!! union filesystem & container
 
 {{Container and UnionFS}}
 
 !!! cgroup & container
-!!! seccomp & container
-
-!!! process & container
-
-Surprisingly, there is no concept of the container in Kernel space.
-
-A container is merely an OS process. However, don't make it wrong, it's different from the processes you launched from the shell. It runs under a namespace, controlled by a cgroup, and secured by seccomp. 
 
 !! Conclusions
+
+A container is merely an OS process. It runs under a namespace, requires a union filesystem and is controlled by a cgroup. That's it.
 
 !! References
 
@@ -57,3 +68,5 @@ A container is merely an OS process. However, don't make it wrong, it's differen
 * [[Manpage: cgroup|http://man7.org/linux/man-pages/man7/cgroups.7.html]]
 * [[Why do you need to run sshd in container|https://blog.docker.com/2014/06/why-you-dont-need-to-run-sshd-in-docker/]]
 * [[Linux namespaces|https://medium.com/@teddyking/linux-namespaces-850489d3ccf]]
+* [[Wikipedia: UnionFS|https://en.wikipedia.org/wiki/UnionFS]]
+* [[Docker: about storage driver|https://docs.docker.com/storage/storagedriver/]]
