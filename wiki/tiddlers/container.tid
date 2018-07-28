@@ -1,5 +1,5 @@
 created: 20180724103950285
-modified: 20180728034851242
+modified: 20180728040445120
 title: container
 type: text/vnd.tiddlywiki
 
@@ -67,7 +67,7 @@ We will demonstrate that container technology is not shiny new thing. It provide
 
 !! Conclusions
 
-A container is merely an OS process. It runs under a namespace, requires a union filesystem and is controlled by a cgroup. More and more container toolsets like Kubernetes have adopted by the industry.
+A container is merely an OS process, except that it's being isolated, secured, and limited. All values added to the process make the container the dominant technology in the cloud era.
 
 !! References
 
@@ -75,8 +75,10 @@ A container is merely an OS process. It runs under a namespace, requires a union
 * [[Manpage: unshare|http://man7.org/linux/man-pages/man1/unshare.1.html]]
 * [[Manpage: nsenter|http://man7.org/linux/man-pages/man1/nsenter.1.html]]
 * [[Manpage: namespaces|http://man7.org/linux/man-pages/man7/namespaces.7.html]]
-* [[Manpage: cgroup|http://man7.org/linux/man-pages/man7/cgroups.7.html]]
+* [[Manpage: cgroups|http://man7.org/linux/man-pages/man7/cgroups.7.html]]
 * [[Why do you need to run sshd in container|https://blog.docker.com/2014/06/why-you-dont-need-to-run-sshd-in-docker/]]
 * [[Linux namespaces|https://medium.com/@teddyking/linux-namespaces-850489d3ccf]]
 * [[Wikipedia: UnionFS|https://en.wikipedia.org/wiki/UnionFS]]
 * [[Docker: about storage driver|https://docs.docker.com/storage/storagedriver/]]
+* [[Docker Containers vs System Processes|https://kjanshair.github.io/2017/07/04/Docker-Containers-vs-System-Processes/]]
+* [[How docker images work union file systems for dummies|https://terriblecode.com/blog/how-docker-images-work-union-file-systems-for-dummies/]]
