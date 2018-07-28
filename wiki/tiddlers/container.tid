@@ -1,5 +1,5 @@
 created: 20180724103950285
-modified: 20180727114850000
+modified: 20180728034851242
 title: container
 type: text/vnd.tiddlywiki
 
@@ -9,31 +9,45 @@ In this post, we will deep dive into the container.
 
 !! Context
 
+Before container era, we usually use visualization technology to limit and control system resources for the applications. However, it creates too much overhead on the physical machine. And thus, container as a lightweight solution emerged.
+
 !! Solutions
 
 !!! Docker
 
 Docker is the dominant container technology in the industry. Check [[Docker Overview|https://docs.docker.com/engine/docker-overview/]] for more information.
 
+[img[container-docker-icon.png]]
+
 !!! CoreOS rkt
 
 CoreOS rkt is yet another application container engine. The advantage of rkt is its cloud-native nature. Check [[A security-minded, standards-based container engine: rkt|https://coreos.com/rkt/]].
+
+[img[container-rkt-icon.png]]
 
 !!! LXC, LXD
 
 LXC and LXD is system container engine.  It offers an environment as close as possible as the one you'd get from a VM but without the overhead that comes with running a separate kernel and simulating all the hardware. Check [[linuxcontainer.org|https://linuxcontainers.org/]].
 
-!!! Bocker
-
-Bocker is a container engine implemented in 100 lines of Bash code. It's mainly for education. Check [[p8952/bocker|https://github.com/p8952/bocker]].
+[img[container-lxc-icon.png]]
 
 !!! OCI
 
 The Open Container Initiative or OCI develops specifications for standards on Operating System process and application containers. It defines two specs: the Runtime Specification ([[runtime-spec|https://github.com/opencontainers/runtime-spec]]) and the Image Specification ([[image-spec|https://github.com/opencontainers/image-spec]]). 
 
+[img[container-oci-icon.png]]
+
+!!! Bocker
+
+Bocker is a container engine implemented in 100 lines of Bash code. It's mainly for education. Check [[p8952/bocker|https://github.com/p8952/bocker]].
+
 !! Patterns
 
-We will demonstrate that container technology is not shiny new thing. It provides so much values by simply combining several old technologies: namespace, cgroup, and union filesystem.
+We will demonstrate that container technology is not shiny new thing. It provides so much values by simply combining several old technologies: namespace, cgroups, and union filesystem.
+
+!!! namespace & container
+
+{{Container and Namespace}}
 
 !!! unshare & container
 
@@ -43,21 +57,17 @@ We will demonstrate that container technology is not shiny new thing. It provide
 
 {{Container and Nsenter}}
 
-!!! namespace & container
+!!! cgroup & container
 
-So far, we have shown how to create a new PID namespace and how to enter an existing PID namespace. It's time to figure out what is a namespace.
-
-{{Container and Namespace}}
+{{Container and Cgroups}}
 
 !!! union filesystem & container
 
 {{Container and UnionFS}}
 
-!!! cgroup & container
-
 !! Conclusions
 
-A container is merely an OS process. It runs under a namespace, requires a union filesystem and is controlled by a cgroup. That's it.
+A container is merely an OS process. It runs under a namespace, requires a union filesystem and is controlled by a cgroup. More and more container toolsets like Kubernetes have adopted by the industry.
 
 !! References
 

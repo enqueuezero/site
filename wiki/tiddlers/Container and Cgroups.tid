@@ -1,0 +1,27 @@
+created: 20180728024356842
+modified: 20180728033003842
+tags: 
+title: Container and Cgroups
+type: text/vnd.tiddlywiki
+
+Control cgroups or cgroups is a Kernel feature that organizes processes into hierarchical groups to limit and monitor their system usage such as CPU, memory, disk, network and so on.
+
+The Linux kernel provides a pseudo-filesystem named cgroupfs as the interface. A cgroup is a set of processes which has settings in cgroupfs. With the settings in cgroupsfs, we can do things below:
+
+* Limit the amount of CPU time.
+* Enable or disable Out of Memory killer.
+* You name it. :)
+
+Below is simplified code from [[bocker|https://github.com/p8952/bocker/blob/master/bocker]]. It demonstrates that limiting the system resource usage of a container can be achieved by creating a cgroup and executing a command in a cgroup. 
+
+```
+uuid="ps_$(shuf -i 42002-42254 -n 1)"
+
+# create a cgroup
+cgcreate -g "cpu,cpuacct,memory:$uuid"
+
+# run command in a cgroup.
+cgexec -g "cpu,cpuacct,memory:$uuid" ... (truncated)
+```
+
+Check the manpage of [[cgroups.7|http://man7.org/linux/man-pages/man7/cgroups.7.html]] for the overview and [[Introduction to Control Groups|https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/resource_management_guide/ch01]] for the usage.
