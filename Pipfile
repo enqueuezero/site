@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 ghp-import = "*"
+lektor = "*"
 
 [dev-packages]
 
