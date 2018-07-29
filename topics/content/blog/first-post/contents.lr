@@ -1,0 +1,18 @@
+title: Hello World
+---
+pub_date: 2018-05-18
+---
+author: Ju Lin
+---
+body:
+
+Kia ora! It has been a while since I wanted to start this tiny teeny project. And I'm really glad that it's launched now, although no article has been posted yet. But I promise I'll definitely work hard on this one! I've planed several topics in the first release, for example, un-ignorable code comments, traits of web interfaces in different languages, tough problems of application dependency management, and more. A good news for me was that my wife has committed to contribute an article around Unix concept effective user id, which made me really excited.
+
+To explain a little bit on the project name, the zero (0) is usually the exit_code that represents the program exits successfully. Enqueue is a well-known action when manipulating an abstract data structure named queue. Under such context, enqueueing zero means we successfully put a fun and beautiful part of computer science into our mindset, which could be really awesome!
+
+I personally also runs a newsletter [TechShack Weekly](https://twitter.com/techshackweekly) among some of the most genius Chinese geeks I believe. If you do understand Chinese, I would highly recommend following the twitter account. Beyond that, I would recommend more to become a patron of Enqueue Zero, which will bring you more insights on Computer Science. // Click the [BECOME A PATRON](https://www.patreon.com/bePatron?c=1762267) button on the home page of Enqueue Zero: https://www.patreon.com/enqueuezero
+
+Can't wait to see it becomes something!
+
+---
+twitter_handle: EnqueueZero
