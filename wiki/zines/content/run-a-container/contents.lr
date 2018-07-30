@@ -9,7 +9,7 @@ id: run-a-container
 ----
 title: Run a container
 ----
-lead: Run the container here, run the container there, run the container everywhere.
+lead: Keep building and running containers until we get a cathedral.
 ----
 hint: 
 #### text-block ####
@@ -39,7 +39,7 @@ contents:
 <h3>Frequently Asked Questions</h3>
 <p>More questions? Ask me by 
 <i class="fa fa-github-square"></i>
-<a href="https://github.com/soasme/enqueuezero/issues">opening an issue</a> or a pull request.
+<a href="https://github.com/soasme/enqueuezero/issues">opening an issue</a>.
 </p>
 </div>
 #### qa-block ####
@@ -49,9 +49,9 @@ q: How is the container different from virtual machine?
 ----
 a: TODO
 #### qa-block ####
-id: container-vs-vagrant
+id: how-container-works
 ----
-q: I’m using Vagrant, and why should I switch to Docker?
+q: How does the container work?
 ----
 a: TODO
 #### qa-block ####
@@ -61,33 +61,9 @@ q: How does the container communicate to the outside world?
 ----
 a: TODO
 #### qa-block ####
-id: container-data-persistence
-----
-q: How to persist data in the container?
-----
-a: TODO
-#### qa-block ####
-id: container-jump-in-and-out
-----
-q: How can I jump between the regular world and the isolated container world?
-----
-a: TODO
-#### qa-block ####
-id: container-solutions
-----
-q: Is `Docker` the only way to run a container?
-----
-a: TODO
-#### qa-block ####
 id: container-base-os
 ----
-q: Where is my base OS defined in `Dockerfile`?
-----
-a: TODO
-#### qa-block ####
-id: docker-none-tag
-----
-q: Things like `<none>` are everywhere. What should I do?
+q: I've defined a base OS in my `Dockerfile` but where does it exist?
 ----
 a: TODO
 #### qa-block ####
@@ -97,14 +73,90 @@ q: What’s the difference between image and container?
 ----
 a: TODO
 #### qa-block ####
-id: container-cmd-vs-entrypoint
-----
-q: What’s the difference between cmd and entry point?
-----
-a: TODO
-#### qa-block ####
 id: container-and-performance
 ----
 q: Does the container slow down the performance of my program?
 ----
 a: TODO
+#### raw-block ####
+contents:
+
+<div style="color: #ffffff; padding: 5% 0 0 20%; height: 200px;background-color:#0087AB;">
+<h3>Best Practise</h3>
+<p>Want to contribute? Simply make <i class="fa fa-github-square"></i>
+<a href="https://github.com/soasme/enqueuezero" style="color:#e5f3f6;">a pull request</a>.
+</p>
+</div>
+#### qa-block ####
+id: keep-image-small
+----
+q: How to keep the image small?
+----
+a: TODO
+#### qa-block ####
+id: container-data-persistence
+----
+q: How to persist data in the container?
+----
+a: TODO
+#### raw-block ####
+contents:
+
+<div style="color: #ffffff; padding: 5% 0 0 20%; height: 200px;background-color:#F9A842;">
+<h3>Cheatsheet</h3>
+<p>Want to see more similar crafts? Consider <i class="fa fa-credit-card"></i>
+<a href="https://www.patreon.com/bePatron?c=1762267" style="color:#e5f3f6;">donate</a> me.
+</p>
+</div>
+#### text-block ####
+text:
+
+### Docker Build
+
+```
+# Build an image from current directory, setting tag as $username/$reponame:$version
+# Don't forget the `.` at last!
+$ docker build -t soasme/vanilla:1.0.0 .
+
+# Let's check we have built
+$ docker images
+
+# In case the image is not longer needed, you might want to delete it.
+$ docker rmi soasme/vanilla:1.0.0
+```
+
+### Docker Registry
+
+```
+# Pull an image
+$ docker pull soasme/tiddlywiki
+
+# Login to remote registry
+$ docker login
+
+# Push an image
+$ docker push soasme/vanilla:1.0.0
+```
+
+### Docker Run
+
+```
+# Run a container in interactive mode, with port 8080 exposed, and dir `pwd` attached.
+$ docker run -it --rm -p 8080:8080 -v `pwd`:/data soasme/tiddlywiki
+
+# List running instances
+$ docker ps
+
+# Attach into the container. Get the hash from `docker ps` command.
+$ docker exec -it d252fb6c5d7a /bin/sh
+
+# See latest logs. Get the hash from `docker ps` command.
+$ docker logs --tail 100 d252fb6c5d7a
+
+# Stop a container. Get the hash from `docker ps` command.
+$ docker kill d252fb6c5d7a
+```
+----
+background: 
+----
+class: default
