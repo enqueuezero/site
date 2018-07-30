@@ -2,14 +2,29 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{ '/static/style.css'|url }}">
 <title>{% block title %}Welcome{% endblock %} — Enqueue Zero</title>
 <body>
   <div id="main">
     {% block body %}{% endblock %}
     <footer>
-      &copy; Copyright 2018 by Ju Lin.
-    </footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 icon-bar">
+          <a href="https://github.com/soasme/EnqueueZero/" title="EnqueueZero on GitHub"><i class="fa fa-github"></i></a>
+          <a href="https://github.com/soasme/EnqueueZero/issues/" title="Report Issues for EnqueueZero"><i class="fa fa-bug"></i></a>
+          <a href="https://twitter.com/enqueuezero" title="Find @EnqueueZero on Twitter"><i class="fa fa-twitter"></i></a>
+          <a href="https://t.me/joinchat/BgqRmRCE6jhzIY0l9CQXzA" title="Chat on Telegram"><i class="fa fa-comment"></i></a>
+        </div>
+        <div class="col-sm-8">
+          <a href="/license/">License &amp; Copyright</a> •
+          <a href="/contact/">Contact</a> •
+          <a href="https://github.com/soasme">Ju</a> made this craft with <i class="fa fa-fw fa-heart" title="Heart"><span hidden="">Heart</span></i>.
+        </div>
+      </div>
+    </div>
+  </footer>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

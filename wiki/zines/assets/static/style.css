@@ -77,11 +77,14 @@ h1,h2,h3 {
   color: #73bfff;
 }
 
+.qa-block .q {
+  border-bottom: 1px solid rgba(63,43,45,0.2);
+  padding: 1.5em 0 1.2em;
+}
+
 .qa-block h4 {
   font-size: 1.3em;
   cursor: pointer;
-  border-bottom: 1px solid rgba(63,43,45,0.2);
-  padding: 0 1.1em 0 0;
 }
 
 
@@ -165,4 +168,11 @@ div.page-banner.page-banner-200 {
     div.page-banner.page-banner-200 {
         height:120px
     }
+}
+
+footer {
+  border-top: 1px solid #666;
+  padding: 10px 0;
+  color: #222;
+  line-height: 36px;
 }

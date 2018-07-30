@@ -52,6 +52,7 @@ contents:
 <div style="color: #ffffff; padding: 5% 0 0 20%; height: 200px;background-color:#594446">
 <h3>Frequently Asked Questions</h3>
 <p>More questions? Ask me by 
+<i class="fa fa-github-square"></i>
 <a href="https://github.com/soasme/enqueuezero/issues">opening an issue</a> or a pull request.
 </p>
 </div>

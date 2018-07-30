@@ -1,0 +1,15 @@
+title: New Logo
+---
+author: Ju Lin
+---
+body:
+
+Tonight I made some prettify work on Enqueue Zero logo. Previous one was not good at all, for it's made in just a few minutes. Now I've redesigned the logo and updated avatar of accounts in Patreon Twitter, and Facebook. Hope you guys like it.
+ 
+![Enqueue Zero New Logo](ezlogo480.png)
+
+The second post in the website just got released. It's about HyperLogLog algorithm. In this post, I introduced a simplified version of algorithm by removing all the formulas, mathematical justification and so on, leaving data structure and basic steps, which I think it might be easier to be accepted by programmers. In the rest of the post, I compared some tools Redis, Datasketch, and Logswan, which I believe could cover most of the use cases of HyperLogLog algorithm. Here is the link: [HyperLogLog](https://enqueuezero.com/hyperloglog.com). Enjoy!
+---
+pub_date: 2018-06-01
+---
+twitter_handle: EnqueueZero

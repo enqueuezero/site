@@ -22,7 +22,7 @@ remove-space:
 	./bin/remove-spaces
 
 run-topic:
-	pipenv run lektor --project ./topics server
+	pipenv run lektor --project ./wiki/zines server
 
 build-topic:
-	pipenv run lektor --project ./topics build --output-path `pwd`/wiki/output/static/topics --verbose
+	pipenv run lektor --project ./wiki/zines build --output-path `pwd`/wiki/output/static/zines --verbose
