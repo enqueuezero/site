@@ -1,0 +1,110 @@
+_model: topic
+---
+title: Run a container
+---
+body:
+
+#### jumbotron-block ####
+id: run-a-container
+----
+title: Run a container
+----
+lead: Run the container here, run the container there, run the container everywhere.
+----
+hint: 
+#### text-block ####
+text:
+
+### What is a container?
+
+A container is a standard process just like other process you launched from the shell, except that it's being isolated in its [namespace](http://man7.org/linux/man-pages/man7/namespaces.7.html), [cgroups](http://man7.org/linux/man-pages/man7/cgroups.7.html), and [filesystem](https://en.wikipedia.org/wiki/UnionFS). It has everything it needs in its isolation: code, runtime, system tools, system libraries, settings and so on.
+
+### Who needs a container?
+
+Almost everyone.
+
+### Why need a container?
+
+* Container isolates physical resources such as CPU, memory, disk I/O and network from other containers.
+* Container isolates OS kernel resources such process id, mount points, user and group IDs from other containers.
+* Containers eliminates differences between development and staging environments and help reduce conflicts between teams running different software on the same infrastructure.
+----
+background: 
+----
+class: default
+#### raw-block ####
+contents:
+
+<div style="color: #ffffff; padding: 5% 0 0 20%; height: 200px;background-color:#594446">
+<h3>Frequently Asked Questions</h3>
+<p>More questions? Ask me by 
+<i class="fa fa-github-square"></i>
+<a href="https://github.com/soasme/enqueuezero/issues">opening an issue</a> or a pull request.
+</p>
+</div>
+#### qa-block ####
+id: container-vs-visualization
+----
+q: How is the container different from virtual machine?
+----
+a: TODO
+#### qa-block ####
+id: container-vs-vagrant
+----
+q: I’m using Vagrant, and why should I switch to Docker?
+----
+a: TODO
+#### qa-block ####
+id: container-communicate-with-outer-world
+----
+q: How does the container communicate to the outside world?
+----
+a: TODO
+#### qa-block ####
+id: container-data-persistence
+----
+q: How to persist data in the container?
+----
+a: TODO
+#### qa-block ####
+id: container-jump-in-and-out
+----
+q: How can I jump between the regular world and the isolated container world?
+----
+a: TODO
+#### qa-block ####
+id: container-solutions
+----
+q: Is `Docker` the only way to run a container?
+----
+a: TODO
+#### qa-block ####
+id: container-base-os
+----
+q: Where is my base OS defined in `Dockerfile`?
+----
+a: TODO
+#### qa-block ####
+id: docker-none-tag
+----
+q: Things like `<none>` are everywhere. What should I do?
+----
+a: TODO
+#### qa-block ####
+id: container-vs-image
+----
+q: What’s the difference between image and container?
+----
+a: TODO
+#### qa-block ####
+id: container-cmd-vs-entrypoint
+----
+q: What’s the difference between cmd and entry point?
+----
+a: TODO
+#### qa-block ####
+id: container-and-performance
+----
+q: Does the container slow down the performance of my program?
+----
+a: TODO
