@@ -2,6 +2,9 @@ title: About this Website
 ---
 body:
 
-This is a website that was made with the Lektor quickstart.
+Hey, there. My name is Ju and I publish code principles here.
 
-And it does not contain a lot of information.
+* This project is under the [MIT license](/license).
+* This website is using [Lektor](https://www.getlektor.com/) as the engine.
+* The source code of this project is hosted in awesome [GitHub](https://github.com/soasme/EnqueueZero).
+* If you like posts, welcome to be my pledger. Here is the donation link: https://www.patreon.com/bePatron?c=1762267
