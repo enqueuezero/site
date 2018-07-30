@@ -1,0 +1,14 @@
+<section class="qa-block" id="qa-{{this.id}}">
+  <div class="q" id="q-{{ this.id }}">
+    <h4>
+      <button class="btn btn-link" type="button"
+        aria-expanded="false"
+        data-toggle="collapse"
+        data-target="#a-{{ this.id }}">{{ this.q }}</button>
+    </h4>
+  </div>
+  <div id="a-{{ this.id }}"
+      class="a collapse">
+    {{ this.a }}
+  </div>
+</section>

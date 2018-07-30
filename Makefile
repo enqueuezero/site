@@ -11,7 +11,7 @@ build: clean
 	cp ./wiki/tiddlers/favicon.ico wiki/output/static
 
 
-publish: build
+publish: build build-topic
 	pipenv run ghp-import -c enqueuezero.com -m 'Sync Enqueue Zero Articles.' -b gh-pages ./wiki/output/static
 	git push -f origin gh-pages
 
@@ -20,3 +20,9 @@ preview:
 
 remove-space:
 	./bin/remove-spaces
+
+run-topic:
+	pipenv run lektor --project ./topics server
+
+build-topic:
+	pipenv run lektor --project ./topics build --output-path `pwd`/wiki/output/static/topics --verbose
