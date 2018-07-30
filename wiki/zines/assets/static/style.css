@@ -171,8 +171,12 @@ div.page-banner.page-banner-200 {
 }
 
 footer {
-  border-top: 1px solid #666;
+  background: #eeeeee;
   padding: 10px 0;
   color: #222;
   line-height: 36px;
+}
+
+footer .icon-bar {
+  font-size: 1.5em;
 }
