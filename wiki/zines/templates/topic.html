@@ -1,0 +1,6 @@
+{% extends "layout.html" %}
+{% from 'macros/blocksupport.html' import render_full_width_blocks %}
+{% block title %}{{ this.title }}{% endblock %}
+{% block body %}
+  {{ render_full_width_blocks(this.body.blocks, classes='col-md-12') }}
+{% endblock %}

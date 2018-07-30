@@ -1,0 +1,10 @@
+<div class="jumbotron jumbotron-block" id="{{ this.id }}">
+  <div class="title">
+    <h1>{{ this.title }}</h1>
+    <h2>{{ this.lead }}</h2>
+  </div>
+  {% if this.hint %}
+  <hr class="my-4">
+  <div class="hint">{{ this.hint }}</div>
+  {% endif %}
+</div>
