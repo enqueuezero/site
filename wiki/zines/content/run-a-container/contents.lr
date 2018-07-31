@@ -64,6 +64,8 @@ So, with the container, you get less isolation but much lightweight. With the VM
 Container won't eliminate VMs... yet. Some would mix using VM and container.
 
 <p style="font-size: 0.5em;">Images come from <a href="https://www.docker.com/what-container">what docker</a>.</p>
+
+<script src="contain-vs-vm.animate.js"></script>
 #### qa-block ####
 id: container-vs-vagrant
 ----
