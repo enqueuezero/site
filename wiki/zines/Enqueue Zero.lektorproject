@@ -1,3 +1,6 @@
 [project]
 name = Enqueue Zero
 url = /zines
+
+[packages]
+lektor-markdown-highlighter = 0.3
