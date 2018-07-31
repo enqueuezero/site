@@ -97,7 +97,7 @@ Running a container can be explained in below bash code.
 # Prepare a hash. We need it to identify our container.
 $ uuid="ps_$(shuf -i 42002-42254 -n 1)"
 
-# Prepare a root dir for all containers.
+# Prepare a root dir for all the containers.
 $ btrfs_path='/var/bocker' && cgroups='cpu,cpuacct,memory';
 
 # Prepare root filesystem based on the given `$image`.
@@ -123,7 +123,7 @@ $ cgexec -g "$cgroups:$uuid" \
 		2>&1 | tee "$btrfs_path/$uuid/$uuid.log"
 ```
 
-You don't necessarily need to remember all commands above, since it's pointless if you aren't a container engine developer.
+You don't necessarily need to remember all the commands above, since it's pointless if you aren't a container engine developer.
 
 The container engine such as runC, rkt, lxc provides you a beautifully designed CLI that abstracts above process for you.
 
