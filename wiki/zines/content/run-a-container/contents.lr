@@ -17,7 +17,9 @@ text:
 
 ### What is a container?
 
-A container is a standard process just like other process you launched from the shell, except that it's being isolated in its [namespace](http://man7.org/linux/man-pages/man7/namespaces.7.html), [cgroups](http://man7.org/linux/man-pages/man7/cgroups.7.html), and [filesystem](https://en.wikipedia.org/wiki/UnionFS). It has everything it needs in its isolation: code, runtime, system tools, system libraries, settings and so on.
+A container is a set of processes just like other processes you launched from the shell, except that it's being isolated in its [namespace](http://man7.org/linux/man-pages/man7/namespaces.7.html), [cgroups](http://man7.org/linux/man-pages/man7/cgroups.7.html), and [union filesystem](https://en.wikipedia.org/wiki/UnionFS). It has everything it needs in its isolation: code, runtime, system tools, system libraries, settings and so on.
+
+Docker is the dominant container option. However, there're various competitors such as CoreOS rkt, Ubuntu LXD. People standardize the container into the [OCI specs](https://www.opencontainers.org/) and love to have various implementations.
 
 ### Who needs a container?
 
@@ -35,11 +37,11 @@ class: default
 #### raw-block ####
 contents:
 
-<div style="color: #ffffff; padding: 5% 0 0 20%; height: 200px;background-color:#594446">
+<div style="color: #ffffff; padding: 5% 0 0 20%; height: 200px;background-color:#00a7ab">
 <h3>Frequently Asked Questions</h3>
 <p>More questions? Ask me by 
 <i class="fa fa-github-square"></i>
-<a href="https://github.com/soasme/enqueuezero/issues">opening an issue</a>.
+<a href="https://github.com/soasme/enqueuezero/issues" style="color: #ffffff;border-bottom:solid 2px #ffffff;">opening an issue</a>.
 </p>
 </div>
 #### qa-block ####
@@ -47,7 +49,35 @@ id: container-vs-visualization
 ----
 q: How is the container different from virtual machine?
 ----
-a: TODO
+a:
+
+Container is a set of processes with its dependencies running on top of an OS kernel. The processes belongs to the same namespace and cgroups.
+
+<img src="https://www.docker.com/sites/default/files/Container%402x.png" style="height: 300px;">
+
+Virtual Machine is a set of processes with dependencies running on top of a guest OS kernel. The guest OS is pre-allocated with fixed amount of CPU, memory on top of hypervisor and host OS kernel.
+
+<img src="https://www.docker.com/sites/default/files/VM%402x.png" style="height: 300px;">
+
+So, with the container, you get less isolation but much lightweight. With the VM, you get more isolation but much heavier. (It's pretty straightforward, right? we need to spent extra memory for guest OS in the VM. Besides programs in different VMs don't share things at all and hence load more things into RAM.)
+
+Container won't eliminate VMs... yet. Some would mix using VM and container.
+
+<p style="font-size: 0.5em;">Images come from <a href="https://www.docker.com/what-container">what docker</a>.</p>
+#### qa-block ####
+id: container-vs-vagrant
+----
+q: I'm using Vagrant. Should I switch to the containers?
+----
+a:
+
+You shouldn't switch to the containers if you are managing virtual machines, as Vagrant is a virtual machine manager.
+
+You should switch to the containers if you merely want to run applications.
+
+For those OS that doesn't support the container, you might want to create a virtual machine via Vagrant first, and then run applications as containers in the virtual machine.
+
+<p style="font-size:0.5em;">See awesome explanation in <a href="https://stackoverflow.com/a/22370529/431498">Stackoverflow</a> from the author of Docker </p>
 #### qa-block ####
 id: how-container-works
 ----
@@ -57,34 +87,71 @@ a: TODO
 #### qa-block ####
 id: container-communicate-with-outer-world
 ----
-q: How does the container communicate to the outside world?
+q: How does the container communicate to the outside world as it's isolated?
 ----
-a: TODO
+a:
+
+You can use `docker cp foo.txt my container:/foo.txt` to send file `foo.txt` from host into the container.
+
+You can use `docker cp my container:/foo.txt foo.txt` to send file `foo.txt` from the container to the host. <span style="font-size: 0.5em">[Note 1]: This is supported in Docker 1.8.</span>
+
+You can use `COPY ./foo.txt /app` to package file `foo.txt` into container image. However, this happens at building stage.
+
+You can attach a volume for the container when start running it, pretty much like `docker run -v $(pwd):/app mycontainer`. It allows file syncing via a shared directory.
+
+You can expose a port for the container when start running it, pretty much like `docker run -p 8000:8000 mycontainer`. It allows other programs talking to `mycontainer` by simply establishing a TCP connection.
+
+Some solutions below are not recommended due to making things complicated.
+
+* Running `sshd` in the container.
+* Running a static web server in the container.
+
+If you're intended to communicate from one container to another container, then you need sort of container orchestration tools. Check [docker-compose](https://docs.docker.com/compose/) if your case is in development mode. Check [Kubernetes](https://kubernetes.io/) if your case is in production mode.
 #### qa-block ####
 id: container-base-os
 ----
 q: I've defined a base OS in my `Dockerfile` but where does it exist?
 ----
-a: TODO
+a:
+
+Short answer is there is no such actual OS running but we provides files for the base OS.
+
+Each command in `Dockerfile` creates a new layer for the image. Each layer includes merely some static files.
+
+The base OS defined in `Dockerfile` ends with the necessary files for the designated OS to be packaged into a layer.
+
+In runtime, your process thinks itself running on a designated OS, however, it's an illusion. Your container really runs as one or more processes with a set of files from the filesystem generated by UnionFS.
 #### qa-block ####
 id: container-vs-image
 ----
 q: What’s the difference between image and container?
 ----
-a: TODO
+a:
+
+The image is a binary packaged files.
+
+The container is a runtime instance of the image. You can have various containers for one image.
+
+You can check image via `docker images`, and check containers via `docker ps`. The command `docker run` requires an image and turns it into a container.
+
+The image v/s container is pretty much like the program v/s process.
 #### qa-block ####
 id: container-and-performance
 ----
 q: Does the container slow down the performance of my program?
 ----
-a: TODO
+a:
+
+Don't worry about that.
+
+It [generally](https://stackoverflow.com/questions/21889053/what-is-the-runtime-performance-cost-of-a-docker-container) wouldn't.
 #### raw-block ####
 contents:
 
 <div style="color: #ffffff; padding: 5% 0 0 20%; height: 200px;background-color:#0087AB;">
 <h3>Best Practise</h3>
 <p>Want to contribute? Simply make <i class="fa fa-github-square"></i>
-<a href="https://github.com/soasme/enqueuezero" style="color:#e5f3f6;">a pull request</a>.
+<a href="https://github.com/soasme/enqueuezero" style="color:#e5f3f6;border-bottom:solid 2px #ffffff;">a pull request</a>.
 </p>
 </div>
 #### qa-block ####
@@ -102,10 +169,10 @@ a: TODO
 #### raw-block ####
 contents:
 
-<div style="color: #ffffff; padding: 5% 0 0 20%; height: 200px;background-color:#F9A842;">
+<div style="color: #ffffff; padding: 5% 0 0 20%; height: 200px;background-color:#00ab84;">
 <h3>Cheatsheet</h3>
 <p>Want to see more similar crafts? Consider <i class="fa fa-credit-card"></i>
-<a href="https://www.patreon.com/bePatron?c=1762267" style="color:#e5f3f6;">donate</a> me.
+<a href="https://www.patreon.com/bePatron?c=1762267" style="color:#e5f3f6;border-bottom:solid 2px #ffffff;">donating via Patreon</a>.
 </p>
 </div>
 #### text-block ####
