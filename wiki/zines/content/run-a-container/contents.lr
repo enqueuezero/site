@@ -18,14 +18,19 @@ contents:
   0% {left: -150px;}
   100% {left: 100%;}
 }
+
+@keyframes waving {
+  0% {left: 0px;}
+  50% {left: 5px;}
+  100% {left: 0px;}
+}
 </style>
 <div style="height:0px">
   <div style="position:relative;top:-100px;z-index:1;background-image:url(docker-whale.png);height:100px;width:100%;background-repeat:no-repeat;background-size:auto 100px;animation-name: whale-moving;animation-duration: 40s;animation-iteration-count:infinite;animation-timing-function: linear;">
   </div>
-  <div style="position:relative;top:-130px;z-index:2;background-image:url(wave.png);height:30px;width:100%;background-repeat:repeat-x;background-size:auto 50px;">
+  <div style="position:relative;top:-130px;z-index:2;background-image:url(wave.png);height:30px;width:100%;background-repeat:repeat-x;background-size:auto 50px;animation-name: waving;animation-duration: 3s;animation-iteration-count:infinite;">
   </div>
 </div>
-
 #### text-block ####
 text:
 
@@ -48,8 +53,6 @@ Almost everyone.
 background: 
 ----
 class: default
-
-
 #### raw-block ####
 contents:
 
@@ -67,22 +70,21 @@ q: How is the container different from virtual machine?
 ----
 a:
 
-Container is a set of processes with its dependencies running on top of an OS kernel. The processes belongs to the same namespace and cgroups.
+A container is one or more non-trivial Linux processes running on top of the Kernel. We isolate them via cgroups and namespace.
 
 <img src="https://www.docker.com/sites/default/files/Container%402x.png" style="height: 300px;">
 
-Virtual Machine is a set of processes with dependencies running on top of a guest OS kernel. The guest OS is pre-allocated with fixed amount of CPU, memory on top of hypervisor and host OS kernel.
+Virtual Machine is a set of processes with dependencies running on top of a guest OS kernel. The guest OS is pre-allocated with a fixed amount of CPU, memory on top of the hypervisor and host OS kernel.
 
 <img src="https://www.docker.com/sites/default/files/VM%402x.png" style="height: 300px;">
 
-So, with the container, you get less isolation but much lightweight. With the VM, you get more isolation but much heavier. (It's pretty straightforward, right? we need to spent extra memory for guest OS in the VM. Besides programs in different VMs don't share things at all and hence load more things into RAM.)
+So, with the container, you get less isolation but much lightweight. With the VM, you get more isolation but much heavier. (It's pretty straightforward, right? we need to spend extra memory for guest OS in the VM. Besides programs in different VMs don't share things at all and hence load more things into RAM.)
 
 Container won't eliminate VMs... yet. Some would mix using VM and container.
 
 <p style="font-size: 0.5em;">Images come from <a href="https://www.docker.com/what-container">what docker</a>.</p>
-
 ----
-arrow_color: #00a7ab
+arrow_color: #3381CD
 #### qa-block ####
 id: container-vs-vagrant
 ----
@@ -98,7 +100,7 @@ For those OS that doesn't support the container, you might want to create a virt
 
 <p style="font-size:0.5em;">See awesome explanation in <a href="https://stackoverflow.com/a/22370529/431498">Stackoverflow</a> from the author of Docker </p>
 ----
-arrow_color: #00a7ab
+arrow_color: #3381CD
 #### qa-block ####
 id: how-container-works
 ----
@@ -144,7 +146,7 @@ The container engine such as runC, rkt, lxc provides you a beautifully designed 
 
 <p style="font-size: 0.5em;">Above code is extracted from awesome <a href="https://github.com/p8952/bocker/blob/b6653f6/bocker#L61-L90">bocker</a></p>
 ----
-arrow_color: #00a7ab
+arrow_color: #3381CD
 #### qa-block ####
 id: container-communicate-with-outer-world
 ----
@@ -152,11 +154,11 @@ q: How does the container communicate to the outside world?
 ----
 a:
 
-You can use `docker cp foo.txt my container:/foo.txt` to send file `foo.txt` from host into the container.
+You can use `docker cp foo.txt my container:/foo.txt` to send file `foo.txt` from the host into the container.
 
 You can use `docker cp my container:/foo.txt foo.txt` to send file `foo.txt` from the container to the host. <span style="font-size: 0.5em">[Note 1]: This is supported in Docker 1.8.</span>
 
-You can use `COPY ./foo.txt /app` to package file `foo.txt` into container image. However, this happens at building stage.
+You can use `COPY ./foo.txt /app` to package file `foo.txt` into container image. However, this happens at the building stage.
 
 You can attach a volume for the container when start running it, pretty much like `docker run -v $(pwd):/app mycontainer`. It allows file syncing via a shared directory.
 
@@ -169,7 +171,7 @@ Some solutions below are not recommended due to making things complicated.
 
 If you're intended to communicate from one container to another container, then you need sort of container orchestration tools. Check [docker-compose](https://docs.docker.com/compose/) if your case is in development mode. Check [Kubernetes](https://kubernetes.io/) if your case is in production mode.
 ----
-arrow_color: #00a7ab
+arrow_color: #3381CD
 #### qa-block ####
 id: container-base-os
 ----
@@ -177,15 +179,15 @@ q: Where does the base OS exist for the container defined in `Dockerfile`?
 ----
 a:
 
-Short answer is there is no such actual OS running but we provides files for the base OS.
+The short answer is there is no such actual OS running but we provide files for the base OS.
 
 Each command in `Dockerfile` creates a new layer for the image. Each layer includes merely some static files.
 
 The base OS defined in `Dockerfile` ends with the necessary files for the designated OS to be packaged into a layer.
 
-In runtime, your process thinks itself running on a designated OS, however, it's an illusion. Your container really runs as one or more processes with a set of files from the filesystem generated by UnionFS.
+In the runtime, your process thinks itself running on a designated OS, however, it's an illusion. Your container really runs as one or more processes with a set of files from the filesystem generated by UnionFS.
 ----
-arrow_color: #00a7ab
+arrow_color: #3381CD
 #### qa-block ####
 id: container-vs-image
 ----
@@ -201,7 +203,7 @@ You can check image via `docker images`, and check containers via `docker ps`. T
 
 The image v/s container is pretty much like the program v/s process.
 ----
-arrow_color: #00a7ab
+arrow_color: #3381CD
 #### qa-block ####
 id: container-and-performance
 ----
@@ -213,7 +215,7 @@ Don't worry about that.
 
 It [generally](https://stackoverflow.com/questions/21889053/what-is-the-runtime-performance-cost-of-a-docker-container) wouldn't.
 ----
-arrow_color: #00a7ab
+arrow_color: #3381CD
 #### raw-block ####
 contents:
 
@@ -230,7 +232,7 @@ q: Keep the image small
 ----
 a:
 
-Don’t start with a full OS as base image if you don't need, instead, build the image from a small base OS such as alpine.
+Don’t start with a full OS as the base image if you don't need, instead, build the image from a small base OS such as alpine.
 
 Declare unnecessary files in `.dockerignore`.
 
@@ -339,4 +341,3 @@ $ docker kill d252fb6c5d7a
 background: 
 ----
 class: default
-
