@@ -4,14 +4,28 @@ title: Run a container
 ---
 body:
 
-#### jumbotron-block ####
-id: run-a-container
-----
-title: Run a container
-----
-lead: Keep building and running containers until we get a cathedral.
-----
-hint: 
+#### raw-block ####
+contents:
+
+<header style="padding: 20px 0 80px;border-bottom: 1px solid rgba(34,34,34,0.2);background:url(cell.png) 0 50%;background-color: #73bfff; box-shadow: inset 0 10px 10px #73cfff">
+  <div style="text-align: center; color: #fff; text-shadow: 1px 1px 2px rgba(34,34,34,0.5);padding: 5% 0 0 20%;">
+    <h1 style="color:#fff;">Run a container</h1>
+    <h2>Keep building and running containers until we get a cathedral.</h2>
+  </div>
+</header>
+<style>
+@keyframes whale-moving {
+  0% {left: -150px;}
+  100% {left: 100%;}
+}
+</style>
+<div style="height:0px">
+  <div style="position:relative;top:-100px;z-index:1;background-image:url(docker-whale.png);height:100px;width:100%;background-repeat:no-repeat;background-size:auto 100px;animation-name: whale-moving;animation-duration: 40s;animation-iteration-count:infinite;animation-timing-function: linear;">
+  </div>
+  <div style="position:relative;top:-130px;z-index:2;background-image:url(wave.png);height:30px;width:100%;background-repeat:repeat-x;background-size:auto 50px;">
+  </div>
+</div>
+
 #### text-block ####
 text:
 
@@ -34,10 +48,12 @@ Almost everyone.
 background: 
 ----
 class: default
+
+
 #### raw-block ####
 contents:
 
-<div style="color: #ffffff; padding: 5% 0 0 20%; height: 200px;background-color:#00a7ab">
+<div style="color: #ffffff; padding: 5% 0 0 20%; height: 200px;background-color:#3381CD">
 <h3>Frequently Asked Questions</h3>
 <p class="hvr-icon-pulse">More questions? Ask me by 
 <i class="fa fa-github-square hvr-icon"></i>
@@ -65,7 +81,6 @@ Container won't eliminate VMs... yet. Some would mix using VM and container.
 
 <p style="font-size: 0.5em;">Images come from <a href="https://www.docker.com/what-container">what docker</a>.</p>
 
-<script src="contain-vs-vm.animate.js"></script>
 ----
 arrow_color: #00a7ab
 #### qa-block ####
@@ -324,3 +339,4 @@ $ docker kill d252fb6c5d7a
 background: 
 ----
 class: default
+
