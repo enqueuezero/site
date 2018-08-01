@@ -26,7 +26,7 @@ contents:
 }
 </style>
 <div style="height:0px">
-  <div style="position:relative;top:-100px;z-index:1;background-image:url(docker-whale.png);height:100px;width:100%;background-repeat:no-repeat;background-size:auto 100px;animation-name: whale-moving;animation-duration: 40s;animation-iteration-count:infinite;animation-timing-function: linear;">
+  <div style="position:relative;top:-100px;z-index:1;background-image:url(docker-whale.png);height:100px;width:138px;background-repeat:no-repeat;background-size:auto 100px;animation-name: whale-moving;animation-duration: 40s;animation-iteration-count:infinite;animation-timing-function: linear;">
   </div>
   <div style="position:relative;top:-130px;z-index:2;background-image:url(wave.png);height:30px;width:100%;background-repeat:repeat-x;background-size:auto 50px;animation-name: waving;animation-duration: 3s;animation-iteration-count:infinite;">
   </div>
@@ -49,6 +49,62 @@ Almost everyone.
 * Container isolates physical resources such as CPU, memory, disk I/O and network from other containers.
 * Container isolates OS kernel resources such process id, mount points, user and group IDs from other containers.
 * Containers eliminates differences between development and staging environments and help reduce conflicts between teams running different software on the same infrastructure.
+----
+background: 
+----
+class: default
+#### raw-block ####
+contents:
+
+<div style="color: #ffffff; padding: 5% 0 0 20%; height: 200px;background-color:#00a3aa;">
+<h3>How does the container work?</h3>
+<p class="hvr-icon-pulse">Want to see more posts? Follow
+<i class="fa fa-twitter hvr-icon"></i>
+<a href="https://twitter.com/enqueuezero" style="color: #ffffff;border-bottom:solid 2px #ffffff;">@enqueuezero</a> in Twitter.
+</p>
+</div>
+#### text-block ####
+text:
+
+The way we start running a container can be explained in below bash code.
+
+```bash
+# Prepare a hash. We need it to identify our container.
+$ uuid="ps_$(shuf -i 42002-42254 -n 1)"
+
+# Prepare a root dir for all the containers.
+$ btrfs_path='/var/bocker' && cgroups='cpu,cpuacct,memory';
+
+# Prepare root filesystem based on the given `$image`.
+$ btrfs subvolume snapshot "$btrfs_path/$image" "$btrfs_path/$uuid" > /dev/null
+
+# Create a cgroup
+$ cgcreate -g "$cgroups:/$uuid"
+
+# Control cgroup resource
+$ cgset -r cpu.shares=512 "$uuid"
+$ cgset -r memory.limit_in_bytes=512000000 "$uuid"
+
+# Execute a given `$cmd` in the cgroup.
+# We need to create a unique namespace for the command (unshare).
+# We also need to change the root directory (chroot).
+# We also need to mount the runtime (/proc).
+# Logging is a bonus (tee).
+$ cgexec -g "$cgroups:$uuid" \
+		ip netns exec netns_"$uuid" \
+		unshare -fmuip --mount-proc \
+		chroot "$btrfs_path/$uuid" \
+		/bin/sh -c "/bin/mount -t proc proc /proc && $cmd" \
+		2>&1 | tee "$btrfs_path/$uuid/$uuid.log"
+```
+
+You don't necessarily need to remember all the commands above, since it's pointless if you aren't a container engine developer.
+
+The container engine such as runC, rkt, lxc provides you a beautifully designed CLI that abstracts above process for you.
+
+If you like reading Youtube video, Liz Rice just [implemented the container](https://www.youtube.com/watch?v=8fi7uSYlOdc) from scratch in 40 minutes.
+
+<p style="font-size: 0.5em;">Above code is extracted from awesome <a href="https://github.com/p8952/bocker/blob/b6653f6/bocker#L61-L90">bocker</a></p>
 ----
 background: 
 ----
@@ -99,54 +155,6 @@ You should switch to the containers if you merely want to run applications.
 For those OS that doesn't support the container, you might want to create a virtual machine via Vagrant first, and then run applications as containers in the virtual machine.
 
 <p style="font-size:0.5em;">See awesome explanation in <a href="https://stackoverflow.com/a/22370529/431498">Stackoverflow</a> from the author of Docker </p>
-----
-arrow_color: #3381CD
-#### qa-block ####
-id: how-container-works
-----
-q: How does the container work?
-----
-a:
-
-Running a container can be explained in below bash code.
-
-```bash
-# Prepare a hash. We need it to identify our container.
-$ uuid="ps_$(shuf -i 42002-42254 -n 1)"
-
-# Prepare a root dir for all the containers.
-$ btrfs_path='/var/bocker' && cgroups='cpu,cpuacct,memory';
-
-# Prepare root filesystem based on the given `$image`.
-$ btrfs subvolume snapshot "$btrfs_path/$image" "$btrfs_path/$uuid" > /dev/null
-
-# Create a cgroup
-$ cgcreate -g "$cgroups:/$uuid"
-
-# Control cgroup resource
-$ cgset -r cpu.shares=512 "$uuid"
-$ cgset -r memory.limit_in_bytes=512000000 "$uuid"
-
-# Execute a given `$cmd` in the cgroup.
-# We need to create a unique namespace for the command (unshare).
-# We also need to change the root directory (chroot).
-# We also need to mount the runtime (/proc).
-# Logging is a bonus (tee).
-$ cgexec -g "$cgroups:$uuid" \
-		ip netns exec netns_"$uuid" \
-		unshare -fmuip --mount-proc \
-		chroot "$btrfs_path/$uuid" \
-		/bin/sh -c "/bin/mount -t proc proc /proc && $cmd" \
-		2>&1 | tee "$btrfs_path/$uuid/$uuid.log"
-```
-
-You don't necessarily need to remember all the commands above, since it's pointless if you aren't a container engine developer.
-
-The container engine such as runC, rkt, lxc provides you a beautifully designed CLI that abstracts above process for you.
-
-If you like reading Youtube video, Liz Rice just [implemented the container](https://www.youtube.com/watch?v=8fi7uSYlOdc) from scratch in 40 minutes.
-
-<p style="font-size: 0.5em;">Above code is extracted from awesome <a href="https://github.com/p8952/bocker/blob/b6653f6/bocker#L61-L90">bocker</a></p>
 ----
 arrow_color: #3381CD
 #### qa-block ####
@@ -254,6 +262,23 @@ COPY --from=base /usr/local /user/local
 
 CMD /usr/local/bin/myapp
 ```
+
+Use chaining commands to reduce image layers. And don't forget to do clean up works.
+
+```bash
+# Not recommend.
+RUN apk add packageA
+RUN apk add packageB
+RUN make
+RUN makeinstall
+
+# Recommend
+RUN apk add --no-cache packageA packageB \
+    && make \
+    && make install
+```
+
+Check this topic in the awesome [Container Best Practises](http://docs.projectatomic.io/container-best-practices/).
 ----
 arrow_color: #0087AB
 #### qa-block ####
@@ -339,6 +364,30 @@ $ docker logs --tail 100 d252fb6c5d7a
 # Stop a container. Get the hash from `docker ps` command.
 $ docker kill d252fb6c5d7a
 ```
+----
+background: 
+----
+class: default
+#### raw-block ####
+contents:
+
+<div style="color: #ffffff; padding: 5% 0 0 20%; height: 200px;background-color:#5B8E7D;">
+<h3>Fun facts</h3>
+<p class="hvr-icon-pulse">Want to discuss the container technology? Join Telegram group
+<i class="fa fa-telegram hvr-icon"></i>
+<a href="https://t.me/joinchat/BgqRmRCE6jhzIY0l9CQXzA" style="color: #ffffff;border-bottom:solid 2px #ffffff;">@enqueuezero</a>.
+</p>
+</div>
+#### text-block ####
+text:
+
+### Do you know these facts?
+
+* Linux Kernel knows nothing about the container currently. All it knows are cgroups, processes, namespaces and so on.
+* Docker is not a shiny new technology. All the fundamental tools have been developed and improved for years. Docker implements a high-level API and calls the abstraction as the CONTAINER.
+* Docker used LXC as container engine but shifted to containerd & runC & libcontainer later. 
+* Docker Inc had [a tough year](https://chrisshort.net/docker-inc-is-dead/) in 2017. Docker-swarm didn't win the battle of THE container orchestration tool. Needless to say the rollout of Moby.
+* With the wide adoption of the container, another battle for a better container orchestration tool was going on. It seems that Kubernetes has won the game. Will there be a better orchestration tool like `Nginx` over `Apache`?
 ----
 background: 
 ----
