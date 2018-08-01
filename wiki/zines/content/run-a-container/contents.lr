@@ -104,7 +104,7 @@ The container engine such as runC, rkt, lxc provides you a beautifully designed 
 
 If you like reading Youtube video, Liz Rice just [implemented the container](https://www.youtube.com/watch?v=8fi7uSYlOdc) from scratch in 40 minutes.
 
-<p style="font-size: 0.5em;">Above code is extracted from awesome <a href="https://github.com/p8952/bocker/blob/b6653f6/bocker#L61-L90">bocker</a></p>
+Note: Above code is extracted from awesome <a href="https://github.com/p8952/bocker/blob/b6653f6/bocker#L61-L90">bocker</a>.
 ----
 background: 
 ----
