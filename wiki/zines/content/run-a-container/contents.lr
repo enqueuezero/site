@@ -386,7 +386,7 @@ text:
 * Linux Kernel knows nothing about the container currently. All it knows are cgroups, processes, namespaces and so on.
 * Docker is not a shiny new technology. All the fundamental tools have been developed and improved for years. Docker implements a high-level API and calls the abstraction as the CONTAINER.
 * Docker used LXC as container engine but shifted to containerd & runC & libcontainer later. 
-* Docker Inc had [a tough year](https://chrisshort.net/docker-inc-is-dead/) in 2017. Docker-swarm didn't win the battle of THE container orchestration tool. Needless to say the rollout of Moby.
+* Docker Inc had [a tough year](https://chrisshort.net/docker-inc-is-dead/) in 2017. Docker-swarm didn't win the battle of THE container orchestration tool. Plus, not everyone understood the rollout of Moby.
 * With the wide adoption of the container, another battle for a better container orchestration tool was going on. It seems that Kubernetes has won the game. Will there be a better orchestration tool like `Nginx` over `Apache`?
 ----
 background: 
