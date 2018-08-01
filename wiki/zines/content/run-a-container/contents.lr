@@ -15,20 +15,20 @@ contents:
 </header>
 <style>
 @keyframes whale-moving {
-  0% {left: -150px;}
-  100% {left: 100%;}
+  0% {background-position: 0 0;}
+  100% {background-position: 100% 0;}
 }
 
 @keyframes waving {
-  0% {left: 0px;}
-  50% {left: 5px;}
-  100% {left: 0px;}
+  0% {background-position: 0 0;}
+  50% {background-position: 5px 0;}
+  100% {background-position: 0 0;}
 }
 </style>
 <div style="height:0px">
-  <div style="position:relative;top:-100px;z-index:1;background-image:url(docker-whale.png);height:100px;width:138px;background-repeat:no-repeat;background-size:auto 100px;animation-name: whale-moving;animation-duration: 40s;animation-iteration-count:infinite;animation-timing-function: linear;">
+  <div style="position:relative;top:-100px;z-index:1;background-image:url(docker-whale.png);height:100px;width:100%;background-repeat:no-repeat;background-size:auto 100px;animation-name: whale-moving;animation-duration: 30s;animation-iteration-count:infinite;animation-timing-function: linear;overflow:hidden;">
   </div>
-  <div style="position:relative;top:-130px;z-index:2;background-image:url(wave.png);height:30px;width:100%;background-repeat:repeat-x;background-size:auto 50px;animation-name: waving;animation-duration: 3s;animation-iteration-count:infinite;">
+  <div style="position:relative;top:-130px;z-index:2;background-image:url(wave.png);height:30px;width:100%;background-repeat:repeat-x;background-size:auto 50px;animation-name: waving;animation-duration: 3s;animation-iteration-count:infinite;overflow:hidden;">
   </div>
 </div>
 #### text-block ####
