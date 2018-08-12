@@ -111,6 +111,9 @@ h1,h2,h3 {
     padding-left: 25%;
     padding-right: 25%;
   }
+  .raw-block .raw-header {
+    padding: 5% 0 0 20%;
+  }
 }
 
 div.page-banner {
@@ -190,3 +193,4 @@ footer .icon-bar {
 .hll {
   background-color: transparent;
 }
+
