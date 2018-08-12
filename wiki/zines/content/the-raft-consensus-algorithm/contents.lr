@@ -1,0 +1,16 @@
+_model: topic
+---
+title: The Raft Consensus Algorithm
+---
+body:
+
+#### raw-block ####
+contents:
+
+<header style="padding: 20px 0 50px;border-bottom: 1px solid rgba(34,34,34,0.2);background:url(cell.png) 0 50%;background-color: #73bfff; box-shadow: inset 0 10px 10px #73cfff">
+  <div style="text-align: center; color: #fff; text-shadow: 1px 1px 2px rgba(34,34,34,0.5);padding: 5% 0 0 10%;">
+    <h1 style="color:#fff;">The Raft Consensus Algorithm</h1>
+    <h2 style=>He was elected democratically but rules as a tyrant through his life.<br>He would not step down unless another super power comes.</h2>
+  </div>
+</header>
+</div>
