@@ -8,15 +8,17 @@ body:
 contents:
 
 <header style="padding: 20px 0 80px;border-bottom: 1px solid rgba(34,34,34,0.2);background:url(cell.png) 0 50%;background-color: #73bfff; box-shadow: inset 0 10px 10px #73cfff">
-  <div style="text-align: center; color: #fff; text-shadow: 1px 1px 2px rgba(34,34,34,0.5);padding: 5% 0 0 20%;">
+  <div style="text-align: center; color: #fff; text-shadow: 1px 1px 2px rgba(34,34,34,0.5);padding: 5% 0 0 10%;">
     <h1 style="color:#fff;">Run a container</h1>
     <h2>Keep building and running containers until we get a cathedral.</h2>
   </div>
 </header>
 <style>
 @keyframes whale-moving {
-  0% {background-position: 0 0;}
-  100% {background-position: 100% 0;}
+  0% {background-position: 0 0; opacity: 0;visibility:hidden;}
+  2% {background-position: 2% 0; opacity: 1;visibility: visible;}
+  98% {background-position: 98% 0; opacity: 1;visibility: visible;}
+  100% {background-position: 100% 0; opacity: 0;visibility: hidden;}
 }
 
 @keyframes waving {
@@ -26,7 +28,7 @@ contents:
 }
 </style>
 <div style="height:0px">
-  <div style="position:relative;top:-100px;z-index:1;background-image:url(docker-whale.png);height:100px;width:100%;background-repeat:no-repeat;background-size:auto 100px;animation-name: whale-moving;animation-duration: 30s;animation-iteration-count:infinite;animation-timing-function: linear;overflow:hidden;">
+  <div style="visibility:hidden;position:relative;top:-100px;z-index:1;background-image:url(docker-whale.png);height:100px;width:100%;background-repeat:no-repeat;background-size:auto 100px;animation-name: whale-moving;animation-duration: 30s;animation-iteration-count:1;animation-timing-function: linear;overflow:hidden;">
   </div>
   <div style="position:relative;top:-130px;z-index:2;background-image:url(wave.png);height:30px;width:100%;background-repeat:repeat-x;background-size:auto 50px;animation-name: waving;animation-duration: 3s;animation-iteration-count:infinite;overflow:hidden;">
   </div>
@@ -56,7 +58,7 @@ class: default
 #### raw-block ####
 contents:
 
-<div style="color: #ffffff; padding: 5% 0 0 20%; height: 200px;background-color:#00a3aa;">
+<div class="raw-header" style="color: #ffffff; padding: 5% 0 0 10%; height: 200px;background-color:#00a3aa;">
 <h3>How does the container work?</h3>
 <p class="hvr-icon-pulse">Want to see more posts? Follow
 <i class="fa fa-twitter hvr-icon"></i>
@@ -112,7 +114,7 @@ class: default
 #### raw-block ####
 contents:
 
-<div style="color: #ffffff; padding: 5% 0 0 20%; height: 200px;background-color:#3381CD">
+<div class="raw-header" style="color: #ffffff; padding: 5% 0 0 10%; height: 200px;background-color:#3381CD">
 <h3>Frequently Asked Questions</h3>
 <p class="hvr-icon-pulse">More questions? Ask me by 
 <i class="fa fa-github-square hvr-icon"></i>
@@ -128,17 +130,11 @@ a:
 
 A container is one or more non-trivial Linux processes running on top of the Kernel. We isolate them via cgroups and namespace.
 
-<img src="https://www.docker.com/sites/default/files/Container%402x.png" style="height: 300px;">
-
 Virtual Machine is a set of processes with dependencies running on top of a guest OS kernel. The guest OS is pre-allocated with a fixed amount of CPU, memory on top of the hypervisor and host OS kernel.
-
-<img src="https://www.docker.com/sites/default/files/VM%402x.png" style="height: 300px;">
 
 So, with the container, you get less isolation but much lightweight. With the VM, you get more isolation but much heavier. (It's pretty straightforward, right? we need to spend extra memory for guest OS in the VM. Besides programs in different VMs don't share things at all and hence load more things into RAM.)
 
-Container won't eliminate VMs... yet. Some would mix using VM and container.
-
-<p style="font-size: 0.5em;">Images come from <a href="https://www.docker.com/what-container">what docker</a>.</p>
+Some would even mix using VM and container.
 ----
 arrow_color: #3381CD
 #### qa-block ####
@@ -229,7 +225,7 @@ arrow_color: #3381CD
 #### raw-block ####
 contents:
 
-<div style="color: #ffffff; padding: 5% 0 0 20%; height: 200px;background-color:#0087AB;">
+<div class="raw-header" style="color: #ffffff; padding: 5% 0 0 10%; height: 200px;background-color:#0087AB;">
 <h3>Best Practise</h3>
 <p class="hvr-icon-pulse">Want to contribute? Simply make <i class="fa fa-github-square hvr-icon"></i>
 <a href="https://github.com/soasme/enqueuezero" style="color:#e5f3f6;border-bottom:solid 2px #ffffff;">a pull request</a>.
@@ -310,7 +306,7 @@ arrow_color: #0087AB
 #### raw-block ####
 contents:
 
-<div style="color: #ffffff; padding: 5% 0 0 20%; height: 200px;background-color:#00ab84;">
+<div class="raw-header" style="color: #ffffff; padding: 5% 0 0 10%; height: 200px;background-color:#00ab84;">
 <h3>Cheatsheet</h3>
 <p class="hvr-icon-pulse">Want to see more similar crafts? Consider <i class="fa fa-credit-card hvr-icon"></i>
 <a href="https://www.patreon.com/bePatron?c=1762267" style="color:#e5f3f6;border-bottom:solid 2px #ffffff;">donating via Patreon</a>.
@@ -371,7 +367,7 @@ class: default
 #### raw-block ####
 contents:
 
-<div style="color: #ffffff; padding: 5% 0 0 20%; height: 200px;background-color:#5B8E7D;">
+<div class="raw-header" style="color: #ffffff; padding: 5% 0 0 10%; height: 200px;background-color:#5B8E7D;">
 <h3>Fun facts</h3>
 <p class="hvr-icon-pulse">Want to discuss the container technology? Join Telegram group
 <i class="fa fa-telegram hvr-icon"></i>
