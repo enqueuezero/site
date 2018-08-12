@@ -219,6 +219,59 @@ def keep_receiving(udp_server, second, left=None):
     rest = lambda: keep_receiving(udp_server, second, left.rest)
     return Stream(data, rest, exit=data is None)
 ```
+
+### Finite State Machine as a Stream
+
+```python
+def reduce_stream(fn, s, init):
+    elem = init
+    while not s.stopped:
+        elem = fn(elem, s.head)
+        s = s.rest
+    return elem
+```
+
+```python
+def make_follower_stream(state):
+    datagram_stream = keep_receiving(udp_server, uniform(1.5, 4.5))
+    election_timeout = datagram_stream.stopped
+    state = reduce_stream(follower_handle_datagram, datagram_stream, state)
+    def rest():
+        if election_timeout:
+            return make_candidate_stream(state)
+        else:
+            return make_follower_stream(state)
+    return Stream(state, rest)
+```
+
+```python
+def make_candidate_stream(state):
+    state = elect_self(state)
+    datagram_stream = keep_receiving(udp_server, uniform(1.5, 4.5))
+    election_timeout = datagram_stream.stopped
+    state = reduce_stream(candidate_handle_datagram, datagram_stream, state)
+    def rest():
+        if election_timeout:
+            return make_candidate_stream(state)
+        elif state.server_state == 'follower':
+            return make_follower_stream(initialize_follower(state))
+        elif state.server_state == 'leader':
+            return make_leader_stream(initialize_leader(state))
+    return Stream(state, rest)
+```
+
+```python
+def make_leader_stream(state):
+    state = send_heartbeat(state)
+    datagram_stream = keep_receiving(udp_server, 0.3)
+    state = reduce_stream(leader_handle_datagram, datagram_stream, state)
+    def rest():
+        if state.server_state == 'follower':
+            return make_follower_stream(initialize_follower(state))
+        else:
+            return make_leader_stream(state)
+    return Stream(state, rest)
+```
 ----
 background: 
 ----
