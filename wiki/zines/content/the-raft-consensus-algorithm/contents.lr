@@ -143,3 +143,83 @@ contents:
 <a href="https://www.patreon.com/bePatron?c=1762267" style="color:#e5f3f6;border-bottom:solid 2px #ffffff;">donating via Patreon</a>.
 </p>
 </div>
+#### text-block ####
+text:
+
+### Streams Are Delayed Lists
+
+In this section, we explore a minority approach to modeling the Raft state, based on data structures called `streams`. We can certainly use a more Object-Oriented way to implement it, however, if we concentrate on the entire time history of data packets, our functions only need to handle a state and generate a new state. This would simplify our implementation.
+
+From an abstract point of view, a stream is simply a sequence.
+
+```python
+class Stream(object):
+    def __init__(self, head, rest_fn, exit=None):
+        self.head = head
+        self.exit = exit
+        self._rest = None
+        self._rest_fn = rest_fn
+        self._evaluated = False
+
+    @property
+    def stopped(self):
+        return bool(self.exit)
+
+    @property
+    def rest(self):
+        assert not self.stopped, 'Stopped stream has no rest.'
+        if not self._evaluated:
+            self._rest = self._rest_fn()
+            self._evaluated = True
+        return self._rest
+```
+
+### Stopwatch & Infinite Stream
+
+```python
+def stopwatch(period, start=None):
+    start = start or time()
+    head = max(0, period - (time() - start))
+    rest = lambda: stopwatch(period, start)
+    return Stream(head, rest, exit=not head)
+```
+
+```
+>>> stream = stopwatch(10)
+>>> print(stream.head)
+9.999999046325684
+>>> print(stream.rest.head)
+2.888666868209839
+>>> print(stream.rest.rest.head)
+0.5928409099578857
+>>> print(stream.rest.rest.rest.head)
+0
+>>> print(stream.rest.rest.rest.rest.head)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/private/tmp/raft-101/raft.py", line 26, in rest
+    assert not self.stopped, 'Stopped stream has no rest.'
+AssertionError: Stopped stream has no rest.
+```
+
+### Data Stream & Finite stream
+
+```python
+def receive(udp_server, timeout):
+    udp_server.settimeout(timeout)
+    try:
+        datagram, address = udp_server.recvfrom(8192)
+        return Datagram(address, json.loads(datagram.decode()))
+    except socket.timeout:
+        return
+
+def keep_receiving(udp_server, second, left=None):
+    left = left or stopwatch(second)
+    data = receive(udp_server, left.head) if not left.stopped else None
+    rest = lambda: keep_receiving(udp_server, second, left.rest)
+    return Stream(data, rest, exit=data is None)
+```
+----
+background: 
+----
+class: default
