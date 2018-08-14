@@ -1,5 +1,5 @@
 created: 20180530090523293
-modified: 20180813102131006
+modified: 20180814011105152
 tags: 
 title: index
 type: text/vnd.tiddlywiki
@@ -18,6 +18,7 @@ Come join Enqueue Zero!
 
 * [[12 Factor|12-factor]] 🍰✨
 * [[2PL and MVCC|2pc-and-mvcc]]
+* [[Abstraction|abstraction]]
 * [[ACID and BASE|acid-and-base]]
 * [[Actor Model|actor-model]] 🍰✨
 * [[Agile|agile]]
