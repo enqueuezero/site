@@ -1,5 +1,5 @@
 created: 20180814084811526
-modified: 20180814101926963
+modified: 20180814103034417
 tags: 
 title: Raft - The Gears are Unreliable
 type: text/vnd.tiddlywiki
@@ -10,6 +10,6 @@ In C code, we might want to register a callback function to `exit` so that some 
 
 The consensus algorithm must overcome this problem. Several solutions have been presented.
 
-* Bitcoin introduced BlockChain, Proof of Work to solve the problem.
-* Paxos introduced Client, Proposer, Acceptor, Learner to solve the problem.
-* Raft introduced Follower, Candidate, Leader to solve the problem.
+* Bitcoin introduces BlockChain, Proof of Work to solve the problem.
+* Paxos introduces Client, Proposer, Acceptor, Learner to solve the problem.
+* Raft introduces Follower, Candidate, Leader to solve the problem.
