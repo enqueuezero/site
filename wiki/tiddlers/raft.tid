@@ -1,5 +1,5 @@
 created: 20180813103144935
-modified: 20180814101937823
+modified: 20180818054154079
 title: raft
 type: text/vnd.tiddlywiki
 
@@ -7,3 +7,4 @@ Series Links:
 
 * [[Raft - the nature of time]]
 * [[Raft - The Gears are Unreliable]]
+* [[Raft - Exploiting the Stream Paradigm]]
