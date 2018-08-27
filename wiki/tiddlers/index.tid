@@ -1,5 +1,5 @@
 created: 20180530090523293
-modified: 20180826110727522
+modified: 20180827105105680
 tags: 
 title: index
 type: text/vnd.tiddlywiki
@@ -17,7 +17,7 @@ In return I will pick a random patron to discuss with some technical questions r
 Come join Enqueue Zero! 
 
 * [[12 Factor|12-factor]] 🍰✨
-* [[2PL and MVCC|2pl-and-mvcc]]
+* [[2PL|2PL]] 🍰✨
 * [[Abstraction|abstraction]]
 * [[ACID and BASE|acid-and-base]]
 * [[Actor Model|actor-model]] 🍰✨
@@ -113,6 +113,7 @@ Come join Enqueue Zero!
 * [[Monolithic and Microservices|monolithic-and-microservices]]
 * [[Monitoring System|monitoring-system]]
 * [[Model-View-Controller|mvc]]
+* [[MVCC|MVCC]] 
 * [[Netflix Architecture|netflix-architecture]]
 * [[Network Gears|network-gears]]
 * [[NoSQL|nosql]]
