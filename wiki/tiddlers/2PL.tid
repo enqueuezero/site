@@ -1,5 +1,5 @@
 created: 20180826110144223
-modified: 20180827094123290
+modified: 20180827101101218
 tags: 
 title: 2PL
 type: text/vnd.tiddlywiki
@@ -22,6 +22,12 @@ The 2PL is straightforward like its name - it has two phases.
 ** No new locks can be acquired.
 
 Notably, a LOCK POINT is at which phase 1 ends, that is, when the transaction acquires the last lock it needs.
+
+!! Solutions
+
+* SQL Server uses 2PL by default.
+* Postgres uses 2PL for the statement `BEGIN`.
+* MySQL InnoDB uses MVCC as its core, however, it uses 2PL for the serializable isolation level. That says MySQL acquires a shared lock on every row or range of rows that are selected in a SQL query.
 
 !! Patterns
 
@@ -65,3 +71,5 @@ The 2PL cannot avoid the deadlock.
 
 * [[Wikipedia - Two-phase locking|https://en.wikipedia.org/wiki/Two-phase_locking]]
 * [[Two Phase Locking (2-PL)-I|https://www.geeksforgeeks.org/dbms-concurrency-control-protocols-two-phase-locking-2-pl/]]
+* [[A beginner’s guide to the Phantom Read anomaly, and how it differs between 2PL and MVCC|https://vladmihalcea.com/a-beginners-guide-to-the-phantom-read-anomaly-and-how-it-differs-between-2pl-and-mvcc/]]
+* [[Postgres SQL BEGIN|https://www.postgresql.org/docs/6.4/static/sql-beginwork.htm]]
