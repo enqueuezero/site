@@ -1,5 +1,5 @@
 created: 20180827105000274
-modified: 20180827105006583
+modified: 20180827105923901
 tags: 
 title: MVCC
 type: text/vnd.tiddlywiki
@@ -24,7 +24,7 @@ MVCC is just like its name - it maintains multi versions of data in-between tran
 
 !! Solutions
 
-* InnoDB stores multi-versioning information in the table and three mvcc-related fields `DB_TRX_ID`, `DB_ROLL_PTR`, and `DB_ROW_ID` to each row.
+* InnoDB stores multi-versioning information in the tablespace called `rollback segment` and three mvcc-related fields `DB_TRX_ID`, `DB_ROLL_PTR`, and `DB_ROW_ID` to each row. InnoDB implements MVCC by capturing old versions of changed rows in undo log so that it can rollback to a designated old version of data.
 * PostgreSQL stores all multi-versioning information in the table data structure and two additional columns `t_min` and `t_max` to each row. PostgreSQL uses a technology called SSI or Serializable Snapshot Isolation.
 
 !! References
