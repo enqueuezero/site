@@ -1,5 +1,5 @@
 created: 20180826110144223
-modified: 20180826111336598
+modified: 20180827094123290
 tags: 
 title: 2PL
 type: text/vnd.tiddlywiki
@@ -60,47 +60,6 @@ For example, say we have below two transactions on two resources `x` and `y`.
 The scheduler proceeds the operations in below sequence: T1 write(x), T2 write(y), T1 write(y), T2 write(x). You might notice that none of T1 write(y) and T2 write(x) can proceed as for T1 resource y has been locked by T2, and T2 resource x has been locked by T1. 
 
 The 2PL cannot avoid the deadlock.
-
-!! Learn 2PL the hard way
-
-I would recommend read the source code of [[strict-2pl|https://github.com/mauriciogardini/strict-2pl/blob/master/strict_2pl.py]]. This demo shows the sequence of 2PL in below cases:
-
-* No conflicts.
-* Some operations need to be delayed.
-* Deadlock.
-
-Below is the output of the application. Note that the application is written in Python 2. The notations has such format: `l` means lock, `u` means unlock, `r` means read, `w` means write, `[x]` and `[y]` are two resources, `c` means commit, `s` means shared lock, `x` means exclusive lock, `1` and `2` means the two transactions.
-
-```
-History with no conflicts
-Original history: r1[x] r2[y] r1[y] c1 w2[x] c2
-Final history: ls1[x], r1[x], ls2[y], r2[y], ls1[y], r1[y], c1, us1[x], us1[y], lx2[x], w2[x], c2, us2[y], ux2[x]
---------------------
-History with an operation that needs to be delayed
-Original history: r1[x] w1[x] w2[x] c1 c2
-The operation w2[x] was delayed.
-Final history: ls1[x], r1[x], lx1[x], w1[x], c1, us1[x], ux1[x], lx2[x], w2[x], c2, ux2[x]
---------------------
-History with a deadlock
-Original history: r1[x] w2[y] r1[y] w2[x] c1 c2
-The operation r1[y] was delayed.
-The operation w2[x] was delayed.
-A deadlock was found. The transaction 2 was aborted.
-Final history: ls1[x], r1[x], ls1[y], r1[y], c1, us1[y], us1[x], lx2[y], w2[y], lx2[x], w2[x], c2, ux2[x], ux2[y]
---------------------
-History with an operation that can't be executed
-Original history: r1[x] r2[y] r1[y] c1 r1[x] w2[x] c2
-The operation r1[x] will be ignored because its transaction is in the shrinking phase.
-Final history: ls1[x], r1[x], ls2[y], r2[y], ls1[y], r1[y], c1, us1[x], us1[y], lx2[x], w2[x], c2, ux2[x], us2[y]
---------------------
-History with more than one operation that has to be delayed
-Original history: r1[x] w1[x] w2[x] r2[y] w2[y] c1 c2
-The operation w2[x] was delayed.
-The operation r2[y] was delayed.
-The operation w2[y] was delayed.
-Final history: ls1[x], r1[x], lx1[x], w1[x], c1, us1[x], ux1[x], lx2[x], w2[x], ls2[y], r2[y], lx2[y], w2[y], c2, ux2[y], ux2[x], us2[y]
---------------------
-```
 
 !! References
 
