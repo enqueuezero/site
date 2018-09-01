@@ -1,11 +1,22 @@
 created: 20180828113344863
-modified: 20180901105110305
+modified: 20180901111156362
 title: airbnb-architecture
 type: text/vnd.tiddlywiki
 
 !! Overview
 
 !! Solutions
+
+!!! AWS Stack
+
+Airbnb uses below AWS services.
+
+* It uses EC2 instances for its application, memcache, and search servers. 
+* It uses RDS as main MySQL database.
+* It used ELB for traffic load balancing (Note: no longer used anymore, check section `Load Balancer` below.).
+* It uses EMR for daily data processing and analyzing (Note: somewhat out-dated, check section `Data Warehose` below).
+* It uses S3 for backups and static files, including user pictures.
+* It uses Amazon CloudWatch to supervise ES2 assets.
 
 !!! Load Balancer
 
@@ -24,7 +35,7 @@ With Charon, Akamai traffic hits Nginx servers directly. Then the traffic routes
 
 !! Data Tier
 
-* Airbnb uses AWS's Relational Database Services (RDS) for MySQL.
+* Airbnb uses Amazon RDS as main MySQL database. The databases are deployed in multi AZ (availability zone).
 ** They're the community edition of MySQL server.
 ** Each MySQL server uses one-thread-per-connection model.
 * Airbnb forked and modified MariaDB MaxScale for database proxy.
@@ -67,7 +78,7 @@ TODO: (BinaryAlert)
 !! References
 
 * [[Data Infrastructure at Airbnb|https://medium.com/airbnb-engineering/data-infrastructure-at-airbnb-8adfb34f169c]]
-* [Scaling Airbnb's Experimentation Platform|https://medium.com/airbnb-engineering/https-medium-com-jonathan-parks-scaling-erf-23fd17c91166]]
+* [[Scaling Airbnb's Experimentation Platform|https://medium.com/airbnb-engineering/https-medium-com-jonathan-parks-scaling-erf-23fd17c91166]]
 * [[What is the Airbnb Software Architecture|https://www.quora.com/What-is-the-AirBNB-Software-Architecture]]
 * [[Airbnb Case Study|https://aws.amazon.com/solutions/case-studies/airbnb/]]
 * [[BinaryAlert: Real-time Serverless Malware Detection|https://medium.com/airbnb-engineering/binaryalert-real-time-serverless-malware-detection-ca44370c1b90]]
