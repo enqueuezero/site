@@ -1,5 +1,5 @@
 created: 20180530090523293
-modified: 20180827105105680
+modified: 20180901123132988
 tags: 
 title: index
 type: text/vnd.tiddlywiki
@@ -22,7 +22,7 @@ Come join Enqueue Zero!
 * [[ACID and BASE|acid-and-base]]
 * [[Actor Model|actor-model]] 🍰✨
 * [[Agile|agile]]
-* [[Airbnb Architecture|airbnb-architecture]]
+* [[Airbnb Architecture|airbnb-architecture]] 🍰✨
 * [[Artifact Management|artifact-management]]
 * [[ASGI|asgi]]
 * [[Asynchronous and Synchronous|async-and-sync]] 🍰✨
