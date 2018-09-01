@@ -1,9 +1,13 @@
 created: 20180828113344863
-modified: 20180901111156362
+modified: 20180901122908911
 title: airbnb-architecture
 type: text/vnd.tiddlywiki
 
 !! Overview
+
+Airbnb is a website that operates an online marketplace and hospitality service for people to lease or rent short-term lodging. The challenges for the engineering team includes high-availability, quick-scaling, etc. In this post, I put the architecture of Airbnb website in one article. Please tweet to @enqueuezero if you think anything is incorrect or out-dated.
+
+Disclaimer: I'm not from Airbnb team and don't know anybody from Airbnb. All information can be found on the Internet, mainly from [[the Airbnb engineering blog|https://medium.com/airbnb-engineering]].
 
 !! Solutions
 
@@ -13,8 +17,8 @@ Airbnb uses below AWS services.
 
 * It uses EC2 instances for its application, memcache, and search servers. 
 * It uses RDS as main MySQL database.
-* It used ELB for traffic load balancing (Note: no longer used anymore, check section `Load Balancer` below.).
-* It uses EMR for daily data processing and analyzing (Note: somewhat out-dated, check section `Data Warehose` below).
+* It used ELB for traffic load balancing (Note: seems no longer used anymore, check section `Load Balancer` below.).
+* It uses EMR for daily data processing and analyzing (Note: seems somewhat out-dated, check section `Data Warehouse` below).
 * It uses S3 for backups and static files, including user pictures.
 * It uses Amazon CloudWatch to supervise ES2 assets.
 
@@ -33,13 +37,18 @@ With Charon, Akamai traffic hits Nginx servers directly. Then the traffic routes
 
 !! Web Tier
 
+Airbnb users Rails for the front-end.
+
 !! Data Tier
 
-* Airbnb uses Amazon RDS as main MySQL database. The databases are deployed in multi AZ (availability zone).
-** They're the community edition of MySQL server.
-** Each MySQL server uses one-thread-per-connection model.
-* Airbnb forked and modified MariaDB MaxScale for database proxy.
-** Main functionalities of this proxy layer include connection pooling, request throttling, query blocklist, etc.
+Airbnb uses Amazon RDS as main MySQL database. The databases are deployed in multi-AZ (availability zone). Below 3-tier architecture reflects the basic pattern. Note that there are several types of databases for different scenarios, for example, `airmaster`, `calendar`, `message`, etc. Therefore, there are over a dozen dbproxy and hundreds of database instances gets deployed.
+
+[img[airbnb-architecture-3-tier-db.png]]
+
+* They're the community edition of MySQL server.
+* Each MySQL server uses one-thread-per-connection model.
+* Airbnb [[forked and modified|https://github.com/airbnb/MaxScale]] MariaDB MaxScale for database proxy.
+* Main functionalities of this proxy layer include connection pooling, request throttling, query blocklist, etc.
 
 !!! Infrastructure as code
 
@@ -47,33 +56,37 @@ Airbnb manages infrastructure with [[Chef|https://www.chef.io/chef/]].
 
 !!! Data Warehouse
 
-The Airbnb data infrastructure handles metrics, trains machine learning models, and runs business analytics etc. 
+The Airbnb data infrastructure handles metrics, trains machine learning models, and runs business analytics, etc. 
 
 [img[airbnb-architecture-data-pipeline.png]]
 
-* Kafka plays as a broker for event logs.
-* Sqoop plays as a broker for production database dumps.
-* The Gold and Silver Hive cluster are the data sinks. The Gold Hive cluster replicates data to silver. The Gold Hive cluster has higher SLA guarantee.
+* Kafka performs as a broker for event logs.
+* Sqoop performs as a broker for production database dumps.
+* The Gold and Silver Hive cluster are the data sinks. The Gold Hive cluster replicates data to silver. The Gold Hive cluster has a higher SLA guarantee.
 * A Spark Cluster works on machine learning for stream processing.
 * A Presto Cluster is for ad hoc querying.
 * An Airflow application runs in front-end for job scheduling.
-* S3 is a long term solution for HDFS data.
+* S3 is a long-term solution for HDFS data.
 
 !!! Microservices
 
-TODO
+Airbnb uses [[Dropwizard|https://www.dropwizard.io/1.3.5/docs/]] service framework, and customized a Thrift service IDL.
+
+* Developers can choose between JSON-over-http and Thrift-over-http.
+* Downstream services need to install generated RPC clients from upstream.
+* Downstream services also need to apply standard timeout, retry, and circuit breaker logic.
+* The framework adds request and response metrics on both service-side and client-side.
+* The framework adds requests context, including request id to all underlying service requests.
+* The framework supports adding alerts based on metrics like `p95_latency`, `p99_latency`, etc.
 
 !!! Search Service
 
-TODO: Nebula
+[img[airbnb-architecture-search.png]]
 
-!!! Payment Service
-
-TODO: (Pull+Push, Multi-Currency.)
-
-!!! Security Service
-
-TODO: (BinaryAlert)
+* Nebula is a schema-less, versioned data store service with both real-time random data access and offline batch data management.
+* The search flow only adds some search indexing logic into this system.
+** The snapshot is generated daily as a part of the offline data merge.
+** The search index is built from the snapshot and then deployed to search periodically as an ordinary binary deploy.
 
 !! References
 
