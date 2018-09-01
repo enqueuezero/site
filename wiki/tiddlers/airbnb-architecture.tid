@@ -1,5 +1,5 @@
 created: 20180828113344863
-modified: 20180828113738270
+modified: 20180901105110305
 title: airbnb-architecture
 type: text/vnd.tiddlywiki
 
@@ -36,7 +36,17 @@ Airbnb manages infrastructure with [[Chef|https://www.chef.io/chef/]].
 
 !!! Data Warehouse
 
-[img[https://cdn-images-1.medium.com/max/2000/1*-sBaf7m2TR4qEqVoicIbSA.png]]
+The Airbnb data infrastructure handles metrics, trains machine learning models, and runs business analytics etc. 
+
+[img[airbnb-architecture-data-pipeline.png]]
+
+* Kafka plays as a broker for event logs.
+* Sqoop plays as a broker for production database dumps.
+* The Gold and Silver Hive cluster are the data sinks. The Gold Hive cluster replicates data to silver. The Gold Hive cluster has higher SLA guarantee.
+* A Spark Cluster works on machine learning for stream processing.
+* A Presto Cluster is for ad hoc querying.
+* An Airflow application runs in front-end for job scheduling.
+* S3 is a long term solution for HDFS data.
 
 !!! Microservices
 
