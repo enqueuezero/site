@@ -2,7 +2,7 @@
 title: Raft and The Nature of Time
 category: Computer Science
 tags: raft distributed
-date: 2018-09-09
+date: 2018-08-13
 ---
 
 The Raft consensus algorithm assumes nodes are in the vicinity, meaning they should be able to communicate very fast. Let's imagine the case of one node on Earth, one node on Mars, and one node on the Moon. It would take minutes for messages communicating between nodes and hence minutes to reach consensus with the best of luck. Most people would rather deploy Raft nodes in one Data Center for the best performance. Also, the defaults heartbeat and election timeout are set to a hundred milliseconds to a few seconds.

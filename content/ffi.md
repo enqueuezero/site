@@ -2,7 +2,7 @@
 title: FFI
 tags: ffi
 category: Computer Science
-date: 2018-09-09
+date: 2018-07-17
 ---
 
 ## Context

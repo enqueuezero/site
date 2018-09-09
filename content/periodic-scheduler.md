@@ -2,7 +2,7 @@
 title: Periodic Scheduler
 category: Computer Science
 tags: scheduler
-date: 2018-09-09
+date: 2018-08-21
 ---
 
 ## Context

@@ -2,7 +2,7 @@
 title: Job Queue
 category: Computer Science
 tags: queue
-date: 2018-09-09
+date: 2018-06-06
 ---
 
 ## Context

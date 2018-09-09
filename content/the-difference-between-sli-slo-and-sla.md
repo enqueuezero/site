@@ -2,7 +2,7 @@
 title: The Difference between SLI, SLO, and SLA
 category: Computer Science
 tags: sla
-date: 2018-09-09
+date: 2018-08-20
 ---
 
 The SLA, SLO, and SLI are related concepts though they're different concepts.

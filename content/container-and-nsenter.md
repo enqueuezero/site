@@ -2,7 +2,7 @@
 title: Container and nsenter
 category: Computer Science
 tags: container
-date: 2018-09-09
+date: 2018-07-26
 ---
 
 Nsenter is a utility enters the namespaces of one or more other processes and then executes the specified program. In other words, we jump to the inner side of the namespace.

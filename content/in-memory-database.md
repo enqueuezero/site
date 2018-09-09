@@ -2,7 +2,7 @@
 title: In-Memory Database
 category: Computer Science
 tags: database
-date: 2018-09-09
+date: 2018-06-11
 ---
 
 ## Context

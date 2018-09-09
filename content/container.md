@@ -2,7 +2,7 @@
 title: Container
 category: Computer Science
 tags: container
-date: 2018-09-09
+date: 2018-07-24
 ---
 
 Many people have heard of the container for a while or even use it every day. However, a question like "what is container" or "how container works" might still rise.

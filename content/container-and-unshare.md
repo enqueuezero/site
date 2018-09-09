@@ -2,7 +2,7 @@
 title: Container and unshare
 category: Computer Science
 tags: container
-date: 2018-09-09
+date: 2018-07-26
 ---
 
 Unshare is a utility running program with some namespaces unshared from a parent. We create a new PID namespace below.

@@ -2,7 +2,7 @@
 title: Container and UnionFS
 category: Computer Science
 tags: container, unionfs
-date: 2018-09-09
+date: 2018-07-27
 ---
 
 Union File System or UnionFS variants such as AUFS, btrfs, vfs, and devicemapper are the file system that used by most container engines.  It allows files and directories of separate file systems overlaid one by one, forming a final single coherent file system.

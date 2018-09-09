@@ -1,6 +1,6 @@
 ---
 title: 2PL
-date: 2018-09-09
+date: 2018-08-26
 category: Computer Science
 tags: database
 summary: The 2PL or Two-Phase Locking is a method to reach serializability.

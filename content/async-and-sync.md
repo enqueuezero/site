@@ -1,7 +1,7 @@
 ---
 title: Asynchronous and Synchronous
 slug: async-and-sync
-date: 2018-09-09
+date: 2018-06-19
 category: Computer Science
 tags: async sync
 ---

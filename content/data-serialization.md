@@ -2,7 +2,7 @@
 title: Data Serialization
 category: Computer Science
 tags: serialization, rpc, json
-date: 2018-09-09
+date: 2018-06-04
 ---
 
 ## Context

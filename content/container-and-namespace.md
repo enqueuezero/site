@@ -2,7 +2,7 @@
 title: Container and Namespace
 category: Computer Science
 tags: container
-date: 2018-09-09
+date: 2018-07-26
 ---
 
 Namespace enables us having the same name for some global system resources. For example, A PID namespace empowers the process inside the namespace running with 1 as PID, which at the same time, `init` is running with 1 as PID in the regular namespace.

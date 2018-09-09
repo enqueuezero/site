@@ -2,7 +2,7 @@
 title: Count Distinct
 category: Computer Science
 tags: algorithm
-date: 2018-09-09
+date: 2018-05-31
 ---
 
 ## Problem

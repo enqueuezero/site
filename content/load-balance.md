@@ -2,7 +2,7 @@
 title: Load Balance
 category: Computer Science
 tags: load-balance, algorithm
-date: 2018-09-09
+date: 2018-06-20
 ---
 
 ## Context
