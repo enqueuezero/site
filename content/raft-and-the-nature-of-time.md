@@ -1,7 +1,7 @@
 ---
 title: Raft and The Nature of Time
 category: Computer Science
-tags: raft distributed
+tags: raft, distributed
 date: 2018-08-13
 ---
 
