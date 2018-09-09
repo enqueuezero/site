@@ -6,7 +6,7 @@ category: journal
 tags: news
 ---
 
-Dear my funders, there are a tremendous change on UI this week!
+Dear my funders, there is a tremendous change on UI this week!
 
 It's based on [Pelican](http://docs.getpelican.com/) and theme `Medius`. Almost all old posts have been migrated into the new blog. Besides, I added Disqus comment widget and tagging system.
 
