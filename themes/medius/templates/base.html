@@ -55,7 +55,9 @@
                     {% endif %}
                     {% if DISPLAY_CATEGORIES_ON_MENU %}
                       {% for cat, null in categories %}
-                        <li class="main-nav-item{% if cat == category %} active{% endif %}"><a href="{{ SITEURL }}/{{ cat.url }}" class="pure-menu-link">{{ cat }}</a></li>
+                        {% if cat != DEFAULT_CATEGORY %}
+                          <li class="main-nav-item{% if cat == category %} active{% endif %}"><a href="{{ SITEURL }}/{{ cat.url }}" class="pure-menu-link">{{ cat }}</a></li>
+                        {% endif %}
                       {% endfor %}
                     {% endif %}
                     </ul>

@@ -68,8 +68,8 @@
         {% endif %}
         <div class="pure-g post-footer">
             {% if article.authors %}
-            <div class="pure-u-1 pure-u-md-1-2">
-                {% for author in article.authors %}
+            <div class="pure-u-1 pure-u-md-1-1">
+                {% for author in DEFAULT_MEDIUS_AUTHORS or article.authors %}
                 <div class="pure-g poster-info">
                     {% if author|string in MEDIUS_AUTHORS %}
                     <div class="pure-u">
