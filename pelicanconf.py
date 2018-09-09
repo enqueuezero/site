@@ -30,16 +30,27 @@ LINKS = (('Fund me', 'https://www.patreon.com/enqueuezero'),
 SOCIAL = (('You can add links in your config file', '#'),
           ('Another social link', '#'),)
 
-DEFAULT_PAGINATION = 100
+DEFAULT_PAGINATION = 30
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
 
 THEME = 'themes/medius'
 
-DISQUS_SITENAME = 'enqueuezero'
-
 STATIC_PATHS = ['static']
+
 EXTRA_PATH_METADATA = {
     'static/favicon.ico': {'path': 'favicon.ico'}
+}
+
+DEFAULT_MEDIUS_AUTHORS = ['Enqueue Zero', 'Ju Lin']
+MEDIUS_AUTHORS = {
+    'Ju Lin': {
+        'image': 'http://www.gravatar.com/avatar/bffb5fd030d679a313376b4eff07775b',
+        'description': "Ju Lin is the author behind Enqueue Zero. He likes web programming, system programming, algorithms, and architecture."
+    },
+    'Enqueue Zero': {
+        'image': '/static/images/ezlogo60x60.png',
+        'description': "Enqueue Zero is creating fun arts on Computer Science and Programming. It's operated by a single man team since 2018."
+    }
 }
