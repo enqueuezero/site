@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 ghp-import = "*"
 lektor = "*"
+pelican = "*"
+markdown = "*"
 
 [dev-packages]
 
