@@ -37,10 +37,11 @@ DEFAULT_PAGINATION = 30
 
 THEME = 'themes/medius'
 
-STATIC_PATHS = ['static']
+STATIC_PATHS = ['static', 'extra/CNAME']
 
 EXTRA_PATH_METADATA = {
-    'static/favicon.ico': {'path': 'favicon.ico'}
+    'static/favicon.ico': {'path': 'favicon.ico'},
+    'extra/CNAME': {'path': 'CNAME'},
 }
 
 DEFAULT_MEDIUS_AUTHORS = ['Enqueue Zero', 'Ju Lin']
@@ -54,3 +55,4 @@ MEDIUS_AUTHORS = {
         'description': "Enqueue Zero is creating fun arts on Computer Science and Programming. It's operated by a single man team since 2018."
     }
 }
+MEDIUS_CATEGORIES = { }
