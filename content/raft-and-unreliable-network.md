@@ -1,7 +1,7 @@
 ---
 title: Raft and Unreliable Network
 category: Computer Science
-tags: raft network
+tags: raft, network
 date: 2018-08-14
 ---
 
