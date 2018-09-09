@@ -30,7 +30,7 @@ LINKS = (('Fund me', 'https://www.patreon.com/enqueuezero'),
 SOCIAL = (('You can add links in your config file', '#'),
           ('Another social link', '#'),)
 
-DEFAULT_PAGINATION = False
+DEFAULT_PAGINATION = 100
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
@@ -38,3 +38,8 @@ DEFAULT_PAGINATION = False
 THEME = 'themes/medius'
 
 DISQUS_SITENAME = 'enqueuezero'
+
+STATIC_PATHS = ['static']
+EXTRA_PATH_METADATA = {
+    'static/favicon.ico': {'path': 'favicon.ico'}
+}
