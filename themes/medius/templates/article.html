@@ -66,6 +66,11 @@
             {% endfor %}
         </div>
         {% endif %}
+
+        {% if DISPLAY_PATREON_ON_ARTICLE %}
+        <a href="https://www.patreon.com/bePatron?u={{ PATREON_ID }}" data-patreon-widget-type="become-patron-button">Become a Patron!</a><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
+        {% endif %}
+
         <div class="pure-g post-footer">
             {% if article.authors %}
             <div class="pure-u-1 pure-u-md-1-1">
