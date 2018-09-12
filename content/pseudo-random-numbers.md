@@ -48,16 +48,24 @@ Note: for security reason, please don't use the above technique for getting pseu
 ### Pseudo means recur
 
 The PRNGs have a period of number recurring.
+
 For example, in sequence `1 4 3 2 5 1 4 3 2 5 1 4 3 2 5`, the `1 4 3 2 5` recurs every 5 numbers.
 For a PRNG based on such sequence, whenever you see `1` as random number, `4` will always be the next number.
 The recurring numbers determine that the number sequence is fixed rather than randomized.
 
 The big picture behind the PRNG is like a fixed table of such similar sequence.
 
-You might be wondering why do people still get random numbers in such a silly way?
-The answer is as long as the period is wide enough and you start from different positions in the sequence, you're almost unable to get a same set of random numbers during the life cycle of your application.
+### Large period is safer
 
-### Seed
+You might be wondering why do people still get random numbers in such a silly way?
+
+The answer is as long as the period is wide enough and you start from different positions in the sequence, you're almost unable to get a same set of random numbers during the life cycle of your application. (if it happens, oh poor man, please restart your computer periodically and issue resolved.)
+
+From the engineering perspective, we don't need things absolutely correct but simple and goog enough. As a side quote, below is from the bash.git repo [1]:
+
+> This one isn't very good, but a more complicated one is overkill.
+
+### Seed determines the rest
 
 When using the PRNG libraries, you need to set the initial state as a seed.
 
@@ -66,7 +74,7 @@ The current system time will probably be used.
 
 Once you call a random function, the PRNG libraries will update their internal state for the generator so that you won't get a same number next time.
 
-### Reproduce
+### Reproduce by resetting an known seed
 
 As long as you provide the same seed again, the PRNG libraries will reproduce the same random results for you.
 
@@ -94,9 +102,9 @@ There are several variants of random APIs:
 
 ### Mersenne Twister
 
-Mersenne Twister algorithm is a pseudo-random number generator that produces 53-bit precision floats in a period of 2^19937-1. It's one of the most extensively tested RNGs.
+Mersenne Twister algorithm is a PRNG that produces 53-bit precision floats in a period of 2^19937-1. It's one of the most extensively tested RNGs.
 
-People like it because it's fast, re-entrant, and efficient. The extensive period reduces the probability of causing issues.
+People like it because it's fast, thread-safe, and efficient. The extensive period reduces the probability of causing issues.
 
 The disadvantage of Mersenne Twister is that it uses relatively larger buffer than other PRNG algorithms.
 
@@ -142,3 +150,5 @@ Since the start of the Big Bang, everything seems just move in their way. It's s
 * [Cryptography](https://cryptography.io/en/latest/random-numbers/)
 * [Mersenne Twister](https://en.wikipedia.org/wiki/Mersenne_Twister)
 * [Reddit Discussion](https://www.reddit.com/r/bash/comments/9ewljx/pseudorandom_numbers/e5s75iz/)
+
+[1]: http://git.savannah.gnu.org/cgit/bash.git/tree/variables.c#n1304
