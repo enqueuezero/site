@@ -118,6 +118,8 @@ The period of LCG depends on the parameter. If the parameters are too small, it 
 
 The advantage of LCG is that it uses minimal RAM. The disadvantage of LCG is its relatively small period.
 
+The LCG is used in below systems or libraries: ANSI C, C99, C11, POSIX, glibc, muslc, bash,  Java(modified version of LCG).
+
 ## Mix
 
 A typical implementation of PRNG comprised of the two PRNG algorithm introduced above:
@@ -131,14 +133,14 @@ Please read "The Art of Computer Programming, Volume 2". In this book, Knuth has
 
 ## Thoughts
 
-Oh, did I just forgot to mention what is TRNG? With the help of some magic device, you might be able to get random numbers easily. For example, since the weather system is a chaos system, meaning no one can accurately predict it, you can generate random numbers based on the history of temperature, humidity, wind speed. You can find more good indicators in natural world or in the universe.
+Oh, did I just forgot to mention what is TRNG? With the help of some magic device, you might be able to get random numbers. For example, since the weather system is a chaos system, meaning no one can accurately predict it, you can generate random numbers based on the history of temperature, humidity, wind speed or things like that. You can find many more good indicators in natural world or in the universe.
 
-Since the start of the Big Bang, everything seems just move in their way. It's still a mystery whether everything is deterministic or not. If so, then all TRNG turns into PRNG! However, no one can prove that.
+Since the start of the Big Bang, everything seems just move in their own way. It's still a mystery whether everything is deterministic or not. If so, then all TRNG turns into PRNG! However, no one can prove that.
 
 ## Conclusion
 
-* The pseudo-random number generators generate "random" numbers. However, they're not TRUE random numbers.
-* The Mersenne Twister and LCG are two popular PRNG algorithms.
+* The PRNG generates "random" numbers which would recur eventually over a period.
+* The Mersenne Twister and LCG are the two popular PRNG algorithms.
 * Don't use PRNG for cryptographic operations.
 
 ## References
@@ -152,3 +154,4 @@ Since the start of the Big Bang, everything seems just move in their way. It's s
 * [Reddit Discussion](https://www.reddit.com/r/bash/comments/9ewljx/pseudorandom_numbers/e5s75iz/)
 
 [1]: http://git.savannah.gnu.org/cgit/bash.git/tree/variables.c#n1304
+[bash]: http://git.savannah.gnu.org/cgit/bash.git/tree/variables.c#n1303
