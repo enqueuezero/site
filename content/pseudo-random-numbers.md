@@ -17,6 +17,8 @@ The reason of being pseudo-random is that the PRNG algorithm doesn't generate tr
 * PRNG: Pseudo-Random Number Generators. The `pseudo` here means the generator would eventually repeating a same sequence of numbers over a certain period.
 * TRNG: True-Random Number Generators. The `true` here means we have no way to truly detect the next number being generated at any given time.
 
+We will cover PRNG in this post.
+
 ## Use
 
 In Python, `random.random()` returns the next random floating point number in the range `[0.0, 1.0)`.
