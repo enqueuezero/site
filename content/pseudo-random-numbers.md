@@ -143,6 +143,10 @@ Since the start of the Big Bang, everything seems just move in their own way. It
 * The Mersenne Twister and LCG are the two popular PRNG algorithms.
 * Don't use PRNG for cryptographic operations.
 
+## Credit
+
+* [/u/whetu](http://reddit.com/u/whetu): Thanks for providing so much corrections.
+
 ## References
 
 * [Random number generation](https://en.wikipedia.org/wiki/Random_number_generation)
