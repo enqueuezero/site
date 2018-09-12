@@ -133,7 +133,7 @@ Please read "The Art of Computer Programming, Volume 2". In this book, Knuth has
 
 ## Thoughts
 
-Oh, did I just forgot to mention what is TRNG? With the help of some magic device, you might be able to get random numbers. For example, since the weather system is a chaos system, meaning no one can accurately predict it, you can generate random numbers based on the history of temperature, humidity, wind speed or things like that. You can find many more good indicators in natural world or in the universe.
+Oh, TRNG? With the help of some magic device, you might be able to get random numbers. For example, since the weather system is a chaos system, meaning no one can accurately predict it, you can generate random numbers based on the history of temperature, humidity, wind speed or things like that. You can find many more good indicators in natural world or in the universe.
 
 Since the start of the Big Bang, everything seems just move in their own way. It's still a mystery whether everything is deterministic or not. If so, then all TRNG turns into PRNG! However, no one can prove that.
 
