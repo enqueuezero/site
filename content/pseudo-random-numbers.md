@@ -80,9 +80,9 @@ As long as you provide the same seed again, the PRNG libraries will reproduce th
 
 ### Insecure
 
-Usually, you do not want to use the standard `random` module for cryptographic operations, since the PRNG algorithms are not cryptographically secure.
+Usually, you do not want to use the standard `random` module for cryptographic operations, since the PRNG algorithms are cryptographically insecure.
 
-It's recommended to always use OS random number generator, for example `/dev/urandom` on UNIX platform or `CryptGenRandom` on Windows.
+It's recommended to read [Myths about /dev/urandom](https://www.2uo.de/myths-about-urandom). TL;DR, just use `/dev/urandom` on UNIX platform or `CryptGenRandom` on Windows.
 
 ### Extend APIs
 
