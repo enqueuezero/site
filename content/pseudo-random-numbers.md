@@ -7,15 +7,15 @@ date: 2018-09-11
 
 ## Overview
 
-Pseudo-random number generators are used for generating numbers distributed randomly.
+PRNG or Pseudo-random number generators are used for generating numbers distributed randomly.
 
-The reason of being pseudo-random is that the modern computer cannot generate true-random information without an additional device.
+The reason of being pseudo-random is that the PRNG algorithm doesn't generate true-random information actually.
 
 ## Terms
 
-* RNG: Random Number Generators.
-* PRNG: Pseudo-Random Number Generators. The `pseudo` here means the generator would eventually repeating a same sequence of numbers at a certain time.
-* TRNG: True-Random Number Generators. The `true` here means we have no way to truly detect the next number being generated at any given time or certain order.
+* RNG: Random Number Generators. It's a general classification regardless of generating psuedo-random or true-random numbers.
+* PRNG: Pseudo-Random Number Generators. The `pseudo` here means the generator would eventually repeating a same sequence of numbers over a certain period.
+* TRNG: True-Random Number Generators. The `true` here means we have no way to truly detect the next number being generated at any given time.
 
 ## Use
 
@@ -123,6 +123,8 @@ Please read "The Art of Computer Programming, Volume 2". In this book, Knuth has
 
 Oh, did I just forgot to mention what is TRNG? With the help of some magic device, you might be able to get random numbers easily. For example, since the weather system is a chaos system, meaning no one can accurately predict it, you can generate random numbers based on the history of temperature, humidity, wind speed. You can find more good indicators in natural world or in the universe.
 
+Since the start of the Big Bang, everything seems just move in their way. It's still a mystery whether everything is deterministic or not. If so, then all TRNG turns into PRNG! However, no one can prove that.
+
 ## Conclusion
 
 * The pseudo-random number generators generate "random" numbers. However, they're not TRUE random numbers.
@@ -137,3 +139,4 @@ Oh, did I just forgot to mention what is TRNG? With the help of some magic devic
 * [Python random](https://docs.python.org/3/library/random.html)
 * [Cryptography](https://cryptography.io/en/latest/random-numbers/)
 * [Mersenne Twister](https://en.wikipedia.org/wiki/Mersenne_Twister)
+* [Reddit Discussion](https://www.reddit.com/r/bash/comments/9ewljx/pseudorandom_numbers/e5s75iz/)
