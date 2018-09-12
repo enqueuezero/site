@@ -74,7 +74,7 @@ The current system time will probably be used.
 
 Once you call a random function, the PRNG libraries will update their internal state for the generator so that you won't get a same number next time.
 
-### Reproduce by resetting an known seed
+### Reproduce by resetting a known seed
 
 As long as you provide the same seed again, the PRNG libraries will reproduce the same random results for you.
 
