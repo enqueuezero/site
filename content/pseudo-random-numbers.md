@@ -21,7 +21,7 @@ We will cover PRNG in this post.
 
 ## Use
 
-In Python, `random.random()` returns the next random floating point number in the range `[0.0, 1.0)`.
+In Python, `random.random()` returns the next random floating point number in the range `[0.0, 1.0)`. It's an example of Mersenne Twister algorithm we'll cover later.
 
 ```bash
 $ python -c "import random; print(random.random())"
@@ -31,7 +31,7 @@ $ python -c "import random; print(random.random())"
 0.7442605999548604
 ```
 
-In Bash, you can use the environ variable `$RANDOM` for a random integer between 0 and 32767 (2^15-1).
+In Bash, you can use the environ variable `$RANDOM` for a random integer between 0 and 32767 (2^15-1). It's an example of Linear Congruential Generator algorithm we'll cover later as well.
 
 ```bash
 $ echo $RANDOM
@@ -41,7 +41,7 @@ $ echo $RANDOM
 12485
 ```
 
-Note: for security reason, please don't use the above technique for getting pseudo-random numbers, for example, to generate random numbers for cryptography usage.
+Note: for security reason, please don't use the above method for getting pseudo-random numbers, for example, for cryptography usage. You don't to be hacked, right?
 
 ## Patterns
 
