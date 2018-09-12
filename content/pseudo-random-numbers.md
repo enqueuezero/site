@@ -45,23 +45,23 @@ Note: for security reason, please don't use the above method for getting pseudo-
 
 ## Patterns
 
-### Pseudo means recur
+### Pseudo means recurring
 
 The PRNGs have a period of number recurring.
 
 For example, in sequence `1 4 3 2 5 1 4 3 2 5 1 4 3 2 5`, the `1 4 3 2 5` recurs every 5 numbers.
 For a PRNG based on such sequence, whenever you see `1` as random number, `4` will always be the next number.
-The recurring numbers determine that the number sequence is fixed rather than randomized.
+The recurring numbers determine that the order of numbers is fixed rather than randomized.
 
 The big picture behind the PRNG is like a fixed table of such similar sequence.
 
 ### Large period is safer
 
-You might be wondering why do people still get random numbers in such a silly way?
+You might be wondering why do people still want pseudo-random numbers anyway?
 
-The answer is as long as the period is wide enough and you start from different positions in the sequence, you're almost unable to get a same set of random numbers during the life cycle of your application. (if it happens, oh poor man, please restart your computer periodically and issue resolved.)
+The answer is as long as the period is large enough and you start from different positions in the sequence, you're almost unable to get a same set of random numbers during the life cycle of your application. If it happens, oh poor man, please restart your computer periodically and issue resolved.
 
-From the engineering perspective, we don't need things absolutely correct but simple and goog enough. As a side quote, below is from the bash.git repo [1]:
+From the engineering perspective, we don't need things absolutely correct but good enough. As a side quote, below is from the bash.git repo [1]:
 
 > This one isn't very good, but a more complicated one is overkill.
 
