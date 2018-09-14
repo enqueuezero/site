@@ -145,7 +145,7 @@ Since the start of the Big Bang, everything seems just move in their own way. It
 
 ## Credit
 
-* [/u/whetu](http://reddit.com/u/whetu): Thanks for providing so much corrections.
+* [/u/whetu](https://reddit.com/u/whetu): Thanks for providing so much corrections.
 
 ## References
 
@@ -157,5 +157,5 @@ Since the start of the Big Bang, everything seems just move in their own way. It
 * [Mersenne Twister](https://en.wikipedia.org/wiki/Mersenne_Twister)
 * [Reddit Discussion](https://www.reddit.com/r/bash/comments/9ewljx/pseudorandom_numbers/e5s75iz/)
 
-[1]: http://git.savannah.gnu.org/cgit/bash.git/tree/variables.c#n1304
-[bash]: http://git.savannah.gnu.org/cgit/bash.git/tree/variables.c#n1303
+[1]: https://git.savannah.gnu.org/cgit/bash.git/tree/variables.c#n1304
+[bash]: https://git.savannah.gnu.org/cgit/bash.git/tree/variables.c#n1303
