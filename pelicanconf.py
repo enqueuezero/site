@@ -47,7 +47,7 @@ EXTRA_PATH_METADATA = {
 DEFAULT_MEDIUS_AUTHORS = ['Enqueue Zero', 'Ju Lin']
 MEDIUS_AUTHORS = {
     'Ju Lin': {
-        'image': 'http://www.gravatar.com/avatar/bffb5fd030d679a313376b4eff07775b',
+        'image': 'https://www.gravatar.com/avatar/bffb5fd030d679a313376b4eff07775b',
         'description': "Ju Lin is the author behind Enqueue Zero. He likes web programming, system programming, algorithms, and architecture."
     },
     'Enqueue Zero': {
