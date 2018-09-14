@@ -1,7 +1,7 @@
 ---
 title: Hyperloglog
 tags: algorithm
-category: Computer Science
+category: Algorithm
 date: 2018-06-10
 ---
 

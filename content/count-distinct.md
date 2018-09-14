@@ -1,6 +1,6 @@
 ---
 title: Count Distinct
-category: Computer Science
+category: Algorithm
 tags: algorithm
 date: 2018-05-31
 ---
