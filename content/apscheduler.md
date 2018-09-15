@@ -197,6 +197,7 @@ You might want to implement one of below challenge as your side project.
 * More subclasses for executor, trigger, jobstore.
 * A universal solution of running jobs in distributed worker nodes.
 * A web interface for APScheduler.
+* A RESTful API for managing APScheduler jobs.
 * Make a service on top of APScheduler and let it run in Kubernetes cluster.
 * The monitoring of APScheduler is weak. Provide a solution to enhance it. [5]
 
