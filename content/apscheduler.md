@@ -193,7 +193,7 @@ The good part is it can extend itself to almost any use cases. The sad part is t
 
 ### Some ideas
 
-You might want to implement one of below challenge as your side project.
+You might want to implement one of below challenges as your side project.
 
 * More subclasses for executor, trigger, jobstore.
 * A universal solution of running jobs in distributed worker nodes.
