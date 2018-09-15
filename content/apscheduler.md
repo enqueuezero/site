@@ -87,6 +87,8 @@ If all of the implementations cannot fit user's demand, then it's easy to follow
 
 There are two primary models of how scheduler schedules jobs in APScheduler.
 
+In below two models, the scheduler internal method `process_jobs` trigger jobs and return seconds to sleep. The other function `sleep` or `run_after_timeout` would idle the scheduler for a few seconds.
+
 ### Sleep-Process Model
 
 The sleep-process model is implemented in an infinite loop of sleeping and job processing.
