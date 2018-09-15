@@ -87,9 +87,9 @@ If all of the implementations cannot fit user's demand, then it's easy to follow
 
 There are two primary models of how scheduler schedules jobs in APScheduler.
 
-### Sleep-Processing Model
+### Sleep-Process Model
 
-The sleep-processing model is implemented in an infinite loop of sleeping and job processing.
+The sleep-process model is implemented in an infinite loop of sleeping and job processing.
 
 ```python
 timeout = DEFAULT
@@ -129,7 +129,7 @@ If the system load is high, the scheduler might choose to drop some jobs since i
 
 Besides, the sleep operation depends on OS or VM scheduler, which is much low-level scheduler behind the scene. The OS does not guarantee it suspends the process exactly the same amount of time specified by `timeout`. [4]
 
-## Locking Job State Modifications
+## Locking for Job State Modifications
 
 ### Missing Job Executions
 
