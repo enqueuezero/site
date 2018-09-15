@@ -1,5 +1,6 @@
 ---
-title: APScheduler
+title: The Architecture of APScheduler
+slug: apscheduler
 category: Architecture
 tags: scheduler
 date: 2018-09-15
