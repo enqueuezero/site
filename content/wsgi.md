@@ -43,8 +43,17 @@ Once an HTTP request lands on the socket, the web server calls function `app(env
 
 ### Response Iterable
 
-// TODO: explain the iterable
-// TODO: show the difference between `return [body]` and `return body`
+The iterable as the response makes WSGI available for both streaming response and non-streaming response. The string, list, or Python iterable object can be used as responses.
+
+Below is the pseudo code of how web server returns iterable to client:
+
+```
+iterable = app(env, start_response)
+for chunk in iterable:
+    client.send_bytes(chunk)
+```
+
+For non-streaming response, you would more want to return `return ["hello world"]` than to `return "hello word"`. The latter case would lead to sending one byte at a time to the client.
 
 ### Middlewares
 
