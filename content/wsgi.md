@@ -4,22 +4,30 @@ category: Computer Science
 tags: wsgi, web
 ---
 
-Note: This post is WIP.
+WSGI or Web Server Gateway Interface is a specification of [PEP 3333] that defines how the web server communicates with Python web applications.
 
-// TODO: minimal introduction of WSGI.
-// TODO: img of WSGI
+## Overview
 
-## Why WSGI?
+* WSGI is a contract of the API.
+* WSGI is not an application, a server, or a software.
 
-## Basic Concepts
+[PEP 3333] defines all aspects on WSGI.
+However, you don't necessarily need to read the full spec just for knowing what it is.
 
-### Overview
+Below is a simplified graph of components defined in WSGI.
 
 // TODO: a graph of the relationship between gateway and application.
 
-### Gateway
+## Basic Concepts
 
-// TODO: introduction of gateway interface
+### Web Server
+
+The web server is a server application that listen on a socket binding `host:port`.
+Once an HTTP request lands on the socket, the web server calls function `app(environ, start_response)`.
+
+* The `app` is registered by application before running the web server.
+* The `environ` dict wraps raw HTTP requests, including methods, url, query string, body, etc.
+* The `start_response` callable accepts two parameter: `status_code` and `response_headers`.
 
 ### Application
 
@@ -51,6 +59,8 @@ Note: This post is WIP.
 ## PEP 333
 
 ## PEP 3333
+
+## Influenced by LISP
 
 ## The Need for `PATH_INFO` and `SCRIPT_NAME`
 
@@ -89,3 +99,5 @@ Note: This post is WIP.
 * [Asynchronous WSGI](https://quantmind.github.io/pulsar/apps/wsgi/async.html)
 * [What makes WSGI is synchronous in nature?](https://stackoverflow.com/questions/34109324/what-makes-wsgi-is-synchronous-in-nature)
 * [Primer to Asynchronous Applications](https://bottlepy.org/docs/dev/async.html)
+
+[PEP 3333]: https://www.python.org/dev/peps/pep-3333
