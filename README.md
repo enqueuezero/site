@@ -1,6 +1,8 @@
 # EnqueueZero
 
-Enqueue Zero is creating fun arts on Computer Science and Programming. It's operated by a single man team since 2018.
+Enqueue Zero is creating fun arts on Architecture, Engineering and Algorithms. It's operated by a single man team since 2018.
+
+<span class="badge-patreon"><a href="https://patreon.com/enqueuezero" title="Donate to this project using Patreon"><img src="https://img.shields.io/badge/patreon-donate-green.svg?style=for-the-badge&colorB=green" alt="Patreon donate button" /></a></span>
 
 ## Development
 
