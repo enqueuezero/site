@@ -6,19 +6,29 @@ tags: wsgi, web
 
 WSGI or Web Server Gateway Interface is a specification of [PEP 3333] that defines how the web server communicates with Python web applications.
 
+In this post, we will cover below topics:
+
+* Basic concepts in WSGI
+* Things not defined in WSGI
+* Booming Web Frameworks
+* Pros and Cons
+* Conclusions
+
 ## Overview
 
 * WSGI is a contract of the API.
 * WSGI is not an application, a server, or a software.
+* WSGI has application side and server side.
+    * Application side provides a function and return a value.
+    * Server side provides the function parameters and handle the returned value.
+* [PEP 3333] defines all aspects on WSGI.
+    * However, you don't necessarily need to read the full spec just for knowing what it is.
 
-[PEP 3333] defines all aspects on WSGI.
-However, you don't necessarily need to read the full spec just for knowing what it is.
+## Basic Concepts
 
 Below is a simplified graph of components defined in WSGI.
 
 // TODO: a graph of the relationship between gateway and application.
-
-## Basic Concepts
 
 ### Web Server
 
@@ -39,15 +49,16 @@ Once an HTTP request lands on the socket, the web server calls function `app(env
 
 ### Environment
 
-// TODO: explain the environ dict
+The `env` dict contains OS environ variables and HTTP request information.
 
 ### Response Iterable
 
-The iterable as the response makes WSGI available for both streaming response and non-streaming response. The string, list, or Python iterable object can be used as responses.
+The iterable as the response makes WSGI available for both streaming response and non-streaming response. The string, list, or any Python iterable object can be used as responses.
 
-Below is the pseudo code of how web server returns iterable to client:
+Below is the pseudo code of how web server transforms and sends iterable to client:
 
 ```
+# server side code
 iterable = app(env, start_response)
 for chunk in iterable:
     client.send_bytes(chunk)
@@ -57,7 +68,21 @@ For non-streaming response, you would more want to return `return ["hello world"
 
 ### Middlewares
 
-// TODO: why we need'em.
+WSGI makes pre-processing and post-processing easy.
+Things people usually do but not wanna introduce into app code include gzip, throttle, rate limiting, proxy, etc.
+
+The implementation is to let middleware expose same interface and do extra work, pretty like what Python decorator does.
+It implies that eventually you would expose middleware app as WSGI server side entrypoint.
+
+```
+def app(env, start_response):
+    # your app code
+
+def my_middleware(env, start_response): # this will be used as entrypoint
+    # do pre-processing
+    iterable = app(env, start_response)
+    # do post-processing
+```
 
 ### Example
 
@@ -68,8 +93,6 @@ For non-streaming response, you would more want to return `return ["hello world"
 ## PEP 333
 
 ## PEP 3333
-
-## Influenced by LISP
 
 ## The Need for `PATH_INFO` and `SCRIPT_NAME`
 
