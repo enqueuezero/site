@@ -2,6 +2,8 @@
 title: WSGI
 category: Computer Science
 tags: wsgi, web
+date: 2018-09-20
+status: draft
 ---
 
 WSGI or Web Server Gateway Interface is a specification of [PEP 3333] that defines how the web server communicates with Python web applications.
@@ -16,7 +18,7 @@ In this post, we will cover below topics:
 
 ## Overview
 
-* WSGI is a contract of the API.
+* WSGI is a contract of the HTTP application API in Python world.
 * WSGI is not an application, a server, or a software.
 * WSGI has application side and server side.
     * Application side provides a function and return a value.
@@ -26,9 +28,11 @@ In this post, we will cover below topics:
 
 ## Basic Concepts
 
+### Data Flow
+
 Below is a simplified graph of components defined in WSGI.
 
-// TODO: a graph of the relationship between gateway and application.
+<img src='https://g.gravizo.com/svg?@startuml; actor User; participant "Server" as A; participant "Application" as B; User -> A: Raw HTTP Request; activate A; A -> B: Call WSGI app(env, start_response); activate B; B --> A: Return Iterable; deactivate B; A --> User: Raw HTTP Response; deactivate A; @enduml '>
 
 ### Web Server
 
@@ -41,11 +45,7 @@ Once an HTTP request lands on the socket, the web server calls function `app(env
 
 ### Application
 
-// TODO: introduction of application interface
-
-### Data Flow
-
-// TODO: a graph of the data flow
+TODO
 
 ### Environment
 
@@ -57,7 +57,7 @@ The iterable as the response makes WSGI available for both streaming response an
 
 Below is the pseudo code of how web server transforms and sends iterable to client:
 
-```
+```python
 # server side code
 iterable = app(env, start_response)
 for chunk in iterable:
@@ -74,7 +74,7 @@ Things people usually do but not wanna introduce into app code include gzip, thr
 The implementation is to let middleware expose same interface and do extra work, pretty like what Python decorator does.
 It implies that eventually you would expose middleware app as WSGI server side entrypoint.
 
-```
+```python
 def app(env, start_response):
     # your app code
 
@@ -84,45 +84,53 @@ def my_middleware(env, start_response): # this will be used as entrypoint
     # do post-processing
 ```
 
-### Example
+## Things not defined in WSGI
 
-// TODO: a gist
+WSGI does not define below concepts:
 
-// TODO: an asciinema of gist running
+* URL routing
+* Templating
+* Request object
+* Response object
+* Session
+* Cookie
+* Database
+* MVC
+* Application testing
+* Form handling
+* Error handling
+* Application configuration
+* Application security
+* ...
 
-## PEP 333
+WSGI leaves a lot of things TBD as it's in essential to define an entry point for your vanilla application.
 
-## PEP 3333
+## Booming Web Frameworks and Servers
 
-## The Need for `PATH_INFO` and `SCRIPT_NAME`
+Web frameworks are booming since the invent of WSGI. Every framework has its philosophy and design. However, they expose same interface defined by WSGI.
 
-// TODO: explain the difference between WSGI and CGI.
-//  CGI: each file becomes an entry.
-//  WSGI: only one file becomes the entry.
+And so as web servers. People wrote dozens of web servers that supports WSGI.
 
-## Won't WSGI Replace SCGI?
+As a result, you can choose a framework and a web server from hundreds of options.
 
-// TODO: No. wsgi <-> scgi
+Among them, some are gorgeous.
 
-## Threadsafe
+* Web Frameworks
+    * Django
+    * Flask
+    * Pyramid
+    * Falcon
+* Web Servers
+    * uWSGI
+    * Gunicorn
+    * wsgiref
 
-// TODO: explain WSGI is threadsafe.
-
-## URL Dispatching
-
-// TODO: explain why It's not specified.
-//  It's up to web frameworks.
-//  Refer to [url dispatcher](url-dispatcher.html)
-
-## Booming Web Frameworks
-
-
-## Advantages and Disadvantages
+## Pros and Cons
 
 * Advantages
-    * Unified Interfaces
+    * Standardize and unified interface.
 * Disadvantages
-    * Only support sync
+    * Only support synchronize paradigm. Not support for async paradigm.
 
 ## References
 
