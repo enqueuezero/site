@@ -9,23 +9,3 @@ Enqueue Zero is creating fun arts on Architecture, Engineering and Algorithms. I
 
 Please donate this project via [Patreon](https://patreon.com/enqueuezero) and tell me who you're or make a pull request of you avatar here!
 
-
-
-## Development
-
-Create environment
-
-```
-# Python 3.7 required
-$ brew install python
-
-$ pip install pipenv
-
-$ pipenv install
-
-$ pipenv shell
-
-(env) $ make devserver
-(env) $ ./develop_server.sh stop
-(env) $ make github
-```
