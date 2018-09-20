@@ -43,14 +43,6 @@ Once an HTTP request lands on the socket, the web server calls function `app(env
 * The `environ` dict wraps raw HTTP requests, including methods, url, query string, body, etc.
 * The `start_response` callable accepts two parameter: `status_code` and `response_headers`.
 
-### Application
-
-TODO
-
-### Environment
-
-The `env` dict contains OS environ variables and HTTP request information.
-
 ### Response Iterable
 
 The iterable as the response makes WSGI available for both streaming response and non-streaming response. The string, list, or any Python iterable object can be used as responses.
