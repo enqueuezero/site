@@ -3,7 +3,6 @@ title: WSGI
 category: Computer Science
 tags: wsgi, web
 date: 2018-09-20
-status: draft
 ---
 
 WSGI or Web Server Gateway Interface is a specification of [PEP 3333] that defines how the web server communicates with Python web applications.
