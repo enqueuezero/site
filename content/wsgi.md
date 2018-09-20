@@ -117,6 +117,24 @@ Among them, some are gorgeous.
     * Gunicorn
     * wsgiref
 
+## Comparisons
+
+### WSGI v/s Ring
+
+[Ring](https://github.com/ring-clojure/ring) is low-level interface and library for building web applications in the Clojure programming language. It's similar to WSGI in Python.
+
+Unlike WSGI having `app`, `env`, `start_response` and `Interable`, Ring has other four concepts: `Handler`, `Request`, `Response`, `Middleware`, among which the `Handler` is very like `app`. However, the `Handler` only accepts `Request` as parameter and returns `Response`. Both `Request` and `Response` are dictionary-like object. Please refer to [Ring wiki](https://github.com/ring-clojure/ring/wiki/Concepts) for more details of these concepts.
+
+As a comparison, Ring provides higher level concepts than WSGI.
+
+### WSGI v/s Rack
+
+[Rack](https://rack.github.io/) provides a minimal interface between webservers and Ruby web applications. It's also similar to WSGI in Python.
+
+In Rack, you need to provide an `app` as well, which is the same in WSGI.  Rack requires `app` taking an environment hash as parameter, and returning an `Array` in the form like `[status_code, headers, body]`. The `status_code` is a string form of HTTP response code, the hash of headers is for HTTP response headers, and the body must be able to respond to `each` method (just like `Iterable` in Python).
+
+We can see that Rack reduces the `start_response` parameter but moves the necessity information into the return value.
+
 ## Pros and Cons
 
 * Advantages
