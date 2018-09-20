@@ -21,8 +21,8 @@ In this post, we will cover below topics:
 * WSGI is a contract of the HTTP application API in Python world.
 * WSGI is not an application, a server, or a software.
 * WSGI has application side and server side.
-    * Application side provides a function and return a value.
-    * Server side provides the function parameters and handle the returned value.
+    * Application-side provides a function and return a value.
+    * Server-side sends the function parameters in and handle the returned value.
 * [PEP 3333] defines all aspects on WSGI.
     * However, you don't necessarily need to read the full spec just for knowing what it is.
 
@@ -36,18 +36,18 @@ Below is a simplified graph of components defined in WSGI.
 
 ### Web Server
 
-The web server is a server application that listen on a socket binding `host:port`.
+The web server is a server application that listens on a socket binding `host:port`.
 Once an HTTP request lands on the socket, the web server calls function `app(environ, start_response)`.
 
-* The `app` is registered by application before running the web server.
-* The `environ` dict wraps raw HTTP requests, including methods, url, query string, body, etc.
+* The `app` is registered by the application before running the web server.
+* The `environ` dict wraps raw HTTP requests, including methods, URL, query string, body, etc.
 * The `start_response` callable accepts two parameter: `status_code` and `response_headers`.
 
 ### Response Iterable
 
 The iterable as the response makes WSGI available for both streaming response and non-streaming response. The string, list, or any Python iterable object can be used as responses.
 
-Below is the pseudo code of how web server transforms and sends iterable to client:
+Below is the pseudo code of how web server transforms and sends iterable to the client:
 
 ```python
 # server side code
@@ -63,8 +63,8 @@ For non-streaming response, you would more want to return `return ["hello world"
 WSGI makes pre-processing and post-processing easy.
 Things people usually do but not wanna introduce into app code include gzip, throttle, rate limiting, proxy, etc.
 
-The implementation is to let middleware expose same interface and do extra work, pretty like what Python decorator does.
-It implies that eventually you would expose middleware app as WSGI server side entrypoint.
+The implementation is to let middleware expose the same interface and do extra work, pretty like what Python decorator does.
+It implies that eventually, you would expose the middleware app as WSGI server side entry point.
 
 ```python
 def app(env, start_response):
@@ -95,11 +95,11 @@ WSGI does not define below concepts:
 * Application security
 * ...
 
-WSGI leaves a lot of things TBD as it's in essential to define an entry point for your vanilla application.
+WSGI leaves a lot of things TBD as it's only to define an entry point for your vanilla application.
 
 ## Booming Web Frameworks and Servers
 
-Web frameworks are booming since the invent of WSGI. Every framework has its philosophy and design. However, they expose same interface defined by WSGI.
+Web frameworks are booming since the invent of WSGI. Every web framework has its philosophy and design. However, they expose the same interface defined by WSGI.
 
 And so as web servers. People wrote dozens of web servers that supports WSGI.
 
@@ -123,24 +123,24 @@ Among them, some are gorgeous.
 
 [Ring](https://github.com/ring-clojure/ring) is low-level interface and library for building web applications in the Clojure programming language. It's similar to WSGI in Python.
 
-Unlike WSGI having `app`, `env`, `start_response` and `Interable`, Ring has other four concepts: `Handler`, `Request`, `Response`, `Middleware`, among which the `Handler` is very like `app`. However, the `Handler` only accepts `Request` as parameter and returns `Response`. Both `Request` and `Response` are dictionary-like object. Please refer to [Ring wiki](https://github.com/ring-clojure/ring/wiki/Concepts) for more details of these concepts.
+Unlike WSGI having `app`, `env`, `start_response` and `Interable`, Ring has other four concepts: `Handler`, `Request`, `Response`, `Middleware`, among which the `Handler` is very like `app`. However, the `Handler` only accepts `Request` as the parameter and returns `Response`. Both `Request` and `Response` are a dictionary-like object. Please refer to [Ring wiki](https://github.com/ring-clojure/ring/wiki/Concepts) for more details about these concepts.
 
 As a comparison, Ring provides higher level concepts than WSGI.
 
 ### WSGI v/s Rack
 
-[Rack](https://rack.github.io/) provides a minimal interface between webservers and Ruby web applications. It's also similar to WSGI in Python.
+[Rack](https://rack.github.io/) provides a minimal interface between web servers and Ruby web applications. It's also similar to WSGI in Python.
 
-In Rack, you need to provide an `app` as well, which is the same in WSGI.  Rack requires `app` taking an environment hash as parameter, and returning an `Array` in the form like `[status_code, headers, body]`. The `status_code` is a string form of HTTP response code, the hash of headers is for HTTP response headers, and the body must be able to respond to `each` method (just like `Iterable` in Python).
+In Rack, you need to provide an `app` as well, which is the same in WSGI.  Rack requires `app` taking an environment hash as the parameter, and returning an `Array` in the form like `[status_code, headers, body]`. The `status_code` is a string form of HTTP response code, the hash of headers is for HTTP response headers, and the body must be able to respond to `each` method (just like `Iterable` in Python).
 
-We can see that Rack reduces the `start_response` parameter but moves the necessity information into the return value.
+We can see that Rack reduces the `start_response` parameter but moves the necessary information into the return value.
 
 ## Pros and Cons
 
 * Advantages
     * Standardize and unified interface.
 * Disadvantages
-    * Only support synchronize paradigm. Not support for async paradigm.
+    * Only support synchronize paradigm. Not support for the async paradigm.
 
 ## References
 
