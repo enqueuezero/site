@@ -116,6 +116,22 @@ Among them, some are gorgeous.
     * Gunicorn
     * wsgiref
 
+### Async Incompatible
+
+WSGI does not naturally fit async programming.
+
+We just can't change the function interface to a async coroutine like below due to the breaking change of the API.
+
+```
+# NOT WORKING
+async def app(env, start_response):
+    return Interable
+```
+
+However, it doesn't mean WSGI cannot run in Async server.
+A possible way is to wrap `app` running in a threadpool and manage the `Thread` by async event loop.
+Note that everything running in `app` is still synchronous.
+
 ## Comparisons
 
 ### WSGI v/s Ring
@@ -140,6 +156,7 @@ We can see that Rack reduces the `start_response` parameter but moves the necess
     * Standardize and unified interface.
 * Disadvantages
     * Only support synchronize paradigm. Not support for the async paradigm.
+
 
 ## References
 
