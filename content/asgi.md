@@ -3,7 +3,6 @@ title: ASGI
 category: Computer Science
 tags: web
 date: 2018-09-22
-status: draft
 ---
 
 ## Context
