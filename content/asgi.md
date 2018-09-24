@@ -8,10 +8,10 @@ status: draft
 
 ## Context
 
-WSGI is the de facto standard interface in Python Web Programming around web servers, frameworks and applications.
-However, it sticks into synchronous programming and make itself hard to support new protocols like WebSocket.
+WSGI is the de facto standard interface in Python Web Programming around web servers, frameworks, and applications.
+However, it sticks into synchronous programming and makes itself hard to support new protocols like WebSocket.
 
-ASGI is a successor of WSGI. Its goal is to provide unified interface for asynchronous programming in Python world.
+ASGI is a successor of WSGI. Its goal is to provide a unified interface for asynchronous programming in Python world.
 
 ## Overview
 
@@ -31,7 +31,7 @@ class Application:
 * `scope` contains details about incoming requests.
 * `app(scope)` returns a coroutine callable for future data handling.
 * `send` and `receive` are two awaitable functions that handling incoming events and outgoing events.
-* `event` is a dict.containing incoming events.
+* `event` is a dict containing incoming events.
 
 ## ASGI v/s WSGI
 
@@ -48,17 +48,17 @@ The library `asgiref` provides WSGI-to-ASGI adaptor. It has below usage.
 asgi_application = WsgiToAsgi(wsgi_application)
 ```
 
-Under the hood, `wsgi_application` is running in a synchronous threadpool. The transformed `asgi_application` can be used by ASGI servers.
+Under the hood, `wsgi_application` is running in synchronous thread pools.  After the transformation, the `asgi_application` turns to a two-callable object.
 
-The WSGI-to-ASGI adaptor is incompatible in certain cases like file handling due to the fundamental difference of how I/O is performed. However, something is better than nothing.
+The WSGI-to-ASGI adaptor is incompatible in some instances like file handling due to the fundamental difference of how I/O is performed. However, something is better than nothing.
 
 ## WebSocket
 
 ASGI splits the API into two callables, one for when the connection is established, the other one for when the event comes.
 Such model naturally fits the WebSocket protocol.
 
-* When the client initially opens a connection to the ASGI server, the ASGI server maintain the connection per se to `scope`.
-* When the client communicates with the ASGI server, the ASGI server maintain the communication per se to `receive` and `send`. 
+* When the client initially opens a connection to the ASGI server, the ASGI server maintains the connection per se as `scope`.
+* When the client communicates with the ASGI server, the ASGI server maintains the communication per se as `receive` and `send`. 
 
 ## Two-Callable
 
@@ -66,14 +66,14 @@ You might be wondering why ASGI has to use two-callable API - it's less straight
 
 My explanation is that in the essence of asynchronous programming it's all about [lazy evaluation](https://en.wikipedia.org/wiki/Lazy_evaluation). We implement lazy evaluation by wrapping the logic into a callable and evaluate later.
 
-The first callable in fact is not asynchronous function at all. It's the similar thing like WSGI app.
+The first callable is not an asynchronous function at all. It's the similar thing like WSGI app.
 The extra callable reflects the awkward (but practical) thinking of asynchronous programming. It must not contain any blocking calls.
 
-Such design allows the data being sent and received at any time, and hence supports the asynchronous programming.
+Such design allows the data being sent and received at any time and hence supports the asynchronous programming.
 
 ## Conclusions
 
-ASGI is a next kin of WSGI. The specification defines a two-callable API in between web servers and asynchronous web applications. Its primary goal is to support HTTP, WebSocket and more web standard protocols.
+ASGI is the next kin of WSGI. The specification defines a two-callable API in between web servers and asynchronous web applications. Its primary goal is to support HTTP, WebSocket, and more web standard protocols.
 
 ## References
 
