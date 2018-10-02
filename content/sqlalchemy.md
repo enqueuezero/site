@@ -35,7 +35,7 @@ SQLAlchemy has three layers above database.
 
 ### DBAPI
 
-DBAPI is a Python Database API, which defines some standardize functions and errors to communicate with databases.
+DBAPI is the Python Database API, which standardize the functions and errors to communicate with databases.
 
 It's not part of SQLAlchemy but is essential for SQLAlchemy to connect to different databases.
 
@@ -47,16 +47,37 @@ The engine maintains the `Connection` to the databases. It also manages `Dialect
 
 ### Compiler
 
-The compiler compiles Python expressions into SQL strings. For example, code `User.query.filter(username='enqueuezero')` would eventually be compiled to `SELECT * FROM user WHERE username = 'enqueuezero'`.
-
-### ResultProxy
+The compiler compiles Python expressions into SQL strings. For example, the compiler compiles code `User.query.filter(username='enqueuezero')` to SQL string `SELECT * FROM user WHERE username = 'enqueuezero'`.
 
 ### Dialect
 
+SQL has dialects. For example, you can query `SELECT json_each (info) FROM orders;` from a PostgreSQL but will get a syntax error from MySQL.
+
+SQLAlchemy compiler has in-built dialect system letting you write queries in a consistency Pythonic way.
+
 ### Schema
+
+The schemas defines tables and columns in the database. In SQLAlchemy, you can define table as a `Table` object, within which you can define `Column` fields. In addition, you can define `Index` for sql index, `UniqueConstraint` for sql unique constraint.
 
 ### SQL Expressions
 
+SQLAlchemy get an Abstract Syntax Tree (AST) by analyzing the Python expressions for the queries 
+
 ### ORM Mapper
 
+In SQLAlchemy, the table definition and the object model are separate. Therefore, after we define the table, and the model class, we need to combine them via a `mapper` function.
+
 ### Session
+
+The `Session` maintains all model objects in memory. When they get dirty, meaning we have CRUD operations, the `Session` either flush them into the database or retrieve new data loading into memory.
+
+## Codebase
+
+The official codebase of SQLAlchemy is at [Bitbuccket](https://bitbucket.org/zzzeek/sqlalchemy).
+
+* SQLAlchemy exposes `create_engine` as the entry point for the library. All functionality begins from creating an Engine.
+* To support various databases, `create_engine` identity the database driver by a string [DSN](https://en.wikipedia.org/wiki/Data_source_name) parameter. For example, to support mysql, you can use `create_engien("mysql://user:pass@host/name")`. The configurations of SQLAlchemy are sending as keyword arguments.
+* The `Engine` maintains a pool of `Connection`, in each one of which you can execute transactions, set isolation levels, etc. Especially, the `execute` method is where `Compiler` working on.
+* The `Compiler` constructs raw SQL query strings.
+* The `Engine` also has an important field `dialect` which delegate many `Engine` functions to the designated database you passing in, for example, `create_engine("sqlite://")` will load module `sqlalchemy.dialects.sqlite`. Each dialect module implements subtle differences across various databases.
+* It's unfair not to mention `ResultProxy` -- the return value of `execute`. For better performance, it's implemented in C module `sqlalchemy/cextention/resultproxy.c`. It makes massive amount of object allocation and deallocation faster and more efficient.
