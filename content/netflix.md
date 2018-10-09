@@ -6,28 +6,109 @@ date: 2018-10-08
 status: draft
 ---
 
-## Overview
 
 Netflix is a website playing online videos. As a website, it needs dealing with many challenges, for example,
 
-* Make the service highly available throughout 200+ countries.
 * Serve a massive amount of video concurrent playing with low latency.
+* Make the service highly available across 200+ countries.
 
-In this post, we will cover the architecture of Netflix.
+In this post, we will discover the architecture of Netflix.
+
+## Overview
 
 ## Cloud Computing
 
+Netflix originally built two data centers but gave up vesting since when cloud computing emerged.  But after a three-day downtime, Netflix decided to migrate to cloud because cloud provides reliable infrastructure.
+
+### Resources
+
+Netflix uses EC2, DynamoDB, Cassandra, and S3 a lot.
+
+* Netflix runs all of its services on EC2 instances.
+* Netflix distributes relational data in DynamoDB and Cassandra, including accounts, billings, and all non-blob data.
+* Netflix stores static resources like videos in S3 storage.
+
+### Evacuation
+
+Netflix services run on three regions, including North Virginia, Portland Oregon, and Dublin Ireland. It can fully evacuate to another regions when one region is down. In each region, there are three availability zones.
+
 ## Edge Routing
 
-## Stream Processing
-
 ## Open Connect and CDN
+
+## Microservices
+
+## Video Transcoding
+
+Netflix transforms each video into thousands of files. Each file is an optimization of original video based on below factors:
+
+* Audio Formats.
+* Resolutions.
+* Devices.
+* Subtitles.
+
+For example, if you're watching a video on iPhone in 3G mode, then you'll see a video that fits the case the best.
+
+The video transcoding works under a long pipeline. Below is a high level diagram.
+
+<img src='https://g.gravizo.com/svg?
+digraph G {
+    Source_Video [shape=box];
+    Chunk_1 [shape=box];
+    Chunk_2 [shape=box];
+    Chunk_N [shape=box];
+    Chunk_1_fmt_1 [shape=box];
+    Chunk_1_fmt_2 [shape=box];
+    Chunk_1_fmt_N [shape=box];
+    Chunk_2_fmt_1 [shape=box];
+    Chunk_2_fmt_2 [shape=box];
+    Chunk_2_fmt_N [shape=box];
+    Chunk_N_fmt_1 [shape=box];
+    Chunk_N_fmt_2 [shape=box];
+    Chunk_N_fmt_N [shape=box];
+    fmt_1 [shape=box];
+    fmt_2 [shape=box];
+    fmt_N [shape=box];
+    file_1 [shape=box];
+    file_2 [shape=box];
+    file_N [shape=box];
+    Source_Video -> Chunk_1 [label=split];
+    Source_Video -> Chunk_2 [label=split];
+    Source_Video -> Chunk_N [label=split];
+    Chunk_1 -> Chunk_1_fmt_1 [label=encode];
+    Chunk_1 -> Chunk_1_fmt_2 [label=encode];
+    Chunk_1 -> Chunk_1_fmt_N [label=encode];
+    Chunk_2 -> Chunk_2_fmt_1 [label=encode];
+    Chunk_2 -> Chunk_2_fmt_2 [label=encode];
+    Chunk_2 -> Chunk_2_fmt_N [label=encode];
+    Chunk_N -> Chunk_N_fmt_1 [label=encode];
+    Chunk_N -> Chunk_N_fmt_2 [label=encode];
+    Chunk_N -> Chunk_N_fmt_N [label=encode];
+    Chunk_1_fmt_1 -> fmt_1 [label=merge,color=".7 .3 1.0"];
+    Chunk_2_fmt_1 -> fmt_1 [label=merge,color=".7 .3 1.0"];
+    Chunk_N_fmt_1 -> fmt_1 [label=merge,color=".7 .3 1.0"];
+    Chunk_1_fmt_2 -> fmt_2 [label=merge,color=".4 .7 1.0"];
+    Chunk_2_fmt_2 -> fmt_2 [label=merge,color=".4 .7 1.0"];
+    Chunk_N_fmt_2 -> fmt_2 [label=merge,color=".4 .7 1.0"];
+    Chunk_1_fmt_N -> fmt_N [label=merge,color=".8 .5 1.0"];
+    Chunk_2_fmt_N -> fmt_N [label=merge,color=".8 .5 1.0"];
+    Chunk_N_fmt_N -> fmt_N [label=merge,color=".8 .5 1.0"];
+    fmt_1 -> file_1 [label=validate,color=".7 .3 1.0"];
+    fmt_2 -> file_2 [label=validate,color=".4 .7 1.0"];
+    fmt_N -> file_N [label=validate,color=".8 .5 1.0"];
+}'/>
 
 ## Infrastructure
 
 ## Chaos Automation Engineering
 
 ## Canary Automation Deployment
+
+## Artworks
+
+## Recommendation
+
+## Lesson Learnt
 
 ## References
 
