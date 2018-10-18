@@ -9,14 +9,15 @@ status: Draft
 
 Many people, when confronted writing HTML document, think "Well, HTML is tedious, I'll go with Markdown." Then they'll face two problems. For programming zealots, they certainly will introduce a third problem: why not write a Markdown parser?
 
-In practice, most Markdown parser programs are often regular expression, or regex, based. There are some more options like PEG, BNF, etc. In this post, we'll write a simple but extensive piece of code that performs basic Markdown parsing task. Beyond that, we'll also discuss how to improve the code to support more and more Markdown notations and dialects.
+In practice, most Markdown parser programs are often based on regular expression, or regex. There are some more options like [PEG](https://github.com/jgm/peg-markdown), etc. In this post, we'll write a simple but extensive markdown parser in nim-lang that can perform basic parsing. Beyond that, we'll also discuss how to improve the code to support more Markdown notations and dialects.
 
 ## Initial Implementation
 
 ### Tokenize
 
 It's clear that our goal is to convert a markdown document into an HTML document.
-By introducing an extra tokenizing step as shown in below flow,
+
+By introducing an tokenizing step as shown in below flow,
 we can make separate of concerns: parsing and rendering.
 
 ```
@@ -30,15 +31,37 @@ The source code below is self-explanatory.
 ```nim
 proc markdown*(doc: string): string =
   for token in parseTokens(doc):
-      result &= renderToken(ctx, token)
+      result &= renderToken(token)
 ```
 
 ### Parse
 
-When programming from scratch, people choose to start from small. So let's just pickup
+When programming from scratch, it's wise to start from small. So let's just pickup
 the very feature only - converting `# Header` into `<h1>Header</h1>`. We start from
 defining a token type and a token object, as you might also do by yourself in any
 programming language.
+
+Below are some essential definitions for the code we'll write to work.
+
+* We defines a `Header` container object for storing header level and its content.
+* We defines an enum `MarkdownTokenType` which has only one choice - `Header`.
+* We also defines a reference `MarkdownTokenRef` as wrapper for the token.
+
+```nim
+type
+  Header* = object
+    doc: string
+    level: int
+
+  MarkdownTokenType* {.pure.} = enum
+    Header
+
+  MarkdownTokenRef* = ref object
+    case type*: MarkdownTokenType
+    of MarkdownTokenType.Header: headerVal*: Header
+
+  MarkdownError* = object of Exception
+```
 
 The token parsing is a complete iteration through the Markdown string `doc`.
 We find token from the first character of the `doc` and then move to
@@ -63,11 +86,11 @@ iterator parseTokens(doc: string): MarkdownTokenRef =
 
 ### Render
 
-Given the structured data structure, it's easier to generate HTML documents by
-constructing strings.
+It's getting easier to generate HTML documents by constructing strings from the
+given token data structure.
 
 ```nim
-proc renderToken(ctx: MarkdownContext, token: MarkdownTokenRef): string =
+proc renderToken(token: MarkdownTokenRef): string =
   case token.type
   of MarkdownTokenType.Header:
     let header = token.headerVal
@@ -105,25 +128,6 @@ proc findToken(doc: string, start: var int, ruleType: MarkdownTokenType): Markdo
   start += size
 ```
 
-### Essential Definitions
+### Get it work
 
-Below are some essential definitions for above code to work.
-
-* We defines a `Header` container object for storing header level and its content.
-* We defines an enum `MarkdownTokenType` which has only one choice - `Header`.
-* We also defines a reference `MarkdownTokenRef` to a `MarkdownToken` object.
-
-```nim
-type
-  Header* = object
-    doc: string
-    level: int
-
-  MarkdownTokenType* {.pure.} = enum
-    Header
-
-  MarkdownTokenRef* = ref MarkdownToken
-  MarkdownToken* = object
-    case type*: MarkdownTokenType
-    of MarkdownTokenType.Header: headerVal*: Header
-```
+Combine all the above code together, we will get a function that can parse `# h1` to `<h1>h1</h1>` and `## h2` to `<h2>h2</h2>`. The code is saved as a gist here: <https://gist.github.com/soasme/1a5271090250baed7936b5ac451e50c2>.
