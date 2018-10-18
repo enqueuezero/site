@@ -136,12 +136,37 @@ Combine all the above code together, we will get a function that can parse `# h1
 
 The function `markdown(doc)` converts the markdown document to HTML document. It could lead to a `MarkdownError` exception when sending non-header markdown document into above least implemented code.  If the `markdown()` function is given the parameter as `# h1\n## h2`, then something interesting will happen.
 
-In function `findToken`, the regex `re"^ *(#{1,6}) *([^\n]+?) *#* *(?:\n+|$)"` matches `# h1\n` first, extracting `#` as group 1, `h1` as group 2, and eventually wrapping as `Header(level: 1, doc: "h1")`.
+The regex `re"^ *(#{1,6}) *([^\n]+?) *#* *(?:\n+|$)"` is in charge of matching header texts.
 
-Since we paused at `# h1\n`, the function `parseTokens` will start from `## h2` after handling `# h1\n`. Similarly, the above regex matches `## h2`, extracting `##` as group 1, `h2` as group 2, and eventually wrapping as `Header(level: 2, doc: "h2")`.
+![Header Regex Rule](/static/images/markdown-parser-header-regex.svg)
 
-Here we reach the end of the `doc`, so `parseTokens` decides to stop.
+The function `findToken` has below internal process.
 
-The `renderToken` is not much interesting. It converts `Header(level: 1, doc: "h1")` to `<h1>h1</h1>`, and `Header(level: 2, doc: "h2")` to `<h2>h2</h2>`.
+* Match `# h1\n` first,
+* Extract `#` as group 1,
+* Extract `h1` as group 2,
+* Create a token: `MarkdownToken<type: Header, headerVal: Header(level: 1, doc: "h1")>`.
+
+Since we paused at the end of `# h1\n`, the function `parseTokens` will start from `## h2` after handling `# h1\n`. Similarly, the above function generate a token wrapping `Header(level: 2, doc: "h2")`.
+
+Here we reach the end of the `doc`, so `parseTokens` decides to stop and handover the job to `renderToken`.
+
+* The function `renderToken` converts `Header(level: 1, doc: "h1")` to `<h1>h1</h1>`.
+* It also converts `Header(level: 2, doc: "h2")` to `<h2>h2</h2>`.
 
 The above code is very rudimentary as a markdown parser, yet it provides us an extensive framework for the new code to be added.
+
+## Building on It
+
+TBD
+
+## Conclusion
+
+I've published the completed code as nim package [soasme/nim-markdown].
+
+## Credit
+
+I don't want to steal the thunder - the original idea of the code was from [lepture/mistune], one of my favorite markdown parser implementations. :)
+
+[lepture/mistune]: https://github.com/lepture/mistune
+[soasme/nim-markdown]: https://github.com/soasme/nim-markdown
