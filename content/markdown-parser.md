@@ -11,7 +11,7 @@ Many people, when confronted writing HTML document, think "Well, HTML is tedious
 
 In practice, most Markdown parser programs are often based on regular expression, or regex. There are some more options like [PEG](https://github.com/jgm/peg-markdown), etc. In this post, we'll write a simple but extensive markdown parser in nim-lang that can perform basic parsing. Beyond that, we'll also discuss how to improve the code to support more Markdown notations and dialects.
 
-## Initial Implementation
+## Implementation
 
 ### Tokenize
 
@@ -131,3 +131,17 @@ proc findToken(doc: string, start: var int, ruleType: MarkdownTokenType): Markdo
 ### Get it work
 
 Combine all the above code together, we will get a function that can parse `# h1` to `<h1>h1</h1>` and `## h2` to `<h2>h2</h2>`. The code is saved as a gist here: <https://gist.github.com/soasme/1a5271090250baed7936b5ac451e50c2>.
+
+## Discussion
+
+The function `markdown(doc)` converts the markdown document to HTML document. It could lead to a `MarkdownError` exception when sending non-header markdown document into above least implemented code.  If the `markdown()` function is given the parameter as `# h1\n## h2`, then something interesting will happen.
+
+In function `findToken`, the regex `re"^ *(#{1,6}) *([^\n]+?) *#* *(?:\n+|$)"` matches `# h1\n` first, extracting `#` as group 1, `h1` as group 2, and eventually wrapping as `Header(level: 1, doc: "h1")`.
+
+Since we paused at `# h1\n`, the function `parseTokens` will start from `## h2` after handling `# h1\n`. Similarly, the above regex matches `## h2`, extracting `##` as group 1, `h2` as group 2, and eventually wrapping as `Header(level: 2, doc: "h2")`.
+
+Here we reach the end of the `doc`, so `parseTokens` decides to stop.
+
+The `renderToken` is not much interesting. It converts `Header(level: 1, doc: "h1")` to `<h1>h1</h1>`, and `Header(level: 2, doc: "h2")` to `<h2>h2</h2>`.
+
+The above code is very rudimentary as a markdown parser, yet it provides us an extensive framework for the new code to be added.
