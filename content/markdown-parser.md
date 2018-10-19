@@ -157,7 +157,12 @@ The above code is very rudimentary as a markdown parser, yet it provides us with
 
 ## Building on It
 
-TBD
+By building small features one by one the program becomes more feature completeness. Below will discuss how to adapt new features in above code 
+
+1. Hrule can convert `---` to `<hr>`. The implementation can follow a similar pattern as `Header`. The trick of regex is that we need to match quite a lot patterns like `---`, `****`, `____`, and so on. It wouldn't be difficult if we append `[-*_]{2,}` right after `[-*_]`.
+* IndentedBlockCode allows a block of code with 4 spaces as indent. The regex is amazingly short: `( {4}[^\n]+\n*)+`. The rendering code puts the code content into `<pre><code>{code}</code></pre>`.
+* Fences allows codes wrapped into a sequence of \`\`\` characters. In addition, the name of the programming language can be appended. We can add a new rule just like IndentedBlockCode, but change ` {4}` to <code>`{3}</code>.
+* Paragraph is the most often seen block that ends with two or more newlines. Well, technically, if the last paragraph in the document don't need to have two or more newlines. The regex is a little bit getting tricky. We need to parse paragraph after checking the other rules, which requires us defining a `parsingOrder` to explicitly help `findToken` decide the order.
 
 ## Conclusion
 
