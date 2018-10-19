@@ -3,8 +3,7 @@ title: Markdown Parser
 summary: How to implement a Markdown Parser from scratch?
 category: Programming
 tags: markdown, HTML, parser
-date: 2018-10-17
-status: Draft
+date: 2018-10-20
 ---
 
 Many people, when confronted writing HTML document, think "Well, HTML is tedious, I'll go with Markdown." Then they'll face two problems. For programming zealots, they certainly will introduce a third problem: why not write a Markdown parser?
