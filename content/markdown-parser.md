@@ -2,14 +2,14 @@
 title: Markdown Parser
 summary: How to implement a Markdown Parser from scratch?
 category: Programming
-tags: markdown, html, parser
+tags: markdown, HTML, parser
 date: 2018-10-17
 status: Draft
 ---
 
 Many people, when confronted writing HTML document, think "Well, HTML is tedious, I'll go with Markdown." Then they'll face two problems. For programming zealots, they certainly will introduce a third problem: why not write a Markdown parser?
 
-In practice, most Markdown parser programs are often based on regular expression, or regex. There are some more options like [PEG](https://github.com/jgm/peg-markdown), etc. In this post, we'll write a simple but extensive markdown parser in nim-lang that can perform basic parsing. Beyond that, we'll also discuss how to improve the code to support more Markdown notations and dialects.
+In practice, most Markdown parser programs use regular expression or regex for parsing. There are some more options like [PEG](https://github.com/jgm/peg-markdown), etc. In this post, we'll write a simple but extensive markdown parser in nim-lang that can perform basic parsing. Beyond that, we'll also discuss how to improve the code to support more Markdown notations and dialects.
 
 ## Implementation
 
@@ -17,7 +17,7 @@ In practice, most Markdown parser programs are often based on regular expression
 
 It's clear that our goal is to convert a markdown document into an HTML document.
 
-By introducing an tokenizing step as shown in below flow,
+By introducing a tokenizing step as shown in below flow,
 we can make separate of concerns: parsing and rendering.
 
 ```
@@ -36,16 +36,16 @@ proc markdown*(doc: string): string =
 
 ### Parse
 
-When programming from scratch, it's wise to start from small. So let's just pickup
+When programming from scratch, it's wise to start from small. So let's pick up
 the very feature only - converting `# Header` into `<h1>Header</h1>`. We start from
-defining a token type and a token object, as you might also do by yourself in any
+defining a token type and a token value, as you might also do by yourself in any
 programming language.
 
 Below are some essential definitions for the code we'll write to work.
 
-* We defines a `Header` container object for storing header level and its content.
-* We defines an enum `MarkdownTokenType` which has only one choice - `Header`.
-* We also defines a reference `MarkdownTokenRef` as wrapper for the token.
+* We define a `Header` container object for storing header level and its content.
+* We define an enum `MarkdownTokenType` which has only one choice - `Header`.
+* We also define a reference `MarkdownTokenRef` as a wrapper for the token.
 
 ```nim
 type
@@ -86,8 +86,7 @@ iterator parseTokens(doc: string): MarkdownTokenRef =
 
 ### Render
 
-It's getting easier to generate HTML documents by constructing strings from the
-given token data structure.
+It's getting easier to generate HTML documents by constructing strings given a token data structure.
 
 ```nim
 proc renderToken(token: MarkdownTokenRef): string =
@@ -102,7 +101,7 @@ proc renderToken(token: MarkdownTokenRef): string =
 Embed in the heart zone of `parseTokens`, the function `findToken` is in the center
 of the Markdown parser program.
 
-* We defines a table of token regex rules.
+* We define a table of token regex rules.
 * We check if the given `doc` from a specific position `start` matches the given rule.
 * If so, we construct a container object as the token, otherwise, ignore the check.
 
@@ -128,7 +127,7 @@ proc findToken(doc: string, start: var int, ruleType: MarkdownTokenType): Markdo
   start += size
 ```
 
-### Get it work
+### Get it to work
 
 Combine all the above code together, we will get a function that can parse `# h1` to `<h1>h1</h1>` and `## h2` to `<h2>h2</h2>`. The code is saved as a gist here: <https://gist.github.com/soasme/1a5271090250baed7936b5ac451e50c2>.
 
@@ -149,12 +148,12 @@ The function `findToken` has below internal process.
 
 Since we paused at the end of `# h1\n`, the function `parseTokens` will start from `## h2` after handling `# h1\n`. Similarly, the above function generate a token wrapping `Header(level: 2, doc: "h2")`.
 
-Here we reach the end of the `doc`, so `parseTokens` decides to stop and handover the job to `renderToken`.
+Here we reach the end of the `doc`, so `parseTokens` decides to stop and hand over the job to `renderToken`.
 
 * The function `renderToken` converts `Header(level: 1, doc: "h1")` to `<h1>h1</h1>`.
 * It also converts `Header(level: 2, doc: "h2")` to `<h2>h2</h2>`.
 
-The above code is very rudimentary as a markdown parser, yet it provides us an extensive framework for the new code to be added.
+The above code is very rudimentary as a markdown parser, yet it provides us with an extensive framework.
 
 ## Building on It
 
