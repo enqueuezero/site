@@ -166,7 +166,7 @@ By building small features one by one the program becomes more feature completen
 
 ## Conclusion
 
-I've published the completed code as nim package [soasme/nim-markdown].
+I've published the completed code as nim package [soasme/nim-markdown]. The initial implementation of markdown parser is short but bring us insight of future implementations.
 
 ## Credit
 
