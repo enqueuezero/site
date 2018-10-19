@@ -157,20 +157,49 @@ The above code is very rudimentary as a markdown parser, yet it provides us with
 
 ## Building on It
 
-By building small features one by one the program becomes more feature completeness. Below will discuss how to adapt new features in above code 
+By building small features one by one, the program becomes more feature completeness. Below will discuss how to adopt new features in the above code 
 
-1. Hrule can convert `---` to `<hr>`. The implementation can follow a similar pattern as `Header`. The trick of regex is that we need to match quite a lot patterns like `---`, `****`, `____`, and so on. It wouldn't be difficult if we append `[-*_]{2,}` right after `[-*_]`.
-* IndentedBlockCode allows a block of code with 4 spaces as indent. The regex is amazingly short: `( {4}[^\n]+\n*)+`. The rendering code puts the code content into `<pre><code>{code}</code></pre>`.
-* Fences allows codes wrapped into a sequence of \`\`\` characters. In addition, the name of the programming language can be appended. We can add a new rule just like IndentedBlockCode, but change ` {4}` to <code>`{3}</code>.
-* Paragraph is the most often seen block that ends with two or more newlines. Well, technically, if the last paragraph in the document don't need to have two or more newlines. The regex is a little bit getting tricky. We need to parse paragraph after checking the other rules, which requires us defining a `parsingOrder` to explicitly help `findToken` decide the order.
+1. Hrule can convert `---` to `<hr>`. The implementation can follow a similar pattern as `Header`. The trick of regex is that we need to match quite a lot of patterns like `---`, `****`, `____`, and so on. It wouldn't be difficult if we append `[-*_]{2,}` right after `[-*_]`.
+* IndentedBlockCode allows a block of code with four spaces as the indent. The regex is amazingly short: `( {4}[^\n]+\n*)+`. The rendering code puts the code content into `<pre><code>{code}</code></pre>`.
+* Fences allows codes wrapped into a sequence of \`\`\` characters.  We can add a new rule just like IndentedBlockCode, but change ` {4}` to <code>`{3}</code>.
+* Paragraph is the most often seen block that ends with two or more newlines. Well, technically, if the last paragraph in the document doesn't need to have two or more newlines.  We need to parse the paragraph after matching the other rules, which requires us defining a `parsingOrder` to help `findToken` decide the order explicitly.
+* DefineLink creates a definition of the link and let us reference it in the post. It need to match syntax like `[ref]: link` or `[ref]: <link> "title"`. Since the use of `[ref]` can appear ahead of the definition, it implies rendering right after parsing through iteration is not enough. We can introduce a `MarkdownContext` to the `markdown(doc)` function. In the `MarkdownContext`, we build a table of links with their definitions so that in rendering we know which link to apply to the reference.
+```nim
+# +-------------------+    +--------+                    +---------------+
+# | Markdown Document +--> | Tokens +--(build context)-> | HTML Document |
+# +-------------------+    +--------+                    +---------------+
+let tokens = toSeq(parseTokens(preprocessing(doc), blockParsingOrder))
+let ctx = buildContext(tokens)
+for token in tokens:
+      result &= renderToken(ctx, token)
+```
+* DefineFootnote has similar syntax like DefineLink, `[^ref]: footnote` except it gets translated into `<sup>ref</sup>` in the middle of the HTML document and a list of footnotes in the end. So the implementation can be similar to the DefineLink.
+* List supports nested definition. So after matching the list, we need parsing the text of each element again to a sequence of tokens. The process is recursive.
+* ...
+
+## Test-Driven Development
+
+Building new feature can be test-driven - write a unit test case before adding code. The tests have below form. When applying to a new feature, you can add a case, replacing input and output. Besides, we can leverage tools like `watchdog` to watch code modifications and run tests automatically.
+
+```nim
+test "header":
+  check markdown("# h1") == "<h1>h1</h1>"
+```
 
 ## Conclusion
 
-I've published the completed code as nim package [soasme/nim-markdown]. The initial implementation of markdown parser is short but bring us insight of future implementations.
+Building a markdown parser from scratch is delightful.  In hindsight, though the initial implementation is short, there are some reasons building from small code.
+
+First, without too much code reading, it's easy to have an insight into the data flow and internal process.
+
+Second, incrementally adding small code for a feature and keeping tests passes is a win. We gain positive feedbacks and strong confidence.
+
+Third, type annotations never miss coverage a case. At first, we write code for one type. Later on, with adding more codes, the type annotation handles all the heavy lifts checking the missing spot. If you forget adding code for a new type, the editor complaints about it.
 
 ## Credit
 
-I don't want to steal the thunder - the original idea of the code was from [lepture/mistune], one of my favorite markdown parser implementations. :)
+I've published the completed code as a nim package [soasme/nim-markdown].
+But I don't want to steal the thunder - the original idea of the code was from [lepture/mistune], one of my favorite markdown parser implementations. :)
 
 [lepture/mistune]: https://github.com/lepture/mistune
 [soasme/nim-markdown]: https://github.com/soasme/nim-markdown
