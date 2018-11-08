@@ -4,7 +4,7 @@ title: Programming
 
 # Programming
 
-## [2PL](2PL.html)
+## [2PL](/2PL.html)
 
 The 2PL or Two-Phase Locking is a method to reach serializability.
 The 2PL is straightforward like its name - it has two phases.
