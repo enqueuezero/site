@@ -13,6 +13,6 @@ git init
 git add -A
 git commit -m 'deploy'
 
-git push -f git@github.com:soasme/spark.git master:gh-pages
+git push -f git@github.com:soasme/enqueuezero.git master:gh-pages
 
 cd -

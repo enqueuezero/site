@@ -1,10 +1,6 @@
 ---
 title: Markdown Parser
 permalink: /markdown-parser.html
-summary: How to implement a Markdown Parser from scratch?
-category: Programming
-tags: markdown, HTML, parser
-date: 2018-10-20
 ---
 
 # Markdown Parser
@@ -13,7 +9,6 @@ Many people, when confronted writing HTML document, think "Well, HTML is tedious
 
 In practice, most Markdown parser programs use regular expression or regex for parsing. There are some more options like [PEG](https://github.com/jgm/peg-markdown), etc. In this post, we'll write a simple but extensive markdown parser in nim-lang that can perform basic parsing. Beyond that, we'll also discuss how to improve the code to support more Markdown notations and dialects.
 
-[[toc]]
 
 ## Implementation
 
@@ -163,11 +158,12 @@ The above code is very rudimentary as a markdown parser, yet it provides us with
 
 By building small features one by one, the program becomes more feature completeness. Below will discuss how to adopt new features in the above code 
 
-1. Hrule can convert `---` to `<hr>`. The implementation can follow a similar pattern as `Header`. The trick of regex is that we need to match quite a lot of patterns like `---`, `****`, `____`, and so on. It wouldn't be difficult if we append `[-*_]{2,}` right after `[-*_]`.
+* Hrule can convert `---` to `<hr>`. The implementation can follow a similar pattern as `Header`. The trick of regex is that we need to match quite a lot of patterns like `---`, `****`, `____`, and so on. It wouldn't be difficult if we append `[-*_]{2,}` right after `[-*_]`.
 * IndentedBlockCode allows a block of code with four spaces as the indent. The regex is amazingly short: `( {4}[^\n]+\n*)+`. The rendering code puts the code content into `<pre><code>{code}</code></pre>`.
-* Fences allows codes wrapped into a sequence of \`\`\` characters.  We can add a new rule just like IndentedBlockCode, but change ` {4}` to <code>`{3}</code>.
+* Fences allows codes wrapped into a sequence of \`\`\` characters.  We can add a new rule just like IndentedBlockCode, but change ` {4}` to \`{3}.
 * Paragraph is the most often seen block that ends with two or more newlines. Well, technically, if the last paragraph in the document doesn't need to have two or more newlines.  We need to parse the paragraph after matching the other rules, which requires us defining a `parsingOrder` to help `findToken` decide the order explicitly.
 * DefineLink creates a definition of the link and let us reference it in the post. It need to match syntax like `[ref]: link` or `[ref]: <link> "title"`. Since the use of `[ref]` can appear ahead of the definition, it implies rendering right after parsing through iteration is not enough. We can introduce a `MarkdownContext` to the `markdown(doc)` function. In the `MarkdownContext`, we build a table of links with their definitions so that in rendering we know which link to apply to the reference.
+
 ```nim
 # +-------------------+    +--------+                    +---------------+
 # | Markdown Document +--> | Tokens +--(build context)-> | HTML Document |
@@ -177,6 +173,7 @@ let ctx = buildContext(tokens)
 for token in tokens:
       result &= renderToken(ctx, token)
 ```
+
 * DefineFootnote has similar syntax like DefineLink, `[^ref]: footnote` except it gets translated into `<sup>ref</sup>` in the middle of the HTML document and a list of footnotes in the end. So the implementation can be similar to the DefineLink.
 * List supports nested definition. So after matching the list, we need parsing the text of each element again to a sequence of tokens. The process is recursive.
 * ...

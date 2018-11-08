@@ -51,7 +51,7 @@ For example, if you're watching a video on iPhone in 3G mode, then you'll see a 
 
 The video transcoding works under a long pipeline. Below is a high level diagram.
 
-<img src='https://g.gravizo.com/svg?
+<!-- <img src='https://g.gravizo.com/svg?
 digraph G {
     Source_Video [shape=box];
     Chunk_1 [shape=box];
@@ -96,7 +96,7 @@ digraph G {
     fmt_1 -> file_1 [label=validate,color=".7 .3 1.0"];
     fmt_2 -> file_2 [label=validate,color=".4 .7 1.0"];
     fmt_N -> file_N [label=validate,color=".8 .5 1.0"];
-}'/>
+}'/> -->
 
 ## Infrastructure
 

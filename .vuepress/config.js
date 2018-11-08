@@ -1,6 +1,7 @@
 module.exports = {
   title: 'Enqueue Zero',
   description: 'Enqueue Zero is publishing code principles.',
+  ga: 'UA-36183732-4',
   themeConfig: {
     repo: 'soasme/enqueuezero',
     editLinks: true,
@@ -10,17 +11,8 @@ module.exports = {
     }
   },
   plugins: {
-    '@vuepress/google-analytics': {
-      ga: 'UA-36183732-4'
-    },
-    '@vuepress/last-updated': {
-
-    },
-    '@vuepress/active-header-links': {
-
-    },
     '@vuepress/plugin-search': {
-      searchMaxSuggestions: 10
+      searchMaxSuggestions: 5
     }
   }
 }
