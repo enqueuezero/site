@@ -2,9 +2,13 @@
 title: Asynchronous and Synchronous
 permalink: /async-and-sync.html
 date: 2018-06-19
-category: Computer Science
+category: Programming
 tags: async, sync
 ---
+
+# Asynchronous and Synchronous
+
+[[toc]]
 
 ## Context
 
@@ -15,8 +19,6 @@ In computing, program doing input / output, or I/O, has five major ways:
 * I/O Multiplex
 * Signal-driven I/O
 * Asynchronous I/O
-
-Check [I/O Models] if you don't understand them.
 
 In programming language, the last I/O - Asynchronous I/O and others derive two programming models: synchronous and asynchronous.
 
@@ -175,5 +177,3 @@ Synchronous code is simple to read but less performant. Asynchronous code is fru
 * [aiohttp](https://aiohttp.readthedocs.io/en/stable/)
 * [Futures and promises](https://en.wikipedia.org/wiki/Futures_and_promises)
 * [Nodejs blocking vs nonblocking](https://nodejs.org/en/docs/guides/blocking-vs-non-blocking/)
-
-[I/O Models]: /io-models.html

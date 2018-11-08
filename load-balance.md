@@ -1,10 +1,14 @@
 ---
 title: Load Balance
 permalink: /load-balance.html
-category: Computer Science
+category: Architecture
 tags: load-balance, algorithm
 date: 2018-06-20
 ---
+
+# Load Balance
+
+[[toc]]
 
 ## Context
 

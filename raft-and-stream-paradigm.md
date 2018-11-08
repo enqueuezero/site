@@ -6,6 +6,8 @@ tags: raft
 date: 2018-08-15
 ---
 
+# Raft and Stream Paradigm
+
 The stream is a data structure that evaluates data when we need them. Below is a typical Python Stream.
 
 ```

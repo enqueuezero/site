@@ -1,10 +1,14 @@
 ---
 title: Secure Socks5 Proxy
 permalink: /secure-socks5-proxy.html
-category: Computer Science
+category: Programming
 tags: proxy
 date: 2018-06-12
 ---
+
+# Secure Socks5 Proxy
+
+[[toc]]
 
 ## Context
 

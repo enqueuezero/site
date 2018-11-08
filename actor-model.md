@@ -2,10 +2,13 @@
 title: Actor Model
 permalink: /actor-model.html
 date: 2018-06-24
-category: Computer Science
+category: Programming
 tags: concurrency
-summary: The actor is an isolated concurrent unit scheduled by the programming language.
 ---
+
+# Actor Model
+
+[[toc]]
 
 ## Context
 

@@ -1,10 +1,14 @@
 ---
 title: Data Serialization
 permalink: /data-serialization.html
-category: Computer Science
+category: Architecture
 tags: serialization, rpc, json
 date: 2018-06-04
 ---
+
+# Data Serialization
+
+[[toc]]
 
 ## Context
 

@@ -1,10 +1,14 @@
 ---
 title: Pseudo-Random Numbers
 permalink: /pseudo-random-numbers.html
-category: Computer Science
+category: Programming
 tags: random
 date: 2018-09-11
 ---
+
+# Pseudo-Random Numbers
+
+[[toc]]
 
 ## Overview
 

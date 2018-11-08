@@ -6,6 +6,10 @@ category: Computer Science
 tags: coroutine
 ---
 
+# Coroutine
+
+[[toc]]
+
 ## Context
 
 Although thread is much more lightweight than process, people still think it's too heavy. In Linux kernel,  creating a thread still need to assign same amount of memory like process. Therefore, a more lightweight solution needs to reduce memory usage.

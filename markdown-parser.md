@@ -7,9 +7,13 @@ tags: markdown, HTML, parser
 date: 2018-10-20
 ---
 
+# Markdown Parser
+
 Many people, when confronted writing HTML document, think "Well, HTML is tedious, I'll go with Markdown." Then they'll face two problems. For programming zealots, they certainly will introduce a third problem: why not write a Markdown parser?
 
 In practice, most Markdown parser programs use regular expression or regex for parsing. There are some more options like [PEG](https://github.com/jgm/peg-markdown), etc. In this post, we'll write a simple but extensive markdown parser in nim-lang that can perform basic parsing. Beyond that, we'll also discuss how to improve the code to support more Markdown notations and dialects.
+
+[[toc]]
 
 ## Implementation
 

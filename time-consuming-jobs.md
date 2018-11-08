@@ -1,10 +1,14 @@
 ---
 title: Time-consuming Jobs
 permalink: /time-consuming-jobs.html
-category: Computer Science
+category: Architecture
 tags: job
 date: 2018-06-07
 ---
+
+# Time-consuming Jobs
+
+[[toc]]
 
 ## Context
 

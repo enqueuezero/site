@@ -63,7 +63,7 @@ Breaking such rule causes [leaky abstraction], meaning lower layer failed to hid
 
 ## Conclusion
 
-In layered architecture, a layer serves the layer above it and is served by the layer below it. [1] The data flow is simple and easy to trace by making call uni-directional from top to bottom. Such architecture leads to a clean and elegant design.
+In layered architecture, a layer serves the layer above it and is served by the layer below it. [1] The data flow is simple and easy to trace by making call from top to bottom in a single direction. Such architecture leads to a clean and elegant design.
 
 [1]: https://en.wikipedia.org/wiki/OSI_model
 [onion architecture]: http://blog.thedigitalgroup.com/understanding-onion-architecture

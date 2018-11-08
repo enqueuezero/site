@@ -1,20 +1,17 @@
 ---
 title: WSGI
 permalink: /wsgi.html
-category: Computer Science
+category: Programming
 tags: wsgi, web
 date: 2018-09-20
 ---
 
+# WSGI
+
+
 WSGI or Web Server Gateway Interface is a specification of [PEP 3333] that defines how the web server communicates with Python web applications.
 
-In this post, we will cover below topics:
-
-* Basic concepts in WSGI
-* Things not defined in WSGI
-* Booming Web Frameworks
-* Pros and Cons
-* Conclusions
+[[toc]]
 
 ## Overview
 

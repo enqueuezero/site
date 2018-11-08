@@ -1,9 +1,13 @@
 ---
 title: Circuit Breaker
 date: 2018-06-15
-category: Computer Science
+category: Architecture
 tags: reactive, circuit-breaker
 ---
+
+# Circuit Breaker
+
+[[toc]]
 
 ## Context
 

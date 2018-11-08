@@ -1,10 +1,14 @@
 ---
 title: Lock-free Queues
 permalink: /lock-free-queues.html
-category: Computer Science
+category: Programming
 tags: queue
 date: 2018-06-21
 ---
+
+# Lock-free Queues
+
+[[toc]]
 
 ## Context
 

@@ -2,9 +2,13 @@
 title: FFI
 permalink: /ffi.html
 tags: ffi
-category: Computer Science
+category: Programming
 date: 2018-07-17
 ---
+
+# FFI
+
+[[toc]]
 
 ## Context
 

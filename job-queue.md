@@ -1,10 +1,14 @@
 ---
 title: Job Queue
 permalink: /job-queue.html
-category: Computer Science
+category: Architecture
 tags: queue
 date: 2018-06-06
 ---
+
+# Job Queue
+
+[[toc]]
 
 ## Context
 

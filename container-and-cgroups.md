@@ -2,9 +2,11 @@
 title: Container and Cgroups
 permalink: /container-and-cgroups.html
 date: 2018-07-28
-category: Computer Science
+category: Programming
 tags: container, cgroups, docker
 ---
+
+# Container and Cgroups
 
 Cgroups is a Kernel feature that organizes processes into hierarchical groups to limit and monitor their system usage such as CPU, memory, disk, network and so on.
 

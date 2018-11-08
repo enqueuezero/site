@@ -2,10 +2,13 @@
 title: Back-Pressure
 permalink: /back-pressure.html
 date: 2018-06-25
-category: Computer Science
+category: Architecture
 tags: reactive
-summary: Producer-consumer model is very helpful to decouple the system components. However, the situation is quite often in which producer produces jobs more rapidly than consumers can consume them. It's a challenge to manage a large number of unconsumed jobs.
 ---
+
+# Back-pressure
+
+[[toc]]
 
 ## Context
 

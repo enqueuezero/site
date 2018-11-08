@@ -1,10 +1,14 @@
 ---
 title: In-Memory Database
 permalink: /in-memory-database.html
-category: Computer Science
+category: Architecture
 tags: database
 date: 2018-06-11
 ---
+
+# In-Memory Database
+
+[[toc]]
 
 ## Context
 

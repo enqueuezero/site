@@ -1,10 +1,12 @@
 ---
 title: Raft and Unreliable Network
 permalink: /raft-and-unreliable-network.html
-category: Computer Science
+category: Architecture
 tags: raft, network
 date: 2018-08-14
 ---
+
+# Raft and Unreliable Network
 
 The synchronization of the Raft states among nodes in the cluster imposes order on messages. However, the unreliable gears make the ordering very difficult. Sometimes, it plays like a thief stealing your data packets. Sometimes, it plays like a jerk swapping the order of data packets sending to a node. Even worse, if the CPU core accidentally has a bit flip, then the node might handle wrong messages all the time. Dr. Lamport called it Byzantine generals problem.
 

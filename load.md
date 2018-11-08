@@ -1,10 +1,14 @@
 ---
 title: Load
 permalink: /load.html
-category: Computer Science
+category: Architecture
 tags: load
 date: 2018-07-14
 ---
+
+# Load
+
+[[toc]]
 
 ## Context 
 
