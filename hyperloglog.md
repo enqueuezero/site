@@ -6,6 +6,12 @@ category: Algorithm
 date: 2018-06-10
 ---
 
+# HyperLogLog
+
+[[toc]]
+
+## Overview
+
 HyperLogLog is an algorithm that can solve [Count Distinct](count-distinct) problem. A Count Distinct problem is something like getting number 5 for a data set like [1, 3, 2, 1, 5, 2, 4], for it has [1, 2, 3, 4, 5] 5 elements. 
 
 HyperLogLog can provide estimated count on a very large data stream.

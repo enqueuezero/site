@@ -20,13 +20,8 @@ And Thanks for being my AWESOME reader!
 
 Table of Content
 
-## Architecture
-
-## Programming
-
-## Engineering
-
-## Journal
+* [Algorithms](/category/algorithm.html)
+* [Changelog](/category/changelog.html)
 
 ## LICENSE
 
