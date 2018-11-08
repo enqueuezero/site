@@ -27,3 +27,44 @@ APScheduler is a job scheduling framework that executes code either one-off or p
 ### [Airbnb Architecture](/airbnb-architecture.html)
 
 Airbnb is a website that operates an online marketplace and hospitality service for people to lease or rent short-term lodging. The challenges for the engineering team includes high-availability, quick-scaling, etc.
+
+TODO:
+
+programming:
+async-and-sync
+lock-free-queues
+actor-model
+asgi
+wsgi
+pseudo-random numbers
+timezone
+raft-and-stream-paradigm
+container-and-cgroups
+container-and-unionfs
+container-and-namespace
+container-and-nsenter
+container-and-unshare
+ffi
+coroutine
+language grammar
+
+
+
+architecture:
+job-queue
+time-consuming-jobs
+in-memory-database
+secure-socks5-proxy
+circuit-breaker
+data-serialization
+load-balance
+back-pressure
+url-dispatcher
+2pl
+periodic-scheduler
+the-difference-between-sli-slo-sla
+raft-and-unreliable-network
+raft-and-the-nature-of-time
+container
+load
+
