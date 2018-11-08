@@ -4,7 +4,7 @@ title: Programming
 
 # Programming
 
-## [2PL](2pl.html)
+## [2PL](2PL.html)
 
 The 2PL or Two-Phase Locking is a method to reach serializability.
 The 2PL is straightforward like its name - it has two phases.
@@ -82,7 +82,7 @@ PRNG or Pseudo-random number generators are used for generating numbers distribu
 
 Have you ever think about implement Raft in Stream data structure? It's so fun.
 
-## [Secure SOCKS5 Proxy](Secure Socks5 Proxy)
+## [Secure SOCKS5 Proxy](/secure-socks5-proxy.html)
 
 By secretly deploying a secure SOCKS5 proxy server and choosing a strong cipher algorithm, people can break through severe network blockade. Shadowsocks could be your first choice.
 
