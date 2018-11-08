@@ -1,5 +1,6 @@
 ---
 title: FFI
+permalink: /ffi.html
 tags: ffi
 category: Computer Science
 date: 2018-07-17

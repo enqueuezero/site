@@ -1,5 +1,6 @@
 ---
 title: Layered Architecture
+permalink: /layered-architecture.html
 category: Architecture
 tags: architecture, mvc, osi, tcp, os
 date: 2018-09-10

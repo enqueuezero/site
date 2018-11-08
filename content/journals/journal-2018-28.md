@@ -1,6 +1,6 @@
 ---
 title: 2018.28
-slug: journal-2018-28
+permalink: /journal-2018-28.html
 category: Journal
 tags: news
 date: 2018-07-15

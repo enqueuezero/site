@@ -1,5 +1,6 @@
 ---
 title: Language Grammar
+permalink: /language-grammar.html
 category: Computer Science
 tags: language
 date: 2018-07-03

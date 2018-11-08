@@ -1,5 +1,6 @@
 ---
 title: In-Memory Database
+permalink: /in-memory-database.html
 category: Computer Science
 tags: database
 date: 2018-06-11

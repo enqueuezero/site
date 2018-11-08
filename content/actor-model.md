@@ -1,5 +1,6 @@
 ---
 title: Actor Model
+permalink: /actor-model.html
 date: 2018-06-24
 category: Computer Science
 tags: concurrency

@@ -1,5 +1,6 @@
 ---
 title: Raft and Stream Paradigm
+permalink: /raft-and-stream-paradigm.html
 category: Computer Science
 tags: raft
 date: 2018-08-15

@@ -1,5 +1,6 @@
 ---
 title: Time-consuming Jobs
+permalink: /time-consuming-jobs.html
 category: Computer Science
 tags: job
 date: 2018-06-07

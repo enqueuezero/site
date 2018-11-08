@@ -1,5 +1,6 @@
 ---
 title: Hyperloglog
+permalink: /hyperloglog.html
 tags: algorithm
 category: Algorithm
 date: 2018-06-10

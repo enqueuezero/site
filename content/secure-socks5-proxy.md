@@ -1,5 +1,6 @@
 ---
 title: Secure Socks5 Proxy
+permalink: /secure-socks5-proxy.html
 category: Computer Science
 tags: proxy
 date: 2018-06-12

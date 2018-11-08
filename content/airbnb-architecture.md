@@ -1,5 +1,6 @@
 ---
 title: Airbnb Architecture
+permalink: airbnb-architecture.html
 date: 2018-08-28
 category: Architecture
 tags: airbnb, aws, load-blance, service-discovery, microservices, mysql

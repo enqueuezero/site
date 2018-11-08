@@ -1,5 +1,6 @@
 ---
 title: Timezone
+permalink: /timezone.html
 category: Computer Science
 tags: timezone
 date: 2018-08-24

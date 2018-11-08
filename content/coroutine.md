@@ -1,5 +1,6 @@
 ---
 title: Coroutine
+permalink: /coroutine.html
 date: 2018-07-15
 category: Computer Science
 tags: coroutine

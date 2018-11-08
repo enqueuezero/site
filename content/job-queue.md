@@ -1,5 +1,6 @@
 ---
 title: Job Queue
+permalink: /job-queue.html
 category: Computer Science
 tags: queue
 date: 2018-06-06

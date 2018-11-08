@@ -1,5 +1,6 @@
 ---
 title: Markdown Parser
+permalink: /markdown-parser.html
 summary: How to implement a Markdown Parser from scratch?
 category: Programming
 tags: markdown, HTML, parser

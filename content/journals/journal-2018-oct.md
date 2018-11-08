@@ -1,6 +1,6 @@
 ---
 title: 2018 Oct
-slug: journal-2018-Oct
+permalink: /journal-2018-Oct.html
 date: 2018-11-04
 category: journal
 tags: news

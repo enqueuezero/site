@@ -1,5 +1,6 @@
 ---
 title: Load Balance
+permalink: /load-balance.html
 category: Computer Science
 tags: load-balance, algorithm
 date: 2018-06-20

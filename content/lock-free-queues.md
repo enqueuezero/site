@@ -1,5 +1,6 @@
 ---
 title: Lock-free Queues
+permalink: /lock-free-queues.html
 category: Computer Science
 tags: queue
 date: 2018-06-21

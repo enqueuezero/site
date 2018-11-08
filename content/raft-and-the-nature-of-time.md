@@ -1,5 +1,6 @@
 ---
 title: Raft and The Nature of Time
+permalink: /raft-and-the-nature-of-time.html
 category: Computer Science
 tags: raft, distributed
 date: 2018-08-13

@@ -1,5 +1,6 @@
 ---
 title: URL Dispatcher
+permalink: /url-dispatcher.html
 category: Computer Science
 tags: web
 date: 2018-06-28

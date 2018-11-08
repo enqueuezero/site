@@ -1,5 +1,6 @@
 ---
 title: The Architecture of SQLAlchemy
+permalink: /sqlalchemy.html
 date: 2018-10-01
 category: Architecture
 tags: database, architecture

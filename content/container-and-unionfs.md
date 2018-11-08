@@ -1,5 +1,6 @@
 ---
 title: Container and UnionFS
+permalink: container-and-unionfs.html
 category: Computer Science
 tags: container, unionfs
 date: 2018-07-27

@@ -1,5 +1,6 @@
 ---
 title: Container and nsenter
+permalink: /container-and-nsenter.html
 category: Computer Science
 tags: container
 date: 2018-07-26

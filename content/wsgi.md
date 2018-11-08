@@ -1,5 +1,6 @@
 ---
 title: WSGI
+permalink: /wsgi.html
 category: Computer Science
 tags: wsgi, web
 date: 2018-09-20

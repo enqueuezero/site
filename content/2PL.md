@@ -1,5 +1,6 @@
 ---
 title: 2PL
+permalink: /2PL.html
 date: 2018-08-26
 category: Computer Science
 tags: database

@@ -1,6 +1,6 @@
 ---
 title: Asynchronous and Synchronous
-slug: async-and-sync
+permalink: /async-and-sync.html
 date: 2018-06-19
 category: Computer Science
 tags: async, sync
@@ -176,4 +176,4 @@ Synchronous code is simple to read but less performant. Asynchronous code is fru
 * [Futures and promises](https://en.wikipedia.org/wiki/Futures_and_promises)
 * [Nodejs blocking vs nonblocking](https://nodejs.org/en/docs/guides/blocking-vs-non-blocking/)
 
-[I/O Models]: io-models.html
+[I/O Models]: /io-models.html

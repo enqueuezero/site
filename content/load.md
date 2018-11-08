@@ -1,5 +1,6 @@
 ---
 title: Load
+permalink: /load.html
 category: Computer Science
 tags: load
 date: 2018-07-14

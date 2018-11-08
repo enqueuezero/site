@@ -1,5 +1,6 @@
 ---
 title: ASGI
+permalink: /asgi.html
 category: Computer Science
 tags: web
 date: 2018-09-22
