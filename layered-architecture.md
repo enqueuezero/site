@@ -6,6 +6,10 @@ tags: architecture, mvc, osi, tcp, os
 date: 2018-09-10
 ---
 
+# Layered Architecture
+
+[[toc]]
+
 ## Overview
 
 The layered architecture has several other names, such as [onion architecture], [the clean architecture], etc. The basic theory is, you organize the components layer by layer in which only the upstream layer can make calls to the downstream layers.

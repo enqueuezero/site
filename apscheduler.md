@@ -6,6 +6,12 @@ tags: scheduler
 date: 2018-09-15
 ---
 
+# The Architecture of APScheduler
+
+[[toc]]
+
+## Overview
+
 APScheduler is a job scheduling framework that executes code either one-off or periodically. People often integrate it into an existing Python application for running interval jobs.
 
 In this post, we will cover below topics:

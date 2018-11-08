@@ -6,6 +6,10 @@ category: Architecture
 tags: airbnb, aws, load-blance, service-discovery, microservices, mysql
 ---
 
+# Airbnb Architecture
+
+[[toc]]
+
 ## Overview
 
 Airbnb is a website that operates an online marketplace and hospitality service for people to lease or rent short-term lodging. The challenges for the engineering team includes high-availability, quick-scaling, etc. In this post, I put the architecture of Airbnb website in one article. Please tweet to [@enqueuezero] if you think anything is incorrect or out-dated.
