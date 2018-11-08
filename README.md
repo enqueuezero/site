@@ -21,6 +21,8 @@ And Thanks for being my AWESOME reader!
 Table of Content
 
 * [Algorithms](/category/algorithm.html)
+* [Programming](/category/programming.html)
+* [Utilities](/category/utility.html)
 * [Changelog](/category/changelog.html)
 
 ## LICENSE
