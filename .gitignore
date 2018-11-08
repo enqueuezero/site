@@ -1,3 +1,2 @@
-wiki/output/*
+.vuepress/dist/
 node_modules/
-wiki/tiddlers/Draft*
