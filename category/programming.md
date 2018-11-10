@@ -58,6 +58,18 @@ Coroutines implement multi-tasking by consuming less resource. The downside is t
 
 If you have performance bottleneck when running the CPU-intensive calculation in VM language, and ALSO feels VM interpreter runs so slow, take a look at FFI! If you want to write your own interpreter language, also try to integrate libffi as a bonus!
 
+## [Fuzzy Search](/fuzzy-search.html)
+
+Fuzzy search can be applied whenever there is a search box. Under the hood, the fuzzy
+search requires approximate string matching. Among all algorithms, the Bitap algorithm
+is perhaps the best-known for approximate string matching.  However, it doesn't
+fit the case in which the searching dataset is huge since it requires a full scanning.
+Python function `get_close_matches` in standard lib `difflib` is the handiest tool
+ready to use.
+
+Installing fuzzy search plugin or utilities save a few seconds every time and thus several
+hours and days in your work and life.
+
 ## [Language Grammar](/language-grammar.html)
 
 Implement your own language might sound crazy but it's very doable. With these mature libraries, you don't necessarily need to understand complicated parser theory but still can create something! If you're interested in create a grammar syntax of specification and protocols, learn these libraries and try to build a tiny prototype to demonstrate your ideas.
