@@ -58,6 +58,12 @@ Coroutines implement multi-tasking by consuming less resource. The downside is t
 
 If you have performance bottleneck when running the CPU-intensive calculation in VM language, and ALSO feels VM interpreter runs so slow, take a look at FFI! If you want to write your own interpreter language, also try to integrate libffi as a bonus!
 
+## [File Access Permission](/file-access-permission.md)
+
+This article describes File Access Permissions in UNIX. Here, file means regular file, directory file, block special file, character special file, FIFO, Socket, and Symbolic Link. As "Everything is a file" in UNIX, it's import to understand the File Access Permissions. Different from other articles, this one is going to explain the design of the File Access Permissions.
+
+When we talk about File Access Permissions, people always think of the nine permission bits of each file - `rwxrwxrwx`. However, these permission bits are not the whole thing. The missing part are file IDs and process IDs. To complete the analysis of File Access Permissions,  we need both file and process. In this article, we describe file IDs, permission bits, and process IDs, and finally introduce a typical example.
+
 ## [Fuzzy Search](/fuzzy-search.html)
 
 Fuzzy search can be applied whenever there is a search box. Under the hood, the fuzzy
