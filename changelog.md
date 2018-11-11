@@ -8,6 +8,27 @@ title: What's New?
 >>> SELECT * from journals order by time desc;
 ```
 
+## 2018 Week 45
+
+Dear my readers, this is the update of week 45 of 2018.
+
+We have two new posts added into a new category - Utility. I'll introduce more tools
+that are interesting or proved to be practical in this section.
+
+* [VuePress](https://enqueuezero.com/utilities/vuepress.html)
+* [Docker Compose](https://enqueuezero.com/utilities/docker-compose.html)
+
+A new post about [Fuzzy Search](https://enqueuezero.com/fuzzy-search.html) introduces
+approximate string matching algorithms and some common solutions.
+
+The new site based on VuePress just gets released. Take it a look, please! <https://enqueuezero.com/>
+The landing page is more condense.
+
+<img src="https://pbs.twimg.com/media/DreQfkYU4AE9-b-.jpg" style="height: 200px;">
+<img src="https://pbs.twimg.com/media/DreQfkVV4AARMYB.jpg" style="height: 200px;">
+
+Let me know anything can be improved. :)
+
 ## 2018 Oct
 
 Dear my readers, this is the update of October of 2018.
