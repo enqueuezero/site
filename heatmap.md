@@ -88,7 +88,7 @@ In general, the latency heat map has below three dimensions:
 
 ## Conclusions
 
-Heat Maps is a powerful tool for visualizing three-dimensional data. When performing
+Heat Map is a powerful tool for visualizing three-dimensional data. When performing
 analysis on latency, offset, utilization over time, don't forget Heat Maps!
 
 ## References

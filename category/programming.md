@@ -78,7 +78,7 @@ hours and days in your work and life.
 
 ## [Heat Maps](/heatmap.html)
 
-Heat Maps is a powerful tool for visualizing three-dimensional data. When performing analysis on latency, offset, utilization over time, don't forget Heat Maps!
+Heat Map is a powerful tool for visualizing three-dimensional data. When performing analysis on latency, offset, utilization over time, don't forget Heat Maps!
 
 ## [Language Grammar](/language-grammar.html)
 
