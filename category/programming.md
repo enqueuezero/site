@@ -76,6 +76,10 @@ ready to use.
 Installing fuzzy search plugin or utilities save a few seconds every time and thus several
 hours and days in your work and life.
 
+## [Heat Maps](/heatmap.html)
+
+Heat Maps is a powerful tool for visualizing three-dimensional data. When performing analysis on latency, offset, utilization over time, don't forget Heat Maps!
+
 ## [Language Grammar](/language-grammar.html)
 
 Implement your own language might sound crazy but it's very doable. With these mature libraries, you don't necessarily need to understand complicated parser theory but still can create something! If you're interested in create a grammar syntax of specification and protocols, learn these libraries and try to build a tiny prototype to demonstrate your ideas.
