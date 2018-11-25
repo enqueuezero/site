@@ -34,17 +34,17 @@ Executing asynchronously refers to as submitting a task to a runner, and then im
 
 ## Container
 
-### [Container and Cgroups](/container-and-cgroups.html)
+### [Container and CGroups](/container-and-cgroups.html)
 
-Cgroups is a Kernel feature that organizes processes into hierarchical groups to limit and monitor their system usage such as CPU, memory, disk, network and so on.
+CGroups is a Kernel feature that organizes processes into hierarchical groups to limit and monitor their system usage such as CPU, memory, disk, network and so on.
 
 ### [Container and Namespace](/container-and-namespace.html)
 
 One major use case of the namespace is to isolate processes belonging to a container from other containers or the system namespace.
 
-### [Container and nsenter](/container-and-nsenter.html)
+### [Container and NSEnter](/container-and-nsenter.html)
 
-Nsenter is a utility enters the namespaces of one or more other processes and then executes the specified program. In other words, we jump to the inner side of the namespace.
+NSEnter is a utility enters the namespaces of one or more other processes and then executes the specified program. In other words, we jump to the inner side of the namespace.
 
 ### [Container and UnionFS](/container-and-unionfs.html)
 
