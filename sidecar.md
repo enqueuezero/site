@@ -1,7 +1,7 @@
 ---
 title: Sidecar
 permalink: /sidecar.html
-date: 2018-12-03
+date: 2018-11-25
 category: Architecture
 tags: cloud
 ---
@@ -10,11 +10,11 @@ tags: cloud
 
 ## Context
 
-In engineering, we want our application well de-coupled. It usually means letting the right tool or component doing the right thing, and more importantly, do one thing and do it well. Almost every application needs to share some common components, for example, logging, metric collector, circuit breaker, etc. It's a challenge that how to manage these peripheral tasks if we don't want to implement them into every application.
+In engineering, we want our application well de-coupled. It usually means letting the right tool or component doing the right thing, and more importantly, do one thing and do it well. Almost every application needs to share some standard components, for example, logging, metrics collector, circuit breaker, etc. It's a challenge that how to manage these peripheral tasks if we don't want to implement them in every application.
 
 ## Overview
 
-Sidecar is a term for a one-wheeled device attached to the side of a motorcycle. [1] In engineering, it signifies a deployment model that one or more separated processes or containers deployed along with the application.
+Sidecar is a term for a one-wheeled device attached to the side of a motorcycle. [1] In engineering, it signifies a deployment model that one or more separate processes or containers deployed along with the application.
 
 ![An NSU Moterenwerke 601 motorcycle from the 1930s fitted with a Steib Metallbau sidecar](/static/images/sidecar-motorcycle.jpg 'Sidecar')
 
@@ -23,22 +23,22 @@ Sidecar is a term for a one-wheeled device attached to the side of a motorcycle.
 ## Solution
 
 * Place peripheral tasks like logging, monitoring, proxy, circuit breaker inside a standalone process or container.
-* The standalone process or container co-locate with the supporting application.
-* Provide a generic interface whatever the programming language of the application is.
+* The independent process or container co-locate with the supporting application.
+* Provide a generic interface whatever the programming language of the app is.
 
-In container era, service mesh softwares such as Linkerd, Istio, are often deployed as sidecars.
+In the container era, service mesh software such as Linkerd, Istio, are often deployed as sidecars.
 
 ## Patterns
 
 ### Independent Runtime
 
-The sidecar has its own heap and stack, and will not share its runtime with the application. The sidecar is attached to the application, meaning they'll only communicate via IPC(inter-process communication).
+The sidecar has its heap and stack, and will not share its runtime with the application. The sidecar is attached to the app and communicate via IPC(inter-process communication).
 
-Application can run without sidecar component, though it will partially downgraded.
+The application can run without sidecar component, though it will partially downgrade.
 
 ### Same Lifecycle
 
-The sidecar has the same lifecycle as the supporting application. Once the application is created or retired, so the sidecar is.
+The sidecar has the same lifecycle as the supporting application. Once the app is created or retired, so the sidecar is.
 
 ### Same Namespace
 
@@ -48,9 +48,9 @@ Since containers are running in Linux namespace, it's often deploying sidecar as
 
 ### Low Overhead
 
-The sidecar is deployed per-host or per-pod. As a result, the network latency between the sidecar and the application is very small, which is in theory equal to the performance of any IPC communication.
+The sidecar is deployed per-host or per-pod. As a result, the network latency between the sidecar and the application is not much, which is in theory equal to the performance of any IPC communication.
 
-Note that low overhead doesn't mean it brings no overhead.
+Note that low overhead doesn't mean it brings no cost.
 
 ### Library v/s Sidecar
 
@@ -58,7 +58,7 @@ You can install and configure libraries to archive similar functions provided by
 
 ## Conclusions
 
-By introducing sidecar, applications don't need to implement peripheral tasks again and again. It's a good way to simplify the implementation of the application, though it increases the complexity of operations.
+By introducing sidecar, applications don't need to implement peripheral tasks again and again. It's an excellent way to simplify the implementation of the app, though it increases the complexity of operations.
 
 ## References
 
