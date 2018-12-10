@@ -65,6 +65,10 @@ for result in args.walker()? {
 
 ripgrep uses builder pattern to simplify the complex argument and parameter construction.
 
+## Discussions
+
+> skim + ripgrep + bat makes for an amazing combination for fuzzy search opening files with preview. Added "skvi" for fuzzy search open vim and "rgvi" for combining ripgrep search + vim opening. Aliases are here: <https://t.co/2gJLJKm1OY> - [@mitsuhiko](https://twitter.com/mitsuhiko/status/1070784353360318464)
+
 
 ## References
 
