@@ -42,7 +42,7 @@ Sharding the database means to break up a big database into many smaller databas
 
 ### Elastic
 
-* [[How many shards should I have in my Elasticsearch cluster](https://www.elastic.co/cn/blog/how-many-shards-should-i-have-in-my-elasticsearch-cluster): Data in Elasticsearch is organized into indices. Each index is made up of one or more shards. Each shard is an instance of a Lucene index, which provides a subset of the data in a cluster. Each shard keeps data structure in memory and uses heap space for better performance. Information about mappings and state is stored in the cluster state.
+* [How many shards should I have in my Elasticsearch cluster](https://www.elastic.co/cn/blog/how-many-shards-should-i-have-in-my-elasticsearch-cluster): Data in Elasticsearch is organized into indices. Each index is made up of one or more shards. Each shard is an instance of a Lucene index, which provides a subset of the data in a cluster. Each shard keeps data structure in memory and uses heap space for better performance. Information about mappings and state is stored in the cluster state.
 
 ## Patterns
 
