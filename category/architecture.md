@@ -98,6 +98,18 @@ APScheduler is a job scheduling framework that executes code either one-off or p
 
 ## Architecture Misc
 
+### [Availability](/availability.html)
+
+Availability measures the percentage of the time that the system is functional and working. It has a very simple formula:
+
+```
+   uptime
+------------  x 100%
+ total time
+```
+
+The availability clearly defines how well the system succeeds providing services to the customers. Improving the availability even a little bit needs a lot of men and efforts.
+
 ### [Scalability](/scalability.html)
 
 There are two ways of scaling.
@@ -107,6 +119,7 @@ There are two ways of scaling.
 
 Moore's law has reached the end, meaning the limit of vertical scaling is out there.
 As a result, if you want your system continuously grow, do horizontal scale!
+
 
 ## Real-world Architecture
 
