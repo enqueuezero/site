@@ -6,7 +6,7 @@ title: Maintainability
 
 ## Context
 
-The ongoing maintenance of a system cost more that the initial development.
+The ongoing maintenance of a system costs more that the initial development.
 It's not surprising that more people are hired for maintaining a legacy system, instead of building from scratch.
 
 Improving the maintainability of a system reduces the cost and hence it's an over-going thing that most companies are thriving to achieve.
@@ -29,7 +29,6 @@ Most factors can be categorized into three:
 * The evolvability of the code.
 * The operability of the system.
 * The simplicity of the code and system.
-
 
 ## Patterns
 
