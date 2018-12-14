@@ -110,6 +110,12 @@ Availability measures the percentage of the time that the system is functional a
 
 The availability clearly defines how well the system succeeds providing services to the customers. Improving the availability even a little bit needs a lot of men and efforts.
 
+### [Maintainability](/maintainability.md)
+
+It's not surprising that more people are hired for maintaining a legacy system, instead of building from scratch. Improving the maintainability of a system reduces the cost and hence it's an over-going thing that most companies are thriving to achieve.
+
+There is no easy way to measure the maintainability of a system, though we can take a lot of actions to make it simpler, make the life of operations easier, and make it easier to extend and grow.
+
 ### [Scalability](/scalability.html)
 
 There are two ways of scaling.
