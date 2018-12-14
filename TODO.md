@@ -1,3 +1,4 @@
 - [ ] [scalability.md]
 - [ ] [availability.md]
 - [ ] [maintainability.md]
+- [ ] [reliability.md]

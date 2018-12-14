@@ -116,6 +116,12 @@ It's not surprising that more people are hired for maintaining a legacy system, 
 
 There is no easy way to measure the maintainability of a system, though we can take a lot of actions to make it simpler, make the life of operations easier, and make it easier to extend and grow.
 
+### [Reliability](/reliability.html)
+
+Reliability defines if the system continuous to work correctly.  To provide a reliable service, the system should be fault-tolerant, or resilient.
+
+Providing a reliable service requires not to just do everything that keeps system available, but also introducing more thorough validations and reviews. A lot of engineering practises makes the service more reliable, for example, code review, continuous integration, security review, health checking, alerting, etc. By leveraging the monitoring & alerting system, we can reduce the time that system is deviated from spec. If necessary, degrade the surrounding features and let the service process only critical business logics.
+
 ### [Scalability](/scalability.html)
 
 There are two ways of scaling.
