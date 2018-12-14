@@ -4,13 +4,7 @@ title: Architecture
 
 # Architecture
 
-## Organization-wise
-
-### [Airbnb Architecture](/airbnb-architecture.html)
-
-Airbnb is a website that operates an online marketplace and hospitality service for people to lease or rent short-term lodging. The challenges for the engineering team includes high-availability, quick-scaling, etc.
-
-## Connection-wise
+## Architecture Paradigms
 
 ### [Layered Architecture](/layered-architecture.html)
 
@@ -18,7 +12,7 @@ The layered architecture has several other names, such as onion architecture, th
 
 Most systems are designed in the layered architecture.
 
-## Component-wise
+## Architecture Components
 
 ### [Back-pressure](/back-pressure.html)
 
@@ -101,3 +95,21 @@ SQLAlchemy might be the best ORM software in the Python world regardless of your
 ### [The Architecture of APScheduler](/apscheduler.html)
 
 APScheduler is a job scheduling framework that executes code either one-off or periodically. People often integrate it into an existing Python application for running interval jobs.
+
+## Architecture Misc
+
+### [Scalability](/scalability.html)
+
+There are two ways of scaling.
+
+* Vertical scaling, or scaling up, by using more powerful machines with faster CPU, higher memory, and larger disk space.
+* Horizontal scaling, or scaling out, by adding more machines into a cluster. The performance of the cluster is the summary of all machines and the network in-between.
+
+Moore's law has reached the end, meaning the limit of vertical scaling is out there.
+As a result, if you want your system continuously grow, do horizontal scale!
+
+## Real-world Architecture
+
+### [Airbnb Architecture](/airbnb-architecture.html)
+
+Airbnb is a website that operates an online marketplace and hospitality service for people to lease or rent short-term lodging. The challenges for the engineering team includes high-availability, quick-scaling, etc.
