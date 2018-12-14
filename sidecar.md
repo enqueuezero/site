@@ -28,6 +28,12 @@ Sidecar is a term for a one-wheeled device attached to the side of a motorcycle.
 
 In the container era, service mesh software such as Linkerd, Istio, are often deployed as sidecars.
 
+### Kubernetes Logging Architecture
+
+Kubernetes doesn't have a built-in centralized logging. The easiest way to implement a cluster-level logging is by using node logging agents installing as sidecars per node. In particular, the sidecar container runs a logging agent like `fluentd`, which is configured to pick up logs from an application container. Note that after picking up, the logging data are sent to a logging backend outside of the cluster.
+
+![Sidecar container with a logging agent](/static/images/sidecar-logging-with-sidecar-agent.png)
+
 ## Patterns
 
 ### Independent Runtime
