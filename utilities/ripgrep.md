@@ -67,7 +67,7 @@ ripgrep simplifies the construction of arguments and parameters by the builder d
 
 ## Discussions
 
-There are two major grepping utility-family: grep and ack. The former is for plain searching, and the latter does smart searching. ripgrep is a hybrid solution.
+There are two major grepping utility-families: grep and ack. The former is for the plain searching, and the latter does smart searching, meaning it knows what files should be filtered out. ripgrep is a hybrid solution.
 
 Scanning all files in current working directory seems easy but a challenge to be fast. It involves using a set of tricks to do system call as less as possible. ripgrep uses a Rust library [walkdir](https://docs.rs/walkdir/2.2.7/walkdir/) for the best performance.
 
