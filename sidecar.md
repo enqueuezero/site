@@ -24,7 +24,7 @@ Sidecar is a term for a one-wheeled device attached to the side of a motorcycle.
 
 * Place peripheral tasks like logging, monitoring, proxy, circuit breaker inside a standalone process or container.
 * The independent process or container co-locate with the supporting application.
-* Provide a generic interface whatever the programming language of the app is.
+* Provide a generic interface for sending data whatever the programming language of the app is.
 
 In the container era, service mesh software such as Linkerd, Istio, are often deployed as sidecars.
 
