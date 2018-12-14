@@ -78,6 +78,14 @@ Using crontab is the easiest way to schedule periodic jobs. The limitation is th
 
 Sharding is a type of database partitioning technique that manages the subsets of data on several server hosts. It solves SPOF problem and single server resource limitation but introduces sharding logic to be implemented. Data sharding can be simple or complex depending on the sharding strategy.
 
+### [Sidecar](/sidecar.html)
+
+Sidecar is a term for a one-wheeled device attached to the side of a motorcycle. In engineering, it signifies a deployment model that one or more separate processes or containers deployed along with the application. The solution is:
+
+* Place peripheral tasks like logging, monitoring, proxy, circuit breaker inside a standalone process or container.
+* The independent process or container co-locate with the supporting application.
+* Provide a generic interface for sending data whatever the programming language of the app is.
+
 ### [Time-consuming Jobs](/time-consuming-jobs.html)
 
 It's impossible to achieve both goals without changing the execution model, to keep the system responsive all the time and to complete the time-consuming jobs.
