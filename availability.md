@@ -12,7 +12,7 @@ As a service provider, he has commitment to the customers the service is running
 
 ## Overview
 
-Availability measures the percentage of the time that the system is functional and working.
+Availability defines the percentage of the time that the system is functional and working.
 
 It has a very simple formula:
 

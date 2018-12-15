@@ -2,3 +2,4 @@
 - [ ] [availability.md]
 - [ ] [maintainability.md]
 - [ ] [reliability.md]
+- [ ] [microservices-architecture.md]

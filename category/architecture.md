@@ -10,7 +10,9 @@ title: Architecture
 
 The layered architecture has several other names, such as onion architecture, the clean architecture, etc. The basic theory is, you organize the components layer by layer in which only the upstream layer can make calls to the downstream layers.
 
-Most systems are designed in the layered architecture.
+### [Microservices Architecture](/microservices-architecture.html)
+
+Microservices architecture is an architectural style that structured applications as a set of loosely decoupled services. The advantage of microservices architecture is it enables large and complex application to continuously scale and evolve.
 
 ## Architecture Components
 
