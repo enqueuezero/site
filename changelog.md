@@ -8,6 +8,38 @@ title: What's New?
 >>> SELECT * from journals order by time desc;
 ```
 
+## 2018 Week 50
+
+Dear my readers, this is the update of week 50 of 2018.
+
+I'm glad to announce [nim-markdown](https://github.com/soasme/nim-markdown) v0.6 has released. After a refactor, it now covers 92% of all test cases in the [GitHub Flavored Markdown Spec](https://github.github.com/gfm/). My goal is to get it 100% covered.
+
+New posts are added to the list:
+
+* [File Access Permission](https://enqueuezero.com/file-access-permission.html).
+* [Heat Map](https://enqueuezero.com/heatmap.html).
+* [Linked List](https://enqueuezero.com/linked-list.html).
+* [Sidecar](https://enqueuezero.com/sidecar.html).
+* [Sharding](https://enqueuezero.com/sharding.html).
+* [Ripgrep](https://enqueuezero.com/utilities/ripgrep.html).
+
+I also added a few posts that are not yet completed.
+
+* [Scalability](https://enqueuezero.com/scalability.html).
+* [Availability](https://enqueuezero.com/availability.html).
+* [Maintainability](https://enqueuezero.com/maintainability.html).
+* [Reliability](https://enqueuezero.com/reliability.html).
+* [Microservices Architecture](https://enqueuezero.com/microservices-architecture.html).
+
+A new experiment is ongoing, which is to compile my reading notes.
+My reading notes includes source code, book notes, interesting articles, etc.
+
+[2018.50](https://enqueuezero.com/readings/2018-50.html) is the first post.
+For example, by reading the source code of rust project [deque](https://github.com/kinghajj/deque), we can learn lock-free concurrent work-stealing deque is implemented.
+By reading [Deep learning: the final frontier for signal processing and time series analysis?](https://medium.com/@alexrachnog/deep-learning-the-final-frontier-for-signal-processing-and-time-series-analysis-734307167ad6), we can be inspired of how data scientist uses CNN, RNN, ANN analyzing the time series data instead of normal mathematical modeling.
+
+Hope there is at least one post you like. And more importantly, let me know if anything can be improved. :)
+
 ## 2018 Week 45
 
 Dear my readers, this is the update of week 45 of 2018.
