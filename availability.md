@@ -6,9 +6,10 @@ title: Availability
 
 ## Context
 
-Today, most services need to run in 7x24. It's a challenge keeping the system functional and working.
+Today, most services need to run in 7x24. The service provider has commitment to the customers that the service should be functional and working, which is a challenge.
 
-The service provider has commitments to the customers that the service should be up and running. The [SLI, SLO, and SLA](/the-difference-between-sli-slo-and-sla.html) helps dev teams defining the quality of the service. Inside the SLI, SLO, and SLA, the availability is the essence.
+ The [SLI, SLO, and SLA](/the-difference-between-sli-slo-and-sla.html) helps the service provider defining the quality of the service.
+ Inside the SLI, SLO, and SLA, the availability is the essence.
 
 ## Overview
 
@@ -28,33 +29,31 @@ For example, 99.95% as the availability of the service means it must not have ou
 
 ### SLO & SLA
 
-SLO, or Service Level Objective, defines the expected availability and how the availability is measured. Every company might have their definition. Nonetheless, SLO is based on the health check or the average request success rates.
+SLO, or Service Level Objective, defines the expected availability and how the availability is measured. SLO is usually based on the health check or analysis on the logging stream.
 
-SLA, or Service Level Agreement, defines the commitment for the uptime and connectivity.
+SLA, or Service Level Agreement, defines the commitment of the uptime and connectivity.
 
-Getting 99.95% as the SLA is loose than 99.99%. Setting a strict SLA takes a large number of human efforts and infrastructure constantly improvements.
+99.95% as the SLA is loose than 99.99%. Setting a strict SLA takes a large number of human efforts and infrastructure constant improvements.
 
 ### Target
 
-Getting the availability 100% doesn't necessarily mean that it satisfies customers, depending on the target of the availability measurements. Setting a wrong target to measure will make customers feel cheated.
+Getting the availability 100% doesn't necessarily mean that it satisfies customers, depending on the target of the availability measurements. Setting a wrong target will make customers feel cheated.
 
 To set a right target, it requires you:
 
 * Understand the business context.
 * Think of issues that impact customers.
 
-For example, you separate a login microservice but screw it up. Now no customers can log into the system doing their jobs. Considering customers being able to log into the system is in the critical business functions, you might want to set targets:
+For example, you separate a login microservice but screw it up. Now no customers can log into the system. Considering customers being able to log into the system is in the critical business functions, you might want to set below targets:
 
-```
-<50% of tenants failed login: degradation
-<25% of tenants failed login: disruption (SLA impacting)
-```
+* <50% of the total requests to the login microservice ends up with non-200 status code: degradation
+* <25% of the total requests to the login microservice ends up with non-200 status code: disruption (SLA impacting)
 
 ### Frequency
 
 The frequency and the duration of uptime can affect customers as well.
 
-In practical, setting a maximum frequency for different outage durations is good. For example, you have a payslip microservice that run hours often. Frequently occurring short-period outages can make customers annoying. Below frequency SLA on the uptime might make more sense.
+In practical, setting a maximum frequency for different outage durations is good. For example, you have a payslip microservice that run hours often. Frequently occurring short-period outages leads to restart payslip job over and over again, which makes customers annoying. Below frequency SLA on the uptime might make more sense.
 
 * duration 0~2 minutes: maximum 2 times per day.
 * duration 2~30 minutes: maximum 1 time per week.
@@ -62,7 +61,7 @@ In practical, setting a maximum frequency for different outage durations is good
 
 ### Quantify Tenanted Impacts
 
-It makes sense to derive the availability by the percentage of customers being impacted in an outage for multi-tenanted applications. Not every incident cause complete loss of service for every customer. Some customers might have trouble, while others not.
+It makes sense to derive the availability by the percentage of customers being impacted in an outage for multi-tenanted applications, as not every incident causes complete loss of service for every customer. Some customers might have trouble, while others not.
 
 For example, there are 100 tenants in total. If an outage causes more than 5 tenants, then it means 5% of tenants are impacted.
 
@@ -70,7 +69,7 @@ If there are shared services running for tenanted applications, it also makes se
 
 ### Breach
 
-Breaching the SLA means the availability of the service is beyond the commitment. It often leads to refund or other kinds of compensations.
+Breaching the SLA means the availability of the service does not meet the commitment. It often ends up with refund, coupon, or other kinds of compensations.
 
 ### Maintenance
 
@@ -117,4 +116,3 @@ It's important to let customers know something like it exists. For example, [Git
 ## Conclusions
 
 The availability clearly defines how well the system succeeds in providing services to the customers. Improving the availability of the service is hard. Note that the important thing is not to deliver the agreed SLA but to happy customers. If the numbers are good, but customers are not satisfied, then you need to reconsider the whole thing, set the right measurement target, and validate that again.
-
