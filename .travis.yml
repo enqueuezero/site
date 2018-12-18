@@ -4,4 +4,4 @@ sudo: true
 install:
     - yarn install
 script:
-    - make build && cd .vuepress/dist && git init && git add -A && git commit -m'deploy' && git push -fq https://${GITHUB_TOKEN}@github.com/soasme/enqueuezero.git gh-pages > /dev/null
+    - make build && cd .vuepress/dist && git init && git add -A && git commit -m'deploy' && git push -fq https://${GITHUB_TOKEN}@github.com/soasme/enqueuezero.git master:gh-pages > /dev/null
