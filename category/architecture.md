@@ -82,6 +82,23 @@ Sidecar is a term for a one-wheeled device attached to the side of a motorcycle.
 * The independent process or container co-locate with the supporting application.
 * Provide a generic interface for sending data whatever the programming language of the app is.
 
+### [Status Site](/status-site.html)
+
+The status site is an individual website listing the particular component statuses that make up the product.
+
+It shows below two information:
+
+* Display the status of each function of the business.
+* Display A list of incidents organized on a daily basis. If nothing happens, show "No incidents reported.", otherwise, show the details of the incidents, such as when the incidents were detected, how the incidents were handled, and when the incidents were resolved.
+
+It has below goals:
+
+* Show how reliable the platform is.
+* Show how well the platform is recovering from failure.
+* Show how performance is as it evolves.
+
+The status site shows the statuses of components of the product. It's about to be transparent to users. Users know exactly where to look where there is downtime and staffs will be acting on the information they know is up-to-date.
+
 ### [Time-consuming Jobs](/time-consuming-jobs.html)
 
 It's impossible to achieve both goals without changing the execution model, to keep the system responsive all the time and to complete the time-consuming jobs.
