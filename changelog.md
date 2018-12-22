@@ -12,7 +12,7 @@ title: What's New?
 
 Dear my readers, this is the update of the week 51 of 2018.
 
-The reading page is evolving and expanding. Check out [EnqueueZero Updates :: 2018-51](https://enqueuezero.com/readings/2018-51.html)! In particular, I added enqueuezero-made posts to the page hoping to deliver them to a broader tech community.
+The reading page is evolving and expanding. Check out [EnqueueZero Updates 2018-51](https://enqueuezero.com/readings/2018-51.html)! In particular, I added enqueuezero-made posts to the page hoping to deliver them to a broader tech community.
 
 The two posts added this week are:
 
