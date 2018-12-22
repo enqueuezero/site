@@ -8,9 +8,22 @@ title: What's New?
 >>> SELECT * from journals order by time desc;
 ```
 
+## 2018 Week 51
+
+Dear my readers, this is the update of the week 51 of 2018.
+
+The reading page is evolving and expanding. Check out [EnqueueZero Updates :: 2018-51](https://enqueuezero.com/readings/2018-51.html)! In particular, I added enqueuezero-made posts to the page hoping to deliver them to a broader tech community.
+
+The two posts added this week are:
+
+* [Status Site](https://enqueuezero.com/status-site.html)
+* [Availability](https://enqueuezero.com/availability.html)
+
+Let me know anything can be improved. :)
+
 ## 2018 Week 50
 
-Dear my readers, this is the update of week 50 of 2018.
+Dear my readers, this is the update of the week 50 of 2018.
 
 I'm glad to announce [nim-markdown](https://github.com/soasme/nim-markdown) v0.6 has released. After a refactor, it now covers 92% of all test cases in the [GitHub Flavored Markdown Spec](https://github.github.com/gfm/). My goal is to get it 100% covered. Will keep making it more mature.
 
@@ -41,7 +54,7 @@ Hope you like one of the posts. And more importantly, let me know if anything ca
 
 ## 2018 Week 45
 
-Dear my readers, this is the update of week 45 of 2018.
+Dear my readers, this is the update of the week 45 of 2018.
 
 We have two new posts added into a new category - Utility. I'll introduce more tools
 that are interesting or proved to be practical in this section.
@@ -77,7 +90,7 @@ Anyway, I think it's a good time shifting my focus back to the other posts I wan
 
 ## 2018 Week 38
 
-Dear my readers, this is the update of week 38 of 2018.
+Dear my readers, this is the update of the week 38 of 2018.
 
 First thing first, four posts have been made.
 
