@@ -46,6 +46,10 @@ Performance issue on upstream service often leads to downstream application cras
 
 Load balancing is fundamental way to build a large distributed system, and hence knowing it well is important. To build a reliable system, a mature load balancer hardware or software is essential. If you have a lot of money, then buy a load balancing hardware. Otherwise, a load balancing software is recommended.
 
+### [DNS Load Balancing](/dns-load-balancing.html)
+
+DNS load balancing distributes requests across multiple IP addresses by configuring various DNS A records. Modern tools enable programmatically updating DNS records. When the incident happens, some of them can even automatically update the DNS records. The downside of DNS load balancing is that it cannot distribute requests evenly to the backend servers.
+
 ### [In-Memory Database](/in-memory-database.html)
 
 In-memory databases are faster than on-disk databases because disk access is slower than memory access. Meanwhile, to overcome the drawback of data losing from crashing, we have to introduce strategies like snapshotting, transaction logging, consistent hashing, high availability. Despite of all the complexity introduced, people love in-memory databases when response time is really a criterion since it's probably the best solution. And in most case, Redis could be the first choice.
