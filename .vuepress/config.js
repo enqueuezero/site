@@ -7,7 +7,7 @@ module.exports = {
     repo: 'soasme/enqueuezero',
     editLinks: true,
     sidebar: {
-      '/category/': ['algorithm', 'architecture', 'programming', 'utility'],
+      '/category/': ['algorithm', 'architecture', 'programming', 'readings', 'utility'],
       '/changelog.html': ['', 'changelog'],
     }
   },

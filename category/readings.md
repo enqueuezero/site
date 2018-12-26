@@ -1,5 +1,5 @@
 ---
-title: EnqueueZero Reading Updates
+title: Readings
 ---
 
 # EnqueueZero Reading Updates
