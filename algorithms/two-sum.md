@@ -40,43 +40,45 @@ def twoSum(nums, target):
     raise Exception("twosum solution not found.")
 ```
 
-Let's analyze this brute-force algorithm. The time complexity is O(n<sup>2</sup>) and the space complexity is O(1). It's a correct algorithm because each line of code satisfies our formal description of the question. Below is a short prove.
+Let's analyze this brute-force algorithm. The time complexity is O(n<sup>2</sup>) and the space complexity is O(1). Below is a short proof that it's a correct algorithm.
 
-* The iteration of `i` is from `range(len(nums))`, so it satisfies `0 <= i < len(nums)`.
-* The iteration of `j` is from `range(i+1, len(nums))`, which satisfies `i < j < len(nums)`.
-* The comparison predicate `if nums[i] + nums[j] == target: return [i, j]` satisfies `nums[i] + nums[j] = target`.
+* The function returns `[i, j]`, such that any i and j should satisfies `nums[i] + nums[j] == target`.
+    * The variable `i` is from `range(len(nums))`, so it's under the condition of `0 <= i < len(nums)`.
+    * The variable `j` is from `range(i+1, len(nums))`, so it's under the condition of `i < j < len(nums)`.
 * The `raise Exception` statement aborts the process and hence any other solution will not be considered.
 
 Since the time complexity is not good at all, we now seek if it can be improved.
 
 ---
 
-By moving `nums[j]` to the right side, the equation is still established.
+By moving `nums[j]` to the right side, we get:
 
 ```
 nums[i] = target - nums[j]
 ```
 
-Then, by applying `f` to the both side, the equation is still established.
+Then, by applying `f` to the both side, we get:
 
 ```
 f(nums[i]) = f(target - nums[j])
 ```
 
+Here every value of x should have corresponding value y, such that `f(x) = y`.
+
 ---
 
-Since `f` can be any function, let's just pick `dict.get`, the getter function of the Python's standard data structure, and let `dict.get(nums[i]) = i`.
+Let's just pick `dict.get`, the getter function of the Python's standard data structure, and let `dict.get(nums[i]) = i`.
 
 So far, we have another equation that satisfies the constraint of the problem:
 
 ```
 Given dict D, array nums,
 
-* exist j: D.get(target - nums[j]) = j, 0 <= j < lens(nums),
-* any j: D.get(nums[j]) = j
+* exist i, j: D.get(target - nums[j]) = i, 0 <= j < lens(nums),
+* any j: D.get(nums[j]) = j, 0 <= j < lens(nums).
 ```
 
-To satisfy it, we can produce below code. Note that the first highlighted code satisfies `exist j` condition, and the second highlighted code satisfies `any j` condition.
+We can produce below code. Note that the first highlighted code satisfies `exist i, j` condition, and the second highlighted code satisfies `any j` condition.
 
 <<< @/algorithms/two-sum-2.py{4,5,6,7,9}
 
