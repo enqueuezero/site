@@ -69,16 +69,16 @@ Here every value of x should have corresponding value y, such that `f(x) = y`.
 
 Let's just pick `dict.get`, the getter function of the Python's standard data structure, and let `dict.get(nums[i]) = i`.
 
-So far, we have another equation that satisfies the constraint of the problem:
+So far, we have a transformation of above formal description of the problem.
 
 ```
 Given dict D, array nums,
 
-* exist i, j: D.get(target - nums[j]) = i, 0 <= j < lens(nums),
 * any j: D.get(nums[j]) = j, 0 <= j < lens(nums).
+* exist i: D.get(target - nums[j]) = i, iff target - nums[j] in D.
 ```
 
-We can produce below code. Note that the first highlighted code satisfies `exist i, j` condition, and the second highlighted code satisfies `any j` condition.
+We can produce below code. Note that the first highlighted code satisfies `exist i` condition, and the second highlighted code satisfies `any j` condition.
 
 <<< @/algorithms/two-sum-2.py{4,5,6,7,9}
 
