@@ -11,3 +11,16 @@ Count-distinct problem is a problem of finding the number of distinct elements i
 ## [HyperLogLog](/hyperloglog.html)
 
 HyperLogLog is an algorithm that can solve Count Distinct problem. It can provide estimated count on a very large data stream.
+
+## [Two Sum](/algorithms/two-sum.html)
+
+Question:
+
+```
+Given dict D, array nums,
+
+* exist j: D.get(target - nums[j]) = j, 0 <= j < lens(nums),
+* any j: D.get(nums[j]) = j
+```
+
+Hint: Reducing variables in the problem is the key to a simpler solution.
