@@ -19,8 +19,8 @@ Question:
 ```
 Given dict D, array nums,
 
-* exist j: D.get(target - nums[j]) = j, 0 <= j < lens(nums),
-* any j: D.get(nums[j]) = j
+* any j: D.get(nums[j]) = j, 0 <= j < lens(nums).
+* exist i: D.get(target - nums[j]) = i, iff target - nums[j] in D.
 ```
 
 Hint: Reducing variables in the problem is the key to a simpler solution.
