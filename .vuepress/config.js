@@ -11,9 +11,16 @@ module.exports = {
       '/changelog.html': ['', 'changelog'],
     }
   },
-  plugins: {
-    '@vuepress/plugin-search': {
-      searchMaxSuggestions: 5
-    }
-  }
+  plugins: [
+    [
+      '@vuepress/plugin-search', {
+        searchMaxSuggestions: 5
+      },
+    ],
+    [
+      '@vuepress/register-components', {
+        componentsDir: '.vuepress/components',
+      }
+    ]
+  ]
 }
