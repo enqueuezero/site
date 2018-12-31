@@ -50,7 +50,26 @@ Except the container runtime, the **Node** server runs **kubelet** and **kube-pr
 
 **Kube-proxy** forwards requests to the containers, either in local host or other hosts.
 
+As a Kubernetes user, you don't necessary need to know the existence of **kubelet** and **kube-proxy**.
+
 ---
 
-**Pod** is one or more containers in a group that should always run on the same **node**.
+A **Pod** is one or more containers in a group that should always run on the same **node**.
 
+All containers in a **pod** are launched and destroyed together, or share a life cycle.
+
+All containers in a **pod** share their environments, volumes, and IP space.
+
+Usually, there is a main container and some optional **sidecar containers** in a **pod**.
+
+As a Kubernetes user, you can show all pods in the cluster by typing `kubectl get pods`.
+
+---
+
+A **replication controller** is a pod template with a **replica** number.
+
+The **replica** number defines how many identical pods should be scheduled in the cluster.
+
+If the **replica** number changes, the controller will start or destroy containers in the cluster to match the desired number.
+
+If a **pod** or underlying **node**, the controller will start a new **pod** in the cluster.
