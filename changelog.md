@@ -8,6 +8,19 @@ title: What's New?
 >>> SELECT * from journals order by time desc;
 ```
 
+## 2018 Week 52
+
+Dear my readers, this is the update of the week 52 of 2018.
+
+I renamed Reading series to "Techshack", which is from my previous project [soasme/techshack.weekly](https://github.com/soasme/techshack.weekly). From now on, I'll update reading lists as techshack posts within the EnqueueZero site.
+
+Two posts are added this week:
+
+* [Two Sum](https://enqueuezero.com/algorithms/two-sum.html)
+* [DNS Load Balancing](https://enqueuezero.com/dns-load-balancing.html)
+
+Let me know anything can be improved. :)
+
 ## 2018 Week 51
 
 Dear my readers, this is the update of the week 51 of 2018.

@@ -24,7 +24,7 @@ Table of Content
 * [Architecture](/category/architecture.md)
 * [Programming](/category/programming.md)
 * [Utilities](/category/utility.md)
-* [Readings](/category/readings.md)
+* [Techshack](/category/techshack.md)
 * [Changelog](/changelog.md)
 
 ## FAQ
