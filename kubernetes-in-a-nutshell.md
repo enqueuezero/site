@@ -73,3 +73,20 @@ The **replica** number defines how many identical pods should be scheduled in th
 If the **replica** number changes, the controller will start or destroy containers in the cluster to match the desired number.
 
 If a **pod** or underlying **node**, the controller will start a new **pod** in the cluster.
+
+---
+
+Other resources that kills less your brain cells.
+
+[![Kubernetes Gets a Children’s Book](/static/images/kubernetes-in-a-nutshell-illustrated-guide-illustration-12.png)](https://thenewstack.io/kubernetes-gets-childrens-book/)
+[Kubernetes Gets a Children's Book](https://thenewstack.io/kubernetes-gets-childrens-book/)
+
+---
+
+[![Smooth Sailing with K8S](/static/images/kubernetes-in-a-nutshell-smooth-sailing-with-k8s.png)](https://cloud.google.com/kubernetes-engine/kubernetes-comic/)
+[Smooth Sailing with k8s](https://cloud.google.com/kubernetes-engine/kubernetes-comic/)
+
+---
+
+[![kubernetes api server as event queue](/static/images/readings-2018-51-k8s-api-server-queues.png)](https://www.mgasch.com/post/k8sevents/)
+[Events, the DNA of Kubernetes](https://www.mgasch.com/post/k8sevents/)

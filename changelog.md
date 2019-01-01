@@ -25,7 +25,7 @@ Let me know anything can be improved. :)
 
 Dear my readers, this is the update of the week 51 of 2018.
 
-The reading page is evolving and expanding. Check out [EnqueueZero Updates 2018-51](https://enqueuezero.com/readings/2018-51.html)! In particular, I added enqueuezero-made posts to the page hoping to deliver them to a broader tech community.
+The reading page is evolving and expanding. Check out [EnqueueZero Updates 2018-51](https://enqueuezero.com/techshack.weekly/2018-51.html)! In particular, I added enqueuezero-made posts to the page hoping to deliver them to a broader tech community.
 
 The two posts added this week are:
 
@@ -59,7 +59,7 @@ I also added a few posts that are not yet completed. They're a set of architectu
 
 A new experiment is ongoing, which is to compile my reading notes.
 My reading notes includes source code, book notes, interesting articles, etc.
-[2018.50](https://enqueuezero.com/readings/2018-50.html) is the first post.
+[2018.50](https://enqueuezero.com/techshack.weekly/2018-50.html) is the first post.
 For example, by reading the source code of rust project [deque](https://github.com/kinghajj/deque), we can learn lock-free concurrent work-stealing deque is implemented.
 By reading [Deep learning: the final frontier for signal processing and time series analysis?](https://medium.com/@alexrachnog/deep-learning-the-final-frontier-for-signal-processing-and-time-series-analysis-734307167ad6), we can get the inspiration of how data scientist uses CNN, RNN, ANN analyzing the time series data instead of normal mathematical modeling.
 
