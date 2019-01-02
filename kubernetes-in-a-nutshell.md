@@ -75,7 +75,7 @@ The **replica** number in the **ReplicaSet** defines how many identical pods sho
 
 If the **replica** number changes, the controller will start or destroy containers to match the desired number.
 
-If a **pod** or underlying **node**, the controller will start a new **pod** in the cluster.
+If a **pod** or underlying **node** dies, the controller will start a new **pod** in the cluster.
 
 ---
 
@@ -195,3 +195,9 @@ Other resources that kill less your brain cells.
 
 [![kubernetes api server as event queue](/static/images/readings-2018-51-k8s-api-server-queues.png)](https://www.mgasch.com/post/k8sevents/)
 [Events, the DNA of Kubernetes](https://www.mgasch.com/post/k8sevents/)
+
+<!--
+Reddit: https://www.reddit.com/r/kubernetes/comments/abgzz5/kubernetes_in_a_nutshell/
+Hacker News: https://news.ycombinator.com/item?id=18799572
+Dev.to: https://dev.to/soasme/kubernetes-in-a-nutshell-3p95
+-->
