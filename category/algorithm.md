@@ -12,6 +12,10 @@ Count-distinct problem is a problem of finding the number of distinct elements i
 
 HyperLogLog is an algorithm that can solve Count Distinct problem. It can provide estimated count on a very large data stream.
 
+## [MurmurHash](/algorithms/murmur-hash.html)
+
+MurmurHash is in the family of general purpose hashing algorithms. In particular, it's only suitable for non-cryptographic usage.
+
 ## [Two Sum](/algorithms/two-sum.html)
 
 Question:

@@ -6,7 +6,7 @@ title: MurmurHash
 
 ## Overview
 
-MurmurHash a non-cryptographic hash function suitable for general hash-based lookup. 
+MurmurHash is a non-cryptographic hash function suitable for general hash-based lookup. 
 
 One of its implementation in C is as below:
 
@@ -52,19 +52,19 @@ uint32_t murmur3_32(const uint8_t* key, size_t len, uint32_t seed) {
 
 ## Chi-squared Test
 
-MurmurHash passed the [Chi-squared test](https://en.wikipedia.org/wiki/Chi-squared_test) for all keysets and bucket sizes in used. It demonstrates that Murmurhash has good distribution.
+MurmurHash passed the [Chi-squared test](https://en.wikipedia.org/wiki/Chi-squared_test) for all keysets and bucket sizes in used. It demonstrates that Murmurhash distributes keys evenly.
 
 ## Avalanche effect
 
-In cryptography, the avalanche effect is about how the outcome of the hashing function being impacted by the slightly changed input, for example,  half the output bits flip.
+In cryptography, the avalanche effect is about how the outcome of the hashing function is impacted by the slightly changed input, for example,  half the output bits flip.
 
 MurmurHash has a good avalanche behavior with max bias 0.5%.
 
 ## Collision resistance
 
-A hash function is collision resistant if it is hard to find two inputs that hash to the same output.
+A hash function is a collision resistant if it is hard to find two inputs that hash to the same output.
 
-MurmurHash has good collision resistance. No collisions possible for 4-byte keys, no small (1- to 7-bit) differentials.
+MurmurHash has good collision resistance. No collisions are possible for 4-byte keys, no small (1- to 7-bit) differentials.
 
 ## Performance
 
@@ -82,7 +82,7 @@ MurmurHash takes trade-off between hash quality and CPU consumption, which makes
 
 The Pelikan is a framework of the cache server. It yields a replacement of Twemcache, a Memcached-like server with ultra-low memory overhead, etc.
 
-The reason of twitter/pelikan using MurmurHash is the performance.
+The reason for Pelikan using MurmurHash is the performance is much better.
 
 ### Nginx
 
@@ -135,6 +135,10 @@ ngx_murmur_hash2(u_char *data, size_t len)
 }
 ```
 
+### Redis
+
+Although Redis does not use MurmurHash function anymore since Redis 5, knowing why Redis drop MurmurHash is a little bit fun. As shown in [commit: adeed2](https://github.com/antirez/redis/commit/adeed29a99dcd0efdbfe4dbd5da74e7b01966c67), Redis is now using [siphash](https://github.com/antirez/redis/blob/unstable/src/siphash.c), instead of MurmurHash2 by Austin Appleby, to prevent HashDoS attack.
+
 ## Conclusions
 
 MurmurHash is in the family of general purpose hashing algorithms. In particular, it's only suitable for non-cryptographic usage.
@@ -143,3 +147,4 @@ MurmurHash is in the family of general purpose hashing algorithms. In particular
 
 * [wikipedia.com](https://en.wikipedia.org/wiki/MurmurHash)
 * [MurmurHash - what is it?](https://stackoverflow.com/questions/11899616/murmurhash-what-is-it)
+
