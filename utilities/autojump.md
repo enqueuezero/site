@@ -87,5 +87,5 @@ result = [
 
 ## Conclusions
 
-The autojump is a useful utility for switching directory faster. It's based on a traditional finding-needles-in-haystack problem but is far from it, which makes it a gorgeous software.
+The autojump is a useful utility for switching directory faster. It's based on a traditional finding-needles-in-haystack problem but is far beyond that, which makes it a gorgeous software.
 
