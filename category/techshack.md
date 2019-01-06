@@ -14,6 +14,7 @@ To help me more motivated and keep this website ad-free, appreciate your kind do
 
 Below is the list of all reading lists.
 
+* [2019-01](/techshack.weekly/2019-01.html)
 * [2018-52](/techshack.weekly/2018-52.html)
 * [2018-51](/techshack.weekly/2018-51.html)
 * [2018-50](/techshack.weekly/2018-50.html)
