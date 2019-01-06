@@ -8,6 +8,21 @@ title: What's New?
 >>> SELECT * from journals order by time desc;
 ```
 
+## 2019 January
+
+* Happy New Year! :)
+* Added Techshack Weekly Updates. [2019-01](/techshack.weekly/2019-01.html)
+* Added tool: [autojump](/utilities/autojump.html).
+* Added algorithm: [MurmurHash](/algorithms/murmur-hash.html).
+* Added [Kubernetes In a Nutshell](/kubernetes-in-a-nutshell.html). [Reddit discussion here](https://www.reddit.com/r/kubernetes/comments/abgzz5/kubernetes_in_a_nutshell/). The Page Views has reached 2000+.
+
+Some kudos:
+
+* A typo was pointed out by [github.com/ebachle](https://github.com/ebachle) in [soasme/enqueuezero#28](https://github.com/soasme/enqueuezero/issues/28). Thank you!
+* Curl's author @bagder retweeted [Everything Curl](https://twitter.com/TechshackWeekly/status/1081272072956010497) for the Techshack Weekly.
+* "Cool reading lists in the website!" - [/u/transfer_window](https://www.reddit.com/user/transfer_window)
+* "Both @techshackweekly and @wanquribao have greatly broadened my horizons. Nice!" - [@URMyDad](https://twitter.com/URMyDad)
+
 ## 2018 Week 52
 
 Dear my readers, this is the update of the week 52 of 2018.

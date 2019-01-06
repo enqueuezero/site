@@ -4,6 +4,10 @@ title: Utilities
 
 # Utilities
 
+## [Autojump](/utilities/autojump.html)
+
+The [autojump](https://github.com/wting/autojump) is a useful utility for switching directory faster. It's based on a traditional finding-needles-in-haystack problem but is far from it, which makes it a gorgeous software.
+
 ## [Docker Compose](/utilities/docker-compose.html)
 
 [Docker Compose](https://docs.docker.com/compose/), or docker-compose, Compose, is a tool for defining and running multi-container Docker applications.
