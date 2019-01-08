@@ -126,6 +126,12 @@ Comparison:
 * EBNF: BNF + a few additional rules.
 * ABNF: BNF + a few additional rules.
 
+### Combinators
+
+Functional programming languages provide combinators for implementing parser easier.
+
+The definition of the new language is as the same form of the implementation languages. Such languages have strong type inference, such as Haskell, F#.
+
 ## Solutions
 
 ### EBNF Specification Examples
@@ -218,6 +224,10 @@ $ python ebnf-demo.py
 -3.0
 > ^C
 ```
+
+## Combinator Examples
+
+Check out this awesome tutorial series: [1](https://fsharpforfunandprofit.com/posts/understanding-parser-combinators/) | [2](https://fsharpforfunandprofit.com/posts/understanding-parser-combinators-2/) | [3](https://fsharpforfunandprofit.com/posts/understanding-parser-combinators-3/) | [4](https://fsharpforfunandprofit.com/posts/understanding-parser-combinators-4/) written in F#.
 
 ## Conclusions
 
