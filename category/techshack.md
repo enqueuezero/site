@@ -43,3 +43,5 @@ Below is the list of all reading lists.
 * [2018-06 (zh-CN)](https://www.soasme.com/techshack.weekly/issues/0003.html)
 * [2018-05 (zh-CN)](https://www.soasme.com/techshack.weekly/issues/0002.html)
 * [2018-04 (zh-CN)](https://www.soasme.com/techshack.weekly/issues/0001.html)
+
+<Subscribe />
