@@ -5,6 +5,9 @@
       <p>To keep me motivated and this website ad-free, appreciate your kind donation!</p>
       <p><a href="https://www.patreon.com/join/enqueuezero"><img alt="Donate this project using Patreon" src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" style="max-height: 2.5rem;"></a></p>
     </div>
-    <p>Enjoy reading this week's posts.</p>
+    <div>
+      <p>Please follow Twitter account <a href="https://twitter.com/enqueuezero">@enqueuezero</a> for the updates.  For those who can understand Chinese, 加入 <a href="https://t.me/techshack">中文 Telegram Channel</a> 或者关注 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>.</p>
+    </div>
+    <p>Happy exploring!</p>
   </div>
 </template>
