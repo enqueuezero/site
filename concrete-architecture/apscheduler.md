@@ -1,6 +1,5 @@
 ---
 title: The Architecture of APScheduler
-permalink: /apscheduler.html
 category: Architecture
 tags: scheduler
 date: 2018-09-15

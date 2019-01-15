@@ -1,10 +1,45 @@
 ---
 title: Concrete Architecture
+sidebar: auto
 ---
 
 # Concrete Architecture
 
-## Architecture Paradigms
+## Part I: Architecture Styles
+
+### [Availability](/availability.html)
+
+Availability measures the percentage of the time that the system is functional and working. It has a very simple formula:
+
+```
+   uptime
+------------  x 100%
+ total time
+```
+
+The availability clearly defines how well the system succeeds providing services to the customers. Improving the availability even a little bit needs a lot of men and efforts.
+
+### [Maintainability](/maintainability.md)
+
+It's not surprising that more people are hired for maintaining a legacy system, instead of building from scratch. Improving the maintainability of a system reduces the cost and hence it's an over-going thing that most companies are thriving to achieve.
+
+There is no easy way to measure the maintainability of a system, though we can take a lot of actions to make it simpler, make the life of operations easier, and make it easier to extend and grow.
+
+### [Reliability](/reliability.html)
+
+Reliability defines if the system continuous to work correctly.  To provide a reliable service, the system should be fault-tolerant, or resilient.
+
+Providing a reliable service requires not to just do everything that keeps system available, but also introducing more thorough validations and reviews. A lot of engineering practises makes the service more reliable, for example, code review, continuous integration, security review, health checking, alerting, etc. By leveraging the monitoring & alerting system, we can reduce the time that system is deviated from spec. If necessary, degrade the surrounding features and let the service process only critical business logics.
+
+### [Scalability](/scalability.html)
+
+There are two ways of scaling.
+
+* Vertical scaling, or scaling up, by using more powerful machines with faster CPU, higher memory, and larger disk space.
+* Horizontal scaling, or scaling out, by adding more machines into a cluster. The performance of the cluster is the summary of all machines and the network in-between.
+
+Moore's law has reached the end, meaning the limit of vertical scaling is out there.
+As a result, if you want your system continuously grow, do horizontal scale!
 
 ### [Layered Architecture](/layered-architecture.html)
 
@@ -14,7 +49,7 @@ The layered architecture has several other names, such as onion architecture, th
 
 Microservices architecture is an architectural style that structured applications as a set of loosely decoupled services. The advantage of microservices architecture is it enables large and complex application to continuously scale and evolve.
 
-## Architecture Components
+## Part II: Architecture Blocks
 
 ### [Back-pressure](/back-pressure.html)
 
@@ -25,6 +60,22 @@ Applying back-pressure is one effective technique to handle high-load. We tend t
 ### [Container](/container.html)
 
 A container is merely an OS process, except that it's being isolated, secured, and limited. All values added to the process make the container the dominant technology in the cloud era.
+
+#### [Container and CGroups](/container-and-cgroups.html)
+
+CGroups is a Kernel feature that organizes processes into hierarchical groups to limit and monitor their system usage such as CPU, memory, disk, network and so on.
+
+#### [Container and Namespace](/container-and-namespace.html)
+
+One major use case of the namespace is to isolate processes belonging to a container from other containers or the system namespace.
+
+#### [Container and NSEnter](/container-and-nsenter.html)
+
+NSEnter is a utility enters the namespaces of one or more other processes and then executes the specified program. In other words, we jump to the inner side of the namespace.
+
+#### [Container and UnionFS](/container-and-unionfs.html)
+
+Union File System or UnionFS variants such as AUFS, btrfs, vfs, and devicemapper are the file system that used by most container engines.  It allows files and directories of separate file systems overlaid one by one, forming a final single coherent file system.
 
 ### [Circuit Breaker](/circuit-breaker.html)
 
@@ -109,49 +160,13 @@ It's impossible to achieve both goals without changing the execution model, to k
 
 There are at least three solutions: slicing jobs, pre-executing jobs, post-executing jobs.
 
-## Architecture Traits
+## Part III: Architecture Examples
 
-### [Availability](/availability.html)
-
-Availability measures the percentage of the time that the system is functional and working. It has a very simple formula:
-
-```
-   uptime
-------------  x 100%
- total time
-```
-
-The availability clearly defines how well the system succeeds providing services to the customers. Improving the availability even a little bit needs a lot of men and efforts.
-
-### [Maintainability](/maintainability.md)
-
-It's not surprising that more people are hired for maintaining a legacy system, instead of building from scratch. Improving the maintainability of a system reduces the cost and hence it's an over-going thing that most companies are thriving to achieve.
-
-There is no easy way to measure the maintainability of a system, though we can take a lot of actions to make it simpler, make the life of operations easier, and make it easier to extend and grow.
-
-### [Reliability](/reliability.html)
-
-Reliability defines if the system continuous to work correctly.  To provide a reliable service, the system should be fault-tolerant, or resilient.
-
-Providing a reliable service requires not to just do everything that keeps system available, but also introducing more thorough validations and reviews. A lot of engineering practises makes the service more reliable, for example, code review, continuous integration, security review, health checking, alerting, etc. By leveraging the monitoring & alerting system, we can reduce the time that system is deviated from spec. If necessary, degrade the surrounding features and let the service process only critical business logics.
-
-### [Scalability](/scalability.html)
-
-There are two ways of scaling.
-
-* Vertical scaling, or scaling up, by using more powerful machines with faster CPU, higher memory, and larger disk space.
-* Horizontal scaling, or scaling out, by adding more machines into a cluster. The performance of the cluster is the summary of all machines and the network in-between.
-
-Moore's law has reached the end, meaning the limit of vertical scaling is out there.
-As a result, if you want your system continuously grow, do horizontal scale!
-
-## Architecture In The Air
-
-### [SQLAlchemy](/the-architecture-of-sqlalchemy.html)
+### [SQLAlchemy](/concrete-architecture/sqlalchemy.html)
 
 SQLAlchemy might be the best ORM software in the Python world regardless of your taste. Though you need to learn several fundamental concepts, it's still easy to use. If you're writing a Web application and needs to manipulate data with databases, SQLAlchemy is always a strong candidate.
 
-### [APScheduler](/apscheduler.html)
+### [APScheduler](/concrete-architecture/apscheduler.html)
 
 APScheduler is a job scheduling framework that executes code either one-off or periodically. People often integrate it into an existing Python application for running interval jobs.
 

@@ -32,24 +32,6 @@ Executing synchronously describes the sequence of code execution in one-by-one o
 
 Executing asynchronously refers to as submitting a task to a runner, and then immediately running next task without knowing the result of previous task. The submitted task will be completed or aborted at a certain time later.
 
-## Container
-
-### [Container and CGroups](/container-and-cgroups.html)
-
-CGroups is a Kernel feature that organizes processes into hierarchical groups to limit and monitor their system usage such as CPU, memory, disk, network and so on.
-
-### [Container and Namespace](/container-and-namespace.html)
-
-One major use case of the namespace is to isolate processes belonging to a container from other containers or the system namespace.
-
-### [Container and NSEnter](/container-and-nsenter.html)
-
-NSEnter is a utility enters the namespaces of one or more other processes and then executes the specified program. In other words, we jump to the inner side of the namespace.
-
-### [Container and UnionFS](/container-and-unionfs.html)
-
-Union File System or UnionFS variants such as AUFS, btrfs, vfs, and devicemapper are the file system that used by most container engines.  It allows files and directories of separate file systems overlaid one by one, forming a final single coherent file system.
-
 ## [Coroutine](/coroutine.html)
 
 Coroutines implement multi-tasking by consuming less resource. The downside is that it introduces yield / resume into your code. If thread or process cannot meet your multi-tasking requirements, try coroutine, although it also means rewrite you application very likely.

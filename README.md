@@ -20,11 +20,11 @@ And thanks for being my AWESOME reader!
 
 Table of Content
 
+* [Concrete Architecture](/category/architecture.md)
+* [Techshack Updates](/category/techshack.md)
+* [Elegant Utilities](/category/utility.md)
 * [Algorithms](/category/algorithm.md)
-* [Architecture](/category/architecture.md)
 * [Programming](/category/programming.md)
-* [Utilities](/category/utility.md)
-* [Techshack](/category/techshack.md)
 * [Changelog](/changelog.md)
 
 ## FAQ
