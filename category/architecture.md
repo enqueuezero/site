@@ -1,8 +1,8 @@
 ---
-title: Architecture
+title: Concrete Architecture
 ---
 
-# Architecture
+# Concrete Architecture
 
 ## Architecture Paradigms
 
@@ -109,17 +109,7 @@ It's impossible to achieve both goals without changing the execution model, to k
 
 There are at least three solutions: slicing jobs, pre-executing jobs, post-executing jobs.
 
-## Software-wise
-
-### [The Architecture of SQLAlchemy](/the-architecture-of-sqlalchemy.html)
-
-SQLAlchemy might be the best ORM software in the Python world regardless of your taste. Though you need to learn several fundamental concepts, it's still easy to use. If you're writing a Web application and needs to manipulate data with databases, SQLAlchemy is always a strong candidate.
-
-### [The Architecture of APScheduler](/apscheduler.html)
-
-APScheduler is a job scheduling framework that executes code either one-off or periodically. People often integrate it into an existing Python application for running interval jobs.
-
-## Architecture Misc
+## Architecture Traits
 
 ### [Availability](/availability.html)
 
@@ -155,9 +145,16 @@ There are two ways of scaling.
 Moore's law has reached the end, meaning the limit of vertical scaling is out there.
 As a result, if you want your system continuously grow, do horizontal scale!
 
+## Architecture In The Air
 
-## Real-world Architecture
+### [SQLAlchemy](/the-architecture-of-sqlalchemy.html)
 
-### [Airbnb Architecture](/airbnb-architecture.html)
+SQLAlchemy might be the best ORM software in the Python world regardless of your taste. Though you need to learn several fundamental concepts, it's still easy to use. If you're writing a Web application and needs to manipulate data with databases, SQLAlchemy is always a strong candidate.
+
+### [APScheduler](/apscheduler.html)
+
+APScheduler is a job scheduling framework that executes code either one-off or periodically. People often integrate it into an existing Python application for running interval jobs.
+
+### [Airbnb](/airbnb-architecture.html)
 
 Airbnb is a website that operates an online marketplace and hospitality service for people to lease or rent short-term lodging. The challenges for the engineering team includes high-availability, quick-scaling, etc.

@@ -217,7 +217,6 @@ You might want to implement one of below challenges as your side project.
 * Simplify the corner cases and make proper strategy and controlling parameters for them.
 * Embed an event system for users so that they can do something on certain occasions.
 
-
 [1]: https://engblog.nextdoor.com/we-don-t-run-cron-jobs-at-nextdoor-6f7f9cc62040
 [2]: https://github.com/agronholm/apscheduler
 [3]: https://apscheduler.readthedocs.io/en/latest/extending.html
