@@ -28,7 +28,7 @@ In this post, we will cover below topics:
 * Gaming server-side application written in Twisted (A Python network framework) can re-create monsters back to the scene every 5 minutes.
 * Run it in AWS and replace Cronjob. [1]
 
-## Terms
+## Concepts
 
 ### Job
 

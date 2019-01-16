@@ -119,15 +119,27 @@ bar: * -> lua("function request(c, p); print(c.request.url); end");
 
 ### Plugins
 
-### Metrics
+Plugins are dynamic linked libraries in the plugin directories, for example, `$cwd/example-plugin.so`. Any file with the suffix `.so` found in the plugin directories will be loaded.
+
+The plugins are not in the core code of skipper. To get a `.so` file, as a plugin developer, you need to use `go build` like below.
+
+```bash
+$ GO111MODULE=on go build -buildmode=plugin -o example.so example.go
+```
 
 ### Data Clients
 
-### Data Clients
+Data clients are for pulling routes from various sources, such as static files, dynamic Kubernetes ingress objects, etc.
 
-### Ingress Controller
-
-### Opentracing API
+```mermaid
+graph TD
+  A[Silvester] -->|Get money| B(Go shopping)
+  B --> C{Let me think}
+  C -->|One| D[Laptop]
+  C -->|Two| E[iPhone]
+  C -->|Three| F[Car]
+  C -->|Four| F[Mac]
+```
 
 ## Layered Architecture
 
