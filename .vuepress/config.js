@@ -11,6 +11,13 @@ module.exports = {
       '/changelog.html': ['', 'changelog'],
     }
   },
+  markdown: {
+    // options for markdown-it-anchor
+    anchor: { permalink: true },
+    extendMarkdown: (md) => {
+      // TOOD: integrate mermaid
+    }
+  },
   plugins: [
     [
       '@vuepress/plugin-search', {
