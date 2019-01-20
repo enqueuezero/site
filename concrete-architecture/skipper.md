@@ -36,11 +36,17 @@ With the HTTP proxy software running,
 3. Afterward, the server sends the response to the proxy.
 4. Finally, the proxy receives the response and forwards back to the client.
 
-```
-         1           2
-CLIENT <---> PROXY <---> SERVER
-         4           3
-```
+<mermaid>
+sequenceDiagram
+    Client->>Proxy: 1. send request
+    activate Proxy
+    Proxy->>Server: 2. forward request
+    activate Server
+    Server->>Proxy: 3. send response
+    deactivate Server
+    Proxy->>Client: 4. forward response
+    deactivate Proxy
+</mermaid>
 
 ### Route
 
@@ -90,7 +96,17 @@ Except host, method, and path, predicates can also match headers, cookies, time 
 
 Filters are tools in a route for modifying the request and the response.
 
-For example, below route has a filter adding a header to the request before proxying to the backend HTTP.
+
+For example, sometimes we want to add a header to the HTTP request.
+
+<mermaid>
+graph LR
+    A["-X GET https://enqueuezero.com"]
+    B("-X GET https://enqueuezero.com -H'X-Routed-By: skipper'")
+    A-->B
+</mermaid>
+
+Below route has a filter adding a header to the request before proxying to the backend HTTP.
 
 ```
 foo: * -> setRequestHeader("X-Routed-By", "skipper") -> "https://enqueuezero.com";
@@ -119,38 +135,69 @@ bar: * -> lua("function request(c, p); print(c.request.url); end");
 
 ### Plugins
 
-Plugins are dynamic linked libraries in the plugin directories, for example, `$cwd/example-plugin.so`. Any file with the suffix `.so` found in the plugin directories will be loaded.
+Plugins are dynamic linked libraries in the plugin directories, for example, `$cwd/plugins/plugin.so`. Any file with the suffix `.so` found in the plugin directories will be loaded.
 
-The plugins are not in the core code of skipper. To get a `.so` file, as a plugin developer, you need to use `go build` like below.
+<mermaid>
+sequenceDiagram
+   src ->> .so: $ go build -o plugin.so
+   .so ->> ./plugins : $ mv plugin.so ./plugins
+   ./plugins ->> runtime: `$ skipper` finds and loads .so
+</mermaid>
+
+The implementations of plugins are not in the core codebase of skipper. To get a `.so` file, as a plugin developer, you need to use `go build` like below.
 
 ```bash
 $ GO111MODULE=on go build -buildmode=plugin -o example.so example.go
+$ mv example.so /path/to/skipper/plugins/example.so
+$ skipper
+[APP]INFO[0000] found plugin example at plugins/example.so
+[APP]INFO[0000] loaded plugin example from plugins/example.so
 ```
 
 ### Data Clients
 
-Data clients are for pulling routes from various sources, such as static files, dynamic Kubernetes ingress objects, etc.
+Data clients pull routes from various sources, such as static files, dynamic Kubernetes ingress objects, etc.
 
-```mermaid
-graph TD
-  A[Silvester] -->|Get money| B(Go shopping)
-  B --> C{Let me think}
-  C -->|One| D[Laptop]
-  C -->|Two| E[iPhone]
-  C -->|Three| F[Car]
-  C -->|Four| F[Mac]
-```
+<mermaid>
+graph TB
+    dataclient --> route-files;
+    dataclient --> route-strings;
+    dataclient --> kubernetes-ingress;
+    dataclient --> etcd;
+    dataclient --> inkeeper;
+</mermaid>
 
 ## Layered Architecture
 
+Skipper's internal package are organized in layers. It has three major layers: proxy, skipper, and dataclient.
+The upstream layer reads data from the downstream layers.
+
+<mermaid>
+graph TB
+    proxy --> skipper;
+    skipper --> dataclient;
+</mermaid>
+
+* The proxy layer handles requests based on the routes populated by downstream layer skipper.
+* The skipper layer pulls routes from different sources in dataclient layer.
+* The dataclient layer read routes from either static files or network remote calls.
+
+## Route Matching
+
 ## Route Processing
 
-## Request Evaluation
+For each incoming request, skipper routes them following below rules.
 
-https://godoc.org/github.com/zalando/skipper/routing#hdr-Request_Evaluation
-
-## Matching Conditions
-
-https://godoc.org/github.com/zalando/skipper/routing#hdr-Matching_Conditions
+* `proxy` create a request context.
+* `proxy` looks up from the routing table by matching predicates.
+* `proxy` found the route.
+* `proxy` checks rate limit and circuit breaker.
+* `proxy` applies all filters to the request.
+* `proxy` forwards the request to a backend, `<shunt>`, or `<loopback>`.
+* `proxy` retries if the forwarding encounters a network error.
+* `proxy` waits from backend processing.
+* `proxy` received backend response.
+* `proxy` applies all filters to the response.
+* `proxy` forwards the response back to the client.
 
 ## Conclusions
