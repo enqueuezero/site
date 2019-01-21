@@ -182,8 +182,6 @@ graph TB
 * The skipper layer pulls routes from different sources in dataclient layer.
 * The dataclient layer read routes from either static files or network remote calls.
 
-## Route Matching
-
 ## Route Processing
 
 For each incoming request, skipper routes them following below rules.
@@ -201,3 +199,6 @@ For each incoming request, skipper routes them following below rules.
 * `proxy` forwards the response back to the client.
 
 ## Conclusions
+
+Skipper is an HTTP router and reverse proxy for service composition. The internal modules are well-decoupled and extendable.
+It makes adding new data sources and new routing strategies without loosing performance.
