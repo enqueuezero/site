@@ -11,10 +11,12 @@ title: What's New?
 ## 2019 January
 
 * Happy New Year! :)
-* Added Techshack Weekly Updates. [2019-01](/techshack.weekly/2019-01.html), [2019-02](/techshack.weekly/2019-02.html)
+* Added Techshack Weekly Updates. [2019-01](/techshack.weekly/2019-01.html), [2019-02](/techshack.weekly/2019-02.html), [2019-03](/techshack.weekly/2019-03.html)
 * Added tool: [autojump](/utilities/autojump.html).
 * Added algorithm: [MurmurHash](/algorithms/murmur-hash.html).
 * Added [Kubernetes In a Nutshell](/kubernetes-in-a-nutshell.html). [Reddit discussion here](https://www.reddit.com/r/kubernetes/comments/abgzz5/kubernetes_in_a_nutshell/). The Page Views has reached 2000+.
+* Added [Skipper](/concrete-architecture/skipper.html)
+* Re-organize the architecture to "Concrete Architecture", and split it into three parts: architecture blocks, architecture styles and architecture examples.
 
 Some kudos:
 

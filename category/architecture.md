@@ -173,3 +173,8 @@ APScheduler is a job scheduling framework that executes code either one-off or p
 ### [Airbnb](/airbnb-architecture.html)
 
 Airbnb is a website that operates an online marketplace and hospitality service for people to lease or rent short-term lodging. The challenges for the engineering team includes high-availability, quick-scaling, etc.
+
+### [Skipper](/concrete-architecture/skipper.html)
+
+Skipper is an HTTP router and reverse proxy for service composition. The internal modules are well-decoupled and extendable.
+It makes adding new data sources and new routing strategies without losing performance.
