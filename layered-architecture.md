@@ -14,6 +14,8 @@ date: 2018-09-10
 
 The layered architecture has several other names, such as [onion architecture], [the clean architecture], n-tier architecture, multi-layered architecture, multi-tier architecture, etc. It requires the components of the application organized layer by layer, in which only the upstream layer can make calls to the downstream layers.
 
+It's the de-facto architecture style of modern web applications. Layered architecture matches to the well-known "single responsibility principle".
+
 ## Concepts
 
 ### Layer
@@ -110,8 +112,11 @@ In general, no name in the upper layer is allowed to appear in the lower layer, 
 * Pros
     * Separate of concern. We only need to consider a smaller scope in each layer, which makes the problem much more straightforward.
     * More testable. As a result, each layer has less case to test and thus more testable.
+    * Isolation. Changes in one layer will not affect downstream layers.
+    * Changeability. If you're not satisfy with the implementation of one layer, you can replace it with another layer, as long as they implements the same interface.
 * Cons
     * Management cost if there are too many layers.
+    * The performance is getting slower as more and more layers added.
     * Leaky abstraction can disturb your layered intent.
 
 ## Conclusion
@@ -123,3 +128,7 @@ In layered architecture, a layer serves the layer above it and is served by the 
 [the clean architecture]: https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html
 [leaky abstraction]: https://en.wikipedia.org/wiki/Leaky_abstraction
 
+## References
+
+* [Software Architecture Patterns by Mark Richards](https://www.safaribooksonline.com/library/view/software-architecture-patterns/9781491971437/)
+* [Multitier_architecture](https://en.wikipedia.org/wiki/Multitier_architecture)
