@@ -111,8 +111,7 @@ In general, no name in the upper layer is allowed to appear in the lower layer, 
     * Separate of concern. We only need to consider a smaller scope in each layer, which makes the problem much more straightforward.
     * More testable. As a result, each layer has less case to test and thus more testable.
 * Cons
-    * Bad separation can make the original problem more complicated.
-    * Uni-directional from top to bottom sometimes needs you to make some workaround.
+    * Management cost if there are too many layers.
     * Leaky abstraction can disturb your layered intent.
 
 ## Conclusion
