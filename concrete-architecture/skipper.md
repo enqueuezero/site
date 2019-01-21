@@ -11,8 +11,8 @@ title: Skipper
 Skipper is an HTTP router and reverse proxy software written in Golang.
 It has two goals:
 
-* To handle huge amount of concurrent HTTP routes.
-* To provide descent ways of HTTP routes configurations.
+* To handle a large amount of concurrent HTTP routes.
+* To provide decent ways of HTTP routes configurations.
 
 ## Use
 
@@ -50,7 +50,7 @@ sequenceDiagram
 
 ### Route
 
-In networking, a route is a path for traffic in a network, or between or cross multiple networks.  In Skipper, the route is an entry in a table, which defines where should the request be proxied to.
+In networking, a route is a path for traffic in a network, or between or across multiple networks.  In Skipper, the route is an entry in a table, which defines where should the request be proxied to.
 
 A route consists of below information.
 
@@ -126,7 +126,7 @@ function request(ctx, params)
 end
 ```
 
-You can either load a file in the file system or use inline lua code in the routes.
+You can either load a file in the file system or use inline Lua code in the routes.
 
 ```
 foo: * -> lua("/path/to/script.lua") -> "https://enqueuezero.com";
@@ -135,7 +135,7 @@ bar: * -> lua("function request(c, p); print(c.request.url); end");
 
 ### Plugins
 
-Plugins are dynamic linked libraries in the plugin directories, for example, `$cwd/plugins/plugin.so`. Any file with the suffix `.so` found in the plugin directories will be loaded.
+Plugins are dynamically linked libraries in the plugin directories, for example, `$cwd/plugins/plugin.so`. Any file with the suffix `.so` found in the plugin directories will be loaded.
 
 <mermaid>
 sequenceDiagram
@@ -169,7 +169,7 @@ graph TB
 
 ## Layered Architecture
 
-Skipper's internal package are organized in layers. It has three major layers: proxy, skipper, and dataclient.
+Skipper's internal package are organized in layers. It has three layers: proxy, skipper, and dataclient.
 The upstream layer reads data from the downstream layers.
 
 <mermaid>
@@ -201,4 +201,5 @@ For each incoming request, skipper routes them following below rules.
 ## Conclusions
 
 Skipper is an HTTP router and reverse proxy for service composition. The internal modules are well-decoupled and extendable.
-It makes adding new data sources and new routing strategies without loosing performance.
+It makes adding new data sources and new routing strategies without losing performance.
+
