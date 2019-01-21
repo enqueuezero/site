@@ -12,58 +12,112 @@ date: 2018-09-10
 
 ## Overview
 
-The layered architecture has several other names, such as [onion architecture], [the clean architecture], etc. The basic theory is, you organize the components layer by layer in which only the upstream layer can make calls to the downstream layers.
+The layered architecture has several other names, such as [onion architecture], [the clean architecture], n-tier architecture, multi-layered architecture, multi-tier architecture, etc. It requires the components of the application organized layer by layer, in which only the upstream layer can make calls to the downstream layers.
 
-Most systems are designed in the layered architecture.
+## Concepts
+
+### Layer
+
+Layer, or plane, is a logical structuring of components that is deployed or organized in the same place.
+
+Tier refers to a physical structuring of components, though people often interchange layer or tier in software architecture.
 
 ## Use
 
-* MVC, model-view-controller, which I assume most website you see adopts this pattern.
-    * model layer
-    * view layer
-    * controller layer
-* OSI
-    * physical layer
-    * data link layer
-    * network layer
-    * transport layer
-    * session layer
-    * presentation layer
-    * application layer
-* TCP/IP
-    * link layer
-    * internet layer
-    * transport layer
-    * application layer
-* OS
-    * kernel layer
-    * user-space layer
+### MVC, or Model View Controller.
+
+* model layer
+* view layer
+* controller layer
+
+### OSI Model
+
+* physical layer
+* data link layer
+* network layer
+* transport layer
+* session layer
+* presentation layer
+* application layer
+
+### TCP/IP
+* link layer
+* internet layer
+* transport layer
+* application layer
+
+### Operating Systems
+
+* kernel layer
+* user-space layer
 
 ### Uni-directional Dependency
 
-In layered architecture, nothing in the lower layer can make calls to the upper layer. However, cross-layer up-down calls or equivalent-layer calls are allowed.
+In layered architecture, nothing in the downstream layer can make calls to the upstream layer. However, it's okay to make calls in the same layer or across multiple layers from upstream to downstream.
 
-More strictly, no name in the upper layer is allowed to appear in the lower layer, which includes variables, functions, classes, or even comment. However, error propagation is a special case.
+<mermaid>
+graph TB
+    l0[Layer 0]
+    l1[Layer 1]
+    lm[Layer ...]
+    lN-1[Layer N-1]
+    lN[Layer N]
+    lN --> lN-1
+    lN-1 --> lm
+    lm --> l1
+    l1 --> l0
+</mermaid>
 
-Below are some examples of the directions of the calls.
+However, error propagation is a special case. If there is an error in an layer, then it should propagate it to the upstream. The upstream layer decides if it can handle the error. If so, then the error stops propagation to the upper layers, otherwise, the error keeps propagation to the top layer, usually something showing in the user interface.
 
-![Uni-directional Examples](/static/images/layered-architecture-uni-directional.png)
+<mermaid>
+graph BT
+    l0[Layer 0]
+    l1[Layer 1]
+    lm[Layer ...]
+    lN-1[Layer N-1]
+    lN[Layer N]
+    l0 --error--> l1
+    l1 --error--> lm
+    lm --error--> lN-1
+    lN-1 --error--> lN
+</mermaid>
 
-Breaking such rule causes [leaky abstraction], meaning lower layer failed to hide details from the upper layer. 
 
-## Advantage and Disadvantage
+If a new feature comes in, and it's something that cannot fit into any existing layers, you can add a new layer into the big picture.
 
-* Advantage
+
+<mermaid>
+graph TB
+    l0[Layer 0]
+    l1[Layer 1]
+    lm[Layer ...]
+    lNew[New Layer]
+    lN-1[Layer N-1]
+    lN[Layer N]
+    lN --> lN-1
+    lN --> lNew
+    lNew --> lN-1
+    lN-1 --> lm
+    lm --> l1
+    l1 --> l0
+</mermaid>
+
+In general, no name in the upper layer is allowed to appear in the lower layer, which includes variables, functions, classes, or even comment. Breaking such rule causes [leaky abstraction], meaning lower layer failed to hide details from the upper layer.
+
+## Pros and Cons
+
+* Pros
     * Separate of concern. We only need to consider a smaller scope in each layer, which makes the problem much more straightforward.
     * More testable. As a result, each layer has less case to test and thus more testable.
-* Disadvantage
+* Cons
     * Bad separation can make the original problem more complicated.
     * Uni-directional from top to bottom sometimes needs you to make some workaround.
     * Leaky abstraction can disturb your layered intent.
 
 ## Conclusion
 
-In layered architecture, a layer serves the layer above it and is served by the layer below it. [1] The data flow is simple and easy to trace by making call from top to bottom in a single direction. Such architecture leads to a clean and elegant design.
+In layered architecture, a layer serves the layer above it and is served by the layer below it. [1] The data flow is simple and easy to trace by always making calls from top to bottom in a single direction. Such architecture leads to a clean and elegant design.
 
 [1]: https://en.wikipedia.org/wiki/OSI_model
 [onion architecture]: http://blog.thedigitalgroup.com/understanding-onion-architecture
