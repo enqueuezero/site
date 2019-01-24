@@ -163,13 +163,76 @@ We set the `count` to 2 for creating the subnet twice, one in the first AZ, and 
 
 <<< @/hands-on-cloud-native/src/aws/private-subnet.tf
 
-The public subnet is very similar to the private. We only change the `cidr_block` to another namespace. In public subnet, it's `10.0.X.0/24`, while in subnet, it's `10.1.X.0/24`.
+The public subnet is very similar to the private. We only change the `cidr_block` to another namespace. In public subnet, it's `10.0.X.0/24`, while in subnet, it's `10.1.X.0/24`. The two CIDR blocks do not necessarily need to be the exact two given example. It depends on your network topology.
 
 <<< @/hands-on-cloud-native/src/aws/public-subnet.tf
 
+Next, we're going to create an Internet gateway for the public subnet. The internet gateway has to be within the created VPC.
+
+<<< @/hands-on-cloud-native/src/aws/igtw.tf
+
+We still need to create a route table for passing traffic through the internet gateway. The only route we add to the table is to allow all traffic (`0.0.0.0/0`) going through the created internet gateway.
+
+<<< @/hands-on-cloud-native/src/aws/public-subnet-route-table.tf
+
+The last thing for the route table is to attach it to the public subnet. In this way, the subnet will have a route table that allow traffic going through the internet gateway with blocking. Note that we need to associate the route table to the public subnet across all of the availability zones.
+
+<<< @/hands-on-cloud-native/src/aws/public-subnet-route-table-assoc.tf
+
+## Setup Security Policies for EKS Master
+
+To allow EKS service managing or retrieving data from other AWS resources,  we need to put some policies on the IAM role. The IAM role will be used by the EKS Master.
+
+<<< @/hands-on-cloud-native/src/aws/cluster-role.tf
+
+Other than IAM role policies, we also need to create a security group for restricting network access.
+
+<<< @/hands-on-cloud-native/src/aws/cluster-sg.tf
+
 ## Setup EKS Master
 
+With above AWS resources allocated, now we're ready to bring up an EKS Master. The role for performing cluster admin work is `aws_iam_role.cluster` we created above. The security group for the cluster is `aws_security_group.cluster`. We let the subnets for the cluster to be both the public subnet and private subnet.
+
+<<< @/hands-on-cloud-native/src/aws/cluster.tf
+
+## Setup Security Policies for Worker Nodes
+
+The cluster is setup for now although it can schedule any work, as no node is available. Next, we're going to launch EC2 as the worker nodes for the EKS cluster.
+
+We start from defining IAM role and policies for worker nodes.
+
+<<< @/hands-on-cloud-native/src/aws/worker-role.tf
+
+Next, we need to create the IAM instance profile, which must be used to tag the IAM role to the EC2 instance.
+
+<<< @/hands-on-cloud-native/src/aws/worker-profile.tf
+
+Then, we create the security group for the worker node.
+
+<<< @/hands-on-cloud-native/src/aws/worker-sg.tf
+
+The first rule we set to the worker node security group is to allow worker node communicating with each other. In this case, both the source and the target should point to worker node security group itself.
+
+<<< @/hands-on-cloud-native/src/aws/worker-node-self-sgrule.tf
+
+The second rule we set to the worker node security group is to allow kubelets and kube-proxy communicating with the Kubernetes control plane. In this case, the source is the worker node security group, and the target is the cluster security group.
+
+<<< @/hands-on-cloud-native/src/aws/worker-node-ingress-cluster.tf
+
+The third rule we set to the worker node security group is to allow worker node communicating with the EKS master cluster.
+
+<<< @/hands-on-cloud-native/src/aws/worker-node-apimaster-sgrule.tf
+
 ## Setup Worker Nodes Fleet
+
+With the security resources allocated, we're ready to bring EC2 instances up and join the EKS cluster.
+
+First, let's select a latest Amazon Machine Image (AMI) as the image for the EC2 instances. It's good to lock the version to a stable one.
+
+<<< @/hands-on-cloud-native/src/aws/ami.tf
+
+Next, we create a launch configuration for the EC2 instance.
+
 
 ## References
 
