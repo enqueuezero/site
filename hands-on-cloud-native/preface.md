@@ -2,6 +2,8 @@
 title: Preface
 ---
 
+# Preface
+
 ## The Cloud Native Wave
 
 Since 2015, Cloud Native Computing Foundation has brought the concept Cloud Native into the community and made it one of the hottest topics in software development. The goal of Cloud Native is to advance the state-of-the-art for building Cloud Native applications and services, allowing developers to take full advantage of existing and to-be-developed open source technologies.
