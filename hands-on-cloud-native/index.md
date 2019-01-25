@@ -11,3 +11,4 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
 ## Table of Content
 
 * [Preface](/hands-on-cloud-native/preface.html)
+* [Chapter 1. The Landscape of Cloud Native Application](/hands-on-cloud-native/the-landscape.html)

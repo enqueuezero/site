@@ -19,7 +19,7 @@ The application running in the cloud computing platform is not equal to Cloud Na
 
 <!-- TODO -->
 
-To summarize, Cloud Native has below pros:
+To summarize, the pros of Cloud Native are:
 
 * Cost less, but gain more. Allocate sufficient cloud resources just as you need.
 * In favor of microservices architecture.
@@ -36,6 +36,15 @@ To summarize, Cloud Native has below pros:
 :::tip
 There is no free lunch (NFL).
 :::
+
+<!-- TODO -->
+
+To summarize, Cloud Native Application is facing below challenges:
+
+* The data persistence is hard.
+* Thinking the full landscape from organization perspective is hard.
+* Designing a well-decoupled microservices is hard.
+* Bring the cloud into local development is hard.
 
 ## References
 
