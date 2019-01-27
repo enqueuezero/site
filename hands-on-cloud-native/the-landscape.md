@@ -42,9 +42,9 @@ There is no free lunch (NFL).
 To summarize, Cloud Native Application is facing below challenges:
 
 * The data persistence is hard.
-* Thinking the full landscape from organization perspective is hard.
 * Designing a well-decoupled microservices is hard.
 * Bring the cloud into local development is hard.
+* Maintaining dependencies is hard.
 
 ## References
 

@@ -1,0 +1,27 @@
+.cancel-button {
+  cursor: pointer;
+  user-select: none;
+  position: absolute;
+  top: 0;
+  right: -0.5em;
+  z-index: 1;
+  color: #9C9C97;
+  background: #fff;
+  font-family: Tahoma,sans;
+  line-height: 1rem;
+  margin-top: -.7em;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 2em;
+  font-size: 1rem;
+  text-align: center;
+  font-family: Tahoma,sans;
+}
+
+.cancel-button:hover {
+  background: #ccc;
+  color: #fff;
+  transition: background-color 0.5s ease,
+              color 0.5s ease;
+}
