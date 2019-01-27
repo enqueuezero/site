@@ -12,3 +12,6 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
 
 * [Preface](/hands-on-cloud-native/preface.html)
 * [Chapter 1. The Landscape of Cloud Native Application](/hands-on-cloud-native/the-landscape.html)
+* [Chapter 2. Create Front-End Application by React](/hands-on-cloud-native/react.html)
+* [Chapter 6. Terraform Setup](/hands-on-cloud-native/terraform-setup.html)
+* [Chapter 10. Create AWS EKS Cluster by Terraform](/hands-on-cloud-native/aws-eks.html)
