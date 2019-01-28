@@ -1,5 +1,6 @@
 ---
 title: Continuous Integration
+sidebar: auto
 ---
 
 # Continuous Integration
@@ -218,7 +219,9 @@ $ git tag v0.2.4
 $ git push origin v0.2.4
 ```
 
-The newly triggered build should run all tests and then push a docker image to the docker registry.
+The newly triggered build should run all tests and then push a docker image to the docker registry. After the build, the docker registry should create a page like <https://hub.docker.com/r/soasme/tomato-coffee>.
+
+![docker hub](/static/images/hands-on-cloud-native-ci-docker-hub.png)
 
 ## Summary
 
