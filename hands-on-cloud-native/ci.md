@@ -185,11 +185,11 @@ Add file `scripts/docker-push`.
 ```bash
 #!/bin/bash
 
-set -x
+set -e
 
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-docker build -t $DOCKER_IMAGE_NAME:latest .;
+docker build -f ./dockerfiles/api.dockerfile -t $DOCKER_IMAGE_NAME:latest .;
 
 if [ ! -z "$TRAVIS_TAG" ]; then
     docker tag $DOCKER_IMAGE_NAME:latest $DOCKER_IMAGE_NAME:$TRAVIS_TAG;

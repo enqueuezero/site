@@ -5,7 +5,6 @@ sidebar: auto
 
 # Create Amazon EKS Cluster By Terraform
 
-
 In this chapter, we'll build a Kubernetes cluster that is ready for deploying our applications.
 
 ## Networking Concepts
