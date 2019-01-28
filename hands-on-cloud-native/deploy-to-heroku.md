@@ -28,6 +28,14 @@ graph TB
     dynos --> health-check
 </mermaid>
 
+Concepts:
+
+* Applications consist of your source code, a description of any dependencies, and a Procfile.
+* Buildpacks lie behind the slug compilation process. Buildpacks take your application, its dependencies, and the language runtime, and produce slugs.
+* Dynos are isolated, virtualized Unix containers, that provide the environment required to run an application.
+* Config vars contain customizable configuration data that can be changed independently of your source code. The configuration is exposed to a running application via environment variables.
+* Add-ons are third party, specialized, value-added cloud services that can be easily attached to an application, extending its functionality.
+
 ## Deploy to Heroku
 
 Create `Procfile` in the root directory of the project.
@@ -171,3 +179,5 @@ Heroku, www.heroku.com, <https://www.heroku.com/>
 Heroku DevCenter, devcenter.heroku.com, <https://devcenter.heroku.com/>
 
 Building Docker Images with heroku.yml, devcenter.heroku.com, <https://devcenter.heroku.com/articles/build-docker-images-heroku-yml>
+
+Container Registry & Runtime (Docker Deploys), devcenter.heroku.com, <https://devcenter.heroku.com/articles/container-registry-and-runtime>
