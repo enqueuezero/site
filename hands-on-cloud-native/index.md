@@ -15,4 +15,5 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
 * [Chapter 2. Create Front-End Application by React](/hands-on-cloud-native/react.html)
 * [Chapter 6. Terraform Setup](/hands-on-cloud-native/terraform-setup.html)
 * [Chapter 7. Deploy to Heroku](/hands-on-cloud-native/deploy-to-heroku.html)
+* [Chapter 8. Continuous Integration by Travis CI](/hands-on-cloud-native/ci.html)
 * [Chapter 10. Create AWS EKS Cluster by Terraform](/hands-on-cloud-native/aws-eks.html)
