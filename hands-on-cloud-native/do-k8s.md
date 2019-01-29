@@ -113,6 +113,7 @@ provider "kubernetes" {
   client_certificate = "${base64decode(digitalocean_kubernetes_cluster.cluster.kube_config.0.client_certificate)}"
   client_key = "${base64decode(digitalocean_kubernetes_cluster.cluster.kube_config.0.client_key)}"
   cluster_ca_certificate = "${base64decode(digitalocean_kubernetes_cluster.cluster.kube_config.0.cluster_ca_certificate)}"
+}
 ```
 
 ### Create a Namespace
@@ -145,6 +146,24 @@ kubernetes_namespace.prod: Creation complete after 1s (ID: tomato-coffee)
 Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 ```
 
+### Export Kubeconfig
+
+Add a local_file resource:
+
+```
+resource "local_file" "kubeconfig" {
+  content = "${digitalocean_kubernetes_cluster.cluster.kube_config.0.raw_config}"
+  filename = "${path.module}/.kubeconfig"
+}
+```
+
+```
+kubectl --kubeconfig .kubeconfig get nodes
+NAME                       STATUS     ROLES    AGE   VERSION
+xenodochial-meitner-8lq3   Ready      <none>   34h   v1.13.1
+xenodochial-meitner-8lq8   Ready      <none>   34h   v1.13.1
+xenodochial-meitner-8lu1   Ready      <none>   34h   v1.13.1
+```
 ## References
 
 Managing Kubernetes Just Got a Lot Simpler, blog.digitalocean.com, <https://blog.digitalocean.com/digitalocean-releases-k8s-as-a-service/>
