@@ -164,6 +164,27 @@ xenodochial-meitner-8lq3   Ready      <none>   34h   v1.13.1
 xenodochial-meitner-8lq8   Ready      <none>   34h   v1.13.1
 xenodochial-meitner-8lu1   Ready      <none>   34h   v1.13.1
 ```
+
+### Install Helm
+
+```
+$ brew install kubernetes-helm
+$ KUBECONFIG=.kubeconfig helm init --client-only
+```
+
+If you saw the version is incompatible, try upgrading the server-side.
+
+```bash
+$ KUBECONFIG=.kubeconfig helm list
+Error: incompatible versions client[v2.12.3] server[v2.9.0]
+
+$ KUBECONFIG=.kubeconfig helm init --upgrade
+$HELM_HOME has been configured at /Users/soasme/.helm.
+
+Tiller (the Helm server-side component) has been upgraded to the current version.
+Happy Helming!
+```
+
 ## References
 
 Managing Kubernetes Just Got a Lot Simpler, blog.digitalocean.com, <https://blog.digitalocean.com/digitalocean-releases-k8s-as-a-service/>

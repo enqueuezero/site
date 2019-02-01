@@ -36,6 +36,7 @@ Rather than implementing everything from scratch, we will be using production bu
 * Kubernetes (<https://kubernetes.io/>) is the de-facto production-grade container orchestration.
   * minikube (<https://github.com/kubernetes/minikube>) is a tool for running Kubernetes locally.
 * Terraform (<https://www.terraform.io/>) is Infrastructure-as-Code.
+* Helm (<https://helm.sh/>) is the package manager for Kubernetes.
 * Fluentd (<https://www.fluentd.org/>) is an open source data collector for unified logging layer.
 * Prometheus (<https://prometheus.io/>) is an open source monitoring solution for metrics and alerts.
 * Grafana (<https://grafana.com/>) is an open source dashboard application for beautiful analytics and monitoring.
