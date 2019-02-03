@@ -31,11 +31,25 @@ The application running on the cloud computing platform does not necessarily to 
 
 ## Why use Cloud Native Application?
 
+### Cost Less
+
+There are two basic kinds of costs in business, capital expenses and operational expenses, the former of which includes equipment and cloud resources in order to operate the service, and the latter of which includes people and consumable goods. Cloud Native Application reduces the capital expenses as it runs on cheap computing powers and outsources the maintenance of these computing resources to dedicated commercial vendors.
+
+The amount of operational expenses varies depending on which kind of cloud resources are consumed. Function-as-a-service is usually the cheapest, for example, the monthly compute price of AWS Lambda is $0.00001667 per GB-s and the free tier provides 400,000 GB-s. The monthly request price is $0.20 per 1 million requests and the free tier provides 1M requests per month. Platform-as-a-service and Infrastructure-as-a-service usually cost more, but it also brings better performance and finer-grain control. Nonetheless, all these technologies that Cloud Native Application relies on cost less than building a multiple regional data center, not to mention the human resource on maintaining them. More importantly, the cloud resources are provisioned on demands. It means business owners doesn't need to overpay the resources. Moving from capital expenses towards operational expenses creates a smoother cash flow for business operations.
+
+### Dedicated Microservices
+
+### Full Observability
+
+### Resilience
+
+### Scale Out
+
 <!-- TODO -->
 
 To summarize, the pros of Cloud Native are:
 
-* Cost less, but gain more. Allocate sufficient cloud resources just as you need.
+* Cost less. Allocate sufficient cloud resources just as you need.
 * In favor of microservices architecture.
 * Getting full observability on every components in the system.
 * Resilient environments: a Cloud Native application can handle well from failure.
