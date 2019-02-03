@@ -1,4 +1,7 @@
 {
+  "resolutions": {
+    "terser": "3.14.1"
+  },
   "dependencies": {
     "@vuepress/plugin-active-header-links": "^1.0.0-alpha.0",
     "@vuepress/plugin-google-analytics": "^1.0.0-alpha.0",
