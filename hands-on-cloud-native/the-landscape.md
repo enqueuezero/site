@@ -47,6 +47,10 @@ The Cloud Native Application shares the benefits of microservices architecture:
 
 ### Full Observability
 
+Observability is a relatively new tech word but not a new concept. It was originally from the world of engineering and control theory. Observability is a measure of how well internal states of a system can be inferred from knowledge of its external outputs. A Cloud Native Application treats observability as first citizen. Every container can expose its readiness and liveness information to a central metric collecting system. As more containerized workloads added into the microservices architecture, it's essential to provide a full observability to the application to better understand the performance and reliability.
+
+There are three major elements in terms of observability: logs, metrics, and traces. Logs are a verbose representation of event records. Metrics could be counters, gauges, or histograms as time series data. Traces are expansions of user requests across all microservices components. By combining all these information into queries and dashboards, the Cloud Native Application makes operations friendly and fun.
+
 ### Resilience
 
 ### Scale Out
