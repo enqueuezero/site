@@ -6,8 +6,6 @@ sidebar: auto
 # The Landscape of Cloud Native Application
 
 :::tip
-**Learning Objectives**
-
 After reading this chapter, you should be able to:
 
 * Understand the relationship between Cloud Native Application and its underlying technologies.
@@ -36,6 +34,16 @@ There are two basic kinds of costs in business, capital expenses and operational
 The amount of operational expenses varies depending on which kind of cloud resources are consumed. Function-as-a-service is usually the cheapest, for example, the monthly compute price of AWS Lambda is $0.00001667 per GB-s and the free tier provides 400,000 GB-s. The monthly request price is $0.20 per 1 million requests and the free tier provides 1M requests per month. Platform-as-a-service and Infrastructure-as-a-service usually cost more, but it also brings better performance and finer-grain control. Nonetheless, all these technologies that Cloud Native Application relies on cost less than building multiple-regional data centers, not to mention the human resource on maintaining them. More importantly, the cloud resources are provisioned on demands. It means business owners doesn't need to overpay the resources. Moving from capital expenses towards operational expenses creates a smoother cash flow for business operations.
 
 ### Dedicated Microservices
+
+Microservices architecture is an architectural style that runs an application as a fleet of services that are loosely coupled, highly maintainable and testable. The Cloud Native Application is naturally affiliated to microservices architecture.
+
+Typically, A Cloud Native Application can have an ingress that dispatches traffic to frontend microservice. Then, the frontend microservice goes through a service mesh to look up and establish connections to backend microservices for remote procedure control (RPC). The backend microservices can have a chain of services dependencies. Eventually, the data are persisted into storages or databases. What's more, the application can take event sourcing practice by sending messages asynchronously to other microservices.
+
+The Cloud Native Application shares the benefits of microservices architecture:
+
+* It enables continuous integration and continuous delivery for a large and complex application.
+* Each microservice is relatively small and hence has an easy to understand problem domain.
+* 
 
 ### Full Observability
 
