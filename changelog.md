@@ -8,10 +8,15 @@ title: What's New?
 >>> SELECT * from journals order by time desc;
 ```
 
+## 2019 February
+
+* Added Techshack Weekly Updates. [2019-05](/techshack.weekly/2019-05.html).
+* Started writing book "Hands-On Cloud Native Application". [preface](/hands-on-cloud-native/preface.html), [The Landscape](/hands-on-cloud-native/the-landscape.html).
+
 ## 2019 January
 
 * Happy New Year! :)
-* Added Techshack Weekly Updates. [2019-01](/techshack.weekly/2019-01.html), [2019-02](/techshack.weekly/2019-02.html), [2019-03](/techshack.weekly/2019-03.html)
+* Added Techshack Weekly Updates. [2019-01](/techshack.weekly/2019-01.html), [2019-02](/techshack.weekly/2019-02.html), [2019-03](/techshack.weekly/2019-03.html), [2019-04](/techshack.weekly/2019-04.html)
 * Added tool: [autojump](/utilities/autojump.html).
 * Added algorithm: [MurmurHash](/algorithms/murmur-hash.html).
 * Added [Kubernetes In a Nutshell](/kubernetes-in-a-nutshell.html). [Reddit discussion here](https://www.reddit.com/r/kubernetes/comments/abgzz5/kubernetes_in_a_nutshell/). The Page Views has reached 2000+.
