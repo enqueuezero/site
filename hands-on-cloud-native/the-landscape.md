@@ -43,7 +43,7 @@ The Cloud Native Application shares the benefits of microservices architecture:
 
 * It enables continuous integration and continuous delivery for a large and complex application.
 * Each microservice is relatively small and hence has an easy to understand problem domain.
-* 
+* Each team can dedicate to one or several microservices.
 
 ### Full Observability
 
