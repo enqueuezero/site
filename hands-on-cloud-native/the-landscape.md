@@ -85,6 +85,10 @@ There is no free lunch (NFL).
 
 ### Latency
 
+The problem that Cloud Native Application face is latency. Cloud Native Application is usually deployed to standalone microservices across multiple regions. When communicating over distances measured in continent level, the time it takes remote procedure calls is dramatically increased. The Round Trip Time (RTT) to complete any transaction adds up to the call chain.
+
+Data replication and sharding also hits latency problem.
+
 ### Cloud In Development Environment
 
 ### Dependency
