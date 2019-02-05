@@ -53,7 +53,11 @@ There are three major elements in terms of observability: logs, metrics, and tra
 
 ### Resilience
 
-### Scale Out
+Resilience means a system can stay responsive when failure occurs. It applies to both the application and its underlying infrastructure. Cloud Native Application is in nature containerized, replicated, and isolated, so failures are contained within a well-defined boundary, isolating from other components and prevent compromising the system as a whole. Cloud Native Application can be automatically recovered by exposing the monitoring information and the full life cycle of each container to an orchestrator, such as Kubernetes master, which is also high available. By providing isolation and auto recovery, the client of a Cloud Native Application is not bogged down by a portion of system failures.
+
+For example, a Cloud Native Application runs on three nodes. All of a sudden, one of the three nodes crashed due to the disk out of warranty. Though the application is not impacted, as all of the microservices that run on this node has replications on the other two nodes. Later on, the business owner decides to decommission the node and add a new host to the cluster. The system senses it and automatically deploy some replicas of the microservices to the new host. With all these happening, the Cloud Native Application responds to clients without a hitch.
+
+### Scale
 
 <!-- TODO -->
 
@@ -102,5 +106,6 @@ To summarize, Cloud Native Application is facing below challenges:
 
 ## References
 
-* CNCF Cloud Native Definition v1.0, github.com, <https://github.com/cncf/toc/blob/master/DEFINITION.md>
-* What are Cloud-Native Applications?, pivotal.io, <https://pivotal.io/de/cloud-native>
+* CNCF Cloud Native Definition v1.0, <https://github.com/cncf/toc/blob/master/DEFINITION.md>
+* What are Cloud-Native Applications?, <https://pivotal.io/de/cloud-native>
+* The Reactive Manifesto v2.0, <https://www.reactivemanifesto.org/>
