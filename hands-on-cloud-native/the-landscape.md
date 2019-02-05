@@ -59,7 +59,7 @@ For example, a Cloud Native Application runs on three nodes. All of a sudden, on
 
 ### Scale
 
-<!-- TODO -->
+There are two ways of scaling, meaning to let application serve for more traffic, vertical scaling and horizontal scaling. Vertical scaling means you scale by adding more resource to an existing machine whereas horizontal scaling means you scale by adding more nodes into a pool of resources. Cloud Native Application is in favor of horizontal scaling since it has greater scalability. Vertical scaling is typically costly and still has a scaling ceiling.
 
 To summarize, the pros of Cloud Native are:
 
