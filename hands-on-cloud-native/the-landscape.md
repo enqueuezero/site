@@ -87,25 +87,38 @@ There is no free lunch (NFL).
 
 ### Data Persistence
 
+The database and storage of the Cloud Native Application needs persistency, very much unlike ephemeral containers. Containers can be killed and then relaunched very quickly, but the databases and storage servers should remain stable. The database service can be run as a container, but after killed, it should make sure the data does still exist.
+
+Data gravity is another challenge. Cloud vendors are very keen to let customers migrate data into their data services, but not for getting data out. Comparing to checking data in, it might take several times of money to migrate data out, mainly due to limited bandwidth and heavy latency.
+
 ### Latency
 
-The problem that Cloud Native Application face is latency. Cloud Native Application is usually deployed to standalone microservices across multiple regions. When communicating over distances measured in continent level, the time it takes remote procedure calls is dramatically increased. The Round Trip Time (RTT) to complete any transaction adds up to the call chain.
+A Cloud Native Application is usually deployed to standalone microservices across multiple regions. When communicating over distances measured in continent level, the time it takes remote procedure calls is dramatically increased. 
+
+The Round Trip Time (RTT) to complete any transaction adds up to the call chain.
 
 Data replication and sharding also hits latency problem.
 
-### Cloud In Development Environment
+### Cloud Services
 
-### Dependency
+A Cloud Native Application might depends on a set of cloud services, some of which could be commercial services. It's not a easy thing to replicate these services into a local running container in the development environment. There are some great software like minio, a replacement for S3, but it's unlikely we can port a full list of cloud-compatible services into local. To solve this, we must acknowledge the fact and figure out how to make a mock service when doing end-to-end testing.
+
+### Security
+
+The security is always a big issue that should be considered in every corner of the system. A Cloud Native Application might depends on a public Kubernetes API endpoint that is provided by cloud vendors. A research reveals hundreds of Kubernetes administration consoles accessible over the internet without any password protection. For example, hackers found Telsa's Kubernetes console which was not password protected and injected crypto mining applications into the cluster.
+
+Beyond credentials, encryption is also a must-have option. Secure Hypertext Transfer Protocol (HTTPS) should be used, rather than HTTP. Similarly, Secure WebSockets (wss) should be used, rather than plain WebSockets. 
 
 To summarize, Cloud Native Application is facing below challenges:
 
 * The data persistence is hard.
 * The latency of microservices architecture is unavoidable.
 * Replicating the cloud into local development is hard.
-* Maintaining dependencies is hard.
+* Security should be a concern.
 
 ## References
 
 * CNCF Cloud Native Definition v1.0, <https://github.com/cncf/toc/blob/master/DEFINITION.md>
 * What are Cloud-Native Applications?, <https://pivotal.io/de/cloud-native>
 * The Reactive Manifesto v2.0, <https://www.reactivemanifesto.org/>
+* Lessons from the Cryptojacking Attack at Tesla, <https://redlock.io/blog/cryptojacking-tesla>
