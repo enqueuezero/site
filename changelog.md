@@ -10,7 +10,7 @@ title: What's New?
 
 ## 2019 February
 
-* Added Techshack Weekly Updates. [2019-05](/techshack.weekly/2019-05.html).
+* Added Techshack Weekly Updates. [2019-05](/techshack.weekly/2019-05.html), [2019-06](/techshack.weekly/2019-06.html).
 * Started writing book "Hands-On Cloud Native Application". [preface](/hands-on-cloud-native/preface.html), [The Landscape](/hands-on-cloud-native/the-landscape.html).
 
 ## 2019 January
