@@ -150,18 +150,38 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
   * Subscription
   * Network Layer
 * Play around with GraphQL
-  * Install Apollo
-  * Integrate with Front-End Application
+  * Install json-graphql-server
+  * Generated Types and Queries
+  * Get Entity
+  * Relationships
+  * Get A List of Entities
+  * Sorting
+  * Pagination
+  * Filtering
   * Send Queries
   * Make Mutations
-* postgraphile
 * Summary
 * References
 
-## [Chapter 5. Build an Authentication Microservice](/) (TODO)
+## [Chapter 5. Build a Back End by Responder](/) (TODO)
 
+* What is HTTP Framework?
+* Why use HTTP Framework?
+* Essential Knowledge
+  * ASGI v/s WSGI
+  * Request & Response
+* Getting Started
+  * Project Setup
+  * Run a Server
+  * Create Pomodoro Schema
+  * Add GraphQL Endpoint
+  * Connect to a PostgreSQL Database
+  * Add WebSockets Support
+  * Add Dockerfile
+* Summary
+* References
 
-## [Chapter 6. Build a Batch Processing Microservice](/) (TODO)
+## [Chapter 6. Build an Authentication Microservice](/) (TODO)
 
 ## Part II
 
