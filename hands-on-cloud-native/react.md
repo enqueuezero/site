@@ -16,9 +16,28 @@ Within just a few years, it has achieved great adoptions among many companies an
 
 ## Why use React?
 
-* Virtual DOM is fast.
-* One-way data binding.
-* Components hold states only in its internal.
+### Declarative
+
+Writing interactive UIs is harder than many people thought, which involves a lot of inner states and transitions. Have you ever considered implementing a loading spinner? When should the component show the spinner? What if the spinner load forever? Should it apply with a blurring background?  Imperative code is suitable for implementing algorithms, but never for managing a large amount of internal states. To address it, we need declarative code.
+
+For example, below JavaScript function `Timer` has an internal state `seconds`. The component returns a DOM with ever changing `seconds`, though the caller of the function `Timer` need not to know the existence of `secodns`. When `setInterval` triggers a value changing in the next moment, React will efficiently update and render it to the browser DOM. 
+
+```javascript
+function Timer() {
+  const { seconds, setSeconds } = useState(0);
+  setInterval(() => setSeconds(seconds + 1), 1000);
+  return <div>Seconds: {seconds}</div>;
+}
+```
+
+We just used 3 lines of code implementing state declaration, state changing, and state rendering. It's super powerful when the component has more internal states. The declarative style make the code predicable and easier to debug.
+
+### Components hold states only in its internal.
+
+### Virtual DOM is fast.
+
+### One-way data binding.
+
 
 ## Essential Knowledge
 

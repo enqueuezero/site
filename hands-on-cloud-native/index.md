@@ -62,9 +62,10 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
 
 * [What is React?](react.md#what-is-react)
 * [Why use React?](react.md#why-use-react)
+  * [Declarative](react.md#declarative)
+  * Components Hold Stats Internally
   * Virtual DOM is Fast
   * One-Way Data Binding
-  * Components Hold Stats Internally
 * [Essential Knowledge](react.md#essential-knowledge)
   * Virtual DOM
   * JSX
