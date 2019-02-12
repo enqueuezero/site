@@ -62,7 +62,11 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
 
 * [What is React?](react.md#what-is-react)
 * [Why use React?](react.md#why-use-react)
+  * Virtual DOM is Fast
+  * One-Way Data Binding
+  * Components Hold Stats Internally
 * [Essential Knowledge](react.md#essential-knowledge)
+  * Virtual DOM
   * JSX
   * Components
   * Props
@@ -73,11 +77,13 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
   * Functional Programming
 * Play Around with React
   * Create a New React App
-  * Test
-  * Minimal Change
-  * Re-Test
-  * Install Dependencies
-  * Use React DOM
+  * Start React App
+  * Test React App
+  * Test Driven Development
+  * Make the First Change
+  * Handle Routes
+  * Setup 404 Page
+  * Setup App Page  
 * References
 
 ## [Chapter 3. Build Front End App](/hands-on-cloud-native/front-end.html)

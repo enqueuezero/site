@@ -19,17 +19,26 @@ Within just a few years, it has achieved great adoptions among many companies an
 * Virtual DOM is fast.
 * One-way data binding.
 * Components hold states only in its internal.
-* For Human.
 
 ## Essential Knowledge
 
-### What is Component?
+### Virtual DOM
 
-### What is Virtual DOM?
+### JSX
 
-### What is JSX?
+### Component
 
-## Setup
+### Props
+
+### States
+
+### Events
+
+### Hooks
+
+### Functional Programming
+
+## Play Around With React
 
 ### Create a New App
 
@@ -116,15 +125,11 @@ You should see the page automatically reloaded in your browser with only text "H
 
 ## Handle Routes
 
-### Install Dependency
-
 Install `react-router-dom`.
 
 ```bash
 $ yarn add react-router-dom
 ```
-
-### Setup Routes
 
 Import the router.
 
@@ -139,7 +144,7 @@ Create a `NotFound` component.
 By browsing to the page <http://127.0.0.1:3000/any>, or replacing `any` to any path, you should see "Not Found" on the page.
 By browsing to the page <http://127.0.0.1:3000>, you should see "Hello World" on the page!
 
-### Clean Up
+### Setup App Page
 
 So far, we have two pages. Let's move them into a sub-directory for better organization. Create directory `src/pages` before saving below two files `src/pages/not-found.js` and `src/pages/home.js`.
 
