@@ -68,13 +68,16 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
   * Props
   * States
   * Events
+  * Hooks
   * Rendering
   * Functional Programming
 * Play Around with React
   * Create a New React App
   * Test
-  * Minimal
+  * Minimal Change
   * Re-Test
+  * Install Dependencies
+  * Use React DOM
 * References
 
 ## [Chapter 3. Build Front End App](/hands-on-cloud-native/front-end.html)
@@ -93,7 +96,6 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
   * Implement a Pomodoro Component
   * Implement a History Component
   * Create an Error Boundary Component
-  * Setup App Route
 * Wrapping Up
 * References
 
@@ -163,7 +165,7 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
 * Summary
 * References
 
-## [Chapter 5. Build a Back End by Responder](/) (TODO)
+## [Chapter 6. Build Back End App](/)
 
 * What is HTTP Framework?
 * Why use HTTP Framework?
@@ -177,24 +179,98 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
   * Add GraphQL Endpoint
   * Connect to a PostgreSQL Database
   * Add WebSockets Support
+  * Add OAuth2 Login
   * Add Dockerfile
 * Summary
 * References
 
-## [Chapter 6. Build an Authentication Microservice](/) (TODO)
-
 ## Part II
 
-## [Chapter 7. Terraform Setup](/hands-on-cloud-native/terraform-setup.html)
-## [Chapter 8. Deploy to Heroku](/hands-on-cloud-native/deploy-to-heroku.html)
-## [Chapter 9. Continuous Integration by Travis CI](/hands-on-cloud-native/ci.html)
+## [Chapter 7. Play Around With Kubernetes](/)
+
+* What is Kubernetes?
+* Why use Kubernetes?
+* Essential Knowledge
+  * Master
+  * Nodes
+  * Pods
+  * Deployments
+  * StatefulSets
+  * Volume
+* Play around with Minikube
+  * Install Minikube
+  * Create a Cluster
+  * Run a Pod
+  * Inspect the Pod
+  * Kill the Pod
+  * Apply a Deployment
+  * Apply a StatefulSet
+* Summary
+* References
+
+## [Chapter 8. Create Kubernetes Cluster on the Cloud](/)
+
+* What is Kubernetes Cluster on the Cloud?
+* Why use Kubernetes Cluster on the Cloud?
+* Essential Knowledge
+  * VPC, Subnet, Routing Tables
+  * Security Group
+  * Kubernetes Cluster
+  * Load Balancer
+* Create Kubernetes Cluster the Hard Way
+  * Create Kubernetes Cluster on AWS
+  * Create Kubernetes Cluster on GKE
+  * Create Kubernetes Cluster on Azure
+  * Create Kubernetes Cluster on DigitalOcean
+* Summary
+* References
+
+## [Chapter 9. Advance Use of Kubernetes](/)
+
+* The Missing Parts
+* Essential Knowledge
+  * Role, ClusterRole
+  * Namespace
+  * Network Policy
+  * Resource Quota
+  * ConfigMap
+  * Secret
+  * Ingress
+  * Storage Class
+* Play Around with Kubernetes
+* Summary
+* References
+
 ## [Chapter 10. Write a Helm Chart](/) (TODO)
-## [Chapter 11. Create Kubernetes Cluster on DigitalOcean](/hands-on-cloud-native/do-k8s.html)
-## [Chapter 12. Create Kubernetes Cluster on AWS](/hands-on-cloud-native/aws-eks.html)
+
+* What is Helm?
+* Why use Helm?
+* Essential Knowledge
+* Write a Helm Chart
+* Play around with Helm
+* Summary
+* References
+
+## [Chapter 11. GitOps](/) (TODO)
+
+* What is GitOps
+* Why use GitOps
+  * Single Source of Truth
+  * Declarative Architecture
+  * Version Control
+  * No kubectl, no scripts
+* Essential Knowledge
+  * Continuous Integration
+  * Continuous Delivery
+  * GitOps Principle
+* GitOps Practise
+
+## [Chapter 12. Lightweight Option: Deploy to Heroku](/hands-on-cloud-native/deploy-to-heroku.html)
+
+## [Chapter 13. Lightweight Option: Function-as-a-Service](/)
 
 ## Part III
 
-## [Chapter 13. Chat Operations by Hubot](/) (TODO)
 ## [Chapter 14. Collect Logs by Fluentd](/) (TODO)
 ## [Chapter 15. Collect Metrics by Prometheus](/) (TODO)
 ## [Chapter 16. Build a Monitoring Dashboard by Grafana](/) (TODO)
