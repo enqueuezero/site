@@ -36,12 +36,37 @@ We just used 3 lines of code implementing state declaration, state changing, and
 
 ### Virtual DOM is fast.
 
-### One-way data binding.
+DOM manipulations can be slow if implemented inappropriately. For example, you have a list containing hundreds of items. Rebuilding the entire list to the DOM could be very inefficient. To address this problem, we can build the DOM for those changed items only. Virtual DOM is such technique for this kind of problem.
 
+In React, every DOM on the page has a corresponding virtual DOM object. The idea is, manipulating DOM is slow but manipulating virtual DOM in memory is fast. By comparing the virtual DOM with previous version, we can quickly spot a minimal set of changes and apply them to the page.
+
+In summary, React updates DOM in below ways:
+
+* Your React code updates virtual DOM.
+* React compares the virtual DOM to previous version and figure out what actual DOM need to be changed.
+* React patches these changes to the page.
+* Changes are reflected to the browser screen.
+
+### One-way data binding.
 
 ## Essential Knowledge
 
 ### Virtual DOM
+
+DOM stands for Document Object Model and is an abstraction of a structured text. HTML code is the structured tree object and Elements of corresponding HTML code become nodes in the DOM. To sum up, DOM is an in-memory representation of HTML code.
+
+Nowadays, there are usually hundreds of thousands of DOM in a single page, not to mention that each one could attach events, styles, etc. A typical `jQuery`-like framework would handle the issue by finding nodes by selectors first, and then update if needed.
+
+```javascript
+<div id="message">Hello World</div>
+<script>
+$("#message").html("Hands-On Cloud Native Application").
+</script>
+```
+
+However, the finding operations on a huge amount of DOM nodes are slow. Besides, managing these tangled manipulation code could be a mess.
+
+Virtual DOM became one of the most popular solutions. To be fair, React did not invent it but integrated it into its core. The Virtual DOM is an abstraction of the HTML DOM. So, considering HTML DOM being an abstraction of HTML code, why bother applying two layers of abstractions to get changes to the page?  The short answer is abstractions bring more values, and these values help us overcome performance issue and reduce management cost.
 
 ### JSX
 
@@ -200,3 +225,7 @@ facebook/create-react-app, github.com, <https://github.com/facebook/create-react
 React (JavaScript Library), en.wikipedia.org, <https://en.wikipedia.org/wiki/React_(JavaScript_library)>
 
 Pomodoro Technique, en.wikipedia.org, <https://en.wikipedia.org/wiki/Pomodoro_Technique>
+
+React: The Virtual DOM, <https://www.codecademy.com/articles/react-virtual-dom>
+
+The difference between Virtual DOM and DOM, <https://reactkungfu.com/2015/10/the-difference-between-virtual-dom-and-dom/>
