@@ -272,7 +272,9 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
   * GitOps Principle
 * GitOps Practise
 
-## [Chapter 12. Lightweight Option: Deploy to Heroku](/hands-on-cloud-native/deploy-to-heroku.html)
+## [Chapter 12. Lightweight Option: Platform-as-a-Service](/hands-on-cloud-native/deploy-to-heroku.html)
+
+* What is 
 
 ## [Chapter 13. Lightweight Option: Function-as-a-Service](/)
 
@@ -297,7 +299,27 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
 * Summary
 * References
 
-## [Chapter 16. Build a Monitoring Dashboard by Grafana](/) (TODO)
+## [Chapter 16. Build a Monitoring Dashboard by Grafana](/)
+
+* What is Monitoring Dashboard?
+* Why Use Monitoring Dashboard?
+* Essential Knowledge
+  * Liveness
+  * Readyness
+  * Probe
+  * Query
+  * Dashboard
+  * Panel
+  * Chart
+* Build a Monitoring Dashboard
+  * Deploy Grafana
+  * Provisioning of Datasources
+  * Provisioning of Dashboards
+  * Up and Running
+  * Organize Dashboards
+* Summary
+* References
+
 ## [Chapter 17. Build a Status Site](/) (TODO)
 ## [Chapter 18. Canary Deployment](/) (TODO)
 ## [Chapter 19. Chaos Engineering](/) (TODO)
