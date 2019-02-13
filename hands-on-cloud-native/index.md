@@ -278,8 +278,25 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
 
 ## Part III
 
-## [Chapter 14. Collect Logs by Fluentd](/) (TODO)
-## [Chapter 15. Collect Metrics by Prometheus](/) (TODO)
+## [Chapter 14. Collect Logs by Fluentd](/)
+
+* What are Logs？
+* Why Do We Need Logs？
+* Essential Knowledge
+* Manage Logs
+* Build Logging Pipeline
+* Summary
+* References
+
+## [Chapter 15. Collect Metrics by Prometheus](/)
+
+* What are Metrics?
+* Why Do We Need Metrics?
+* Emit Metrics
+* Collect Metrics
+* Summary
+* References
+
 ## [Chapter 16. Build a Monitoring Dashboard by Grafana](/) (TODO)
 ## [Chapter 17. Build a Status Site](/) (TODO)
 ## [Chapter 18. Canary Deployment](/) (TODO)
