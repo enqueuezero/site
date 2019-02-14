@@ -87,17 +87,124 @@ However, the finding operations on a page including a large number of DOM nodes 
 
 Virtual DOM became one of the most popular solutions. To be fair, React did not invent it but integrated it into its core. The Virtual DOM is an abstraction of the HTML DOM. So, considering HTML DOM being an abstraction of HTML code, why bother applying two layers of abstractions to get changes to the page?  The short answer is abstractions bring more values, and these values help us overcome performance issue and reduce management cost.
 
-### Component
+### Actual DOM
 
+You might be curious what is the entry point of the virtual DOM becoming actual DOM. The answer is `ReactDom.render()` function. There is usually only one DOM node on the page that is acting root DOM node. 
 
+```html
+<div id="root"></div>
+```
 
-### Props
+`ReactDOM.render()` function renders a React element to the root node.
+
+```javascript
+ReactDOM.render(
+  <div id="message">Hands-On Cloud Native Application</div>,
+  document.getElementById('root')
+);
+```
+
+It might seem similar to above `jQuery` example, but they have a big difference. The `ReactDOM.render()` only gets called once. Once you create an element, React will take over the rest and apply any virtual DOM changes to the DOM.
+
+### Components
+
+React components are independent, isolated, and reusable pieces of React code. They're building blocks of the entire React application. Think of it as the functions to JavaScript. It looks just as a normal JavaScript function, passing in `props` argument and sending out a React element.
+
+```javascript
+function HandsOn(props) {
+  return <div id="message">Hands-On {props.name}</div>
+}
+```
+
+Except the function components, you can also choose to write it in a form as a class. They are the same thing in different style.
+
+```javascript
+class HandsOn extends React.Component {
+  render() {
+    return <div id="message">Hands-On {props.name}</div>
+  }
+}
+```
+
+Using a component is by composing it to another component til the `ReactDOM.render()`. For example,
+
+```javascript
+ReactDOM.render(
+  <div id="app">
+    <HandsOn name="Cloud Native Application" />
+  </div>,
+  document.getElementById('root')
+);
+```
+
+Two trivial things to remember are the naming convention and the immutable props. First, The name of component should always start with a capital letter. Otherwise, React will consider it as a normal HTML tag and won't generate the expanded virtual DOM. Second, you shouldn't change the value in `props` as all React components must act like **pure functions**.
 
 ### States
 
+Since you can't change `props`, now you might want to know what if something need to be changed? The answer is state. States are mutable variables within the scopes of components. The way to consider props and states can be like using a fan; you set a fan at level 1/2/3 and the level is one of the `props`; the fan starts spinning and the spinning rate is one of the `states`.
+
+Since React 16.8, you can now use Hooks, which we'll explain later, to consume states. Before using a state, you need to declare the state by `useState`:
+
+```javascript
+function Timer() {
+  const { seconds, setSeconds } = useState(0);
+  setInterval(() => setSeconds(seconds + 1), 1000);
+  return <div>Seconds: {seconds}</div>;
+}
+```
+
+The `useState(0)` declares a state variable with initial value 0. You cannot consume the state variable outside the scope of `Timer` component. Each state should be declared once with `useState()`. It returns a pair of values, the current value and the function to update this value.
+
+You can write an equivalent code in a traditional ES6 class style, though it's more verbose.
+
+```javascript
+class Timer extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = { seconds: 0 };
+  }
+
+  componentDidMount() {
+    setInterval(() => this.setState({ seconds: this.state.seconds+1 }), 1000);
+  }
+
+  render() {
+    return <div>Seconds: {this.state.seconds}</div>
+  }
+}
+```
+
 ### Events
 
+Events are objects representing what happen on the DOM elements. React handle events is very similar to how browser handle DOM events. Below example shows how to handle a click event.
+
+```javascript
+function Counter() {
+  const { count, setCount } = useState(0);
+  return <div onClick={() => setCount(count+1)}>{count}</div>;
+}
+```
+
+You might noticed it's using `onClick` instead `onclick` as specified in W3C events <https://www.w3.org/TR/DOM-Level-3-Events/>. And yes, React events are named using camelCase. Also, you pass a function as the parameter for the event hook.
+
 ### Hooks
+
+Hook is a way to define React component without writing verbose class code. Since conceptually a React component is just a pure function, it makes sense to define React component in declarative way and in function-style. In short, hooks are just plain JavaScript functions that let you "hook into" React state and life-cycle by a set of APIs.
+
+You have seen the state hook, `useState`, which is for declaring a state variable. There are some other hooks, such as effect hook. Effect hooks are for performing side-effecting operations. Since these operations cannot be re-done during the next time React render the element, the effect hooks runs a one-off "job" and re-render the element when the job is finished. For example,
+
+```javascript
+function Counter() {
+  const { count, setCount } = useState(0);
+  useEffect(() => {
+    console.log(count);
+  });
+  return <div onClick={() => setCount(count+1)}>{count}</div>;
+}
+```
+
+Some caveats of writing hooks are:
+* Don't place hooks in loops, conditions, or nested functions. It's just making the application too slow.
 
 ### Functional Programming
 
@@ -236,6 +343,10 @@ export default () => (
 Finally, let's import the two components into `src/App.js`.
 
 <<< @//hands-on-cloud-native/src/react/app-setup-router-cleanup.js{4,5}
+
+## Summary
+
+
 
 ## References
 
