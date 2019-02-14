@@ -63,29 +63,28 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
 * [What is React?](react.md#what-is-react)
 * [Why use React?](react.md#why-use-react)
   * [Declarative](react.md#declarative)
-  * Components Hold Stats Internally
-  * Virtual DOM is Fast
+  * [Virtual DOM is Fast](react.md#virtual-dom-is-fast)
   * One-Way Data Binding
 * [Essential Knowledge](react.md#essential-knowledge)
-  * Virtual DOM
-  * JSX
-  * Components
-  * Props
-  * States
-  * Events
-  * Hooks
-  * Rendering
+  * [JSX](react.md#jsx)
+  * [Virtual DOM](react.md#virtual-dom)
+  * [Actual DOM](react.md#actual-dom)
+  * [Components](react.md#components)
+  * [States](react.md#states)
+  * [Events](react.md#events)
+  * [Hooks](react.md#hooks)
   * Functional Programming
 * Play Around with React
-  * Create a New React App
-  * Start React App
-  * Test React App
+  * [Create a New App](react.md#create-a-new-app)
+  * [Start React App](react.md#start-react-app)
+  * [Test React App](react.md#test-react-app)
   * Test Driven Development
-  * Make the First Change
-  * Handle Routes
-  * Setup 404 Page
-  * Setup App Page  
-* References
+  * [Make the First Change](react.md#make-the-first-change)
+  * [Handle Routes](react.md#handle-routes)
+  * [Setup 404 Page](react.md#setup-404-page)
+  * [Setup App Page](react.md#setup-app-page)
+* Summary
+* [References](react.md#references)
 
 ## [Chapter 3. Build Front End App](/hands-on-cloud-native/front-end.html)
 
