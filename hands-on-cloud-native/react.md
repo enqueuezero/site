@@ -9,18 +9,17 @@ This article gives a hands-on tutorial on setting up a React application.
 
 ## What is React?
 
-React is a declarative, efficient, and flexible JavaScript library for building user interfaces.
-It lets you compose complex UIs from small and isolated pieces of code called “components”.
-It was originally created by Jordan Walke, a software engineer at Facebook.
-Within just a few years, it has achieved great adoptions among many companies and organizations.
+React is a declarative, efficient, and flexible JavaScript library for building user interfaces. It allows building a complex application from ground up by isolated pieces of code, usually called components.
+The idea of React is not new but within just a few years, it has achieved great adoptions among many companies and organizations.
+The stable and friendly APIs make React the first choice for building a Cloud Native Application.
 
 ## Why use React?
 
 ### Declarative
 
-Writing interactive UIs is harder than many people thought, which involves a lot of inner states and transitions. Have you ever considered implementing a loading spinner? When should the component show the spinner? What if the spinner load forever? Should it apply with a blurring background?  Imperative code is suitable for implementing algorithms, but never for managing a large amount of internal states. To address it, we need declarative code.
+Writing interactive UIs is harder than many people thought, which involves a lot of internal states and transitions. Have you ever considered implementing a loading spinner? When should the component show the spinner? How fast should the spinner spin? What if the spinner load forever? When is the exit point of loading? Should it apply with a blurring background? These hidden states make code complex if using inappropriate programming paradigm. Imperative code is suitable for implementing algorithms, but never for managing a large amount of internal states. To address it, we need declarative style code.
 
-For example, below JavaScript function `Timer` has an internal state `seconds`. The component returns a DOM with ever changing `seconds`, though the caller of the function `Timer` need not to know the existence of `secodns`. When `setInterval` triggers a value changing in the next moment, React will efficiently update and render it to the browser DOM. 
+For example, below JavaScript function `Timer` has an internal state `seconds`. The component returns a DOM with ever changing `seconds`, though the caller of the function `Timer` need not to know the existence of `seconds`. When `setInterval` triggers a value changing in the next moment, React will efficiently update and render it to the browser DOM. 
 
 ```javascript
 function Timer() {
@@ -30,26 +29,46 @@ function Timer() {
 }
 ```
 
-We just used 3 lines of code implementing state declaration, state changing, and state rendering. It's super powerful when the component has more internal states. The declarative style make the code predicable and easier to debug.
+We just used 3 lines of code implementing below things:
 
-### Components hold states only in its internal.
+* State declaration, 
+* State changing,
+* State rendering.
+
+It's super powerful when the component has more internal states. The declarative style makes the code predicable and easier to debug. 
 
 ### Virtual DOM is fast.
 
-DOM manipulations can be slow if implemented inappropriately. For example, you have a list containing hundreds of items. Rebuilding the entire list to the DOM could be very inefficient. To address this problem, we can build the DOM for those changed items only. Virtual DOM is such technique for this kind of problem.
+DOM manipulations can be slow if implemented inappropriately. For example, you have a list containing hundreds of items. Rebuilding the entire list to the DOM could be very inefficient. To address this problem, we can build the DOM for those changed items only. Virtual DOM is such a technique for this kind of problem.
 
-In React, every DOM on the page has a corresponding virtual DOM object. The idea is, manipulating DOM is slow but manipulating virtual DOM in memory is fast. By comparing the virtual DOM with previous version, we can quickly spot a minimal set of changes and apply them to the page.
-
-In summary, React updates DOM in below ways:
+In short, React updates DOM in below steps:
 
 * Your React code updates virtual DOM.
 * React compares the virtual DOM to previous version and figure out what actual DOM need to be changed.
 * React patches these changes to the page.
 * Changes are reflected to the browser screen.
 
+In React, every DOM on the page has a corresponding virtual DOM object. The idea is, manipulating DOM is slow but manipulating virtual DOM in memory is fast. By comparing the virtual DOM with previous version, we can quickly spot a minimal set of changes and apply them to the page. Applying a minimal set of changes is way faster than building the entire list rendering.
+
 ### One-way data binding.
 
 ## Essential Knowledge
+
+### JSX
+
+You might have noticed the funny XML-like syntax in previous example, `<div>Seconds: {seconds}</div>`. It's neither string nor XML, but just a syntax extension to JavaScript. You can put any valid JavaScript expressions within `{braces}` inside the component. Most React developers are keen to use JSX syntax to make the React Element easier to write. 
+
+Under the hood, the `<div></div>` is translated to `React.createElement('div')`. Just as its name, JSX is actually creating React "elements".  To give you a glance of the nesting elements, the code `<div><span>hello</span></div>` is equivalent to:
+
+```javascript
+React.createElement('div',
+  React.createElement('span',
+    'hello'
+  )
+)
+```
+
+You can certainly use plain `React.createElement` to write code. But since JSX provides the syntax sugar making your life easier, why bother not using it? The JSX also indicates a design pattern, separate concerns. Unlike separating logics into templates, styles, models, and so on, each component is a standalone unit that contains all of the given pieces. Some might argue it's uncomfortable to fit all them in, but it has turned out a successful programming paradigm with so many open-sourced, high quality React-based components.
 
 ### Virtual DOM
 
@@ -64,13 +83,13 @@ $("#message").html("Hands-On Cloud Native Application").
 </script>
 ```
 
-However, the finding operations on a huge amount of DOM nodes are slow. Besides, managing these tangled manipulation code could be a mess.
+However, the finding operations on a page including a large number of DOM nodes are slow. Besides, managing these tangled manipulation code could be a mess.
 
 Virtual DOM became one of the most popular solutions. To be fair, React did not invent it but integrated it into its core. The Virtual DOM is an abstraction of the HTML DOM. So, considering HTML DOM being an abstraction of HTML code, why bother applying two layers of abstractions to get changes to the page?  The short answer is abstractions bring more values, and these values help us overcome performance issue and reduce management cost.
 
-### JSX
-
 ### Component
+
+
 
 ### Props
 
