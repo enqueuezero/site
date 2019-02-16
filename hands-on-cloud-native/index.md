@@ -247,7 +247,7 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
 * Summary
 * References
 
-## [Chapter 10. Write a Helm Chart](/) (TODO)
+## [Chapter 10. Write a Helm Chart](/)
 
 * What is Helm?
 * Why use Helm?
@@ -319,7 +319,7 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
 * Summary
 * References
 
-## [Chapter 17. Build a Status Site](/) (TODO)
-## [Chapter 18. Canary Deployment](/) (TODO)
-## [Chapter 19. Chaos Engineering](/) (TODO)
-## [Chapter 20. Automate Toil Work by Python](/) (TODO)
+## [Chapter 17. Build a Status Site](/)
+## [Chapter 18. Canary Deployment](/)
+## [Chapter 19. Chaos Engineering](/)
+## [Chapter 20. Automate Toil Work by Python](/)
