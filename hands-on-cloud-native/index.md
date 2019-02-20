@@ -53,6 +53,7 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
   * Setup Python
   * Setup NodeJS
   * Setup Terraform
+  * Setup Virtualbox
   * Setup Minikube
   * Setup Docker
   * Setup Docker-Compose
