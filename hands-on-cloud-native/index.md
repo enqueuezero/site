@@ -92,16 +92,11 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
 * Before We Start the Development
   * Pomodoro Technique
   * Prerequisites
-* Overview
-  * Finite State Machine
-  * Passing Data Through Props
 * Install Dependency
 * Completing the DOM Tree
-  * Create CancelButton Component
-  * Use Countdown Component
-  * Implement a Finite State Machine
-  * Implement a Pomodoro Component
-  * Implement a History Component
+  * Implement a List Item Component
+  * Implement a List Component
+  * Load Data
   * Create an Error Boundary Component
 * Wrapping Up
 * References
@@ -182,7 +177,7 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
 * Getting Started
   * Project Setup
   * Run a Server
-  * Create Pomodoro Schema
+  * Create Schema
   * Add GraphQL Endpoint
   * Connect to a PostgreSQL Database
   * Add WebSockets Support
