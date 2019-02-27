@@ -19,6 +19,19 @@ collection of decoupled services, with mature pipelines, infrastructure, etc.
 
 Microservices architecture is an architectural style that structured applications as a set of loosely decoupled services. The advantage of microservices architecture is it enables large and complex application to continuously scale and evolve.
 
+### Microservices v/s Monolithic
+
+Microservices architecture yields to a style that application is comprised of a collection of loosely coupled services.
+Monolithic architecture yields to a style that application is as a single deployable unit.
+
+There is a debate on where the application should start from a monolithic style or microservices style, and there is no clear answer.
+Some people argue that application should start from a single app and evolve itself into microservices as needed.
+Some people think that every application can start from microservices architecture.
+
+It is essential to know the pros and cons of microservices and monolithic.
+The monolithic style is simple to develop, deploy. However, it'll quickly become a problem to over-use resources.
+The microservices style yields to a collection of the most efficient, independent components and enables the continuous delivery and deployment of large, complex application. However, it increases complexity into the system.
+
 ## Solutions
 
 [Please donate this project. It takes time and efforts writing these articles.](/)
