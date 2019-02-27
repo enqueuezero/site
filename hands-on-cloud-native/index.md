@@ -90,14 +90,7 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
 ## [Chapter 3. Build Front End App](/hands-on-cloud-native/front-end.html)
 
 * Before We Start the Development
-  * Pomodoro Technique
-  * Prerequisites
-* Install Dependency
-* Completing the DOM Tree
-  * Implement a List Item Component
-  * Implement a List Component
-  * Load Data
-  * Create an Error Boundary Component
+* Overview
 * Wrapping Up
 * References
 
