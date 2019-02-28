@@ -140,7 +140,7 @@ $ docker run --rm -p 8000:80 delicioushref-frontend:latest
 ### Clean Up
 
 
-### Push Image to DockerHub Registry
+### Push Image to Registry
 
 ```bash
 $ docker push
