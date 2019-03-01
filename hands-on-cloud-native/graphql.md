@@ -88,13 +88,69 @@ query {
 
 GraphQL enables writing schema with a strong type system called GraphQL Schema Definition Language (SDL).
 
-### Composable APIs
 ### Friendly Tracing on the Backend
-### Nice Community
+
 ## Essential Knowledge
-### The Schema Definition Language (SDL)
-### Schemas
-### TypeDefs
+
+### Define Schema
+
+The syntax for defining GraphQL schemas is called Schema Definition Language (SDL). The schema is a contract of how the data structure should be.
+
+Below is an example of how we can use the SDL to define a data structure called `Link`.
+
+```
+type Link {
+    url: String!
+    tags: [String!]
+}
+```
+
+The type has two fields; they are `url` and `tags` with type `String` and `[String]`. The `!` indicates that the field is required. The `[]` indicates the field is an array of values, for example, `[String]` means a list of `String` values.
+
+### Fetch Data
+
+GraphQL server exposes only one endpoint to clients. All data will be fetched through this endpoint. What makes the endpoint send different data out is called a *query*.
+
+Below is an example of how we can use a query to fetch data
+
+```
+{
+    myLinks {
+        url
+        tags
+    }
+}
+```
+
+The `myLinks` field in this query is a *root field*, in which includes the *payload* of the query. In this example, the payload has `url` and `tags` fields. The query would return a list of user's links in the database. For example,
+
+```js
+{
+    "myLinks": [
+        {"url": "https://enqueuezero.com", "tags": ["ez"]},
+        {"url": "https://enqueuezero.com/hands-on-cloud-native", "tags": ["ez"]}
+    ]
+}
+```
+
+### Query Arguments
+
+In GraphQL, each *field* can have zero to more query arguments. For example,
+
+```
+{
+    myLinks(last: 5) {
+        url
+        tags
+    }
+}
+```
+
+In this example, the GraphQL server would only return my last five links.
+
+### Apply Mutations
+
+
 ### Resolvers
 ### Mutation
 ### Subscription
