@@ -92,7 +92,7 @@ GraphQL enables writing schema with a strong type system called GraphQL Schema D
 
 ## Essential Knowledge
 
-### Define Schema
+### Use SDL
 
 The syntax for defining GraphQL schemas is called Schema Definition Language (SDL). The schema is a contract of how the data structure should be.
 
@@ -150,6 +150,78 @@ In this example, the GraphQL server would only return my last five links.
 
 ### Apply Mutations
 
+Mutations are for making changes. There are generally three kinds of mutations:
+
+* Create data
+* Update data
+* Delete data
+
+The query for applying mutations are similar, except they start with keyword `mutation`. Below is an example of how we create a new `Link`:
+
+```
+mutation {
+    createLink(url: "https://enqueuezero.com", tags: ["ez"]) {
+        id
+        created_at
+    }
+}
+```
+
+As you can see, the mutation also has a *root field*, `createLink` in this example. We also ask for data `id` and `created_at` from GraphQL server after the `Link` is created. The GraphQL server might respond below data:
+
+```js
+"createLink": {
+    "id": 1000001,
+    "created_at": "2019-03-01T09:21:29+00:00"
+}
+```
+
+### Define Schema
+
+The schema is a contract that specifies what data clients can request. Generally, a schema is a set of GraphQL types. Every GraphQL type has a *root* type, for example `Query`, `Mutation`, etc.
+
+To support handling queries, we need to define a `Query` type.
+
+```
+type Query {
+    myLinks: [Link!]!
+}
+```
+
+To support query arguments, we need to add argument to the field.
+
+```
+type Query {
+    myLinks(last: Int): [Link!]!
+}
+```
+
+Similarly, to support creating Links, we'll need to define a `Mutation` type.
+
+```
+type Mutation {
+    createLink(url: String!, tags: [String!]): Link!
+}
+```
+
+And of course, we need to put `Link` type as well. Below is the full definition putting everything together.
+
+```
+type Query {
+    myLinks(last: Int): [Link!]!
+}
+
+type Mutation {
+    createLink(url: String!, tags: [String!]): Link!
+}
+
+type Link {
+    id: String!
+    url: String!
+    tags: [String!]!
+    created_at: String!
+}
+```
 
 ### Resolvers
 ### Mutation
