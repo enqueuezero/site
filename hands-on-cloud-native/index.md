@@ -5,6 +5,10 @@ sidebar: auto
 
 # Hands-On Cloud Native Application
 
+:::tip
+This book is still working in-progress. Please support this project by donating via [Patreon](https://www.patreon.com/join/enqueuezero) or sending [Pull Requests](https://github.com/soasme/enqueuezero).
+:::
+
 Since the wide adoption of the container technology and cloud computing, the Cloud Native application has become one of the most popular engineering practices. Now, even programmers with very few infrastructure knowledge can launch a great fleet of cloud native applications for serving millions of requests. The practical book shows you how to make it happen.
 
 Through the book, you will learn concrete examples, minimal theory, and how to build and deliver a typical React-based front-end and Flask-based back-end to cloud platform.
@@ -86,14 +90,7 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
 * Summary
 * [References](react.md#references)
 
-## [Chapter 3. Build Front End App](/hands-on-cloud-native/front-end.html)
-
-* Before We Start the Development
-* Overview
-* Wrapping Up
-* References
-
-## [Chapter 4. Play around with Containers](container.md)
+## [Chapter 3. Play around with Containers](container.md)
 
 * [What is Container?](container.md#what-is-container)
   * [Container Introduction](container.md#container-introduction)
@@ -122,7 +119,33 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
   * [Push Image to DockerHub Registry](container.md#push-image-to-registry)
 * [References](container.md#references)
 
-## [Chapter 5. Play around with GraphQL](graphql.md)
+## [Chapter 4. Build Front End App](/hands-on-cloud-native/front-end.html)
+
+* Before We Start the Development
+* Overview
+* Wrapping Up
+* References
+
+## [Chapter 5. Build a Microservice](/)
+
+* What is HTTP Framework?
+* Why use HTTP Framework?
+* Essential Knowledge
+  * ASGI v/s WSGI
+  * Request & Response
+* Getting Started
+  * Project Setup
+  * Run a Server
+  * Create Schema
+  * Add GraphQL Endpoint
+  * Connect to a PostgreSQL Database
+  * Add WebSockets Support
+  * Add OAuth2 Login
+  * Add Dockerfile
+* Summary
+* References
+
+## [Chapter 6. Play around with GraphQL](graphql.md)
 
 * [What is GraphQL?](graphql.md#what-is-graphql)
   * [GraphQL v/s RESTful](graphql.md#graphql-v-s-restful)
@@ -151,25 +174,6 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
   * Pagination
 * Summary
 * [References](graphql.md#references)
-
-## [Chapter 6. Build Back End App](/)
-
-* What is HTTP Framework?
-* Why use HTTP Framework?
-* Essential Knowledge
-  * ASGI v/s WSGI
-  * Request & Response
-* Getting Started
-  * Project Setup
-  * Run a Server
-  * Create Schema
-  * Add GraphQL Endpoint
-  * Connect to a PostgreSQL Database
-  * Add WebSockets Support
-  * Add OAuth2 Login
-  * Add Dockerfile
-* Summary
-* References
 
 ## Part II
 

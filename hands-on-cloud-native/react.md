@@ -125,7 +125,7 @@ By browsing to the page <http://127.0.0.1:3000>, you should see "Hello World" on
 
 ### Setup App Page
 
-So far, we have two pages. Let's move them into a sub-directory for better organization. Create directory `src/pages` before saving below two files `src/pages/not-found.js` and `src/pages/home.js`.
+So far, we have two pages. Let's move them into a sub-directory to organize code better. Create directory `src/pages` before saving below two files `src/pages/not-found.js` and `src/pages/home.js`.
 
 ```js
 // src/pages/not-found.js
