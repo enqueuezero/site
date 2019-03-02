@@ -62,6 +62,14 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
 ## [Chapter 2. Getting Started with React](react.md)
 
 * [What is React?](react.md#what-is-react)
+* [Play Around with React](react.md#play-around-with-react)
+  * [Create a New App](react.md#create-a-new-app)
+  * [Start React App](react.md#start-react-app)
+  * [Test React App](react.md#test-react-app)
+  * [Make the First Change](react.md#make-the-first-change)
+  * [Handle Routes](react.md#handle-routes)
+  * [Setup 404 Page](react.md#setup-404-page)
+  * [Setup App Page](react.md#setup-app-page)
 * [Why use React?](react.md#why-use-react)
   * [Declarative](react.md#declarative)
   * [Virtual DOM is Fast](react.md#virtual-dom-is-fast)
@@ -75,15 +83,6 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
   * [Events](react.md#events)
   * [Hooks](react.md#hooks)
   * Functional Programming
-* Play Around with React
-  * [Create a New App](react.md#create-a-new-app)
-  * [Start React App](react.md#start-react-app)
-  * [Test React App](react.md#test-react-app)
-  * Test Driven Development
-  * [Make the First Change](react.md#make-the-first-change)
-  * [Handle Routes](react.md#handle-routes)
-  * [Setup 404 Page](react.md#setup-404-page)
-  * [Setup App Page](react.md#setup-app-page)
 * Summary
 * [References](react.md#references)
 
