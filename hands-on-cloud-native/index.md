@@ -94,7 +94,7 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
 * Wrapping Up
 * References
 
-## [Chapter 4. Play around with Containers](/)
+## [Chapter 4. Play around with Containers](container.md)
 
 * [What is Container?](container.md#what-is-container)
   * [Container Introduction](container.md#container-introduction)
@@ -123,41 +123,35 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
   * [Push Image to DockerHub Registry](container.md#push-image-to-registry)
 * [References](container.md#references)
 
-## [Chapter 5. Play around with GraphQL](/)
+## [Chapter 5. Play around with GraphQL](graphql.md)
 
-* What is GraphQL?
-  * GraphQL Introduction
-  * GraphQL v/s RESTful
-  * GraphQL Architecture
-    * Client
-    * Server
-* Why use GraphQL?
-  * Strongly Typed Schema
-  * Fetch Just Enough Data
-  * Composable APIs
-  * Friendly Tracing on the Backend
-  * Nice Community
-* Essential Knowledge
-  * The Schema Definition Language (SDL)
-  * Schemas
-  * TypeDefs
-  * Resolvers
-  * Mutation
-  * Subscription
-  * Network Layer
-* Play around with GraphQL
+* [What is GraphQL?](graphql.md#what-is-graphql)
+  * [GraphQL v/s RESTful](graphql.md#graphql-v-s-restful)
+* [Why use GraphQL?](graphql.md#why-use-graphql)
+  * [No Over-Fetching](graphql.md#no-over-fetching)
+  * [No Under-Fetching](graphql.md#no-under-fetching)
+  * [Strongly Typed Schema](graphql.md#strongly-typed-schema)
+* [Challenges](graphql.md#challenges)
+  * [Server-side Cache](graphql.md#server-side-cache)
+* [Essential Knowledge](graphql.md#essential-knowledge)
+  * [Schema Definition Language](graphql.md#schema-definition-language)
+  * [Fetch Data](graphql.md#fetch-data)
+  * [Query Arguments](graphql.md#query-arguments)
+  * [Apply Mutations](graphql.md#apply-mutations)
+  * [Define Schema](graphql.md#define-schema)
+  * [Resolvers](graphql.md#resolvers)
+* [Solutions](graphql.md#solutions)
+* [Play around with GraphQL](graphql.md#play-around-with-graphql)
   * Install json-graphql-server
-  * Generated Types and Queries
-  * Get Entity
-  * Relationships
-  * Get A List of Entities
-  * Sorting
+  * Install Apollo
+  * Prepare React Component
+  * Write GraphQL Query
+  * Send Out Query
+  * Write GraphQL Mutation
+  * Send Out Mutation
   * Pagination
-  * Filtering
-  * Send Queries
-  * Make Mutations
 * Summary
-* References
+* [References](graphql.md#references)
 
 ## [Chapter 6. Build Back End App](/)
 

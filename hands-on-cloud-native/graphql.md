@@ -88,8 +88,6 @@ query {
 
 GraphQL enables writing schema with a strong type system called GraphQL Schema Definition Language (SDL).
 
-### Friendly Tracing on the Backend
-
 ## Challenges
 
 ### Server-side Cache
@@ -98,7 +96,7 @@ Since GraphQL server doesn't know what the query will come next, it's a challeng
 
 ## Essential Knowledge
 
-### Use SDL
+### Schema Definition Language
 
 The syntax for defining GraphQL schemas is called Schema Definition Language (SDL). The schema is a contract of how the data structure should be.
 
@@ -249,3 +247,5 @@ REST vs. GraphQL, <https://medium.com/codingthesmartway-com-blog/rest-vs-graphql
 How To GraphQL, <https://www.howtographql.com>
 
 GraphQL, <https://graphql.org/>
+
+json-graphql-server, <https://github.com/marmelab/json-graphql-server>
