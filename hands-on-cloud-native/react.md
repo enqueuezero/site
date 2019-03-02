@@ -214,34 +214,35 @@ Some caveats of writing hooks are:
 
 `create-react-app` is the official way to setup the boilerplate template for a new React application.
 
-Let's create a new project with the name of `tomat-coffee`.
+Let's create a new project with the name of `frontend`.
 
 ```bash
-$ yarn create react-app tomato-coffee
-$ cd tomato-coffee
+$ yarn create react-app frontend --typescript
+$ cd frontend
 $ yarn start
 ```
 
 Once finished, you should now see the directory as below.
 
 ```
-tomato-coffee
+delicioushref
 ├── README.md
 ├── node_modules
 ├── package.json
 ├── .gitignore
+├── tsconfig.json
 ├── public
 │   ├── favicon.ico
 │   ├── index.html
 │   └── manifest.json
 └── src
     ├── App.css
-    ├── App.js
-    ├── App.test.js
+    ├── App.tsx
+    ├── App.test.tsx
     ├── index.css
-    ├── index.js
+    ├── index.tsx
     ├── logo.svg
-    └── serviceWorker.js
+    └── serviceWorker.tsx
 ```
 
 * `README.md` holds the description of the project.
