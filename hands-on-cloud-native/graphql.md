@@ -6,7 +6,9 @@ title: Play around with GraphQL
 
 ## What is GraphQL?
 
-GraphQL is an open-source data query language for APIs, and a runtime for executing queries for existing data. It provides an efficient, powerful and flexible approach to developing web APIs, and is not tied to any specific database technology. Just like any other API styles defining how client load data from a server, GraphQL enables the client explicitly declare what type and fields it needs from a server.
+GraphQL is an open-source data query language for APIs, and a runtime for executing queries for existing data. It provides an efficient, powerful and flexible approach to developing web APIs. Just like any other API styles defining how client load data from a server, GraphQL enables the client explicitly declare what type and fields it needs from a server.
+
+GraphQL is transport agnostic, meaning you could potentially use any network protocol to send data, such as TCP, HTTP, WebSockets, etc. GraphQL is not tied to any specific database technology. Therefore, you could use a SQL database, a NoSQL database, or even a microservice as backend.
 
 ### GraphQL v/s RESTful
 
@@ -23,8 +25,6 @@ A RESTful API uses GET, POST, PUT and DELETE as operations over a basic concept 
 * Like a post, `POST /api/v1/posts/:id/like`.
 
 RESTful API often causes over fetching or under fetching. Each resource has relatively limit set of data as defined in schema. You need to call another API to get other data, which requires more network calls. The most important difference between RESTful API and GraphQL is GraphQL deal with data as a graph and therefore every piece of data can be connected. As a result, there is no over fetching or under fetching.  By using GraphQL, it'll yield to less round trips between clients and servers. We'll explain this advantage in later chapter.
-
-### GraphQL Architecture
 
 ## Why use GraphQL?
 
@@ -89,6 +89,12 @@ query {
 GraphQL enables writing schema with a strong type system called GraphQL Schema Definition Language (SDL).
 
 ### Friendly Tracing on the Backend
+
+## Challenges
+
+### Server-side Cache
+
+Since GraphQL server doesn't know what the query will come next, it's a challenge to maintain server-side cache. One of the common pattern is to reserve an `id` field always.
 
 ## Essential Knowledge
 
@@ -224,11 +230,22 @@ type Link {
 ```
 
 ### Resolvers
-### Mutation
-### Subscription
-### Network Layer
+
+When GraphQL server receives a query, it'll call functions that corresponding to each field in the query to resolve data. They are called *resolver* functions. Once all resolver functions return value, the server will assemble all data up in the format that is required by the query and send back to client.
+
+## Solutions
+
+* Clients: Apollo <https://www.apollographql.com/>, Relay <https://facebook.github.io/relay/>.
+* Servers: graphql-js (Node.js) <https://github.com/graphql/graphql-js>, graphql-ruby (Ruby) <https://github.com/rmosolgo/graphql-ruby>, graphql-java (Java) <https://github.com/graphql-java/graphql-java>, Graphene (Python) <https://github.com/graphql-python/graphene>, Sangria (Scala) <https://github.com/sangria-graphql/sangria>.
+
 ## Play around with GraphQL
+
 ## Summary
+
 ## References
 
 REST vs. GraphQL, <https://medium.com/codingthesmartway-com-blog/rest-vs-graphql-418eac2e3083>
+
+How To GraphQL, <https://www.howtographql.com>
+
+GraphQL, <https://graphql.org/>
