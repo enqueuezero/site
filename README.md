@@ -20,6 +20,7 @@ And thanks for being my AWESOME reader!
 
 Table of Content
 
+* [Hands-On Cloud Native Application](/hands-on-cloud-native/)
 * [Concrete Architecture](/category/architecture.md)
 * [Techshack Updates](/category/techshack.md)
 * [Elegant Utilities](/category/utility.md)
