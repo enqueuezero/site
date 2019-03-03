@@ -8,9 +8,16 @@ title: What's New?
 >>> SELECT * from journals order by time desc;
 ```
 
+## 2019 March
+
+* Added [Deployment](/deployment.html).
+* Added Techshack Weekly Updates. [2019-09](/techshack.weekly/2019-09.html).
+* Added [Document Driven Development](/ddd.html).
+* Added chapters [Play around with Containers](/hands-on-cloud-native/container.html) and [Play around with GraphQL](/hands-on-cloud-native/graphql.html).
+
 ## 2019 February
 
-* Added Techshack Weekly Updates. [2019-05](/techshack.weekly/2019-05.html), [2019-06](/techshack.weekly/2019-06.html), [2019-07](/techshack.weekly/2019-07.html).
+* Added Techshack Weekly Updates. [2019-05](/techshack.weekly/2019-05.html), [2019-06](/techshack.weekly/2019-06.html), [2019-07](/techshack.weekly/2019-07.html), [2019-08](/techshack.weekly/2019-08.html).
 * Started writing book "Hands-On Cloud Native Application". [preface](/hands-on-cloud-native/preface.html), [The Landscape](/hands-on-cloud-native/the-landscape.html), [Getting Started with React](/hands-on-cloud-native/react.html).
 * Added [Troubleshooting](/concrete-architecture/troubleshooting.html).
 
