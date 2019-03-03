@@ -40,7 +40,7 @@ From 1 to 4, it requires less self-management cost, meaning you spent less effor
 
 1. Source code. In the option of function-as-a-service and platform-as-a-service, you deploy source code and then source code become runnable instances. In the option of bare metal, source code can also be an option by using tools like capistrano; such tool can update source code on bare metal and restart applications.
 2. Container. In the option of Kubernetes, you deploy images and then images become containers in runtime.
-3. Packages. In the option of bare metal, you can pre-build source code to packages and then deploy packages in production. By introducing one more step in the pipeline, you can simply the system dependencies for building application in production environments.
+3. Packages. In the option of bare metal, you can pre-build source code to packages and then deploy packages in production. By introducing one more step in the pipeline, you can simply the system dependencies for building application in production environments. The package formats are often OS-specific, such as RPM for RedHat or CentOS, Deb for Debian and Ubuntu, etc. Some people also prefer language-specific packages, such as wheel package installed to `virtualenv` for Python applications, Gem package installed to `bundle`for Ruby applications, etc.
 
 ## When is exit criteria?
 
