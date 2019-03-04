@@ -13,6 +13,7 @@ title: What's New?
 * Added [Deployment](/deployment.html).
 * Added Techshack Weekly Updates. [2019-09](/techshack.weekly/2019-09.html).
 * Added [Document Driven Development](/ddd.html).
+* Added [Access Token](/concrete-architecture/access-token.html).
 * Added chapters [Play around with Containers](/hands-on-cloud-native/container.html) and [Play around with GraphQL](/hands-on-cloud-native/graphql.html).
 
 ## 2019 February
