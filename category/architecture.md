@@ -97,6 +97,10 @@ Performance issue on upstream service often leads to downstream application cras
     * Use YAML if you want something more complex.
 * Use language built-in serialization functions or methods if the use case is only limited in a single language, and you don't care security that much (not good). 
 
+### [Deployment](/deployment.html)
+
+The goal of software deployment is to prepare a software application to run and operation in a specific environment. There are several deployment models but all of them have the same exit criteria, having a new version of application up and running and the old version retired.
+
 ### [Load Balance](/load-balance.html)
 
 Load balancing is fundamental way to build a large distributed system, and hence knowing it well is important. To build a reliable system, a mature load balancer hardware or software is essential. If you have a lot of money, then buy a load balancing hardware. Otherwise, a load balancing software is recommended.
