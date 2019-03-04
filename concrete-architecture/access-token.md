@@ -9,19 +9,19 @@ title: Access Token
 Access Token is a unique string that represents who is using an account browsing the internet.
 
 :::tip
-Access Token is not password. Password is a credential information that nobody else know what it is, including the DBA of the website. Access Token is just a badge and is not credential. Every time you sign into a website, you'll be assigned with either a session or an access token.
+Access Token is not a password. A password is a piece of credential information that nobody else knows what it is, including the DBA of the website. Access Token is just a badge and is no credential. Every time you sign into a website, you'll be assigned with either a session or an access token.
 :::
 
 ## How to use Access Token?
 
-Access Token is used when the application need to know who is accessing.
+Access Token is used when the application needs to know who is accessing.
 
 On client-side, there are two popular ways.
 
 * Use a dedicated client to handle the OAuth2 flow. Once finished, you'll get an access token internally.
 * Or, save access token as environment variables. For example, add `export GITHUB_TOKEN=KhXDkRJWyihcAmFNgtNydMrGPkpzoVde` in your `.bashrc`.
 
-On server-side, a common use of access token is in API Gateway.
+On server-side, one of the common use of access token is within an API Gateway.
 
 * The API Gateway authenticates the user based on either cookie session or access token.
 * The API Gateway passes the ID token to other microservices.
@@ -29,7 +29,7 @@ On server-side, a common use of access token is in API Gateway.
 
 ## What is the difference between ID Token and Access Token?
 
-The ID Token is meant for the application only. An application need to know some basic information of the user, and luckily ID Token encapsulates these information in the payload. ID Token is usually a JSON Web Token (JWT).
+The ID Token is meant for the application only. An application needs to know some basic information of the user, and luckily ID Token encapsulates this information in the payload. ID Token is usually a JSON Web Token (JWT).
 
 The Access Token is meant for API. Its purpose is to inform the API that the **bearer** of the token is trying to access the API.
 
@@ -47,9 +47,9 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 As separated by `.`,
 
-* The first part is header, `{"alg": "HS256", "typ": "JWT"}`. There are some other `alg` can be use, for example `HS384`, `HS512`, etc.
+* The first part is header, `{"alg": "HS256", "typ": "JWT"}`. There are some other `alg` can be used, for example `HS384`, `HS512`, etc.
 * The second part is payload,`{"sub": "1234567890","name": "John Doe", "iat": 1516239022 }`.
-* The third part is a signature of above information that indicates the token is not modified by anyone.
+* The third part is a signature of the above information that indicates no one modifies the token.
 
 See more information on [jwt.io](https://jwt.io/introduction/).
 
@@ -57,7 +57,7 @@ See more information on [jwt.io](https://jwt.io/introduction/).
 
 Once logged into the application, it returns you an access token.
 
-Next time, your client will add a `Authorization` header in the request. For example,
+Next time, your client will add an `Authorization` header in the request. For example,
 
 ```bash
 $ curl -H"Authorization: Bearer KhXDkRJWyihcAmFNgtNydMrGPkpzoVde" \

@@ -51,6 +51,10 @@ Microservices architecture is an architectural style that structured application
 
 ## Part II: Architecture Blocks
 
+### [Access Token](/concrete-architecture/access-token.html)
+
+Access Token is a unique string that represents who is using an account browsing the internet.
+
 ### [Back-pressure](/back-pressure.html)
 
 Producer-consumer model is very helpful to decouple the system components. However, the situation is quite often in which producer produces jobs more rapidly than consumers can consume them. It's a challenge to manage a large number of unconsumed jobs.
