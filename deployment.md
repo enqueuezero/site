@@ -26,6 +26,9 @@ From 1 to 4, it requires more and more management cost, meaning you spent more e
 2. Platform as a service. We can upload application code to the cloud platform and let platform provision the runtime instances. Such a platform could be Heroku, OpenShift, Google App Engine, etc.
 3. Kubernetes. We can apply `Deployment` or `StatefulSet` resources to Kubernetes platform.
 4. Bare Metal. We can provision bare metal hosts, running with Linux OS, and then run applications on the host as processes.
+   * Multiple services per host
+   * Single service per host
+   * Single service per VM
 
 ## How to Deploy?
 
@@ -44,11 +47,11 @@ From 1 to 4, it requires less self-management cost, meaning you spent fewer effo
 
 ## When is exit criteria?
 
-There are several deployment models but all of them have the same exit criteria, having a new version of application up and running and the old version retired.
+The exit criteria of deployment is to have a new version of application up and running and the old version retired.
 
-These deployment models include:
+## Deployment Models
 
 * Blue-green model. Every time you deploy something, it's switching in-between blue and green environment.
 * Canary. You deploy a new version of the application and let it serve 5% traffic. Once verified, you expand the deployment and let it serve 100% traffic.
-* In-Place update model.
-* Immutable model.
+* Mutable model. In-place update. Code is pulled or extracted in the VM and then restart servers.
+* Immutable model. No in-place update. Every change is published as a new instance.
