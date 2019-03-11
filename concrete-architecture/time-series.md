@@ -6,15 +6,19 @@ title: Time Series
 
 ## Context
 
-A system is meant to run continuously and thus creates flowing data over time. In term of metrics, the system reports discrete data points of each moment. It's a challenge to structure and analyze these data points.
+A system is meant to run continuously and thus creates flowing data over time. In term of metrics, the system reports discrete data points each moment. It's a challenge to structure, store, and analyze these data points.
 
 ## Overview
 
 A time series is a series of data points indexed (or listed or graphed) in time order.
+Each data point is often a numeric value.
+Each time series consists of a name plus optional tags.
+
+For example, A Linux system expose its load data by reading from `/proc/loadavg`. Then we could have such a metric that has `proc.loadavg.1m` as metric name, `host=web-1.svc.prod.example.com` as tag, `0.03` as data point value. The time series is a sequence of floating value like `0.03` that reflects system load over time.
 
 ## Solutions
 
-### Prometheus Data Model
+### Prometheus
 
 Prometheus is a time series database and fundamentally stores all data as time series: streams of timestamped values belonging to the same metric and the same set of labeled dimensions.
 
@@ -97,6 +101,14 @@ Below example shows how it looks like:
 access.response_time 0.21 15029382000 source=web-1.svc.local method="GET" domain="enqueuezero.com" path="/"
 ```
 
+### OpenTSDB
+
+OpenTSDB is yet another time series database. A typical time series data point that send to OpenTSDB is like below.
+
+```
+put access.response_time 15029382000 0.21 host=web-1.svc.local method=GET domain=enqueuezero.com path=index
+```
+
 ## Patterns
 
 ### Data Storing
@@ -108,9 +120,35 @@ It's a challenge on storing time series data. Below is a list of notable things.
 * Updates happens. A sample data may be sent multiple times with different fields or values. How to overwrite these data?
 * Time affiliated. Each sample associates with a timestamp and is ingested in time ascending order.
 
+### Data Types
+
+Almost every time series database can support numeric numbers. A few of them can support boolean, string, etc.
+
+The timestamp is usually a long integer with second-precision, millisecond-precision, or even nanosecond-precision.
+
+As for the metric types, below are the most common seen types.
+
+* A **counter** is a cumulative metric that represents a single monotonically increasing counter whose value can only increase or be reset to zero on restart.
+* A **gauge** is a metric that represents a single numerical value that can arbitrarily go up and down.
+* A **histogram** is a bucketed metric that counts values in a configurable bucket.
+
 ### Data Analytics
 
-### Machine Learning
+The analytics based on time series data is about to dig out the trend or patterns revealed from the changes of values.
+Common analytic method is through statistical analysis, for example, percentage, percentile, etc.
+Another approach is by using machine learning and deep learning.
+Statistical analysis is the first choice. Even by using machine learning or deep learning, it's also recommended to combine with statistical analysis.
+
+#### Filters
+
+When querying time sereis data, it's always good to filter data so that only a limit set of data points are returned.
+This could protect the time series database query engine.
+
+One effective approach is to align data points. Instead of write all data points, we can align data points to buckets in configured time windows.
+For example, we collect five data points but only save the average of the five data points into database.
+
+Another approach is to downsample data points when querying. We can take a sample of data points every a few minutes.
+For example, we save five data points over five minutes but only fetch one data point over five minutes.
 
 ## References
 
