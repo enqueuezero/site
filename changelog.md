@@ -15,6 +15,7 @@ title: What's New?
 * Added [Document Driven Development](/ddd.html).
 * Added [Access Token](/concrete-architecture/access-token.html).
 * Added chapters [Play around with Containers](/hands-on-cloud-native/container.html) and [Play around with GraphQL](/hands-on-cloud-native/graphql.html).
+* Added [Time Series](/concrete-architecture/time-series.html).
 
 ## 2019 February
 
