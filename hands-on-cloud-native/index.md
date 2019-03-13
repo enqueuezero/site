@@ -274,9 +274,19 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
 * Summary
 * References
 
-## [Chapter 15. Collect Metrics by Prometheus](/)
+## [Chapter 15. Collect Metrics by Prometheus](metrics.md)
 
-* What are Metrics?
+* [What are Metrics?](metrics.md#what-are-metrics)
+  * [Time series](metrics.md#time-series)
+  * [Sample Frequency](metrics.md#sample-frequency)
+* Metrics in Kubernetes
+  * Cluster Metrics
+  * Deployment Metrics
+  * Pod Metrics
+  * Runtime Metrics
+  * Web Application Metrics
+  * Background Application Metrics
+  * Batch Application Metrics
 * Why Do We Need Metrics?
 * Emit Metrics
 * Collect Metrics
@@ -295,6 +305,7 @@ Through the book, you will learn concrete examples, minimal theory, and how to b
   * Dashboard
   * Panel
   * Chart
+* Metric Analytics
 * Build a Monitoring Dashboard
   * Deploy Grafana
   * Provisioning of Datasources

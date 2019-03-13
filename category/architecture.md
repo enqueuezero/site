@@ -55,6 +55,14 @@ Microservices architecture is an architectural style that structured application
 
 Access Token is a unique string that represents who is using an account browsing the internet.
 
+### [Alerting](/concrete-architecture/alerting.html)
+
+Alerts indicates the application deviates from a normal state.
+The goal of alerting is to reach a human to remedy an issue.
+Alerting usually consists of two parts: setting rules and setting notification targets.
+Alerting rules defines when to trigger alerts, such as "average response time over last 5 minutes is greater than 2 seconds", "ping check failed over consecutive 3 times", etc.
+Alerting targets defines where to send alerts, such as IRC, Slack, Email, PagerDuty, etc.
+
 ### [Back-pressure](/back-pressure.html)
 
 Producer-consumer model is very helpful to decouple the system components. However, the situation is quite often in which producer produces jobs more rapidly than consumers can consume them. It's a challenge to manage a large number of unconsumed jobs.
