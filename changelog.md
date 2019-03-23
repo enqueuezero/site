@@ -11,11 +11,12 @@ title: What's New?
 ## 2019 March
 
 * Added [Deployment](/deployment.html).
-* Added Techshack Weekly Updates. [2019-09](/techshack.weekly/2019-09.html).
+* Added Techshack Weekly Updates. [2019-09](/techshack.weekly/2019-09.html), [2010-10](/techshack.weekly/2019-10.html), [2019-11](/techshack.weekly/2019-11.html).
 * Added [Document Driven Development](/ddd.html).
 * Added [Access Token](/concrete-architecture/access-token.html).
 * Added chapters [Play around with Containers](/hands-on-cloud-native/container.html) and [Play around with GraphQL](/hands-on-cloud-native/graphql.html).
 * Added [Time Series](/concrete-architecture/time-series.html).
+* Reverted Patreon account. Thanks for all my funders. I've built habit of updating things constantly and there is not much need to motivate myself through money!
 
 ## 2019 February
 

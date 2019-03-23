@@ -5,10 +5,6 @@ sidebar: auto
 
 # Hands-On Cloud Native Application
 
-:::tip
-This book is still working in-progress. Please support this project by donating via [Patreon](https://www.patreon.com/join/enqueuezero) or sending [Pull Requests](https://github.com/soasme/enqueuezero).
-:::
-
 Since the wide adoption of the container technology and cloud computing, the Cloud Native application has become one of the most popular engineering practices. Now, even programmers with very few infrastructure knowledge can launch a great fleet of cloud native applications for serving millions of requests. The practical book shows you how to make it happen.
 
 Through the book, you will learn concrete examples, minimal theory, and how to build and deliver a typical React-based front-end and Flask-based back-end to cloud platform.

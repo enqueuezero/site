@@ -15,9 +15,6 @@
         </div>
     </form>
     </div>
-    <p>
-      最后，如果你觉得 (我做的事情是有价值的 && 对自己的学习有帮助 && 不介意每个月养我 $1), 请前往 <a href="https://www.patreon.com/enqueuezero">Patreon</a> 进行赞助。捐赠到的钱将会被我用于维护域名，购买语法检查服务，发送邮件等等。感谢你的大力支持。
-    </p>
   </div>
 </template>
 

@@ -8,6 +8,7 @@ title: Techshack
 
 Below is the list of all reading lists.
 
+* [2019-11 (en)](/techshack.weekly/2019-11.html)
 * [2019-10 (en)](/techshack.weekly/2019-10.html)
 * [2019-09 (en)](/techshack.weekly/2019-09.html)
 * [2019-08 (en)](/techshack.weekly/2019-08.html)

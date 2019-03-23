@@ -45,9 +45,9 @@ Most of the Markdown syntax is fine. Below are some default extensions:
 
 ```markdown
 ---
-title: Donate Enqueue Zero
+title: Enqueue Zero
 meta:
- - url: https://www.patreon.com/enqueuezero
+ - url: https://enqueuezero.com
 ---
 
 # H1
