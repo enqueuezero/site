@@ -182,6 +182,8 @@ A time series is a series of data points indexed (or listed or graphed) in time 
 
 For example, A Linux system expose its load data by reading from `/proc/loadavg`. Then we could have such a metric that has `proc.loadavg.1m` as metric name, `host=web-1.svc.prod.example.com` as tag, `0.03` as data point value. The time series is a sequence of floating value like `0.03` that reflects system load over time.
 
+It's also an interesting topic to perform [time series analytics](https://www.notion.so/soasme/666cc0233aca49a589fbc394611dcc4c).
+
 ## Part III: Architecture Examples
 
 ### [SQLAlchemy](/concrete-architecture/sqlalchemy.html)
