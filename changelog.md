@@ -8,10 +8,14 @@ title: What's New?
 >>> SELECT * from journals order by time desc;
 ```
 
+## 2019 Apr
+
+* Added Techshack Weekly Updates. [2019-14](/techshack.weekly/2019-14.html), [2019-15](/techshack.weekly/2019-15.html).
+
 ## 2019 March
 
 * Added [Deployment](/deployment.html).
-* Added Techshack Weekly Updates. [2019-09](/techshack.weekly/2019-09.html), [2010-10](/techshack.weekly/2019-10.html), [2019-11](/techshack.weekly/2019-11.html).
+* Added Techshack Weekly Updates. [2019-09](/techshack.weekly/2019-09.html), [2010-10](/techshack.weekly/2019-10.html), [2019-11](/techshack.weekly/2019-11.html), [2019-12](/techshack.weekly/2019-12.html), [2019-13](/techshack.weekly/2019-13.html).
 * Added [Document Driven Development](/ddd.html).
 * Added [Access Token](/concrete-architecture/access-token.html).
 * Added chapters [Play around with Containers](/hands-on-cloud-native/container.html) and [Play around with GraphQL](/hands-on-cloud-native/graphql.html).
