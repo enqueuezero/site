@@ -11,6 +11,7 @@ title: What's New?
 ## 2019 Apr
 
 * Added Techshack Weekly Updates. [2019-14](/techshack.weekly/2019-14.html), [2019-15](/techshack.weekly/2019-15.html).
+* Added [Single-Assignment Store](/single-assignment-store.html).
 
 ## 2019 March
 
