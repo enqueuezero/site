@@ -46,15 +46,42 @@ Just in case, if you want to know a little bit more, well, keep reading. You're 
 
 ## Architecture
 
-A traditional broker software like RabbitMQ, Kafka, Redis needs to run as a standalone program, then clients send messages to broker, and workers consumes messages from broker.
-It seems so natural that a lot of enterprise software place the "broker" into the center place in their seemingly beautiful architecture diagram.
+
+### A Message Queue Software Can be A Library!
+
+A traditional broker software like RabbitMQ, Kafka, Redis needs to run as a standalone application, then clients send messages to broker, and workers consumes messages from broker.
+Such component seems so natural that a lot of enterprise software place the "broker" into the center place in their seemingly beautiful architecture diagram.
 Nonetheless, ZeroMQ decides to be a ~~black sheep~~ library, rather than a standalone broker program.
-Whoever wants to use ZeroMQ, he shall wave his wand and whisper, "pip install zmq gem install zmq push () { m=$(cat) && echo \ -e $(printf '\\x01\\x00\\x%02x\\x00%s' \ $((1 + ${#m})) "$m") | nc -q1 $@; } 唵嘛呢叭咪吽". After installing the library into the application as a project dependency, he should be able to use it immediately. No broker, no maintenance cost, no SPOF.
+Whoever wants to use ZeroMQ, he shall wave his wand and whisper, "pip install zmq gem install zmq push () { m=$(cat) && echo \ -e $(printf '\\x01\\x00\\x%02x\\x00%s' \ $((1 + ${#m})) "$m") | nc -q1 $@; } 唵嘛呢叭咪吽". After installing the library into the application as a project dependency, he should be able to use it immediately. No broker, less maintenance cost, less risk of SPOF.
 This is the most interesting design of ZeroMQ.
 
 [Insert Broker v/s Brokerless Diagram Here]
 
+The major benefit with the library design is less network round trip and thus higher performance. The messages don't need to go over the network hop twice from senders to receivers. If you still want to have a broker in your architecture design, ZeroMQ won't leash you. It provides building blocks implementing a "broker" in just a few lines of code, probably equal to the lines of configuration files of a typical broker software. And of course, it's not a real broker, just an internal thread within you server process. Again, less maintenance cost.
 
+There are indeed disadvantages of using library. You'll eat you dog food from the coding perspective. If you write shitty code, then you give a shitty application despite of ZeroMQ offering a set of powerful message patterns. You're no longer able to use global state since ZeroMQ encourages multi-threading model. Global state requires locking, mutex, etc, which harm the performance of the application. However, one might be thrilled to get the hell out of dead lock problem.
+
+All in all, whether you like it or not, being a library stands as the first fundamental design of ZeroMQ. It's goal is high performance and less maintenance cost. Being a standalone application goes against this goal and never is an option.
+
+:::tip
+Question: will you opt for a library design or an application design for you next project?
+:::
+
+### Overall Design From End User Perspective
+
+In order to use ZeroMQ efficiently, you need to run worker threads that handle connections, network packets, etc. In the main thread, you just need to create a context holding global states. Don't worry if you don't understand each of them, we'll explain each one later.
+
+* In main thread, user creates a singleton object **zmq.Context()** holds the global state and is accessible by all the sockets and all the asynchronous objects in worker threads.
+* In worker threads, user creates socket objects from the context. Internally, ZeroMQ maintains various objects in each worker thread.
+  * The **TCP Listener** listens for the incoming TCP connections and creates an engine/session object for each new connection.
+  * The **TCP Connector** attempts to connect to a TCP peer and maintain an engine/session object for each connection.
+  * The **Engine** is responsible for communicating over the network.
+  * The **Session** exchanges messages through pipes.
+  * Each **Pipe** is basically a lock-free queue optimized for fast passing of messages between threads.
+
+[Insert ZeroMQ Overall Design Diagram Here]
+
+### Message-Passing Concurrency
 
 
 ## Use
@@ -63,9 +90,16 @@ This is the most interesting design of ZeroMQ.
 
 ### Performance Test Suites
 
-ZeroMQ strives for the best performance as it could. The metrics used to measure the performance are boring latency and throughput, the former of which describes how long each message gets sent and received, and the latter of which describes how many messages get sent and received on both client and server side. There are some executables in ZeroMQ performances tests suite ending with `_lat` and `_thr`, such as `remote_lat`, `remote_thr`. You can locate the source code of all such executables in [`perf`](https://github.com/zeromq/libzmq/blob/master/perf/) subdirectory.
+ZeroMQ strives for the best performance as it could.
+The metrics used to measure the performance are latency and throughput, the former of which describes how long each message gets sent and received, and the latter of which describes how many messages get sent and received on both client and server side.
+There are some executables in ZeroMQ performances tests suite ending with `_lat` and `_thr`, such as `remote_lat`, `remote_thr`.
+You can locate the source code of all such executables in [`perf`](https://github.com/zeromq/libzmq/blob/master/perf/) subdirectory.
 
-To be fair, it's meaningful to measure latency against a single message, as every message could have different latency. The way to get around it is to apply some sort of aggregation functions on all latency values. Starting from here, you'll enter the statistic world; you can use average function to get overall latency, use percentile function to get latency in extreme cases, etc. We won't discuss to much here. ZeroMQ performance test suites applies average function as shown below (error handling part gets removed to simplify your reading experience).
+To be fair, it's meaningful to measure latency against a single message, as every message could have different latency.
+The way to get around it is to apply some sort of aggregation functions on all latency values.
+Starting from here, you'll enter the statistic world; you can use average function to get overall latency, use percentile function to get latency in extreme cases, etc.
+We won't discuss to much here.
+ZeroMQ performance test suites applies average function as shown below (error handling part gets removed to simplify your reading experience).
 
 ```cpp
 watch = zmq_stopwatch_start ();
@@ -77,9 +111,12 @@ elapsed = zmq_stopwatch_stop (watch);
 printf ("average latency: %.3f [us]\n", (double) latency);
 ```
 
-There are something to note here. The latency reported is the one-way latency, not the latency of the roundtrip. It's okay to compare performance testing results with other software, but you have to run tests on the same machine, since latency is strongly tied to your computer's physical limitation and network performance.
+There are something to note here.
+The latency reported is the one-way latency, not the latency of the roundtrip.
+It's okay to compare performance testing results with other software, but you have to run tests on the same machine, since latency is strongly tied to your computer's physical limitation and network performance.
 
-On the contrary, it's meaningful to measurement "overall" throughput, as throughput can be only measured on one side of the system, either sender or receiver. Therefore, ZeroMQ performance test suites picks just throughput in one side.
+On the contrary, it's meaningful to measurement "overall" throughput, as throughput can be only measured on one side of the system, either sender or receiver.
+Therefore, ZeroMQ performance test suites picks just throughput in one side.
 
 ```cpp
 watch = zmq_stopwatch_start ();
@@ -96,7 +133,6 @@ megabits = ((double) throughput * message_size * 8) / 1000000;
 printf ("mean throughput: %d [msg/s]\n", (int) throughput);
 printf ("mean throughput: %.3f [Mb/s]\n", (double) megabits);
 ```
-
 
 <!-- TODO: benchmark_radix_tree -->
 
