@@ -75,8 +75,8 @@ In order to use ZeroMQ efficiently, you need to run worker threads that handle c
 
 * In main thread, user creates a singleton object **zmq.Context()** holds the global state and is accessible by all the sockets and all the asynchronous objects in worker threads.
 * In worker threads, user creates socket objects from the context. Internally, ZeroMQ maintains various objects in each worker thread.
-  * The **Listener** listens for the incoming TCP connections and creates an engine/session object for each new connection.
-  * The **Connector** attempts to connect to a TCP peer and maintain an engine/session object for each connection.
+  * The **Listener** listens for the incoming connections and creates an engine/session object for each new connection.
+  * The **Connector** attempts to connect to a peer and maintain an engine/session object for each connection.
   * The **Engine** is responsible for communicating over the network.
   * The **Session** exchanges messages through pipes.
   * Each **Pipe** is basically a lock-free queue optimized for fast passing of messages between threads.
@@ -89,6 +89,41 @@ In order to use ZeroMQ efficiently, you need to run worker threads that handle c
 ## Use
 
 ## Source Code
+
+### Messages
+
+The implementation of ZeroMQ message is an artifact of engineering solutions. It takes trade-offs between *high performance*.and various *use cases*.
+
+It's never easy to get high performance considering that premature optimization is the root of all evil. We should find a right timing and a right spot optimizing the software. Yet ZeroMQ made it well.  Based on the size of the content, ZeroMQ allocates small messages (vsm) and large messages (lmsg). Small messages encode the content in itself, while large messages reference the content to an user allocated memory. When the size is large, ZeroMQ needs user provide an `ffn` function to deallocate the content, as it's user's responsibility to do clean up work for the memory of large contents. Such design is efficient enough for almost all use cases and yields to relatively small code set. Below code shows how ZeroMQ initialize a message:
+
+```cpp
+if (size_ <= max_vsm_size) {
+    u.vsm.type = type_vsm;
+    u.vsm.size = (unsigned char) size_;
+    // ... (other fields).
+} else {
+    u.lmsg.type = type_lmsg;
+    u.lmsg.content = (content_t*) malloc (sizeof (content_t) + size_);
+    u.lmsg.content->data = u.lmsg.content + 1;
+    u.lmsg.content->size = size_;
+    u.lmsg.content->ffn = NULL;
+    // ... (other fields)
+}
+```
+
+In order to support various message types, such as storing the content in the message itself, storing the content in user allocated memory, pointing the content to the constant data, etc, ZeroMQ designs slightly different structs to represent them, and tightly packs all structs into a union. It makes sure one message can have only one type and one interpretation of its meaning. For example, to get the content from a message, a simple switch-case solves the problem:
+
+```cpp
+switch (u.base.type) {          // u is the union, and all common fields can be accessed by `base`.
+case type_vsm:                  // typ_vsm indicates a small message.
+    return u.vsm.data;          // for small message, we access data from field `data`.
+case type_lmsg:                 // type_lmsg indicates a large message.
+    return u.lmsg.content->data;// for large message, we use pointer.
+// ... (other types) 
+}
+```
+
+If you're interested in how ZeroMQ is implemented, check [msg.hpp](https://github.com/zeromq/libzmq/blob/master/src/msg.hpp) and [msg.cpp](https://github.com/zeromq/libzmq/blob/master/src/msg.cpp).
 
 ### Performance Test Suites
 
