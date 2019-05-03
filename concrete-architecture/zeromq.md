@@ -59,6 +59,8 @@ This is the most interesting design of ZeroMQ.
 
 The major benefit with the library design is less network round trip and thus higher performance. The messages don't need to go over the network hop twice from senders to receivers. If you still want to have a broker in your architecture design, ZeroMQ won't leash you. It provides building blocks implementing a "broker" in just a few lines of code, probably equal to the lines of configuration files of a typical broker software. And of course, it's not a real broker, just an internal thread within you server process. Again, less maintenance cost.
 
+From an implementation perspective, the "official" low-level core API is [libzmq](https://github.com/zeromq/libzmq) written in C/C++. Nonetheless, several language bindings wrap the low-level API in a consistency way, adding more or less sugar for corresponding languages. Therefore, you can use ZeroMQ in Bash, C, Python, Ruby, Common Lisp, Node.js, Java, etc. The benefit is that you can use ZeroMQ library in almost all popular languages  Thanks to the enthusiastic ZeroMQ community!
+
 There are indeed disadvantages of using library. You'll eat you dog food from the coding perspective. If you write shitty code, then you give a shitty application despite of ZeroMQ offering a set of powerful message patterns. You're no longer able to use global state since ZeroMQ encourages multi-threading model. Global state requires locking, mutex, etc, which harm the performance of the application. However, one might be thrilled to get the hell out of dead lock problem.
 
 All in all, whether you like it or not, being a library stands as the first fundamental design of ZeroMQ. It's goal is high performance and less maintenance cost. Being a standalone application goes against this goal and never is an option.
@@ -73,8 +75,8 @@ In order to use ZeroMQ efficiently, you need to run worker threads that handle c
 
 * In main thread, user creates a singleton object **zmq.Context()** holds the global state and is accessible by all the sockets and all the asynchronous objects in worker threads.
 * In worker threads, user creates socket objects from the context. Internally, ZeroMQ maintains various objects in each worker thread.
-  * The **TCP Listener** listens for the incoming TCP connections and creates an engine/session object for each new connection.
-  * The **TCP Connector** attempts to connect to a TCP peer and maintain an engine/session object for each connection.
+  * The **Listener** listens for the incoming TCP connections and creates an engine/session object for each new connection.
+  * The **Connector** attempts to connect to a TCP peer and maintain an engine/session object for each connection.
   * The **Engine** is responsible for communicating over the network.
   * The **Session** exchanges messages through pipes.
   * Each **Pipe** is basically a lock-free queue optimized for fast passing of messages between threads.
