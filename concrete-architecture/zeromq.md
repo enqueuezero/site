@@ -4,10 +4,6 @@ title: ZeroMQ
 
 # ZeroMQ
 
-## Disclaimer
-
-I am not an expert of ZeroMQ but just interested in how ZeroMQ works. Let me know if I made something wrong! Please report it in [GitHub Issues](https://github.com/soasme/enqueuezero/issues).
-
 ## Overview
 
 ZeroMQ in five lines of code: (you know I'm just showing a tip of iceberg, right?)
@@ -45,7 +41,6 @@ Just in case, if you want to know a little bit more, well, keep reading. You're 
 * **Pros/Cons**: Last but not least, we'll see when to use it and when not to use it.
 
 ## Architecture
-
 
 ### A Message Queue Software Can be A Library!
 
@@ -89,6 +84,10 @@ In order to use ZeroMQ efficiently, you need to run worker threads that handle c
 ## Use
 
 ## Source Code
+
+### Entry Point
+
+If I were to read the source code of a project, I would start from the entry point. The entry point of ZeroMQ is [zmq.h](https://github.com/zeromq/libzmq/blob/master/include/zmq.h) and [zmq.cpp](https://github.com/zeromq/libzmq/blob/master/src/zmq.cpp), which provides a high-level interface to end users. Starting from these two files, we can get a quick glance on how various modules are scattered and compiled. There are some context related functions (`ctx_`), message related functions (`msg_`), poller related functions (`zmq_poller_`), and most importantly socket related functions (`zmq_socket`, `zmq_bind`, `zmq_connect`, `zmq_send`, `zmq_recv`), etc. The header file `zmq.h` serves as a contract to the ZeroMQ users and hence the stability is the most concerned thing. If there is ever a change in the file, it must not break existing applications. The cpp file `zmq.cpp` exposes internal modules as stable APIs. Most of the implementations of `zmq_xyz_abc` map to `(static_cast<zmq::xyz *> (xyz_))->abc` or `zmq::xyz_t *s = ...; s->abc(...);`, with some additional error code handling. The lines of code is quite a lot but the code is easy to understand.
 
 ### Messages
 
@@ -181,3 +180,11 @@ printf ("mean throughput: %.3f [Mb/s]\n", (double) megabits);
 
 * If you want to know the architecture of ZeroMQ, don't miss out the chapter written by [Martin Sústrik](http://aosabook.org/en/intro2.html#sustrik-martin) in the [aosabook](http://aosabook.org/en/zeromq.html) (The Architecture of Open Source Applications) 
 * If you want to know ZeroMQ inside out, read [ZeroMQ - The Guide](http://zguide.zeromq.org/page:all).
+
+## Disclaimer
+
+I am not an expert of ZeroMQ but just interested in how ZeroMQ works.
+Let me know if I made something wrong! If you happen to find one, please report to [GitHub Issues](https://github.com/soasme/enqueuezero/issues).
+
+This article is also to cherish the memory of [Pieter Hintjens](http://hintjens.com/). He who designed AMQP and founded the ZeroMQ free software project, was a writer, a maker of software, a humanist, a father and nd many things. But above all, a writer.
+
