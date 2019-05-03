@@ -87,7 +87,15 @@ In order to use ZeroMQ efficiently, you need to run worker threads that handle c
 
 ### Entry Point
 
-If I were to read the source code of a project, I would start from the entry point. The entry point of ZeroMQ is [zmq.h](https://github.com/zeromq/libzmq/blob/master/include/zmq.h) and [zmq.cpp](https://github.com/zeromq/libzmq/blob/master/src/zmq.cpp), which provides a high-level interface to end users. Starting from these two files, we can get a quick glance on how various modules are scattered and compiled. There are some context related functions (`ctx_`), message related functions (`msg_`), poller related functions (`zmq_poller_`), and most importantly socket related functions (`zmq_socket`, `zmq_bind`, `zmq_connect`, `zmq_send`, `zmq_recv`), etc. The header file `zmq.h` serves as a contract to the ZeroMQ users and hence the stability is the most concerned thing. If there is ever a change in the file, it must not break existing applications. The cpp file `zmq.cpp` exposes internal modules as stable APIs. Most of the implementations of `zmq_xyz_abc` map to `(static_cast<zmq::xyz *> (xyz_))->abc` or `zmq::xyz_t *s = ...; s->abc(...);`, with some additional error code handling. The lines of code is quite a lot but the code is easy to understand.
+If I were to read the source code of a project, I would start from the entry point. The entry point of ZeroMQ is [zmq.h](https://github.com/zeromq/libzmq/blob/master/include/zmq.h) and [zmq.cpp](https://github.com/zeromq/libzmq/blob/master/src/zmq.cpp), which provides a high-level interface to end users. Starting from these two files, we can get a quick glance on how various modules are scattered and compiled.
+
+There are some context related functions (`ctx_`), message related functions (`msg_`), poller related functions (`zmq_poller_`), and most importantly socket related functions (`zmq_socket`, `zmq_bind`, `zmq_connect`, `zmq_send`, `zmq_recv`), etc. The header file `zmq.h` serves as a contract to the ZeroMQ users and hence the stability is the most concerned thing. If there is ever a change in the file, it must not break existing applications.
+
+The cpp file `zmq.cpp` exposes internal modules as stable APIs. Most of the implementations of `zmq_xyz_abc` map to `(static_cast<zmq::xyz *> (xyz_))->abc` or `zmq::xyz_t *s = ...; s->abc(...);`, with some additional error code handling. The lines of code is quite a lot but the code is easy to understand.
+
+### Context
+
+Context is probably the next piece you want to check, [ctx.hpp](https://github.com/zeromq/libzmq/blob/master/src/ctx.hpp) and [ctx.cpp](https://github.com/zeromq/libzmq/blob/master/src/ctx.cpp). The context contains the global state shared among all threads. To be fair, context is not *global variable*. Global variables is notorious since we need to introduce locking, otherwise we'll see concurrency bugs. ZeroMQrequires you to create a context before using any ZeroMQ APIs. Coming along with the history of software engineering, we would find that context is a useful technique applied to many projects, such as ZeroMQ, Flask, etc. Typically, a context keeps track of the application-level data during the life time of library use.
 
 ### Messages
 
