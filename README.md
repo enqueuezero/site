@@ -10,7 +10,6 @@ a single man team since 2018.
 
 Table of Content
 
-* [Hands-On Cloud Native Application](/hands-on-cloud-native/)
 * [Concrete Architecture](/category/architecture.md)
 * [Techshack Updates](/category/techshack.md)
 * [Elegant Utilities](/category/utility.md)
