@@ -42,6 +42,12 @@ Just in case, if you want to know a little bit more, well, keep reading. You're 
 
 ## Architecture
 
+### So, What is Exactly A Message Queue?
+
+The message queue is, as its name, a queue for messaging. Messages are the information exchanging for inter-process communication or inter-thread communication. The message queue model derives to a set of messaging models, such as request-reply (or known as RPC), pub-sub, push-pull, etc.
+
+
+
 ### A Message Queue Software Can be A Library!
 
 A traditional broker software like RabbitMQ, Kafka, Redis needs to run as a standalone application, then clients send messages to broker, and workers consumes messages from broker.
@@ -180,9 +186,19 @@ printf ("mean throughput: %.3f [Mb/s]\n", (double) megabits);
 
 <!-- TODO: benchmark_radix_tree -->
 
-
-
 ## Pros v/s Cons
+
+### Limited Transport Protocols
+
+The implementation of ZeroMQ limits you to use TCP, PGM, IPC and ITC. It's hard to add other transports such as SCTP, UDP, WebSockets, etc.
+
+### Not Thread-Safe
+
+To be fair, it's the result of ZeroMQ's architectural design. ZeroMQ encourages using worker threads managing socket objects. By isolating the references to the socket objects within the worker threads don't need to use mutex or semaphores etc and hence get rid of the problem of being not thread-safe.
+
+## Alternatives
+
+### Nanomsg, nng
 
 ## Further Readings
 
