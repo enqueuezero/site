@@ -89,6 +89,12 @@ In order to use ZeroMQ efficiently, you need to run worker threads that handle c
 
 ## Use
 
+### IPython
+
+### Salt Stack
+
+### Open Stack
+
 ## Source Code
 
 ### Entry Point
@@ -212,3 +218,7 @@ Let me know if I made something wrong! If you happen to find one, please report 
 
 This article is also to cherish the memory of [Pieter Hintjens](http://hintjens.com/). He who designed AMQP and founded the ZeroMQ free software project, was a writer, a maker of software, a humanist, a father and nd many things. But above all, a writer.
 
+## References
+
+* <https://wiki.openstack.org/wiki/ZeroMQ>.
+* <https://docs.openstack.org/oslo.messaging/ocata/zmq_driver.html>
