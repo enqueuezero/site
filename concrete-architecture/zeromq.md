@@ -52,6 +52,8 @@ The message queue is, as its name, a queue for messaging. Messages are the infor
 
 ### A Message Queue Software Can be A Library!
 
+Many of my friends complained of Celery, a Python client library for AMQP-compatible servers, being too complicated to use. They'd rather using Redis `lpush` command for sending message and `rpop` for receiving messages. It raises us a question, after all the safety guarantee and message queue encapsulation, why do people still choose simple send and recv alike solution? Can you figure it out?
+
 A traditional broker software like RabbitMQ, Kafka, Redis needs to run as a standalone application, then clients send messages to broker, and workers consumes messages from broker.
 Such component seems so natural that a lot of enterprise software place the "broker" into the center place in their seemingly beautiful architecture diagram.
 Nonetheless, ZeroMQ decides to be a ~~black sheep~~ library, rather than a standalone broker program.
@@ -61,6 +63,7 @@ This is the most interesting design of ZeroMQ.
 [Insert Broker v/s Brokerless Diagram Here]
 
 The major benefit with the library design is less network round trip and thus higher performance. The messages don't need to go over the network hop twice from senders to receivers. If you still want to have a broker in your architecture design, ZeroMQ won't leash you. It provides building blocks implementing a "broker" in just a few lines of code, probably equal to the lines of configuration files of a typical broker software. And of course, it's not a real broker, just an internal thread within you server process. Again, less maintenance cost.
+
 
 From an implementation perspective, the "official" low-level core API is [libzmq](https://github.com/zeromq/libzmq) written in C/C++. Nonetheless, several language bindings wrap the low-level API in a consistency way, adding more or less sugar for corresponding languages. Therefore, you can use ZeroMQ in Bash, C, Python, Ruby, Common Lisp, Node.js, Java, etc. The benefit is that you can use ZeroMQ library in almost all popular languages  Thanks to the enthusiastic ZeroMQ community!
 
