@@ -18,7 +18,7 @@ print(s.recv ()) # receive something
 
 ZeroMQ provides BSD Sockets style API. That's why you see words like `socket`, `connect`, `tcp://`, `send` and `recv`. The code is self-explanatory and anyone who is familiar with sockets api should be able to understand what happens here; the program connects to a TCP endpoint `192.168.0.111:5555`, then sends a bytestring, then receives something, and print out.
 
-I should have shown you the server code: (you know both the client code and server code are just for educational purpose and not useful at all, right?)
+If you are curious what makes the server, I'd say it can be something simpler:
 
 ```python
 c = Context() # create context
@@ -29,7 +29,9 @@ s.send(s.recv())
 
 The server code, again, follows BSD Sockets style API; it binds the TCP endpoint `192.168.0.111:5555`, then receives something, and then sends whatever received. Hmm, let me guess, it's an `echo` program. It's not the [smallest echo implementation](https://github.com/matz/streem/blob/master/examples/06echo.strm) yet, but is short enough for a human being.
 
-I haven't explained REQ and REP yet. They represents request and reply and let the socket being synchronous. The `send` and `recv` calls suspend the thread until a new message arrives.
+Wait, aren't we talking about message queue? Why did you show me socket thing? Fair enough. I just haven't explained REQ and REP yet. They represents request and reply, and let the socket being synchronous. The `send` and `recv` calls suspend the thread until a new message arrives. In fact, though the code looks like socket operation, it encapsulates message queue semantic in the two constants. If you change the REQ-REP to PUB-SUB, you'll get a full working publisher-subscriber model without changing other code. What's more, you can launch multiple subscribers at the same time. All of them can receive the messages sent from publisher.
+
+We've all seen how UNIX gets quirky that printing stuff can be implemented by performing `write` function call to a file under directory `/dev`. It has demonstrated that most read and write can be implemented into a limited set of file I/O interface. Similarly, why can't the message queue just stands on the shoulder of sockets? 
 
 Okay. The story ends here if you just want to know how ZeroMQ looks like.
 
