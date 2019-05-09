@@ -6,7 +6,7 @@ title: ZeroMQ
 
 ## Overview
 
-ZeroMQ in five lines of code: (you know I'm just showing a tip of iceberg, right?)
+Below is ZeroMQ in five lines of code: (you know I'm just showing a tip of iceberg, right?)
 
 ```python
 c = Context() # create context
