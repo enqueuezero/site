@@ -1,12 +1,34 @@
 ---
-Title: A Message Queue Software Can be A Library!
+Title: A Message Queue Can be A Library!
 ---
 
-### A Message Queue Software Can be A Library!
+# A Message Queue Can be A Library!
 
-Many of my friends complained of Celery, a Python client library for AMQP-compatible servers, being too complicated to use. They'd rather using Redis `lpush` command for sending message and `rpop` for receiving messages. It raises us a question, after all the safety guarantee and message queue encapsulation, why do people still choose simple send and recv alike solution? The answer is simple, AMQP adds too much to programmers that very few human can cope with it easily.
+## People Don't Like Complicated Solution
+
+Many of my friends have complained of Celery, a Python client library for AMQP-compatible broker programs, being too complicated to use. They'd rather directly using Redis `lpush` command for sending message and `rpop` for receiving messages.
+
+```python
+# publisher
+client = Redis()
+client.lpush(json.dumps(message))
+```
+
+```python
+# consumer
+client = Redis()
+message = json.loads(client.rpop())
+```
+
+It raises me a question, after all the safety guarantee and message queue encapsulation, why do people still choose send and recv alike solution? The answer is simple, AMQP adds too much to programmers that very few human could cope with it easily.
+
+## Deploy is not the end of development but the start of operations
+
+In order to run you application in normal state, you need to make sure the message queue application is in normal state. Maintenance cost is huge. It means you need operational people and network gurus keep standing by.
 
 A traditional broker software like RabbitMQ, Kafka, Redis needs to run as a standalone application, then clients send messages to broker, and workers consumes messages from broker. Such component seems so natural that a lot of enterprise software place the "broker" into the center place in their seemingly beautiful architecture diagram.
+
+## Another Perspective
 
 Nonetheless, ZeroMQ decides to be a ~~black sheep~~ library, rather than a standalone broker program.
 Whoever wants to use ZeroMQ, he shall wave his wand and whisper, "pip install zmq gem install zmq push () { m=$(cat) && echo \ -e $(printf '\\x01\\x00\\x%02x\\x00%s' \ $((1 + ${#m})) "$m") | nc -q1 $@; } 唵嘛呢叭咪吽". After installing the library into the application as a project dependency, he should be able to use it immediately. No broker, less maintenance cost, less risk of SPOF.
