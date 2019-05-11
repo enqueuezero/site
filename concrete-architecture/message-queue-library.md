@@ -4,7 +4,7 @@ Title: A Message Queue Software Can be A Library!
 
 ### A Message Queue Software Can be A Library!
 
-Many of my friends complained of Celery, a Python client library for AMQP-compatible servers, being too complicated to use. They'd rather using Redis `lpush` command for sending message and `rpop` for receiving messages. It raises us a question, after all the safety guarantee and message queue encapsulation, why do people still choose simple send and recv alike solution? The answer is simple, AMQP adds too much to programmers that very few human can cope with it easily. It brings us a question, how can we simplify the design of message queue?
+Many of my friends complained of Celery, a Python client library for AMQP-compatible servers, being too complicated to use. They'd rather using Redis `lpush` command for sending message and `rpop` for receiving messages. It raises us a question, after all the safety guarantee and message queue encapsulation, why do people still choose simple send and recv alike solution? The answer is simple, AMQP adds too much to programmers that very few human can cope with it easily.
 
 A traditional broker software like RabbitMQ, Kafka, Redis needs to run as a standalone application, then clients send messages to broker, and workers consumes messages from broker. Such component seems so natural that a lot of enterprise software place the "broker" into the center place in their seemingly beautiful architecture diagram.
 
