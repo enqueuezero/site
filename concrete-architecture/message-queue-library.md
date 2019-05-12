@@ -67,13 +67,24 @@ We've all seen how UNIX gets quirky that printing stuff can be implemented by pe
 
 ## Pros and Cons
 
-The major benefit with the library design is less network round trip and thus higher performance. The messages don't need to go over the network hop twice from senders to receivers. If you still want to have a broker in your architecture design, ZeroMQ won't leash you. It provides building blocks implementing a "broker" in just a few lines of code, probably equal to the lines of configuration files of a typical broker software. This "broker" is just an internal thread within your server process. Again, less maintenance cost.
+The major benefit with the library design is less network round trip and thus higher performance. The messages don't need to go over the network hop twice from senders to receivers.
+
+If you still want to have a broker in your architecture design, ZeroMQ won't leash you. It provides building blocks implementing a "broker" in just a few lines of code, probably equal to the lines of configuration files of a typical broker software. This "broker" is just an internal thread within your server process. Again, less maintenance cost.
 
 From an implementation perspective, the "official" low-level core API is [libzmq](https://github.com/zeromq/libzmq) written in C/C++. Nonetheless, several language bindings wrap the low-level API in a consistency way, adding more or less sugar for corresponding languages. Therefore, you can use ZeroMQ in Bash, C, Python, Ruby, Common Lisp, Node.js, Java, etc. The benefit is that you can use ZeroMQ library in almost all popular languages  Thanks to the enthusiastic ZeroMQ community!
 
 There are indeed disadvantages of using library. You'll eat you dog food from the coding perspective. If you write shitty code, then you give a shitty application despite of ZeroMQ offering a set of powerful message patterns. You're no longer able to use global state since ZeroMQ encourages multi-threading model. Global state requires locking, mutex, etc, which harm the performance of the application. However, one might be thrilled to get the hell out of dead lock problem.
 
 All in all, whether you like it or not, being a library stands as the first fundamental design of ZeroMQ. It's goal is high performance and less maintenance cost. Being a standalone application goes against this goal and never is an option.
+
+## Questions
+
+Let's pretend you are the designer of ZeroMQ, how would you solve below challenges?
+
+1. How do you subscribe from multiple publishers? How does the programming API look like?
+2. How do you adds topic-based and content-based subscription to sockets API?
+3. What could happen if timeout occurs when sending and receiving messages?
+
 
 ## Further Readings
 
