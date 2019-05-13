@@ -1,37 +1,18 @@
 ---
-Title: A Message Queue Can be A Library!
+Title: Opt for Library Design
 ---
 
-# A Message Queue Can be A Library!
+# Opt for Library Design
 
-## People Don't Like Complicated Solution
+Opting for library design is a principle for distributing software as libraries rather than standalone applications. That is, the user accesses the features of software by invoking function calls.
 
-Many of my friends have complained of Celery, a Python client library for AMQP-compatible broker programs, being too complicated to use. They'd rather directly using Redis `lpush` command for sending message and `rpop` for receiving messages.
+Distribution is among the crucial steps in the life cycle of any software. Other than opting for library design, you could choose opting for application design, service design, or even mixing all of them. Through opting for library design we guarantee the data provided by the library coexist in the same runtime with the main application. It allows us to discover and exploit a solution towards the best performance and extendability from the scope of the problem we want to solve.
 
-```python
-# publisher
-client = Redis()
-client.lpush(json.dumps(message))
-```
+## Example: Message Queue as a Library
 
-```python
-# consumer
-client = Redis()
-message = json.loads(client.rpop())
-```
+A traditional broker software like RabbitMQ, Kafka needs to run as a standalone application, then clients send messages to broker, and workers consumes messages from broker. Such component seems so natural that a lot of enterprise software place the "broker" into the center place in their seemingly beautiful architecture diagram. In order to run you application in normal state, you need to make sure the message queue application is in normal state. Maintenance cost is huge. It means you need operational people and network gurus keep standing by.
 
-It raises me a question, after all the safety guarantee and message queue encapsulation, why do people still choose send and recv alike solution? The answer is simple, AMQP adds too much to programmers that very few human could cope with it easily.
-
-## Deploy is not the end of development but the start of operations
-
-In order to run you application in normal state, you need to make sure the message queue application is in normal state. Maintenance cost is huge. It means you need operational people and network gurus keep standing by.
-
-A traditional broker software like RabbitMQ, Kafka, Redis needs to run as a standalone application, then clients send messages to broker, and workers consumes messages from broker. Such component seems so natural that a lot of enterprise software place the "broker" into the center place in their seemingly beautiful architecture diagram.
-
-## Another Perspective
-
-Nonetheless, ZeroMQ decides to be a ~~black sheep~~ library, rather than a standalone broker program.
-Whoever wants to use ZeroMQ, he shall wave his wand and whisper, "pip install zmq gem install zmq push () { m=$(cat) && echo \ -e $(printf '\\x01\\x00\\x%02x\\x00%s' \ $((1 + ${#m})) "$m") | nc -q1 $@; } 唵嘛呢叭咪吽". After installing the library into the application as a project dependency, he should be able to use it immediately. No broker, less maintenance cost, less risk of SPOF.
+Nonetheless, ZeroMQ decides to be a ~~black sheep~~ library, rather than a standalone broker program. Whoever wants to use ZeroMQ, he shall wave his wand and whisper, "pip install zmq; gem install zmq; push () { m=$(cat) && echo \ -e $(printf '\\x01\\x00\\x%02x\\x00%s' \ $((1 + ${#m})) "$m") | nc -q1 $@; }; 唵嘛呢叭咪吽". After installing the library into the application as a project dependency, he should be able to use it immediately. No broker, less maintenance cost, less risk of SPOF.
 This is the most interesting design of ZeroMQ.
 
 [Insert Broker v/s Brokerless Diagram Here]
@@ -64,8 +45,6 @@ The server code, again, follows BSD Sockets style API; it binds the TCP endpoint
 Wait, aren't we talking about message queue? Why did you show me socket thing? Fair enough. I just haven't explained REQ and REP yet. They represents request and reply, and let the socket being synchronous. The `send` and `recv` calls suspend the thread until a new message arrives. In fact, though the code looks like socket operation, it encapsulates message queue semantic in the two constants. If you change the REQ-REP to PUB-SUB, you'll get a full working publisher-subscriber model without changing other code. What's more, you can launch multiple subscribers at the same time. All of them can receive the messages sent from publisher.
 
 We've all seen how UNIX gets quirky that printing stuff can be implemented by performing `write` function call to a file under directory `/dev`. It has demonstrated that most read and write can be implemented into a limited set of file I/O interface. Similarly, why can't the message queue just stands on the shoulder of sockets? 
-
-## Pros and Cons
 
 The major benefit with the library design is less network round trip and thus higher performance. The messages don't need to go over the network hop twice from senders to receivers.
 
