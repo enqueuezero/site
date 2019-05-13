@@ -6,7 +6,13 @@ Title: Opt for Library Design
 
 Opting for library design is a principle for distributing software as libraries rather than standalone applications. That is, the user accesses the features of software by invoking function calls.
 
-Distribution is among the crucial steps in the life cycle of any software. Other than opting for library design, you could choose opting for application design, service design, or even mixing all of them. Through opting for library design we guarantee the data provided by the library coexist in the same runtime with the main application. It allows us to discover and exploit a solution towards the best performance and extendability from the scope of the problem we want to solve.
+Distribution is among the crucial steps in the life cycle of any software. Other than opting for library design, you could choose opting for application design, service design, or even mixing all of them. Through opting for library design we guarantee the data and functions provided by the library coexist in the same runtime with the main application. It allows us to discover and exploit a solution towards the best performance and extendability from the scope of the problem we want to solve.
+
+## Distribution Artifact
+
+Source code tar-ball is a tar file that contains only source code of the library. The user needs to unpack the tar file in some resolvable path to the compilers or interpreters. C libraries mostly choose this form.
+
+Language-specific package is the most common solution for libraries developed in more advanced languages. For example, a Python library can be packaged into a wheel package and uploaded to PyPI. The user needs to run command `pip install` before using the library.
 
 ## Example: Message Queue as a Library
 
@@ -17,7 +23,7 @@ This is the most interesting design of ZeroMQ.
 
 [Insert Broker v/s Brokerless Diagram Here]
 
-## Use
+### Use ZeroMQ
 
 Below is ZeroMQ in five lines of code: (you know I'm just showing a tip of iceberg, right?)
 
@@ -46,7 +52,7 @@ Wait, aren't we talking about message queue? Why did you show me socket thing? F
 
 We've all seen how UNIX gets quirky that printing stuff can be implemented by performing `write` function call to a file under directory `/dev`. It has demonstrated that most read and write can be implemented into a limited set of file I/O interface. Similarly, why can't the message queue just stands on the shoulder of sockets? 
 
-The major benefit with the library design is less network round trip and thus higher performance. The messages don't need to go over the network hop twice from senders to receivers.
+The major benefit with the library design is less network round trip and thus higher performance. The messages don't need to go over the network hop twice from senders to broker and then from broker to receivers.
 
 If you still want to have a broker in your architecture design, ZeroMQ won't leash you. It provides building blocks implementing a "broker" in just a few lines of code, probably equal to the lines of configuration files of a typical broker software. This "broker" is just an internal thread within your server process. Again, less maintenance cost.
 
@@ -67,5 +73,6 @@ Let's pretend you are the designer of ZeroMQ, how would you solve below challeng
 
 ## Further Readings
 
-This chapter only discussed the library design of ZeroMQ. If you are interested in learning how various message queue patterns are applied in ZeroMQ, don't miss ZGuide (<https://zguide.zeromq.org>). In the article, it even implemented a primary-backup application by using pub-sub model.
+
+This chapter only discussed the library design part of ZeroMQ. If you are interested in learning how various message queue patterns are applied in ZeroMQ, don't miss ZGuide (<https://zguide.zeromq.org>). In the article, it even implements a primary-backup application by using pub-sub model.
 
