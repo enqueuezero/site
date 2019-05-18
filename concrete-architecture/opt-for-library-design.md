@@ -10,22 +10,20 @@ Distribution is among the crucial steps in the life cycle of any software. Other
 
 ## Distribution Artifact
 
-Source code tar-ball is a tar file that contains only source code of the library. The user needs to unpack the tar file in some resolvable path to the compilers or interpreters. C libraries mostly choose this form.
+Source code tar-ball is a tar file that contains only source code of the library. The user needs to unpack the tar file in a path that can be resolved by the compilers or interpreters. C libraries mostly choose this form. Environment variables, such as `LD_LIBRARY_PATH`, `PYTHONPATH`, `JAVA_HOME`, 
 
 Language-specific package is the most common solution for libraries developed in more advanced languages. For example, a Python library can be packaged into a wheel package and uploaded to PyPI. The user needs to run command `pip install` before using the library.
 
 ## Example: Message Queue as a Library
 
-A traditional broker software like RabbitMQ, Kafka needs to run as a standalone application, then clients send messages to broker, and workers consumes messages from broker. Such component seems so natural that a lot of enterprise software place the "broker" into the center place in their seemingly beautiful architecture diagram. In order to run you application in normal state, you need to make sure the message queue application is in normal state. Maintenance cost is huge. It means you need operational people and network gurus keep standing by.
+A traditional broker software like RabbitMQ and Kafka needs to run as a standalone application, then clients send messages to broker, and workers consumes messages from broker. In order to access the feature of broker software, a typical client library is necessary; each function call made to the broker is a remote procedure call. Such component seems so natural that a lot of enterprise systems place the "broker" into the center place in their seemingly beautiful architecture diagram. In order to run you application in normal state, you need to make sure the message queue application is in normal state. However, maintenance cost is huge. It means you need operational people and network gurus keep standing by.
 
-Nonetheless, ZeroMQ decides to be a ~~black sheep~~ library, rather than a standalone broker program. Whoever wants to use ZeroMQ, he shall wave his wand and whisper, "pip install zmq; gem install zmq; push () { m=$(cat) && echo \ -e $(printf '\\x01\\x00\\x%02x\\x00%s' \ $((1 + ${#m})) "$m") | nc -q1 $@; }; 唵嘛呢叭咪吽". After installing the library into the application as a project dependency, he should be able to use it immediately. No broker, less maintenance cost, less risk of SPOF.
+Nonetheless, ZeroMQ decides to be a ~~black sheep~~ library, rather than a standalone broker program. Whoever wants to use ZeroMQ, he shall wave his wand and whisper, "pip install zmq; gem install zmq; push () { m=$(cat) && echo \ -e $(printf '\\x01\\x00\\x%02x\\x00%s' \ $((1 + ${#m})) "$m") | nc -q1 $@; }; 唵嘛呢叭咪吽". After installing the library into the application as a project dependency, he should be able to use it immediately. Note that such library is completely different from the above thin library. No broker, less maintenance cost, less risk of SPOF.
 This is the most interesting design of ZeroMQ.
 
 [Insert Broker v/s Brokerless Diagram Here]
 
-### Use ZeroMQ
-
-Below is ZeroMQ in five lines of code: (you know I'm just showing a tip of iceberg, right?)
+Below is ZeroMQ in five lines of code:
 
 ```python
 c = Context() # create context
@@ -41,16 +39,16 @@ If you are curious what makes the server, I'd say it can be something simpler:
 
 ```python
 c = Context() # create context
-s = c.socket(REP)
-s.bind("tcp://192.168.0.111:5555")
-s.send(s.recv())
+s = c.socket(REP) # create socket
+s.bind("tcp://192.168.0.111:5555") # bind address
+s.send(s.recv()) # receive and send
 ```
 
 The server code, again, follows BSD Sockets style API; it binds the TCP endpoint `192.168.0.111:5555`, then receives something, and then sends whatever received. Hmm, let me guess, it's an `echo` program. It's not the [smallest echo implementation](https://github.com/matz/streem/blob/master/examples/06echo.strm) yet, but is short enough for a human being.
 
-Wait, aren't we talking about message queue? Why did you show me socket thing? Fair enough. I just haven't explained REQ and REP yet. They represents request and reply, and let the socket being synchronous. The `send` and `recv` calls suspend the thread until a new message arrives. In fact, though the code looks like socket operation, it encapsulates message queue semantic in the two constants. If you change the REQ-REP to PUB-SUB, you'll get a full working publisher-subscriber model without changing other code. What's more, you can launch multiple subscribers at the same time. All of them can receive the messages sent from publisher.
+Wait, aren't we talking about message queue? Why did you show me socket thing? Fair enough. I just haven't explained REQ and REP yet. They represents request and reply, and lets the socket being synchronous. The `send` and `recv` calls suspend the thread until a new message arrives. In fact, though the code looks like socket operation, it encapsulates message queue semantic in the two constants. If you change the REQ-REP to PUB-SUB, you'll get a full working publisher-subscriber model without changing other code. What's more, you can launch multiple subscribers at the same time. All of them can receive the messages sent from publisher.
 
-We've all seen how UNIX gets quirky that printing stuff can be implemented by performing `write` function call to a file under directory `/dev`. It has demonstrated that most read and write can be implemented into a limited set of file I/O interface. Similarly, why can't the message queue just stands on the shoulder of sockets? 
+We've all seen how UNIX gets quirky that printing stuff can be implemented by performing `write` function call to a file under directory `/dev`. It has demonstrated that most read and write can be implemented into a small set of file I/O interface. Similarly, why can't the message queue just stands on the shoulder of sockets? 
 
 The major benefit with the library design is less network round trip and thus higher performance. The messages don't need to go over the network hop twice from senders to broker and then from broker to receivers.
 
