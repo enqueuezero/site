@@ -8,12 +8,6 @@ Opting for library design is a principle for distributing software as libraries 
 
 Distribution is among the crucial steps in the life cycle of any software. Other than opting for library design, you could choose opting for application design, service design, or even mixing all of them. Through opting for library design we guarantee the data and functions provided by the library coexist in the same runtime with the main application. It allows us to discover and exploit a solution towards the best performance and extendability from the scope of the problem we want to solve.
 
-## Distribution Artifact
-
-Source code tar-ball is a tar file that contains only source code of the library. The user needs to unpack the tar file in a path that can be resolved by the compilers or interpreters. C libraries mostly choose this form. Environment variables, such as `LD_LIBRARY_PATH`, `PYTHONPATH`, `JAVA_HOME`, 
-
-Language-specific package is the most common solution for libraries developed in more advanced languages. For example, a Python library can be packaged into a wheel package and uploaded to PyPI. The user needs to run command `pip install` before using the library.
-
 ## Example: Message Queue as a Library
 
 A traditional broker software like RabbitMQ and Kafka needs to run as a standalone application, then clients send messages to broker, and workers consumes messages from broker. In order to access the feature of broker software, a typical client library is necessary; each function call made to the broker is a remote procedure call. Such component seems so natural that a lot of enterprise systems place the "broker" into the center place in their seemingly beautiful architecture diagram. In order to run you application in normal state, you need to make sure the message queue application is in normal state. However, maintenance cost is huge. It means you need operational people and network gurus keep standing by.
@@ -60,17 +54,16 @@ There are indeed disadvantages of using library. You'll eat you dog food from th
 
 All in all, whether you like it or not, being a library stands as the first fundamental design of ZeroMQ. It's goal is high performance and less maintenance cost. Being a standalone application goes against this goal and never is an option.
 
-## Questions
+## Questions for ZeroMQ
 
 Let's pretend you are the designer of ZeroMQ, how would you solve below challenges?
 
-1. How do you subscribe from multiple publishers? How does the programming API look like?
-2. How do you adds topic-based and content-based subscription to sockets API?
-3. What could happen if timeout occurs when sending and receiving messages?
-
+1. How do you add topic-based and content-based subscription to sockets API?
+2. What could happen if timeout occurs when sending and receiving messages.
+3. Due to the nature of distributed system, messages can take forever to send, can be lost, can be duplicated. How would you deal with such cases?
+4. Can you improve ZeroMQ to support message persistency before sending message?
 
 ## Further Readings
 
-
-This chapter only discussed the library design part of ZeroMQ. If you are interested in learning how various message queue patterns are applied in ZeroMQ, don't miss ZGuide (<https://zguide.zeromq.org>). In the article, it even implements a primary-backup application by using pub-sub model.
+This chapter only discussed the library design part of ZeroMQ. If you are interested in learning how various message queue patterns are applied in ZeroMQ, don't miss ZGuide (<https://zguide.zeromq.org>). In the article, the author described the philosophy of ZeroMQ, and how to master using ZeroMQ.
 
