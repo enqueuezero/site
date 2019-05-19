@@ -6,9 +6,9 @@ Title: Opt for Library Design
 
 Opting for library design is a principle for distributing software as libraries rather than standalone applications. That is, the user accesses the features of software by invoking function calls.
 
-Distribution is among the crucial steps in the life cycle of any software. Other than opting for library design, you could choose opting for application design, service design, or even mixing all of them. Through opting for library design we guarantee the data and functions provided by the library coexist in the same runtime with the main application. It allows us to discover and exploit a solution towards the best performance and extendability from the scope of the problem we want to solve.
+Distribution is among the crucial steps in the life cycle of any software. Other than opting for library design, you could choose opting for command-line interface design, service design, or even mixing all of them. Through opting for library design we guarantee the data and functions provided by the library coexist in the same runtime with the main application. It allows us to discover and exploit a solution towards the best performance and extendability from the scope of the problem we want to solve.
 
-## Example: Message Queue as a Library
+## ZeroMQ: Message Queue as a Library
 
 A traditional broker software like RabbitMQ and Kafka needs to run as a standalone application, then clients send messages to broker, and workers consumes messages from broker. In order to access the feature of broker software, a typical client library is necessary; each function call made to the broker is a remote procedure call. Such component seems so natural that a lot of enterprise systems place the "broker" into the center place in their seemingly beautiful architecture diagram. In order to run you application in normal state, you need to make sure the message queue application is in normal state. However, maintenance cost is huge. It means you need operational people and network gurus keep standing by.
 
@@ -63,7 +63,12 @@ Let's pretend you are the designer of ZeroMQ, how would you solve below challeng
 3. Due to the nature of distributed system, messages can take forever to send, can be lost, can be duplicated. How would you deal with such cases?
 4. Can you improve ZeroMQ to support message persistency before sending message?
 
+## RocksDB: Database as a Library
+
 ## Further Readings
 
 This chapter only discussed the library design part of ZeroMQ. If you are interested in learning how various message queue patterns are applied in ZeroMQ, don't miss ZGuide (<https://zguide.zeromq.org>). In the article, the author described the philosophy of ZeroMQ, and how to master using ZeroMQ.
 
+## Conclusion
+
+Through some examples, we learned that opting for library design redefines the problem domains and yields unavoidably to the most extensive solution. By thinking the problem upside down, such design embedded all functions of the library to the application runtime and often ends up to a distributed system with less components. Most of the time, people do love simplicity. And that is the most valuable property we can get from it.
