@@ -63,7 +63,9 @@ Let's pretend you are the designer of ZeroMQ, how would you solve below challeng
 3. Due to the nature of distributed system, messages can take forever to send, can be lost, can be duplicated. How would you deal with such cases?
 4. Can you improve ZeroMQ to support message persistency before sending message?
 
-## RocksDB: Database as a Library
+## SQLite: Database as a Library
+
+SQLite is an embedded database engine that is probably the most widely used and deployed in the wild. It exists in every Android device, iPhone device, Mac device, Window device, most browsers, and millions of applications. SQLite is also a beautifully designed library. Compacting as less then 600kb, it amazingly runs on different platforms in high performance and meanwhile provides a lot of features.
 
 ## Further Readings
 
