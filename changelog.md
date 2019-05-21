@@ -8,6 +8,10 @@ title: What's New?
 >>> SELECT * from journals order by time desc;
 ```
 
+## 2019 May
+
+* Added [Opt for Library Design](/concrete-architecture/opt-for-library-design.html).
+
 ## 2019 Apr
 
 * Added Techshack Weekly Updates. [2019-14](/techshack.weekly/2019-14.html), [2019-15](/techshack.weekly/2019-15.html).
