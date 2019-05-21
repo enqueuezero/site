@@ -111,6 +111,8 @@ conn.execute(ins)
 
 This chapter only discussed the library design part of ZeroMQ. If you are interested in learning how various message queue patterns are applied in ZeroMQ, don't miss ZGuide (<https://zguide.zeromq.org>). In the article, the author described the philosophy of ZeroMQ, and how to master using ZeroMQ.
 
+SQLite has a series of well documented articles on its design and use. Check [SQLite Documentation](https://www.sqlite.org/docs.html).
+
 ## Conclusion
 
 Through some examples, we learned that opting for library design redefines the problem domains and yields unavoidably to the most extensive solution. By thinking the problem upside down, such design embedded all functions of the library to the application runtime and often ends up to a distributed system with less components. Most of the time, people do love simplicity. And that is the most valuable property we can get from it.
