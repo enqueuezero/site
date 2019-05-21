@@ -67,6 +67,46 @@ Let's pretend you are the designer of ZeroMQ, how would you solve below challeng
 
 SQLite is an embedded database engine that is probably the most widely used and deployed in the wild. It exists in every Android device, iPhone device, Mac device, Window device, most browsers, and millions of applications. SQLite is also a beautifully designed library. Compacting as less then 600kb, it amazingly runs on different platforms in high performance and meanwhile provides a lot of features.
 
+As a library, SQLite becomes in nature "serverless", that is, there is no separate server process. A traditional database configuration is needless, since every configuration items can be done via SQLite library API. You don't need to worry the data inconsistency due to system crash and power failure (no corrupted data is saved in these cases).
+
+To keep thing simple, SQLite decides to write all data into a single file on disk. In fact, the design of choosing a single file for persistence with a well-defined schema makes SQLite even more popular. In some ways, SQLite is more like `fopen()` than a database engine, just like ZeroMQ is more like socket than a message queue.  By combining all of the SQL semantics with single file operations, SQLite in deed simplified the design of many applications.
+
+SQLite is builtin module in many programming languages. For example, in Python, you can create database file, create table, save a record in below few lines of code (from [Python sqlite3 module](https://docs.python.org/3/library/sqlite3.html)).
+
+```python
+import sqlite3
+conn = sqlite3.connect('example.db')
+c = conn.cursor()
+c.execute('''CREATE TABLE stocks
+             (date text, trans text, symbol text, qty real, price real)''')
+c.execute("INSERT INTO stocks VALUES ('2006-01-05','BUY','RHAT',100,35.14)")
+conn.commit()
+conn.close()
+```
+
+Because of its simplicity and wide popularity, most web frameworks also choose SQLite as default backend for Object-Relational Mapping (ORM). People can write code in a higher abstraction level. For example, in SQLAlchemy, you can do above similar stuff in below few lines of code. We won't discuss the advantage and disadvantage of ORM here; what's really interesting is SQLite works as all other database engines in ORM frameworks under most circumstances without additional setup.
+
+```python
+from sqlalchemy import create_engine, Table, Column, Float, String, MetaData, ForeignKey
+
+engine = create_engine('sqlite:///example.db')
+metadata = MetaData()
+
+stocks = Table('stocks', metadata,
+    Column('date', String),
+    Column('trans', String),
+    Column('symbol', String),
+    Column('qty', Float),
+    Column('price', Float)
+)
+
+metadata.create_all(engine)
+
+ins = stocks.insert().values(date='2006-01-05', trans='BUY', symbol='RHAT', qty=100, price=35.14)
+conn = engine.connect()
+conn.execute(ins)
+```
+
 ## Further Readings
 
 This chapter only discussed the library design part of ZeroMQ. If you are interested in learning how various message queue patterns are applied in ZeroMQ, don't miss ZGuide (<https://zguide.zeromq.org>). In the article, the author described the philosophy of ZeroMQ, and how to master using ZeroMQ.
