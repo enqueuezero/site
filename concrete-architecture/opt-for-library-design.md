@@ -77,9 +77,9 @@ conn.commit()
 conn.close()
 ```
 
-Above code connects to a file named `example.db` on local disk. Then, it executes two statement by running `execute` method on a cursor. The `commit` method flushes data on disk. The last line of code close the file handle.
+Above code connects to a file named `example.db` on local disk. Then, it executes two statements by running `execute` method on a cursor. The `commit` method flushes data on disk. The last line of code close the file handle.
 
-As a library, SQLite is in nature "serverless," [^1]. that is, there is no separate server process. You don't need to worry the data inconsistency due to system crash and power failure (SQLite won't save corrupted data). Since every database statement has to be executed on application side, there is no message round-trips over the network. 
+As a library, SQLite is in nature "serverless," [^1]. that is, there is no separate server process. You don't need to worry about the data inconsistency due to system crash and power failure (SQLite won't save corrupted data). Since every database statement has to be executed on application side, there is no message round-trips over the network. The trade-off SQLite made is SQLite will only allow one writer at any instant in time.
 
 To keep thing simple, SQLite decides to write all data and the data schema into a single file on disk. The storing capacity of SQLite is up to the size of the disk. In some ways, SQLite is more like `fopen()` than a database engine, just like ZeroMQ is more like socket than a message queue.  By bringing all of the SQL semantics into a single local file, SQLite simplified the design of many applications.
 
@@ -124,6 +124,14 @@ conn.execute(ins)
 ```
 
 In short, SQLite is a database in a library form, not in client/server form. It greatly brodens the use of SQLite. Since it doesn't need administration, it's used in many embedded devices and the internet of things. Since it doesn't require network, it's used in many desktop applications and mobile applications. Since it's convinient to import and export all data into and from a single file, so it can be used as cache or for data analysis.
+
+## Discusions
+
+Opting for library design is affiliated to the single responsibility principle; a software should entirely encapsulate its modules, functions and data structures over a single artifact. If you ever need a message queue, or a database, fine; don't ask me to install a process, set firewall policies, just use a library. It implies that the responsibility of the software is not up to some other people, other organization, or other services, but the people who develops it. If there is a change on the underlying message queue or database, you can always safely upgrade the version in your project dependency and fully test it before re-compile. There is greater danger that a remote service process dies or upgrades to a backward-incompatible version.
+
+Opting for library design encourages good APIs. For the good of the library users, the library should provide APIs that are easy to learn, easy to use, hard to misuse, easy to read, easy to extend. Most importantly, "it just works". The less the library user has to learn how to use the library, the more willingness they want to use it.
+
+
 
 ## Further Readings
 
