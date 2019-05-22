@@ -79,7 +79,7 @@ conn.close()
 
 Above code connects to a file named `example.db` on local disk. Then, it executes two statement by running `execute` method on a cursor. The `commit` method flushes data on disk. The last line of code close the file handle.
 
-As a library, SQLite is in nature "serverless," that is, there is no separate server process. You don't need to worry the data inconsistency due to system crash and power failure (SQLite won't save corrupted data). Since every database statement has to be executed on application side, there is no message round-trips over the network. 
+As a library, SQLite is in nature "serverless," [^1]. that is, there is no separate server process. You don't need to worry the data inconsistency due to system crash and power failure (SQLite won't save corrupted data). Since every database statement has to be executed on application side, there is no message round-trips over the network. 
 
 To keep thing simple, SQLite decides to write all data and the data schema into a single file on disk. The storing capacity of SQLite is up to the size of the disk. In some ways, SQLite is more like `fopen()` than a database engine, just like ZeroMQ is more like socket than a message queue.  By bringing all of the SQL semantics into a single local file, SQLite simplified the design of many applications.
 
@@ -134,3 +134,7 @@ SQLite has a series of well-documented articles on its design and use. Check [SQ
 ## Conclusion
 
 Through some examples, we learned that opting for library design redefines the problem domains and yields unavoidably to the most extensive solution for developers. Opting for library encourages rich client-side development. By thinking the problem upside down, such a design makes all library functions living in the application runtime and often ends up to a distributed system with fewer components. Most of the time, people do love simplicity. And that is the most valuable treasure we get from this principle.
+
+
+
+[^1]: Serverless also refers to running a piece of code on server. Here it means no server process is needed.
