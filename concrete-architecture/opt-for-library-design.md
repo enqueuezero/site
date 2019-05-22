@@ -14,7 +14,7 @@ Distribution is among the crucial steps in the life cycle of any software. Other
 
 A traditional broker software like RabbitMQ and Kafka needs to run as a standalone application, then clients send messages to the broker, and workers consume messages from the broker. To access the feature of broker software, a client library is often necessary; each function call made to the broker is a remote procedure call. Such component seems so natural that a lot of enterprise systems place the "broker" into the center place in their seemingly beautiful architecture diagram. To run your application in a healthy state, you need to make sure the message queue application is in a healthy state. However, the maintenance cost is enormous. It means you need operational people and network gurus keep standing by.
 
-Nonetheless, ZeroMQ decides to be a ~~black sheep~~ library, rather than a standalone broker program. Whoever wants to use ZeroMQ, he shall wave his wand and whisper, "pip install zmq; gem install zmq; push () { m=$(cat) && echo \ -e $(printf '\\x01\\x00\\x%02x\\x00%s' \ $((1 + ${#m})) "$m") | nc -q1 $@; }; 唵嘛呢叭咪吽". After installing the library into the application as a project dependency, he should be able to use it immediately. Note that such a library is completely different from the above thin library: no broker, less maintenance cost, less risk of SPOF. It is the most interesting design of ZeroMQ.
+Nonetheless, ZeroMQ decides to be a ~~black sheep~~ library, rather than a standalone broker program. Whoever wants to use ZeroMQ, he shall wave his wand and whisper, `pip install zmq; gem install zmq; push () { m=$(cat) && echo \ -e $(printf '\\x01\\x00\\x%02x\\x00%s' \ $((1 + ${#m})) "$m") | nc -q1 $@; }; 唵嘛呢叭咪吽`. After installing the library into the application as a project dependency, he should be able to use it immediately. Note that such a library is completely different from the above thin library: no broker, less maintenance cost, less risk of SPOF. It is the most interesting design of ZeroMQ.
 
 Below is ZeroMQ in five lines of code:
 
@@ -77,6 +77,8 @@ conn.commit()
 conn.close()
 ```
 
+Above code connects to a file named `example.db` on local disk. Then, it executes two statement by running `execute` method on a cursor. The `commit` method flushes data on disk. The last line of code close the file handle.
+
 As a library, SQLite is in nature "serverless," that is, there is no separate server process. You don't need to worry the data inconsistency due to system crash and power failure (SQLite won't save corrupted data). Since every database statement has to be executed on application side, there is no message round-trips over the network. 
 
 To keep thing simple, SQLite decides to write all data and the data schema into a single file on disk. The storing capacity of SQLite is up to the size of the disk. In some ways, SQLite is more like `fopen()` than a database engine, just like ZeroMQ is more like socket than a message queue.  By bringing all of the SQL semantics into a single local file, SQLite simplified the design of many applications.
@@ -131,4 +133,4 @@ SQLite has a series of well-documented articles on its design and use. Check [SQ
 
 ## Conclusion
 
-Through some examples, we learned that opting for library design redefines the problem domains and yields unavoidably to the most extensive solution. By thinking the problem upside down, such design embedded all functions of the library to the application runtime and often ends up to a distributed system with fewer components. Most of the time, people do love simplicity. And that is the most valuable property we can get from it.
+Through some examples, we learned that opting for library design redefines the problem domains and yields unavoidably to the most extensive solution for developers. Opting for library encourages rich client-side development. By thinking the problem upside down, such a design makes all library functions living in the application runtime and often ends up to a distributed system with fewer components. Most of the time, people do love simplicity. And that is the most valuable treasure we get from this principle.
