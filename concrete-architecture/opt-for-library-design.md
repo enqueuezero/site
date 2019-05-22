@@ -1,5 +1,7 @@
 ---
 Title: Opt for Library Design
+Author: Ju Lin
+Category: Concrete Architecture
 ---
 
 # Opt for Library Design
@@ -62,13 +64,7 @@ Let's pretend you are the designer of ZeroMQ, how would you solve below challeng
 
 ## SQLite: Database as a Library
 
-SQLite is an embedded database engine that is probably the most widely used and deployed in the wild. It exists in every Android device, iPhone device, Mac device, Window device, most browsers, and millions of applications. SQLite is also a beautifully designed library. Compacting as less then 600kb, it amazingly runs on different platforms in high performance and meanwhile provides a lot of features.
-
-As a library, SQLite becomes in nature "serverless," that is, there is no separate server process. A traditional database configuration is needless since every configuration is a [`sqlite_config`](https://www.sqlite.org/c3ref/config.html) function call. You don't need to worry the data inconsistency due to system crash and power failure (SQLite won't save corrupted data).
-
-To keep thing simple, SQLite decides to write all data into a single file on disk. The design of choosing a single disk-file for persistence with a well-defined schema makes SQLite even more popular. In some ways, SQLite is more like `fopen()` than a database engine, just like ZeroMQ is more like socket than a message queue.  By combining all of the SQL semantics with single file operations, SQLite indeed simplified the design of many applications.
-
-SQLite is a built-in module in many programming languages. For example, in Python, you can create a database file, create a table, save a record in below few lines of code (from [Python sqlite3 module](https://docs.python.org/3/library/sqlite3.html)).
+SQLite is a beautifully designed library that is probrarly the most widely deployed and used embedded database engine in the wild. It exists in every Android device, iPhone device, Mac device, Window device, most browsers, and millions of applications. Compacting as less then 600kb, it amazingly runs on different platforms in high performance and meanwhile provides a lot of features. Some programming languages such as Python even integrate it as core modules. For example, in Python, you can create a database file, create a table, save a record in below few lines of code (from [Python sqlite3 module](https://docs.python.org/3/library/sqlite3.html)).
 
 ```python
 import sqlite3
@@ -81,12 +77,33 @@ conn.commit()
 conn.close()
 ```
 
-Because of its simplicity and wide popularity, most web frameworks also choose SQLite as default backend for Object-Relational Mapping (ORM). People can write code at a higher abstraction level. For example, in SQLAlchemy, you can do above similar stuff in below few lines of code. We won't discuss the advantage and disadvantage of ORM here; what's interesting is SQLite works like all other database engines in ORM frameworks under most circumstances without additional setup.
+As a library, SQLite is in nature "serverless," that is, there is no separate server process. You don't need to worry the data inconsistency due to system crash and power failure (SQLite won't save corrupted data). Since every database statement has to be executed on application side, there is no message round-trips over the network. 
+
+To keep thing simple, SQLite decides to write all data and the data schema into a single file on disk. The storing capacity of SQLite is up to the size of the disk. In some ways, SQLite is more like `fopen()` than a database engine, just like ZeroMQ is more like socket than a message queue.  By bringing all of the SQL semantics into a single local file, SQLite simplified the design of many applications.
+
+The principle task of SQLite is to evaluate SQL statements. To achieve this goal, SQLite has over 200 APIs, but most of the time you would only use only a few. 
+
+* First, you need to open a connection to an SQLite database file by `sqlite3_open()`;
+* Second, you'll execute a SQL statement by `sqlite3_exec() `;
+* Last, once consumed the data, you'll need to close the connection by `sqlite3_close()`.
+
+In particular, the function `sqlite3_exec()` wraps four internal functions:
+
+* `sqlite_prepare()` converts SQL string into a *prepared statement* object.
+* `sqlite3_step()` evaluates the statement up until the first row. Call this function again and again until the statement is complete. SQL statements such as INSERT, UPDATE, DELETE only need one `sqlite3_step()` call.
+* `sqlite3_column()` returns a single column from the result from `sqlite3_step()`.
+* `sqlite3_finalize()` destroy the *prepared statement* object returned by `sqlite_prepare()`.
+
+Most of the developers only need to understand what is *connection*, what is *prepared statement* and the given core API. They're simple and easy to use.
+
+To help distribute SQLite in the minimum effort, the developers of SQLite decides to concatenate all source code into a single file called `sqlite3.c`. Such technique is known as the amalgamation. Whoever gets the source tar ball can compile a up-to-dated CLI of SQLite by running  `./configure; make` . No extra dependencies is required. People love simple things that just work.
+
+Because of its simplicity and wide popularity, many web frameworks also choose SQLite as default backend for Object-Relational Mapping (ORM). People can write code at a higher abstraction level. For example, in SQLAlchemy, you can use SQLite just as other database engines. It's a wise design because you don't need to launch a database instance when testing the web application.
 
 ```python
 from sqlalchemy import create_engine, Table, Column, Float, String, MetaData, ForeignKey
 
-engine = create_engine('sqlite:///example.db')
+engine = create_engine('sqlite:///:memory:')
 metadata = MetaData()
 
 stocks = Table('stocks', metadata,
@@ -103,6 +120,8 @@ ins = stocks.insert().values(date='2006-01-05', trans='BUY', symbol='RHAT', qty=
 conn = engine.connect()
 conn.execute(ins)
 ```
+
+In short, SQLite is a database in a library form, not in client/server form. It greatly brodens the use of SQLite. Since it doesn't need administration, it's used in many embedded devices and the internet of things. Since it doesn't require network, it's used in many desktop applications and mobile applications. Since it's convinient to import and export all data into and from a single file, so it can be used as cache or for data analysis.
 
 ## Further Readings
 
