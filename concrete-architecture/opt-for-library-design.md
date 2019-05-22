@@ -14,8 +14,6 @@ A traditional broker software like RabbitMQ and Kafka needs to run as a standalo
 
 Nonetheless, ZeroMQ decides to be a ~~black sheep~~ library, rather than a standalone broker program. Whoever wants to use ZeroMQ, he shall wave his wand and whisper, "pip install zmq; gem install zmq; push () { m=$(cat) && echo \ -e $(printf '\\x01\\x00\\x%02x\\x00%s' \ $((1 + ${#m})) "$m") | nc -q1 $@; }; 唵嘛呢叭咪吽". After installing the library into the application as a project dependency, he should be able to use it immediately. Note that such a library is completely different from the above thin library: no broker, less maintenance cost, less risk of SPOF. It is the most interesting design of ZeroMQ.
 
-[Insert Broker v/s Brokerless Diagram Here]
-
 Below is ZeroMQ in five lines of code:
 
 ```python
