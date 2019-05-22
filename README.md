@@ -10,11 +10,12 @@ a single man team since 2018.
 
 Table of Content
 
-* [Concrete Architecture](/category/architecture.md)
 * [Techshack Updates](/category/techshack.md)
+* [Concrete Architecture](/concrete-architecture/)
 * [Elegant Utilities](/category/utility.md)
 * [Algorithms](/category/algorithm.md)
 * [Programming](/category/programming.md)
+* [Read the Fucking Source](/rtfs/)
 * [Changelog](/changelog.md)
 
 ## FAQ
