@@ -1,14 +1,15 @@
 ---
-Title: Opt for Library Design
-Author: Ju Lin
-Category: Concrete Architecture
+Title: Release as a Library
+Parent: Release
 ---
 
-# Opt for Library Design
+## Release as a Library
 
-Opting for library design is a principle for distributing software as libraries rather than standalone applications. That is, the user accesses the features of the software by invoking function calls.
+Releasing as a library is a principle of distributing software as a library, that is, the end user accesses the features of the software by invoking function calls.
 
-Distribution is among the crucial steps in the life cycle of any software. Other than opting for library design, you could choose to opt for command-line interface design, service design, or even mix all of them. Through opting for library design, we guarantee the data and functions provided by the library coexist in the same runtime with the main application. It allows us to discover and exploit a solution towards the best performance and extendability from the scope of the problem we want to solve.
+Distribution is among the crucial steps in the life cycle of any software. Other than opting for library, you could release software as a command-line tool, a service, or even mix all of them. When releasing as a library, we guarantee the data and functions provided by the library coexist in the same runtime with the main application. It allows us to discover and exploit a solution towards the best performance and extendability from the scope of the problem we want to solve.
+
+Let's first view some examples.
 
 ## ZeroMQ: Message Queue as a Library
 
@@ -52,15 +53,6 @@ From an implementation perspective, the "official" low-level core API is [libzmq
 There are indeed disadvantages to using the ZeroMQ library. You'll eat your dog food from the coding perspective. If you write shitty code, then you get a shitty application despite ZeroMQ offering several message patterns. You're no longer able to use global state since ZeroMQ encourages the multi-threading model. The global state requires locking, mutex, etc., which harm the performance of the application. However, one might be thrilled to get the hell out of the deadlock problem.
 
 All in all, whether you like it or not, being a library stands as the first fundamental design of ZeroMQ. Its goal is high performance and less maintenance cost. Being a standalone application goes against this goal and never is an option.
-
-## Questions for ZeroMQ
-
-Let's pretend you are the designer of ZeroMQ, how would you solve below challenges?
-
-1. How do you add a topic-based and content-based subscription to sockets API?
-2. What could happen if a timeout occurs when sending and receiving messages.
-3. Due to the nature of the distributed system, messages can take forever to send, can be lost, can be duplicated. How would you deal with such cases?
-4. Can you improve ZeroMQ to support message persistency before sending the message?
 
 ## SQLite: Database as a Library
 
