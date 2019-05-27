@@ -115,15 +115,42 @@ conn = engine.connect()
 conn.execute(ins)
 ```
 
-In short, SQLite is a database in a library form, not in client/server form. It greatly brodens the use of SQLite. Since it doesn't need administration, it's used in many embedded devices and the internet of things. Since it doesn't require network, it's used in many desktop applications and mobile applications. Since it's convinient to import and export all data into and from a single file, so it can be used as cache or for data analysis.
+In short, SQLite is a database in a library form, not in client/server form. Such a design greatly brodens the use of SQLite. Since it doesn't need administration, it's used in many embedded devices and the internet of things. Since it doesn't require network, it's used in many desktop applications and mobile applications. Since it's convinient to import and export all data into and from a single file, so it can be used as cache or for data analysis.
 
 ## Discusions
 
-Opting for library design is affiliated to the single responsibility principle; a software should entirely encapsulate its modules, functions and data structures over a single artifact. If you ever need a message queue, or a database, fine; don't ask me to install a process, set firewall policies, just use a library. It implies that the responsibility of the software is not up to some other people, other organization, or other services, but the people who develops it. If there is a change on the underlying message queue or database, you can always safely upgrade the version in your project dependency and fully test it before re-compile. There is greater danger that a remote service process dies or upgrades to a backward-incompatible version.
+**What is a library?** A Library is a collection of programming interfaces. Releasing as a library means the source code is delivered in a way that is most closed to its original form. Most of the time, the library is in the form of package that includes all the source code and metadata. 
 
-Opting for library design encourages good APIs. For the good of the library users, the library should provide APIs that are easy to learn, easy to use, hard to misuse, easy to read, easy to extend. Most importantly, "it just works". The less the library user has to learn how to use the library, the more willingness they want to use it.
+For example, Python library `SQLAlchemy` [^2]provides a tar-ball file for end-users. To use the library, you'd probably only need to run command `pip install sqlalchemy`. Under the hood, it does below things. 
 
+1. Issue a request to the package depot, `pypi.org` in this case, and download a file like `SQLAlchemy-1.3.3.tar.gz`. (Such a process applies to almost all package managers, such as `gem`, `maven`, `dep`, `cargo`, etc.)
 
+2. Un-archive the file.
+
+   ```bash
+   $ ls SQLAlchemy-1.3.3
+   AUTHORS              PKG-INFO             doc                  setup.py
+   CHANGES              README.dialects.rst  examples             test
+   LICENSE              README.rst           lib                  tox.ini
+   MANIFEST.in          README.unittests.rst setup.cfg
+   ```
+
+3. Install the package into a directory that can be resolved by Python interpreter. Being resolved means you can access the APIs provided by the library.
+4. That's it. You can then `import sqlalchemy` in your code.
+
+From the given example, we can learn that the pre-requisite for the use of a library typically involves downloading and installing the package.
+
+### The Single Responsibility Principle
+
+Opting for library design is affiliated to *the single responsibility principle*; a software should entirely encapsulate its modules, functions and data structures over a single artifact.
+
+There is greater danger that a remote service process dies or upgrades to a backward-incompatible version; but it never happens if the source code is released as a library.
+
+If you ever need a message queue, or a database, fine; don't ask me to launch a process or set firewall policies, just use a library. It implies that the responsibility of the software is not up to some other people, other organization, or other services, but the people who develops it. If there is a change on the underlying message queue or database, you can always safely upgrade the version in your project dependency and fully test it before re-compile.
+
+### Good APIs
+
+Releasing as a library encourages good APIs. For the good of the library users, the library should provide APIs that are easy to learn, easy to use, hard to misuse, easy to read, easy to extend. Most importantly, "it just works". The less the library user has to learn how to use the library, the more willingness they want to use it.
 
 ## Further Readings
 
@@ -138,3 +165,5 @@ Through some examples, we learned that opting for library design redefines the p
 
 
 [^1]: Serverless also refers to running a piece of code on server. Here it means no server process is needed.
+
+[^2]: The Python SQL Toolkit and Object Relational Mapper. https://pypi.org/project/SQLAlchemy/
