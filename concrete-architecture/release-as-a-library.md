@@ -5,19 +5,19 @@ Parent: Release
 
 ## Release as a Library
 
-Releasing as a library is a principle of distributing software as a library, that is, the end user accesses the features of the software by invoking function calls.
+*Releasing as a library* is a principle of distributing software as a set of programming interfaces, that is, the end user accesses the features of the software by invoking function calls.
 
-Distribution is among the crucial steps in the life cycle of any software. Other than opting for library, you could release software as a command-line tool, a service, or even mix all of them. When releasing as a library, we guarantee the data and functions provided by the library coexist in the same runtime with the main application. It allows us to discover and exploit a solution towards the best performance and extendability from the scope of the problem we want to solve.
+Distribution is among the crucial steps in the life cycle of any software. Other than opting for library, you could release software as a command-line tool, a service, or even mix all of them. When releasing as a library, we guarantee the functions provided by the library coexist in the same runtime with the main application. It allows us to discover and exploit a solution towards the best performance and extendability from the scope of the problem we want to solve.
 
-Let's first view some examples.
+Let's first see some examples.
 
 ## ZeroMQ: Message Queue as a Library
 
-A traditional broker software like RabbitMQ and Kafka needs to run as a standalone application, then clients send messages to the broker, and workers consume messages from the broker. To access the feature of broker software, a client library is often necessary; each function call made to the broker is a remote procedure call. Such component seems so natural that a lot of enterprise systems place the "broker" into the center place in their seemingly beautiful architecture diagram. To run your application in a healthy state, you need to make sure the message queue application is in a healthy state. However, the maintenance cost is enormous. It means you need operational people and network gurus keep standing by.
+A traditional *broker* software like RabbitMQ and Kafka needs to run as a standalone application.  Clients first send messages to the broker, and then workers consume messages from the broker. To access the feature of broker software, a client library is often necessary; each function call made to such library is a remote procedure call to the broker. Such component seems so natural that a lot of enterprise systems place the "broker" into the center place of the architecture diagram. To run the application in a healthy state, we need to make sure the message queue application is in a healthy state. However, the maintenance cost is enormous. It means we need operational people and network gurus keep standing by.
 
-Nonetheless, ZeroMQ decides to be a ~~black sheep~~ library, rather than a standalone broker program. Whoever wants to use ZeroMQ, he shall wave his wand and whisper, `pip install zmq; gem install zmq; push () { m=$(cat) && echo \ -e $(printf '\\x01\\x00\\x%02x\\x00%s' \ $((1 + ${#m})) "$m") | nc -q1 $@; }; 唵嘛呢叭咪吽`. After installing the library into the application as a project dependency, he should be able to use it immediately. Note that such a library is completely different from the above thin library: no broker, less maintenance cost, less risk of SPOF. It is the most interesting design of ZeroMQ.
+Nonetheless, ZeroMQ decides to be a ~~black sheep~~ library, rather than a standalone broker program. Whoever wants to use ZeroMQ, he shall wave his wand and whisper, `pip install zmq; gem install zmq; push () { m=$(cat) && echo \ -e $(printf '\\x01\\x00\\x%02x\\x00%s' \ $((1 + ${#m})) "$m") | nc -q1 $@; }; 唵嘛呢叭咪吽`. After installing the library into the application, he should be able to use it immediately. Note that such a library is completely different from the above thin wrapper library: no broker, less maintenance cost, no risk of single point of failure (SPOF). It is the most interesting design of ZeroMQ.
 
-Below is ZeroMQ in five lines of code:
+Below is ZeroMQ client in five lines of code:
 
 ```python
 c = Context() # create context
@@ -38,7 +38,7 @@ s.bind("tcp://192.168.0.111:5555") # bind address
 s.send(s.recv()) # receive and send
 ```
 
-The server code, again, follows BSD Sockets style API; it binds the TCP endpoint `192.168.0.111:5555`, then receives something, and then sends whatever received. Hmm, let me guess, it's an `echo` program. It's not the [smallest echo implementation](https://github.com/matz/streem/blob/master/examples/06echo.strm) yet but is short enough for a human being.
+The server code, again, follows BSD Sockets style API; it binds the TCP endpoint `192.168.0.111:5555`, then receives something, and then sends whatever received. And yes, it's a short-enough version of `echo` program.
 
 Wait, aren't we talking about message queue? Why did you show me socket thing? Fair enough. I just haven't explained REQ and REP yet. They represent request and reply and lets the socket being synchronous. The `send` and `recv` calls suspend the thread until a new message arrives. Though the code looks like socket operation, it encapsulates message queue semantic in the two constants. If you change the REQ-REP to PUB-SUB, you'll get a full working publisher-subscriber model without changing other code. What's more, you can launch multiple subscribers at the same time. All of them can receive the messages sent from the publisher.
 
@@ -121,6 +121,8 @@ In short, SQLite is a database in a library form, not in client/server form. Suc
 
 **What is a library?** A Library is a collection of programming interfaces. Releasing as a library means the source code is delivered in a way that is most closed to its original form. Most of the time, the library is in the form of package that includes all the source code and metadata. 
 
+**How to use the released library?** It has no simple answer. Different programming languages have different conventions. However, we can find a few patterns. 
+
 For example, Python library `SQLAlchemy` [^2]provides a tar-ball file for end-users. To use the library, you'd probably only need to run command `pip install sqlalchemy`. Under the hood, it does below things. 
 
 1. Issue a request to the package depot, `pypi.org` in this case, and download a file like `SQLAlchemy-1.3.3.tar.gz`. (Such a process applies to almost all package managers, such as `gem`, `maven`, `dep`, `cargo`, etc.)
@@ -136,21 +138,39 @@ For example, Python library `SQLAlchemy` [^2]provides a tar-ball file for end-us
    ```
 
 3. Install the package into a directory that can be resolved by Python interpreter. Being resolved means you can access the APIs provided by the library.
-4. That's it. You can then `import sqlalchemy` in your code.
+4. That's it. You can then `import sqlalchemy` in your Python code.
 
-From the given example, we can learn that the pre-requisite for the use of a library typically involves downloading and installing the package.
+`SQLite` provides a tar-ball file for end-users as well. To use the library, you need to take above actions, unfortunately, by hand. This is because C eco-system doesn't provide a broadly accepted package manager.
 
-### The Single Responsibility Principle
+1. Download the package for the SQLite Download Page <https://www.sqlite.org/download.html>. For example, in this example, we choose the pre-release snapshot, <https://www.sqlite.org/snapshot/sqlite-snapshot-201905242258.tar.gz>.
 
-Opting for library design is affiliated to *the single responsibility principle*; a software should entirely encapsulate its modules, functions and data structures over a single artifact.
+2. Un-archive the file.
+
+3. Compile the library and install it.
+
+   ```bash
+   $ ./configure
+   $ make
+   $ make install
+   ```
+
+4. You've got there. You can then `#include "sqlite.h"` in your C code.
+
+From the given example, we can learn that the pre-requisite for the use of a library typically involves downloading and installing the package. It's worth noting some library even includes a pre-compiled dynamic library inside the package so that you don't need to *compile* the source code of the library on the application side. For example, `pyzmq`, the Python binding for ZeroMQ, pre-compiles the library into dozens of packages for a combination of different Python and system versions, <https://pypi.org/project/pyzmq/#files>.
+
+**When to release as a library?** The rule of thumb is opting for library design if the code is meant to built into the application or used by other library. A library doesn't need to be deployed; it only needs to be called. We can also think on the other way around, if users don't feel happy when they need to install and maintain a buggy server application, it's always a good sign to choose releasing as a library.
+
+## Conventions
+
+**Good APIs.** Releasing as a library encourages good APIs. For the good of the library users, the library should provide APIs that are easy to learn, easy to use, hard to misuse, easy to read, easy to extend. Most importantly, "it just works". The less the library user has to learn how to use the library, the more willingness they want to use it.
+
+**Zero Configuration.** Releasing as a library encourages zero configuration. To be accurate, finer adjustment to the library is nothing different from calling other API functions. Since the library doesn't need to be started, stopped, or configured. And there is nothing needs to be done to tell the system operator that the library is running. There is no need for an administrator to create a running instance or add monitoring checks.  Some libraries do support reading configurations, though it's usually not a restrict. The rule of thumb is, it just works.
+
+**The Single Responsibility Principle.** Releasing as a library is affiliated to *the single responsibility principle*; a software should entirely encapsulate its modules, functions and data structures over a single artifact.
 
 There is greater danger that a remote service process dies or upgrades to a backward-incompatible version; but it never happens if the source code is released as a library.
 
 If you ever need a message queue, or a database, fine; don't ask me to launch a process or set firewall policies, just use a library. It implies that the responsibility of the software is not up to some other people, other organization, or other services, but the people who develops it. If there is a change on the underlying message queue or database, you can always safely upgrade the version in your project dependency and fully test it before re-compile.
-
-### Good APIs
-
-Releasing as a library encourages good APIs. For the good of the library users, the library should provide APIs that are easy to learn, easy to use, hard to misuse, easy to read, easy to extend. Most importantly, "it just works". The less the library user has to learn how to use the library, the more willingness they want to use it.
 
 ## Further Readings
 
