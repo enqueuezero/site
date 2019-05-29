@@ -119,9 +119,9 @@ In short, SQLite is a database in a library form, not in client/server form. Suc
 
 ## Discusions
 
-**What is a library?** A Library is a collection of programming interfaces. Releasing as a library means the source code is delivered in a way that is most closed to its original form. Most of the time, the library is in the form of package that includes all the source code and metadata. 
+**Library.** A Library is a collection of programming interfaces. Releasing as a library means the source code is delivered in a way that is most closed to its original form. Most of the time, the library is in the form of package that includes all the source code and metadata. 
 
-**How to use the released library?** It has no simple answer. Different programming languages have different conventions. However, we can find a few patterns. 
+**Use the library.** Different programming languages have different conventions in using libraries. Nontheless, we can find a few patterns. 
 
 For example, Python library `SQLAlchemy` [^2]provides a tar-ball file for end-users. To use the library, you'd probably only need to run command `pip install sqlalchemy`. Under the hood, it does below things. 
 
@@ -137,7 +137,7 @@ For example, Python library `SQLAlchemy` [^2]provides a tar-ball file for end-us
    MANIFEST.in          README.unittests.rst setup.cfg
    ```
 
-3. Install the package into a directory that can be resolved by Python interpreter. Being resolved means you can access the APIs provided by the library.
+3. Install the package into a directory that can be resolved by Python interpreter. Being resolved means you can access the APIs provided by the library. For example, it could be a path like `/usr/local/lib/python3.7/site-packages/sqlalchemy`.
 4. That's it. You can then `import sqlalchemy` in your Python code.
 
 `SQLite` provides a tar-ball file for end-users as well. To use the library, you need to take above actions, unfortunately, by hand. This is because C eco-system doesn't provide a broadly accepted package manager.
@@ -157,6 +157,8 @@ For example, Python library `SQLAlchemy` [^2]provides a tar-ball file for end-us
 4. You've got there. You can then `#include "sqlite.h"` in your C code.
 
 From the given example, we can learn that the pre-requisite for the use of a library typically involves downloading and installing the package. It's worth noting some library even includes a pre-compiled dynamic library inside the package so that you don't need to *compile* the source code of the library on the application side. For example, `pyzmq`, the Python binding for ZeroMQ, pre-compiles the library into dozens of packages for a combination of different Python and system versions, <https://pypi.org/project/pyzmq/#files>.
+
+**Package the library.** 
 
 **When to release as a library?** The rule of thumb is opting for library design if the code is meant to built into the application or used by other library. A library doesn't need to be deployed; it only needs to be called. We can also think on the other way around, if users don't feel happy when they need to install and maintain a buggy server application, it's always a good sign to choose releasing as a library.
 
