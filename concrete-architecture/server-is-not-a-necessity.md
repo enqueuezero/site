@@ -102,9 +102,9 @@ In short, SQLite is a database in a library form, not in client/server form. Suc
 
 ## Conventions
 
-**Good APIs.** Releasing as a library encourages good APIs. For the good of the library users, the library should provide APIs that are easy to learn, easy to use, hard to misuse, easy to read, easy to extend. Most importantly, "it just works". The less the library user has to learn how to use the library, the more willingness they want to use it.
+**Good APIs.** Releasing as a library encourages good APIs. For the good of the library users, the library should provide APIs that are easy to learn, easy to use, hard to misuse, easy to read, easy to extend. The less the library user has to learn how to use the library, the more willingness they want to use it.
 
-**Zero Configuration.** Releasing as a library encourages zero configuration. To be accurate, finer adjustment to the library is nothing different from calling other API functions. Since the library doesn't need to be started, stopped, or configured. And there is nothing needs to be done to tell the system operator that the library is running. There is no need for an administrator to create a running instance or add monitoring checks.  Some libraries do support reading configurations, though it's usually not a restrict. The rule of thumb is, it just works.
+**Zero Configuration.** Releasing as a library encourages zero configuration. To be accurate, finer adjustment to the library is nothing different from calling other API functions. Since the library doesn't need to be started, stopped, or configured. And there is nothing needs to be done to tell the system operator that the library is running. There is no need for an administrator to create a running instance or add monitoring checks.  Some libraries do support reading configurations, though it's usually not a restriction. The rule of thumb is, it just works.
 
 **The Single Responsibility Principle.** Releasing as a library is affiliated to *the single responsibility principle*; a software should entirely encapsulate its modules, functions and data structures over a single artifact.
 
