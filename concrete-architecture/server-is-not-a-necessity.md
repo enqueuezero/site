@@ -100,23 +100,6 @@ Because of its simplicity and wide popularity, many web frameworks also choose S
 
 In short, SQLite is a database in a library form, not in client/server form. Such a design greatly brodens the use of SQLite. Since it doesn't need administration, it's used in many embedded devices and the internet of things. Since it doesn't require network, it's used in many desktop applications and mobile applications.
 
-## DiskCache: Cache as a Library
-
-Caching is a popular add-on layer to any applications that need to accept large volume of traffic. Memcached and Redis are typically the first options to try. Both Memcached and Redis serve as in-memory, key-value data stores. They keeps all data in RAM, which makes them super fast as options for a caching layer. To use Caching reliably, it's often not as easy as starting a Redis instance; it involves setting up a cluster of Redis instances (replication), spliting data set to different Redis instances set (partition), and dynamically determining which instance to be the master (sentinel).
-
-As of today, the cloud-based computing offers not just memory but also gigabytes of empty spaces on disk. Memory usage costs a lot but those disk spaces are for free. It's a bad idea not to use them.
-
-DiskCache is a file backed cache library, written in pure-Python. The interface is pretty simple.
-
-```python
-import diskcache as dc
-cache = dc.Cache('tmp')
-cache[b'key'] = b'value'
-print(cache[b'key'])
-```
-
-(TODO)
-
 ## Conventions
 
 Releasing as a library is often the solution for the principle of *server is not a necessity*.
