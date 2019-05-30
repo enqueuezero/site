@@ -8,4 +8,4 @@ For decades, software engineers think complexity is the biggest enemy when build
 
 Most engineers already apply principles proposed in the journey all the time, but they don't realize that this is what they're doing. By explicitly describing and analyzing principles, you'll be more aware of skills and techniques you already possessed, and eliminating counter-principles that get in the way. Each of the proposed principle serves the purpose of building concrete architecture.
 
-001. [Release as a Library](release-as-a-library.md)
+001. [Server is not a necessity](server-is-not-a-necessity.md)

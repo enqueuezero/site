@@ -1,15 +1,17 @@
 ---
-Title: Release as a Library
+Title: Server is not a necessity
 Parent: Release
 ---
 
-## Release as a Library
+## Server is not a necessity
 
-*Releasing as a library* is a principle of distributing software as a set of programming interfaces, that is, the end user accesses the features of the software by invoking function calls.
+*"Server is not a necessity*" is a principle of offering functions without running a standalone server-side program. 
 
-Distribution is among the crucial steps in the life cycle of any software. Other than opting for library, you could release software as a command-line tool, a service, or even mix all of them. When releasing as a library, we guarantee the functions provided by the library coexist in the same runtime with the main application. It allows us to discover and exploit a solution towards the best performance and extendability from the scope of the problem we want to solve.
+There are a wide variaty of software that needs to run as servers, such as database, cache, message queue, if you will. They have proved to be stable and mature as many areas as backing system, social network website, blogging website, and even space exploration program. Server, as one of the most closed model to their functions, takes care of the queries, messages, caches, etc. It listens on network packages, and send instant responses.
 
-Let's first see some examples.
+However, it doesn't necessarily means such functions have to be in the server form. There’s a chance to run no additional processes. What if we opt for a library design, that is, fully shift to a design that functions are invoked locally. When opting for a library design, we guarantee the functions provided by the library coexist in the same runtime with the main application. To use an application, you don't need to start process X, Y, Z.
+
+In the rest of the chapter,  I'll show you some industry-proven examples that embrace that principle of "*Server is not a necessity*".
 
 ## ZeroMQ: Message Queue as a Library
 
@@ -50,7 +52,11 @@ If you still want to have a broker in your architecture design, ZeroMQ won't lea
 
 From an implementation perspective, the "official" low-level core API is [libzmq](https://github.com/zeromq/libzmq) written in C/C++. Nonetheless, several language bindings wrap the low-level API in a consistency way, adding more or less sugar that follows the philosophy of different programming languages. Therefore, you can use ZeroMQ in Bash, C, Python, Ruby, Common Lisp, Node.js, Java, etc. The benefit is that you can use the ZeroMQ library in almost all popular languages. Thanks to the enthusiastic ZeroMQ community!
 
-There are indeed disadvantages to using the ZeroMQ library. You'll eat your dog food from the coding perspective. If you write shitty code, then you get a shitty application despite ZeroMQ offering several message patterns. You're no longer able to use global state since ZeroMQ encourages the multi-threading model. The global state requires locking, mutex, etc., which harm the performance of the application. However, one might be thrilled to get the hell out of the deadlock problem.
+We can find a lot of users of ZeroMQ. The Jupyter Notebook is an open-source web application that provides live code, equations, plotting, and many other features interactively. Under the hood, ZeroMQ plays a vital role in exchanging interactive code, program output, images, etc. The Jupyter *Kernel*, the core of Jupyter Notebook,  uses ZeroMQ accepting incoming frontend connections, handling interactive user inputs, broadcasting responses to all connected frontends. [^3]  Since there is no additional Message Queue process to launch, the users of Jupyter Noteboook only need to type a simple command in a terminal to start the Jupyter Notebook:
+
+```bash
+$ jupyter notebook
+```
 
 All in all, whether you like it or not, being a library stands as the first fundamental design of ZeroMQ. Its goal is high performance and less maintenance cost. Being a standalone application goes against this goal and never is an option.
 
@@ -90,77 +96,9 @@ In particular, the function `sqlite3_exec()` wraps four internal functions:
 
 Most of the developers only need to understand what is *connection*, what is *prepared statement* and the given core API. They're simple and easy to use.
 
-To help distribute SQLite in the minimum effort, the developers of SQLite decides to concatenate all source code into a single file called `sqlite3.c`. Such technique is known as the amalgamation. Whoever gets the source tar ball can compile a up-to-dated CLI of SQLite by running  `./configure; make` . No extra dependencies is required. People love simple things that just work.
+Because of its simplicity and wide popularity, many web frameworks also choose SQLite as the default backend for Object-Relational Mapping (ORM). People can write code at a higher abstraction level. For example, in SQLAlchemy, you can use SQLite just as other database engines. It's a wise design because you don't need to launch a database instance when testing the web application.
 
-Because of its simplicity and wide popularity, many web frameworks also choose SQLite as default backend for Object-Relational Mapping (ORM). People can write code at a higher abstraction level. For example, in SQLAlchemy, you can use SQLite just as other database engines. It's a wise design because you don't need to launch a database instance when testing the web application.
-
-```python
-from sqlalchemy import create_engine, Table, Column, Float, String, MetaData, ForeignKey
-
-engine = create_engine('sqlite:///:memory:')
-metadata = MetaData()
-
-stocks = Table('stocks', metadata,
-    Column('date', String),
-    Column('trans', String),
-    Column('symbol', String),
-    Column('qty', Float),
-    Column('price', Float)
-)
-
-metadata.create_all(engine)
-
-ins = stocks.insert().values(date='2006-01-05', trans='BUY', symbol='RHAT', qty=100, price=35.14)
-conn = engine.connect()
-conn.execute(ins)
-```
-
-In short, SQLite is a database in a library form, not in client/server form. Such a design greatly brodens the use of SQLite. Since it doesn't need administration, it's used in many embedded devices and the internet of things. Since it doesn't require network, it's used in many desktop applications and mobile applications. Since it's convinient to import and export all data into and from a single file, so it can be used as cache or for data analysis.
-
-## Discusions
-
-**Library.** A Library is a collection of programming interfaces. Releasing as a library means the source code is delivered in a way that is most closed to its original form. Most of the time, the library is in the form of package that includes all the source code and metadata. 
-
-**Use the library.** Different programming languages have different conventions in using libraries. Nontheless, we can find a few patterns. 
-
-For example, Python library `SQLAlchemy` [^2]provides a tar-ball file for end-users. To use the library, you'd probably only need to run command `pip install sqlalchemy`. Under the hood, it does below things. 
-
-1. Issue a request to the package depot, `pypi.org` in this case, and download a file like `SQLAlchemy-1.3.3.tar.gz`. (Such a process applies to almost all package managers, such as `gem`, `maven`, `dep`, `cargo`, etc.)
-
-2. Un-archive the file.
-
-   ```bash
-   $ ls SQLAlchemy-1.3.3
-   AUTHORS              PKG-INFO             doc                  setup.py
-   CHANGES              README.dialects.rst  examples             test
-   LICENSE              README.rst           lib                  tox.ini
-   MANIFEST.in          README.unittests.rst setup.cfg
-   ```
-
-3. Install the package into a directory that can be resolved by Python interpreter. Being resolved means you can access the APIs provided by the library. For example, it could be a path like `/usr/local/lib/python3.7/site-packages/sqlalchemy`.
-4. That's it. You can then `import sqlalchemy` in your Python code.
-
-`SQLite` provides a tar-ball file for end-users as well. To use the library, you need to take above actions, unfortunately, by hand. This is because C eco-system doesn't provide a broadly accepted package manager.
-
-1. Download the package for the SQLite Download Page <https://www.sqlite.org/download.html>. For example, in this example, we choose the pre-release snapshot, <https://www.sqlite.org/snapshot/sqlite-snapshot-201905242258.tar.gz>.
-
-2. Un-archive the file.
-
-3. Compile the library and install it.
-
-   ```bash
-   $ ./configure
-   $ make
-   $ make install
-   ```
-
-4. You've got there. You can then `#include "sqlite.h"` in your C code.
-
-From the given example, we can learn that the pre-requisite for the use of a library typically involves downloading and installing the package. It's worth noting some library even includes a pre-compiled dynamic library inside the package so that you don't need to *compile* the source code of the library on the application side. For example, `pyzmq`, the Python binding for ZeroMQ, pre-compiles the library into dozens of packages for a combination of different Python and system versions, <https://pypi.org/project/pyzmq/#files>.
-
-**Package the library.** 
-
-**When to release as a library?** The rule of thumb is opting for library design if the code is meant to built into the application or used by other library. A library doesn't need to be deployed; it only needs to be called. We can also think on the other way around, if users don't feel happy when they need to install and maintain a buggy server application, it's always a good sign to choose releasing as a library.
+In short, SQLite is a database in a library form, not in client/server form. Such a design greatly brodens the use of SQLite. Since it doesn't need administration, it's used in many embedded devices and the internet of things. Since it doesn't require network, it's used in many desktop applications and mobile applications.
 
 ## Conventions
 
@@ -182,10 +120,11 @@ SQLite has a series of well-documented articles on its design and use. Check [SQ
 
 ## Conclusion
 
-Through some examples, we learned that opting for library design redefines the problem domains and yields unavoidably to the most extensive solution for developers. Opting for library encourages rich client-side development. By thinking the problem upside down, such a design makes all library functions living in the application runtime and often ends up to a distributed system with fewer components. Most of the time, people do love simplicity. And that is the most valuable treasure we get from this principle.
+Through some examples, we learned that the principle of "*server is not a necessity*" redefines the problem domains and yields unavoidably to the most extensive solution for developers. Opting for library encourages rich client-side development. By thinking the problem upside down, such a design makes all library functions living in the application runtime and often ends up to a distributed system with fewer components. It allows us to discover and exploit a solution towards the best performance and extendability from the scope of the problem we want to solve. Most of the time, people do love simplicity. And that is the most valuable treasure we get from this principle.
 
 
 
 [^1]: Serverless also refers to running a piece of code on server. Here it means no server process is needed.
 
 [^2]: The Python SQL Toolkit and Object Relational Mapper. https://pypi.org/project/SQLAlchemy/
+[^3]: The document of Jupyter Client describes how Jupyter is built on top of ZeroMQ, in particular, python binding of libzmq, <https://jupyter-client.readthedocs.io/en/stable/index.html>.
