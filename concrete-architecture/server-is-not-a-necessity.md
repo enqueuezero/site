@@ -102,19 +102,23 @@ In short, SQLite is a database in a library form, not in client/server form. Suc
 
 ## Conventions
 
+Releasing as a library is often the solution for the principle of *server is not a necessity*.
+
 **Good APIs.** Releasing as a library encourages good APIs. For the good of the library users, the library should provide APIs that are easy to learn, easy to use, hard to misuse, easy to read, easy to extend. The less the library user has to learn how to use the library, the more willingness they want to use it.
 
-**Zero Configuration.** Releasing as a library encourages zero configuration. To be accurate, finer adjustment to the library is nothing different from calling other API functions. Since the library doesn't need to be started, stopped, or configured. And there is nothing needs to be done to tell the system operator that the library is running. There is no need for an administrator to create a running instance or add monitoring checks.  Some libraries do support reading configurations, though it's usually not a restriction. The rule of thumb is, it just works.
+**Zero Configuration.** Releasing as a library encourages zero configuration. To be accurate, finer adjustment to the library is nothing different from calling other API functions. Since the library doesn't need to be started, stopped, or configured. And there is nothing needs to be done to tell the system operator that the library is running. There is no need for an administrator to create a running instance or add monitoring checks.  Some libraries support reading configurations, though it's usually not a restriction. The rule of thumb is, it just works.
 
 **The Single Responsibility Principle.** Releasing as a library is affiliated to *the single responsibility principle*; a software should entirely encapsulate its modules, functions and data structures over a single artifact.
 
-There is greater danger that a remote service process dies or upgrades to a backward-incompatible version; but it never happens if the source code is released as a library.
+There is greater danger that a remote service process dies or upgrades to a backward-incompatible version; but it never happens if the source code is released as a library. The user of a library can lock down the library version and make the application very stable in production.
 
-If you ever need a message queue, or a database, fine; don't ask me to launch a process or set firewall policies, just use a library. It implies that the responsibility of the software is not up to some other people, other organization, or other services, but the people who develops it. If there is a change on the underlying message queue or database, you can always safely upgrade the version in your project dependency and fully test it before re-compile.
+If you ever need a message queue, or a database, fine; don't ask me to launch a process or set firewall policies, just use a library. It implies that the responsibility of the software is not up to some other people, other organization, or other services, but the people who develops it. If there is a change on the underlying message queue or database, you can always safely upgrade the version in your project dependency and fully test it before re-compiling.
 
 ## Further Readings
 
-This chapter only discussed the library design part of ZeroMQ. If you are interested in learning how various message queue patterns are applied in ZeroMQ, don't miss ZGuide (<https://zguide.zeromq.org>). In the article, the author described the philosophy of ZeroMQ and how to master using ZeroMQ.
+This chapter only discusses the library design part of ZeroMQ. If you are interested in learning how various message queue patterns are applied in ZeroMQ, don't miss ZGuide (<https://zguide.zeromq.org>). In the article, the author describes the philosophy of ZeroMQ and how to master using ZeroMQ.
+
+The ZeroMQ chapter in book "The Architecture of Open Source Applications" written by Martin Sústrik is a good supplement for learning the architecture of ZeroMQ. In particular, "24.1 Application vs. Library" discusses why ZeroMQ opted for a library design.
 
 SQLite has a series of well-documented articles on its design and use. Check [SQLite Documentation](https://www.sqlite.org/docs.html).
 
