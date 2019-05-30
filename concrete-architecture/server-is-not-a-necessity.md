@@ -7,7 +7,7 @@ Parent: Release
 
 *"Server is not a necessity*" is a principle of offering functions without running a standalone server-side program. 
 
-There are a wide variaty of software that needs to run as servers, such as database, cache, message queue, if you will. They have proved to be stable and mature as many areas as backing system, social network website, blogging website, and even space exploration program. Server, as one of the most closed model to their functions, takes care of the queries, messages, caches, etc. It listens on network packages, and send instant responses.
+There are a wide variaty of software that needs to run as servers, such as database, cache, message queue, if you will. They have proved to be stable and mature as many areas as backing system, social network website, blogging website, and even space exploration program. Server, as one of the most closed-form modelings to the real-world challenges, takes care of the queries, messages, caches, etc. It listens on network packages, and send instant responses.
 
 However, it doesn't necessarily means such functions have to be in the server form. There’s a chance to run no additional processes. What if we opt for a library design, that is, fully shift to a design that functions are invoked locally. When opting for a library design, we guarantee the functions provided by the library coexist in the same runtime with the main application. To use an application, you don't need to start process X, Y, Z.
 
