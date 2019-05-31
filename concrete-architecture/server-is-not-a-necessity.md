@@ -108,6 +108,8 @@ Releasing as a library is often the solution for the principle of *server is not
 
 **Zero Configuration.** Releasing as a library encourages zero configuration. To be accurate, finer adjustment to the library is nothing different from calling other API functions. Since the library doesn't need to be started, stopped, or configured. And there is nothing needs to be done to tell the system operator that the library is running. There is no need for an administrator to create a running instance or add monitoring checks.  Some libraries support reading configurations, though it's usually not a restriction. The rule of thumb is, it just works.
 
+**No network round-trip.** No additional server process means no network round-trip when client makes calls. All calls are vanilla functions invokes inside the process. It tends to get higher performance since the network, in essence, is totally unreliable.
+
 **The Single Responsibility Principle.** Releasing as a library is affiliated to *the single responsibility principle*; a software should entirely encapsulate its modules, functions and data structures over a single artifact.
 
 There is greater danger that a remote service process dies or upgrades to a backward-incompatible version; but it never happens if the source code is released as a library. The user of a library can lock down the library version and make the application very stable in production.
