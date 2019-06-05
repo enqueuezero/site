@@ -102,7 +102,7 @@ In short, SQLite is a database in a library form, not in client/server form. Suc
 
 ## Conventions
 
-Releasing as a library is often the solution for the principle of *server is not a necessity*.
+Releasing as a library is often the solution to the principle of "*server is not a necessity*".
 
 **Good APIs.** Releasing as a library encourages good APIs. For the good of the library users, the library should provide APIs that are easy to learn, easy to use, hard to misuse, easy to read, easy to extend. The less the library user has to learn how to use the library, the more willingness they want to use it.
 

@@ -10,7 +10,7 @@ title: What's New?
 
 ## 2019 May
 
-* Added [Opt for Library Design](/concrete-architecture/opt-for-library-design.html).
+* Added [Server is not a neccessity].
 
 ## 2019 Apr
 

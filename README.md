@@ -8,14 +8,8 @@ Kia ora! I am the creator of **Enqueue Zero** (<https://enqueuezero.com>), a sit
 explains code principles to Developers/DevOps/Sysadmins. This site is updated under
 a single man team since 2018.
 
-Table of Content
-
-* [Techshack Updates](/category/techshack.md)
-* [Concrete Architecture](/concrete-architecture/) ([archives](/category/architecture.md))
-* [Elegant Utilities](/category/utility.md)
-* [Algorithms](/category/algorithm.md)
-* [Programming](/category/programming.md)
-* [Read the Fucking Source](/rtfs/)
+* [Build Up! The Guide to Great Software Design](/build-up/)
+* [Architecture](/category/architecture.md) | [Algorithms](/category/algorithm.md) | [Programming](/category/programming.md) | [Utilities](/category/utility.md) | [Read the Fucking Source](/rtfs/) | [Reading](/category/techshack.md)
 * [Changelog](/changelog.md)
 
 ## FAQ
