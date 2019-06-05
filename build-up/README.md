@@ -14,4 +14,12 @@ Now, let's give a glance on some of the most useful guidelines.
 
 ---
 
-"Make It Work; Make It Right; Make It Fast". This formulation of statement has existed for a very long time as part of the Unix Philosophy. "Make It Work" teaches us it doesn't mater what the form of the early implementation is, whater it's ugly or neat, as long as it works.
+"Make It Work; Make It Right; Make It Fast". This formulation of statement has existed for a very long time as part of the Unix Philosophy. "Make It Work" teaches us it doesn't mater what the form of the early implementation is, whater it's ugly or neat, as long as it works. "Make It Right" says the second step is to make the code more clear and fix corner cases. Finally, "Make It Fast" says the performance of the program is important; of course, only speed up where it is needed.
+
+"Let Autonomous Process React to Events". This principle describes an architectural pattern of using event-driven approach when building a large scale system. Each process publishes an event when there is a significant change in state; the other processes can subscribe and react to these events, possibly publishing to a new event. Such a principle tends to yield a system that has loosely coupled software components and services. Some open-source software such as Kubernetes are in essence a massive set of autonomous processes running on nodes.
+
+"Server Process Is Not A Neccessity.". This principle describes when opting for library design is just enough for some use cases. For example, ZeroMQ is a brokerless messaging queue library; SQLite is a serverless database library. Neither of the library requires running a standalone server process. By embedding the library, the application removes the administrative overhead, reduces the network round-trips, and gets ride of *single point of failure (SPOF)*.
+
+---
+
+There is unfortunately no easy way to choose which technology to be adopted when writing software. However, there are certain patterns and techniques that can help designing software.  In the next chapters, we will take a look at these useful principles and analyze how they're applied by real-world open-source software.
