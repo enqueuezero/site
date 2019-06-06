@@ -24,3 +24,6 @@ Now, let's give a glance on some randomly picked guidelines from latter chapters
 
 It's impossible to list all principles in one place. A principle is only meaningful under certain circumstances, and there are infinite number of problem domains that we will have to tackle with. Without analytical inspecting, we'll end up of brute forcing whatever principles we have in our pocket, and eventually make not-so-good software design. We will discuss a tactic way called *analytical programming*, in which I will show you how to analyze any problem you are facing and find proper solutions for it.
 
+To appreciate the fundamental subject matter of great software design, it involves us with several foci of phenomena: the hardware, the software, and the network. It reminds us it's also a metopher to ourself as human: the brain, the mind, and the collaboration. Every software is initiated from brains, hatched in the minds, and evolved through collaborations.
+
+As humans acculamating experience and thought, the software grows its complexity as well. It happens for even those software being carefully handcrafted that only a portion of people can partially understand the software as a whole. The symbols evolves from variables to functions, to classes, to executables, to services, to APIs. They
