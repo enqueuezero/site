@@ -5,19 +5,13 @@ Parent: Release
 
 ## Server is not a necessity
 
-*"Server is not a necessity*" is a principle of offering functions without running a standalone server-side program. 
+*"Server is not a necessity*" is a principle of offering functions without running a standalone server-side program.  There are a wide variaty of software that needs to run as servers, such as database, cache, message queue, if you will. They have proved to be stable and mature as many areas as backing system, social network website, blogging website, and even space exploration program. Server, as one of the most closed-form modelings to the real-world challenges, takes care of the queries, messages, caches, etc. It listens on network packages, and send instant responses. However, it doesn't necessarily means such functions have to be in the server form. What if we opt for a library design, that is, fully shift to a design that functions are invoked locally.
 
-There are a wide variaty of software that needs to run as servers, such as database, cache, message queue, if you will. They have proved to be stable and mature as many areas as backing system, social network website, blogging website, and even space exploration program. Server, as one of the most closed-form modelings to the real-world challenges, takes care of the queries, messages, caches, etc. It listens on network packages, and send instant responses.
+In the rest of the chapter,  let's learn from some great open source software that embrace the principle of "*Server is not a necessity*".
 
-However, it doesn't necessarily means such functions have to be in the server form. There’s a chance to run no additional processes. What if we opt for a library design, that is, fully shift to a design that functions are invoked locally. When opting for a library design, we guarantee the functions provided by the library coexist in the same runtime with the main application. To use an application, you don't need to start process X, Y, Z.
+A traditional *broker* software like RabbitMQ and Kafka needs to run as a standalone server process.  Clients first send messages to the broker, and then workers consume messages from the broker. To access the feature of broker software, a client library is often necessary; each function call made to such library is a remote procedure call to the broker. To run the application in a healthy state, we need to make sure the message queue application is in a healthy state. However, the administrative cost is enormous. It means we need operational people and network gurus keep standing by.
 
-In the rest of the chapter,  I'll show you some industry-proven examples that embrace that principle of "*Server is not a necessity*".
-
-## ZeroMQ: Message Queue as a Library
-
-A traditional *broker* software like RabbitMQ and Kafka needs to run as a standalone application.  Clients first send messages to the broker, and then workers consume messages from the broker. To access the feature of broker software, a client library is often necessary; each function call made to such library is a remote procedure call to the broker. Such component seems so natural that a lot of enterprise systems place the "broker" into the center place of the architecture diagram. To run the application in a healthy state, we need to make sure the message queue application is in a healthy state. However, the maintenance cost is enormous. It means we need operational people and network gurus keep standing by.
-
-Nonetheless, ZeroMQ decides to be a ~~black sheep~~ library, rather than a standalone broker program. Whoever wants to use ZeroMQ, he shall wave his wand and whisper, `pip install zmq; gem install zmq; push () { m=$(cat) && echo \ -e $(printf '\\x01\\x00\\x%02x\\x00%s' \ $((1 + ${#m})) "$m") | nc -q1 $@; }; 唵嘛呢叭咪吽`. After installing the library into the application, he should be able to use it immediately. Note that such a library is completely different from the above thin wrapper library: no broker, less maintenance cost, no risk of single point of failure (SPOF). It is the most interesting design of ZeroMQ.
+Nonetheless, ZeroMQ can overcome such short. After installing the library into the application, he should be able to use it immediately. Note that such a library is completely different from the above thin wrapper library: no broker, less maintenance cost, no risk of single point of failure (SPOF). It is the most interesting design of ZeroMQ.
 
 Below is ZeroMQ client in five lines of code:
 
@@ -46,7 +40,7 @@ Wait, aren't we talking about message queue? Why did you show me socket thing? F
 
 We've all seen how UNIX gets quirky that printing stuff by performing `write` function call to a file under directory `/dev`. It has demonstrated that most read and write can be achieved within a small set of I/O operations. Similarly, why can't the message queue stand on the shoulder of sockets? 
 
-The benefit with the library design is less network round trip and thus higher performance. The messages don't need to go over the network hop twice from senders to broker and then from broker to receivers.
+Since the above cose usually runs in a worker thread, there is no additional server process, which means no extra network round-trip when client makes calls. The messages don't need to go over the network hop twice from senders to broker and then from broker to receivers. All calls are vanilla functions invokes inside the process. It tends to get higher performance since the network, in essence, is totally unreliable.
 
 If you still want to have a broker in your architecture design, ZeroMQ won't leash you. It provides building blocks implementing a "broker" in just a few lines of code, probably equal to the amount of work of configuring a broker software. This newly built "broker" is yet another internal thread within your server process. Again, less maintenance cost.
 
@@ -58,11 +52,11 @@ We can find a lot of users of ZeroMQ. The Jupyter Notebook is an open-source web
 $ jupyter notebook
 ```
 
-All in all, whether you like it or not, being a library stands as the first fundamental design of ZeroMQ. Its goal is high performance and less maintenance cost. Being a standalone application goes against this goal and never is an option.
+All in all, whether you like it or not, being a library instead of a server process stands as the first fundamental design of ZeroMQ. Its goal is high performance and less maintenance cost. Being a standalone application goes against this goal and never is an option.
 
-## SQLite: Database as a Library
+Let's see another example. SQLite is a beautifully designed library that is probrarly the most widely deployed and used embedded database engine in the wild. It exists in every Android device, iPhone device, Mac device, Window device, most browsers, and millions of applications. Compacting as less then 600kb, it amazingly runs on different platforms in high performance and meanwhile provides a lot of features. Some programming languages such as Python even integrate it as core modules. As a library, SQLite is in nature "serverless," [^1]. that is, there is no separate server process. 
 
-SQLite is a beautifully designed library that is probrarly the most widely deployed and used embedded database engine in the wild. It exists in every Android device, iPhone device, Mac device, Window device, most browsers, and millions of applications. Compacting as less then 600kb, it amazingly runs on different platforms in high performance and meanwhile provides a lot of features. Some programming languages such as Python even integrate it as core modules. For example, in Python, you can create a database file, create a table, save a record in below few lines of code (from [Python sqlite3 module](https://docs.python.org/3/library/sqlite3.html)).
+For example, in Python, you can create a database file, create a table, save a record in below few lines of code (from [Python sqlite3 module](https://docs.python.org/3/library/sqlite3.html)).
 
 ```python
 import sqlite3
@@ -77,56 +71,19 @@ conn.close()
 
 Above code connects to a file named `example.db` on local disk. Then, it executes two statements by running `execute` method on a cursor. The `commit` method flushes data on disk. The last line of code close the file handle.
 
-As a library, SQLite is in nature "serverless," [^1]. that is, there is no separate server process. You don't need to worry about the data inconsistency due to system crash and power failure (SQLite won't save corrupted data). Since every database statement has to be executed on application side, there is no message round-trips over the network. The trade-off SQLite made is SQLite will only allow one writer at any instant in time.
+To keep thing simple, SQLite decides to write all data and the data schema into a single file on disk, which means there is no round-trips over the network.  The storing capacity of SQLite is up to the size of the disk. In some ways, SQLite is more like `fopen()` than a database engine, just like ZeroMQ is more like socket than a message queue.  By bringing all of the SQL semantics into a single local file, SQLite simplified the design of many applications.
 
-To keep thing simple, SQLite decides to write all data and the data schema into a single file on disk. The storing capacity of SQLite is up to the size of the disk. In some ways, SQLite is more like `fopen()` than a database engine, just like ZeroMQ is more like socket than a message queue.  By bringing all of the SQL semantics into a single local file, SQLite simplified the design of many applications.
+Finer adjustment to the library is nothing different from calling other API functions. Since the library doesn't need to be started, stopped, or configured. And there is nothing needs to be done to tell the system operator that SQLite is running. There is no need for an administrator to create a running instance or add monitoring checks. It just works.
 
-The principle task of SQLite is to evaluate SQL statements. To achieve this goal, SQLite has over 200 APIs, but most of the time you would only use only a few. 
+There is greater danger that a remote service process dies or upgrades to a backward-incompatible version; but it never happens if the source code is released as a library. The user of a library can lock down the library version and make the application very stable in production. It implies that the responsibility of the software is not up to some other people, other organization, or other services, but the people who needs it.
 
-* First, you need to open a connection to an SQLite database file by `sqlite3_open()`;
-* Second, you'll execute a SQL statement by `sqlite3_exec() `;
-* Last, once consumed the data, you'll need to close the connection by `sqlite3_close()`.
-
-In particular, the function `sqlite3_exec()` wraps four internal functions:
-
-* `sqlite_prepare()` converts SQL string into a *prepared statement* object.
-* `sqlite3_step()` evaluates the statement up until the first row. Call this function again and again until the statement is complete. SQL statements such as INSERT, UPDATE, DELETE only need one `sqlite3_step()` call.
-* `sqlite3_column()` returns a single column from the result from `sqlite3_step()`.
-* `sqlite3_finalize()` destroy the *prepared statement* object returned by `sqlite_prepare()`.
-
-Most of the developers only need to understand what is *connection*, what is *prepared statement* and the given core API. They're simple and easy to use.
-
-Because of its simplicity and wide popularity, many web frameworks also choose SQLite as the default backend for Object-Relational Mapping (ORM). People can write code at a higher abstraction level. For example, in SQLAlchemy, you can use SQLite just as other database engines. It's a wise design because you don't need to launch a database instance when testing the web application.
+Because of its simplicity and wide popularity, many web frameworks also choose SQLite as the default backend for Object-Relational Mapping (ORM). For example, when you inititate a Ruby-on-Rails project, you don't need to install MySQL or Postgres in development environment. When you execute `rake test`, a command that runs all test cases. If you add configuration `database: ":memory:"`, SQLite can even execute data read and write only in memory.
 
 In short, SQLite is a database in a library form, not in client/server form. Such a design greatly brodens the use of SQLite. Since it doesn't need administration, it's used in many embedded devices and the internet of things. Since it doesn't require network, it's used in many desktop applications and mobile applications.
 
-## Conventions
+**Further Readings.** This chapter only discusses the library design part of ZeroMQ. If you are interested in learning how various message queue patterns are applied in ZeroMQ, don't miss ZGuide (<https://zguide.zeromq.org>). In the article, the author describes the philosophy of ZeroMQ and how to master using ZeroMQ. The ZeroMQ chapter in book "The Architecture of Open Source Applications" written by Martin Sústrik is a good supplement for learning the architecture of ZeroMQ. In particular, "24.1 Application vs. Library" discusses why ZeroMQ opted for a library design. SQLite has a series of well-documented articles on its design and use. Check [SQLite Documentation](https://www.sqlite.org/docs.html).
 
-Releasing as a library is often the solution to the principle of "*server is not a necessity*".
-
-**Good APIs.** Releasing as a library encourages good APIs. For the good of the library users, the library should provide APIs that are easy to learn, easy to use, hard to misuse, easy to read, easy to extend. The less the library user has to learn how to use the library, the more willingness they want to use it.
-
-**Zero Configuration.** Releasing as a library encourages zero configuration. To be accurate, finer adjustment to the library is nothing different from calling other API functions. Since the library doesn't need to be started, stopped, or configured. And there is nothing needs to be done to tell the system operator that the library is running. There is no need for an administrator to create a running instance or add monitoring checks.  Some libraries support reading configurations, though it's usually not a restriction. The rule of thumb is, it just works.
-
-**No network round-trip.** No additional server process means no network round-trip when client makes calls. All calls are vanilla functions invokes inside the process. It tends to get higher performance since the network, in essence, is totally unreliable.
-
-**The Single Responsibility Principle.** Releasing as a library is affiliated to *the single responsibility principle*; a software should entirely encapsulate its modules, functions and data structures over a single artifact.
-
-There is greater danger that a remote service process dies or upgrades to a backward-incompatible version; but it never happens if the source code is released as a library. The user of a library can lock down the library version and make the application very stable in production.
-
-If you ever need a message queue, or a database, fine; don't ask me to launch a process or set firewall policies, just use a library. It implies that the responsibility of the software is not up to some other people, other organization, or other services, but the people who develops it. If there is a change on the underlying message queue or database, you can always safely upgrade the version in your project dependency and fully test it before re-compiling.
-
-## Further Readings
-
-This chapter only discusses the library design part of ZeroMQ. If you are interested in learning how various message queue patterns are applied in ZeroMQ, don't miss ZGuide (<https://zguide.zeromq.org>). In the article, the author describes the philosophy of ZeroMQ and how to master using ZeroMQ.
-
-The ZeroMQ chapter in book "The Architecture of Open Source Applications" written by Martin Sústrik is a good supplement for learning the architecture of ZeroMQ. In particular, "24.1 Application vs. Library" discusses why ZeroMQ opted for a library design.
-
-SQLite has a series of well-documented articles on its design and use. Check [SQLite Documentation](https://www.sqlite.org/docs.html).
-
-## Conclusion
-
-Through some examples, we learned that the principle of "*server is not a necessity*" redefines the problem domains and yields unavoidably to the most extensive solution for developers. Opting for library encourages rich client-side development. By thinking the problem upside down, such a design makes all library functions living in the application runtime and often ends up to a distributed system with fewer components. It allows us to discover and exploit a solution towards the best performance and extendability from the scope of the problem we want to solve. Most of the time, people do love simplicity. And that is the most valuable treasure we get from this principle.
+**Conclusion.** Through some examples, we learned that the principle of "*server is not a necessity*" redefines the problem domains and yields unavoidably to the most extensive solution for developers. Opting for library encourages rich client-side development. By thinking the problem upside down, such a design makes all library functions living in the application runtime and often ends up to a distributed system with fewer components. It allows us to discover and exploit a solution towards the best performance and extendability from the scope of the problem we want to solve. Most of the time, people do love simplicity. And that is the most valuable treasure we get from this principle.
 
 
 

@@ -20,7 +20,7 @@ In the next chapters, we will take a look at these useful principles and analyze
 
 "*Let Autonomous Process React to Events.*" This principle describes an architectural pattern of using event-driven approach when building a large scaling system. Each process publishes an event when there is a significant change in state; the other processes can subscribe and react to these events, possibly publishing to a new event. Such a principle tends to yield a system that has loosely coupled software components and services. Some open-source software such as Kubernetes are in essence a massive set of autonomous processes running on nodes.
 
-"*Server Process Is Not A Neccessity.*" This principle describes when opting for library design is just enough for some use cases. For example, ZeroMQ is a brokerless messaging queue library; SQLite is a serverless database library. Neither of the libraries require running a standalone server process. By embedding the library in the creation of a still great program, we remove the administrative overhead, reduce the network round-trips, and get ride of *single point of failure (SPOF)*.
+"*Server Is Not A Neccessity.*" This principle describes when opting for library design is just enough for some use cases. For example, ZeroMQ is a brokerless messaging queue library; SQLite is a serverless database library. Neither of the libraries require running a standalone server process. By embedding the library in the creation of a still great program, we remove the administrative overhead, reduce the network round-trips, and get ride of *single point of failure (SPOF)*.
 
 ------
 
@@ -28,11 +28,9 @@ It's impossible to list all principles in one place. A principle is only meaning
 
 No mather you are a rookie programmer or a vetteran architect, I hope the principles presented could shed a light on the problems you're dealing with, and possibly help you develop a good taste.
 
-Ju
-
-Auckland, New Zealand
-
 ---
 
+## Table Of Content
 
+* [Server is not a neccessity](server-is-not-a-neccessity.md)
 
