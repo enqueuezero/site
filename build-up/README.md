@@ -32,5 +32,6 @@ No mather you are a rookie programmer or a vetteran architect, I hope the princi
 
 ## Table Of Content
 
+* [Diagrams, Components, and Connectors](diagrams-components-connectors.md)
 * [Server is not a neccessity](server-is-not-a-neccessity.md)
 

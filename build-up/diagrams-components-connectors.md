@@ -2,7 +2,7 @@
 title: Diagram, Components, and Connectors
 ---
 
-# Diagram, Components, and Connectors
+# Diagrams, Components, and Connectors
 
 How do we describe the design of software? We implement the software by writing code, With hindsight, we can of course perceive the overall design by reading the code, configuration, document, and inspect the runtime data structures. But that takes a lot of efforts, and doesn't help at the early stage, especially no code is written yet.
 
