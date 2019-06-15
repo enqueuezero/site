@@ -1,14 +1,18 @@
 ---
-title: Architectural Concepts
+title: Diagram, Components, and Connectors
 ---
 
-# Architectural Concepts
+# Diagram, Components, and Connectors
 
+How do we describe the design of software? We implement the software by writing code, With hindsight, we can of course perceive the overall design by reading the code, configuration, document, and inspect the runtime data structures. But that takes a lot of efforts, and doesn't help at the early stage, especially no code is written yet.
 
+Drawing a diagram is a very good solution. A **diagram** is a symbolic representation of the software using visualization techniques. This technique has been used since ancient time, and it's still the most powerful tool. Human beings are very good at reading information deduce patterns from images.
 
+We tends to use some the most simplest elements to design software. For example, blocks and lines. Blocks can be in shape of sqaure, circle or eclipse, color-filled, etc. Lines can be solid, dashed, dotted, weighted, arrowed, curved, etc.
 
+In the software design diagram, a block refers to a **component**, a building block of the software. A line refers to a **connector**, the conceptual connection between multiple components. Some description text are marked around the blocks and the lines.
 
-**Component.** A component encapsulates a piece of the system that serves as a building block when building the system. From a developer's perspective, components are programming language elements, such as classes, objects, modules, or a set of related functions. From an operator's perspective, components are nodes, processes, containers, services, etc.
+A **component** encapsulates a piece of the system that serves as a building block when building the system. From a developer's perspective, components are programming language elements, such as classes, objects, modules, or a set of related functions. From an operator's perspective, components are nodes, processes, containers, services, etc.
 
 Components are deployable, in the form of a library package or a binary executable.
 
@@ -18,24 +22,14 @@ Components are composable. They are meant to interact with each other.
 
 Components are contract-driven. Each component should have a well-defined interface in order to communicate.
 
-**Node.** A node is a basic unit of a data structure, such as tree or linked list. A node contains some data and may link to other nodes. It's merely a concept in  a data structure; so its use depends on how we give it context.
+A **connector** encapsulates the interactions and data exchange between components. From a developer's perspective, connectors can be declared as import statements, or sockets. From an operator's perspective, connectors are wires, gateways, proxies, etc.
 
-Nodes are physical hosts, because hosts have program installed (data) and connected by wires (link).
+*Local procedure call* (LPC) is a connector that connects all of the components coexist in the same address spaces. We expect the communication of LPC is very reliable and extremely fast. It never corrupts the  integrity of the data. Function calls (functional programming) and method calls (object-oriented programming) are typical LPC examples.
 
-Nodes are individual entities in a distributed system, because each entity have its own memory (data) and connected by sockets (link).
+*Remote procedure call* (RPC) is a connector that connects components that lives in different processes in a tightly-coupled way. The RPC connector in nature yields to the client / server programming model; a client send a request to a server, and then the server send response back to the client. When using RPC, network latency and packet losses are very common challenges and thus adds many restrictions to the client and the server.
 
-Components and nodes have differences. A component is an artifact. Anything that consists of the system is a component. While a node is just a concept. For example, in a Kubernetes system, a node is a data structure that represents worker machine that lives only in Kubernetes runtime. 
+*Queue* is a connector that connects components that lives in different processes in a loosely-coupled way. The queue connector in nature yields to the publisher / consumer programming model; a publisher push a message to the queue, and then the consumer pull the message from the queue. It adds constrains to the design, such as pushing speed faster than pull spend, message loss, etc.
 
-In short, componets are concrete, and nodes are conceptual. We usually use the term node under some context.
+Connectors, like components, are first citizens in the software design. In a typical software system, we expect a larger number of connectors than components existed in a software.
 
-**Relationship.** A relationship refers to an association or acquaintance between two components. 
-
-We use the term **dependence** describing the strong relationship that component A can't run without component B, for example, statement `import "moduleB"`in the source code of `moduleA` ; or `"dependencies": {"libraryB": "~=0.1.0"}` in the project metafile of `projectA`. 
-
-**Host.** A host is a physical device that performs computation. It has various forms, such as an IoT device, network equipment, a smartphone, a laptop, a server box in a rack in a data center.
-
-**Operating System.** The operating system (OS) is the low-level software that manages the hardware of the host and software sources. The OS kernel plays a vital role in scheduling processes and resources. The utilities provided by the OS distributions make the OS easy to use. Popular operating systems include Linux, Windows, macOS and BSD-family. 
-
-**Process.** The process is a "living" program that is being executed. It has runtime memory that loads both the code of the program and the user data. The process runs on an OS and may be made up of several threads that execute instructions concurrently. A typical UNIX process is forked by another process, except the init process. Foreground process blocks the interactive shell from using until the task is done. Background process runs in the background, usually runs as a daemon and managed by process supervisor software such as systemd, supervisord, or runit.
-
-**Container.** A container is a unit of software that has program and all its dependencies packaged.
+We'll discuss components and connectors in the later chapters.
