@@ -8,9 +8,14 @@ title: What's New?
 >>> SELECT * from journals order by time desc;
 ```
 
+## 2019 Jun
+
+* Added [Diagrams, Components, and Connectors](/build-up/diagrams-components-connectors.html).
+* Added [Build Up!](/build-up/).
+
 ## 2019 May
 
-* Added [Server is not a neccessity].
+* Added [Server is not a neccessity](/build-up/server-is-not-a-neccessity.html).
 
 ## 2019 Apr
 
