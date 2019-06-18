@@ -18,7 +18,7 @@ When we speak of component, we often mix using component types and component ins
 
 A connector encapsulates the interactions and data exchange between components. From a developer's perspective, connectors can be declared as import statements or sockets. From an operator's perspective, connectors are wires, gateways, proxies, etc.
 
-Connectors, like components, are first citizens in the software design. It simplies the design of the system. Without connectors, there will be too much components in one diagram. For example, we can, of course, describe a message queue instance between publisher and consumer; we can also describe a connector linking the publisher and consumer. In the latter example, the connector encapsulates the queue semantic.
+Connectors, like components, are first citizens in the software design. It simplies the design of the system. Without connectors, there will be too much components in one diagram. For example, we can, of course, describe a message queue component between publisher and consumer; we can also let a connector linking the publisher and the consumer. In the latter example, the connector encapsulates the queue semantic.
 
 ---
 
