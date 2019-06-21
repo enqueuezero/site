@@ -10,8 +10,9 @@ title: What's New?
 
 ## 2019 Jun
 
-* Added [Diagrams, Components, and Connectors](/build-up/diagrams-components-connectors.html).
 * Added [Build Up!](/build-up/).
+* Added [Diagrams, Components, and Connectors](/build-up/diagrams-components-connectors.html).
+* Added [Useful Connectors](/build-up/useful-connectors.html).
 
 ## 2019 May
 
