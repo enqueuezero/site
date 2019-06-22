@@ -6,19 +6,19 @@ title: Diagram, Components, and Connectors
 
 How do we *describe* the design of the software? We implement the software by writing code; With hindsight, we can, of course, perceive the overall design by reading the code, configuration, document, and inspect the runtime data structures. But that takes a lot of efforts and doesn't help at the early stage.
 
-Drawing a diagram is a solution. A diagram is a symbolic representation of the software using visualization techniques. This technique has been used since ancient time, and it's still the most powerful tool. Human beings are very good at reading information deduce patterns from images.
+Drawing a diagram is a solution. A diagram is a symbolic representation of the software using visualization techniques. Human beings are very good at reading information from images.
 
-We tend to use some of the simplest elements to design software — for example, blocks and lines. Blocks can be in shape of a square, a circle or a eclipse, color-filled, etc. Lines can be dashed, dotted, weighted, arrowed, curved, etc.
+We tend to design the software by simple elements — for example, blocks and lines. Blocks can be in shape of a square, a circle or a eclipse, color-filled, etc. Lines can be dashed, dotted, weighted, arrowed, curved, etc.
 
 In the software design diagram, a block represents to a component, a building block of the software. A line represents a connector, the conceptual connection between multiple components. Some text are around the blocks and the lines for giving a supplement description.
 
-A component encapsulates a piece of the system that serves as a building block when building the system. From a developer's perspective, components are programming language elements, such as classes, objects, modules, or a set of related functions. From an operator's perspective, components are nodes, processes, containers, services, etc.
+A component encapsulates a piece of the system that serves as a building block for the system. From a developer's perspective, components are programming language elements, such as classes, objects, modules, or a set of related functions. From an operator's perspective, components are nodes, processes, containers, services, etc.
 
-When we speak of component, we often mix using component types and component instances. The component types are defined in the code, while the component instances runs in the runtime.
+When we speak of component, we often mix using component types and component instances. The component types are defined in the code, while the component instances run in the runtime.
 
-A connector encapsulates the interactions and data exchange between components. From a developer's perspective, connectors can be declared as import statements or sockets. From an operator's perspective, connectors are wires, gateways, proxies, etc.
+A connector encapsulates the interactions and data exchange between components. From a developer's perspective, connectors can be declared as import statements or sockets. From an operator's perspective, connectors are wires, gateways, proxies, or even a collection of components that serves as a data exchanging channel etc.
 
-Connectors, like components, are first citizens in the software design. It simplies the design of the system. Without connectors, there will be too much components in one diagram. For example, we can, of course, describe a message queue component between publisher and consumer; we can also let a connector linking the publisher and the consumer. In the latter example, the connector encapsulates the queue semantic.
+Connectors, like components, are first citizens in the software design. It simplies the design of the system. Without connectors, there will be too much components in one diagram.
 
 ---
 
