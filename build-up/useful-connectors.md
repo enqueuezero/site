@@ -4,7 +4,7 @@ title: Useful Connectors
 
 # Useful Connectors
 
-The connectors provide a meshanism that allows interaction between components. If we say a component performs some computations and needs input and output, then the connectors are mearly the interconnection mechanisms that transfer input and output between components. Connectors have many forms, not just simple peer-to-peer connections. Advanced connectors are powerful tools that simplifies the problem domains.
+The connectors provide a meshanism that allows interaction between components. Connectors have many forms, not just simple peer-to-peer connections. Advanced connectors are powerful tools that simplifies the problem domains.
 
 **Deliver.** The deliver connector is an one-way data exchange. The sender sends a message out and doesn't care if the message has delivered. This connector is typically based on UDP sockets.
 
