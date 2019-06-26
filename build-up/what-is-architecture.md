@@ -1,5 +1,5 @@
 ---
-title: So, What is Architecture?
+title: So, What is Design?
 ---
 
 # So, What is Architecture?

@@ -22,8 +22,15 @@ No mather you are a rookie programmer or a vetteran architect, I hope the princi
 
 ## Table Of Content
 
+### Overview
+
 * [So, What is Architecture?](what-is-architecture.md)
 * [Diagrams, Components, and Connectors](diagrams-components-connectors.md)
 * [Useful Connectors](useful-connectors.md)
-* [Server is not a neccessity](server-is-not-a-neccessity.md)
+* [Useful Components](useful-components.md)
 
+### Principles
+
+* [Server is not a neccessity](server-is-not-a-neccessity.md)
+* [Let Autonomous Process React to Events](let-autonomous-process-react-to-events.md)
+* [Make It Work; Make It Right; Make It Fast](make-it-work-make-it-right-make-it-fast.md)
