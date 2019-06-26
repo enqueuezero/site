@@ -2,7 +2,7 @@
 title: Useful Components
 ---
 
-
+# Useful Components
 
 **Virtual Private Cloud (VPC).** The VPC is a virtual network that provides resource provisioning and allocations in a trusted environment. Within the VPC, it typically has several *Availability Zones*, each of which is a high-available offering that protects applications from data center failures. There are more network components inside an availability zone, such as internet gateway, NAT gateway, VPN gateway, routing tables, etc. 
 
