@@ -24,7 +24,7 @@ No mather you are a rookie programmer or a vetteran architect, I hope the princi
 
 ### Overview
 
-* [So, What is Desig?](what-is-design.md)
+* [So, What is Design?](what-is-design.md)
 * [Diagrams, Components, and Connectors](diagrams-components-connectors.md)
 * [Useful Connectors](useful-connectors.md)
 * [Useful Components](useful-components.md)
