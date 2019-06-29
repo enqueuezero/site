@@ -32,6 +32,7 @@ No mather you are a rookie programmer or a vetteran architect, I hope the princi
 ### Message Queues
 
 * [Message Queue Basics](message-queue-basics.md)
+* [Message Queue Solutions](message-queue-solutions.md)
 
 ### Principles
 
