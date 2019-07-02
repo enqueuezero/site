@@ -16,4 +16,9 @@ The *sender* is a component that plays the role of calling putting messages to t
 
 The message queue provides an asynchronous communications protocol; the sender doesn't require an immediate response for the message to be processed. The benefit is we decouple the sender and the receiver. The downside is the sender never knows if the message is processed unless the receiver sends a processed message back to the message queue.
 
+```
+request-response: [ app ] --request--> <--response--- [ app ]
+message queue: [ app ] --- (messages) ---> [ app ]
+```
+
 The serverless and microservices architecture use the message queue widely.  Since it decouples the software into several pieces of self-contained components, the sender can offload heavyweight processing or batch work to other components. Each component then becomes a single serverless function or a separate microservices.
