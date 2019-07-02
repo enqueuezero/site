@@ -34,6 +34,7 @@ No mather you are a rookie programmer or a vetteran architect, I hope the princi
 * [Message Queue Basics](message-queue-basics.md)
 * [Message Queue Solutions](message-queue-solutions.md)
 * [Message Queue Use Case](message-queue-use-case.md)
+* [Task Queues](task-queues.md)
 
 ### Principles
 
