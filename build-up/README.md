@@ -43,3 +43,4 @@ There is unfortunately no easy way to choose which technology and models can sim
 * [Let Autonomous Process React to Events](let-autonomous-process-react-to-events.md)
 * [Make It Work; Make It Right; Make It Fast](make-it-work-make-it-right-make-it-fast.md)
 * [Protocol Upgrade](protocol-upgrade.md)
+* [Make Chaos Experiments in Production](make-chaos-experiments-in-production.md)
