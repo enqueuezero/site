@@ -12,7 +12,7 @@ Such a strategy enables serving data with smaller delays and at a larger scale. 
 
 **Cache data from an In-Memory database.** Although not much in-memory database provides mechanism to assist the client caching locally, the client-side caching is still possible. We can use some basic tools that Redis provides. If you happen to have a Redis Cluster, divide keys into many groups, such as 16k groups. Use Pub/Sub notifying the clients about when keys has changed on which slots. On the client side, remember the timestamp when the key was cached, and remember the invalidation time for each slot when receiving the invalidation messages. When getting the value of a cached key, evict the key if the cached timestamp is older than the invalidation time. [2]
 
-**Cache data retrived from a database.** Embedding the caching functionality into the SQL execution is a very traditional and effective approach. For example, by combining library `dogpile.cache`  with `sqlalchemy`, we can have full cache control as well as the ability to load data lazily from memory. When configuring the caching backend as in memory, such as `dogpile.cache.memory`, the cached data are stored locally in memory.
+**Cache data retrived from a database.** Embedding the caching functionality into the SQL execution is a very traditional and effective approach. For example, by combining library `dogpile.cache`  with `sqlalchemy`, we can have full cache control as well as the ability to load data lazily from memory. When configuring the caching backend as in memory, such as `dogpile.cache.memory`, the cached data are stored locally in memory. [3]
 
 [1]: https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching
 [2]: http://antirez.com/news/130
