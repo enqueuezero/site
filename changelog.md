@@ -8,6 +8,10 @@ title: What's New?
 >>> SELECT * from journals order by time desc;
 ```
 
+## 2019 Aug
+
+* Added [High-Availability 101](/ha-101.html)
+
 ## 2019 Jun
 
 * Added [Build Up!](/build-up/).
