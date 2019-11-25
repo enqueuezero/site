@@ -10,9 +10,9 @@ date: 2018-08-20
 
 The SLA, SLO, and SLI are related concepts though they're different concepts.
 
-* SLA or service level agreement is a contract that the service provider promises customers on service availability, performance, etc.
-* SLO or service level object is a goal that service provider wants to reach.
-* SLI or service level indicator is a measurement the service provider uses for the goal.
+* SLA or Service Level Agreement is a contract that the service provider promises customers on service availability, performance, etc.
+* SLO or Service Level Objective is a goal that service provider wants to reach.
+* SLI or Service Level Indicator is a measurement the service provider uses for the goal.
 
 So here is the relationship. The service provider needs to collect metrics based on SLI, define thresholds of metrics based on SLO, and monitor the thresholds of metrics so that it won't break SLA. In practical, the SLIs are the metrics in the monitoring system; the SLOs are alerting rules, and the SLAs are the numbers of the monitoring metrics applying to the SLOs.
 
