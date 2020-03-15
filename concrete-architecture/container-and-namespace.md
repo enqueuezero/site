@@ -1,6 +1,6 @@
 ---
 title: Container and Namespace
-content: /container-and-namespace.html
+permalink: /container-and-namespace.html
 category: Programming
 tags: container
 date: 2018-07-26
