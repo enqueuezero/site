@@ -1,5 +1,6 @@
 ---
 title: Circuit Breaker
+permalink: /concepts/circuit-breaker.html
 date: 2018-06-15
 category: Architecture
 tags: reactive, circuit-breaker

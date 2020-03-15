@@ -1,5 +1,6 @@
 ---
 title: Availability
+permalink: /availability.html
 ---
 
 # Availability

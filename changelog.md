@@ -102,7 +102,7 @@ I'm glad to announce [nim-markdown](https://github.com/soasme/nim-markdown) v0.6
 New posts are added to the list:
 
 * [File Access Permission](https://enqueuezero.com/file-access-permission.html).
-* [Heat Map](https://enqueuezero.com/heatmap.html).
+* [Heat Map](https://enqueuezero.com/concepts/heatmap.html).
 * [Linked List](https://enqueuezero.com/linked-list.html).
 * [Sidecar](https://enqueuezero.com/concepts/sidecar.html).
 * [Sharding](https://enqueuezero.com/concepts/sharding.html).
@@ -240,7 +240,7 @@ Hello everyone, two weeks passed. Now I bring all ya some new posts.
 
 * [Load](/load.html). This post is heavily influenced by Prometheus document but it's absolutely not tied to any specific tool or technology. Load of distributed system is much more complicated than single-box.
 
-* [Coroutine](/coroutine.html). This post explains coroutine and compare different APIs in Lua, Python, and Ruby.
+* [Coroutine](/concepts/coroutine.html). This post explains coroutine and compare different APIs in Lua, Python, and Ruby.
 
 * [Language Grammar](/language-grammar.html). In this post, I introduced BNF, EBNF, ABNF. Maybe I should also put Lex/Yacc as well? Some references like Python / Go official EBNF representation are included. I also embed a tiny tutorial on how to implement a small language.
 

@@ -1,5 +1,6 @@
 ---
 title: Deployment
+permalink: /deployment.html
 ---
 
 # Deployment

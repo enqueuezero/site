@@ -4,7 +4,7 @@ title: Programming
 
 # Programming
 
-## [2PL](/2PL.html)
+## [2PL](/concepts/2PL.html)
 
 The 2PL or Two-Phase Locking is a method to reach serializability.
 The 2PL is straightforward like its name - it has two phases.
@@ -16,15 +16,15 @@ The 2PL is straightforward like its name - it has two phases.
     * Existing locks may be released.
     * No new locks can be acquired.
 
-## [Actor Model](/actor-model.html)
+## [Actor Model](/concepts/actor-model.html)
 
 The actor is an isolated concurrent unit scheduled by the programming language.  The actor model is yet another concurrency solution. The benefit is lock-free. The downside is only a few tools or framework support it. Either way, if you're stuck at lock when doing concurrent programming, try actor model.
 
-## [ASGI](/asgi.html)
+## [ASGI](/concepts/asgi.html)
 
 ASGI is the next kin of WSGI. The specification defines a two-callable API in between web servers and asynchronous web applications. Its primary goal is to support HTTP, WebSocket, and more web standard protocols.
 
-## [Asynchronous and Synchronous](/async-and-sync.html)
+## [Asynchronous and Synchronous](/concepts/async-and-sync.html)
 
 The major difference between synchronous and asynchronous is how they handle tasks.
 
@@ -32,7 +32,7 @@ Executing synchronously describes the sequence of code execution in one-by-one o
 
 Executing asynchronously refers to as submitting a task to a runner, and then immediately running next task without knowing the result of previous task. The submitted task will be completed or aborted at a certain time later.
 
-## [Coroutine](/coroutine.html)
+## [Coroutine](/concepts/coroutine.html)
 
 Coroutines implement multi-tasking by consuming less resource. The downside is that it introduces yield / resume into your code. If thread or process cannot meet your multi-tasking requirements, try coroutine, although it also means rewrite you application very likely.
 
@@ -58,7 +58,7 @@ ready to use.
 Installing fuzzy search plugin or utilities save a few seconds every time and thus several
 hours and days in your work and life.
 
-## [Heat Maps](/heatmap.html)
+## [Heat Maps](/concepts/heatmap.html)
 
 Heat Map is a powerful tool for visualizing three-dimensional data. When performing analysis on latency, offset, utilization over time, don't forget Heat Maps!
 

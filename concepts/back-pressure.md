@@ -1,6 +1,6 @@
 ---
 title: Back-Pressure
-permalink: /back-pressure.html
+permalink: /concepts/back-pressure.html
 date: 2018-06-25
 category: Architecture
 tags: reactive

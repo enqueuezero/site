@@ -1,5 +1,6 @@
 ---
 title: DNS Load Balancing
+permalink: /dns-load-balancing.html
 ---
 
 # DNS Load Balance

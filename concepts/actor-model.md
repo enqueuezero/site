@@ -1,6 +1,6 @@
 ---
 title: Actor Model
-permalink: /actor-model.html
+permalink: /concepts/actor-model.html
 date: 2018-06-24
 category: Programming
 tags: concurrency

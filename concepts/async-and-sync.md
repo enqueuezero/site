@@ -1,6 +1,6 @@
 ---
 title: Asynchronous and Synchronous
-permalink: /async-and-sync.html
+permalink: /concepts/async-and-sync.html
 date: 2018-06-19
 category: Programming
 tags: async, sync

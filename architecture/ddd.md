@@ -1,5 +1,6 @@
 ---
 title: Document Driven Development
+permalink: /ddd.html
 ---
 
 # Document Driven Development

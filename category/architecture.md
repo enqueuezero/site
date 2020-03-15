@@ -63,7 +63,7 @@ Alerting usually consists of two parts: setting rules and setting notification t
 Alerting rules defines when to trigger alerts, such as "average response time over last 5 minutes is greater than 2 seconds", "ping check failed over consecutive 3 times", etc.
 Alerting targets defines where to send alerts, such as IRC, Slack, Email, PagerDuty, etc.
 
-### [Back-pressure](/back-pressure.html)
+### [Back-pressure](/concepts/back-pressure.html)
 
 Producer-consumer model is very helpful to decouple the system components. However, the situation is quite often in which producer produces jobs more rapidly than consumers can consume them. It's a challenge to manage a large number of unconsumed jobs.
 
@@ -89,7 +89,7 @@ NSEnter is a utility enters the namespaces of one or more other processes and th
 
 Union File System or UnionFS variants such as AUFS, btrfs, vfs, and devicemapper are the file system that used by most container engines.  It allows files and directories of separate file systems overlaid one by one, forming a final single coherent file system.
 
-### [Circuit Breaker](/circuit-breaker.html)
+### [Circuit Breaker](/concepts/circuit-breaker.html)
 
 Performance issue on upstream service often leads to downstream application crash. By applying with Circuit Breaker on downstream application side, we can prevent the entire system from cascading failure.  The state machine is in the core algorithm of Circuit Breaker. You can choose one of the listed library above and apply one of the listed API style above to improve your service.
 

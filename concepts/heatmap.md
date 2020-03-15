@@ -1,5 +1,6 @@
 ---
 title: Heat Map
+permalink: /concepts/heatmap.html
 category: programming
 ---
 
