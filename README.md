@@ -14,10 +14,10 @@ a single man team since 2018.
 ## FAQ
 
 Q: I want to know more about XYZ. Where should I ask?\
-A: Create a [GitHub Issue](https://github.com/soasme/EnqueueZero/issues/new) to me.
+A: Create a [GitHub Issue](https://github.com/enqueuezero/site/issues/new) to me.
 
 Q: I found something wrong. Where should I report?\
-A: Reporting via [GitHub Issue](https://github.com/soasme/EnqueueZero/issues) or sending a pull request is fine.
+A: Reporting via [GitHub Issue](https://github.com/enqueuezero/site/issues) or sending a pull request is fine.
 
 ## LICENSE
 
@@ -34,5 +34,4 @@ You should have received a copy of the license along with this
 work. If not, see <https://creativecommons.org/licenses/by-nc-sa/4.0/>.
 
 [Enqueue Zero]: https://enqueuezero.com/
-[soasme/EnqueueZero]: https://github.com/soasme/EnqueueZero
 [CC BY-NC-SA 4.0]: https://creativecommons.org/licenses/by-nc-sa/4.0/
