@@ -23,7 +23,8 @@ A: Reporting via [GitHub Issue](https://github.com/soasme/EnqueueZero/issues) or
 
 ![forthebadge cc-nc-sa](http://ForTheBadge.com/images/badges/cc-nc-sa.svg)
 
-Enqueue Zero (c) by Ju Lin
+Enqueue Zero (c) by Enqueue Zero Limited, 2020
+Enqueue Zero (c) by Ju Lin, 2019
 
 Enqueue Zero, including all its posts, is licensed under a
 Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
