@@ -51,11 +51,11 @@ Microservices architecture is an architectural style that structured application
 
 ## Part II: Architecture Blocks
 
-### [Access Token](/concrete-architecture/access-token.html)
+### [Access Token](/concepts/access-token.html)
 
 Access Token is a unique string that represents who is using an account browsing the internet.
 
-### [Alerting](/concrete-architecture/alerting.html)
+### [Alerting](/architecture/alerting.html)
 
 Alerts indicates the application deviates from a normal state.
 The goal of alerting is to reach a human to remedy an issue.
@@ -176,7 +176,7 @@ It's impossible to achieve both goals without changing the execution model, to k
 
 There are at least three solutions: slicing jobs, pre-executing jobs, post-executing jobs.
 
-### [Time Series](/concrete-architecture/time-series.html)
+### [Time Series](/architecture/time-series.html)
 
 A time series is a series of data points indexed (or listed or graphed) in time order.
 
@@ -186,11 +186,11 @@ It's also an interesting topic to perform [time series analytics](https://www.no
 
 ## Part III: Architecture Examples
 
-### [SQLAlchemy](/concrete-architecture/sqlalchemy.html)
+### [SQLAlchemy](/architecture/sqlalchemy.html)
 
 SQLAlchemy might be the best ORM software in the Python world regardless of your taste. Though you need to learn several fundamental concepts, it's still easy to use. If you're writing a Web application and needs to manipulate data with databases, SQLAlchemy is always a strong candidate.
 
-### [APScheduler](/concrete-architecture/apscheduler.html)
+### [APScheduler](/architecture/apscheduler.html)
 
 APScheduler is a job scheduling framework that executes code either one-off or periodically. People often integrate it into an existing Python application for running interval jobs.
 
@@ -198,7 +198,7 @@ APScheduler is a job scheduling framework that executes code either one-off or p
 
 Airbnb is a website that operates an online marketplace and hospitality service for people to lease or rent short-term lodging. The challenges for the engineering team includes high-availability, quick-scaling, etc.
 
-### [Skipper](/concrete-architecture/skipper.html)
+### [Skipper](/architecture/skipper.html)
 
 Skipper is an HTTP router and reverse proxy for service composition. The internal modules are well-decoupled and extendable.
 It makes adding new data sources and new routing strategies without losing performance.

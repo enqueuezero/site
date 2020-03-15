@@ -41,7 +41,7 @@ title: What's New?
 
 * Added Techshack Weekly Updates. [2019-05](/techshack.weekly/2019-05.html), [2019-06](/techshack.weekly/2019-06.html), [2019-07](/techshack.weekly/2019-07.html), [2019-08](/techshack.weekly/2019-08.html).
 * Started writing book "Hands-On Cloud Native Application". [preface](/hands-on-cloud-native/preface.html), [The Landscape](/hands-on-cloud-native/the-landscape.html), [Getting Started with React](/hands-on-cloud-native/react.html).
-* Added [Troubleshooting](/concrete-architecture/troubleshooting.html).
+* Added [Troubleshooting](/concepts/troubleshooting.html).
 * Added section "Microservices v/s Monolithic" in [Microservices Architecture](/microservices-architecture.html).
 
 ## 2019 January

@@ -1,6 +1,6 @@
 ---
 title: Timezone
-permalink: /timezone.html
+permalink: /concepts/timezone.html
 category: Programming
 tags: timezone
 date: 2018-08-24

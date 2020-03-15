@@ -1,5 +1,6 @@
 ---
 title: Status Site
+permalink: /architecture/status-site.html
 ---
 
 # Status Site

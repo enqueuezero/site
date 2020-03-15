@@ -1,6 +1,6 @@
 ---
 title: WSGI
-permalink: /wsgi.html
+permalink: /concepts/wsgi.html
 category: Programming
 tags: wsgi, web
 date: 2018-09-20

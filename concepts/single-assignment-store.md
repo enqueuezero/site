@@ -1,5 +1,6 @@
 ---
 title: Single-Assignment Store
+permalink: /concepts/single-assignment-store.html
 ---
 
 ## Introduction
