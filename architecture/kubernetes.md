@@ -1,5 +1,6 @@
 ---
 title: Kubernetes
+permalink: /architecture/kubernetes.html
 ---
 
 # Kubernetes

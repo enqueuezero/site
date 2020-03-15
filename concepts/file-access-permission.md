@@ -1,5 +1,6 @@
 ---
 title: File Access Permission
+permalink: /file-access-permission.html
 ---
 
 # File Access Permission

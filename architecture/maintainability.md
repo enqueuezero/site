@@ -1,5 +1,6 @@
 ---
 title: Maintainability
+permalink: /maintainability.html
 ---
 
 # Maintainability

@@ -1,5 +1,6 @@
 ---
 title: Microservices Architecture
+permalink: /architecture/microservices.html
 ---
 
 # Microservices Architecture
@@ -31,10 +32,6 @@ Some people think that every application can start from microservices architectu
 It is essential to know the pros and cons of microservices and monolithic.
 The monolithic style is simple to develop, deploy. However, it'll quickly become a problem in over-using resources.
 The microservices style yields to a collection of the most efficient, independent components and enables the continuous delivery and deployment of a complex application. However, it increases complexity in the system.
-
-## Solutions
-
-[Please donate this project. It takes time and efforts writing these articles.](/)
 
 ## Conclusions
 
