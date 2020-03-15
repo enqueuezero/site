@@ -1,7 +1,7 @@
 export default ({ router }) => {
   router.addRoutes([
     // Expire: Oct 2025.
-    { path: '/concrete-architecture/apscheduler.html', redirect: '/architecture/apscheduler.html' },
+    //{ path: '/concrete-architecture/apscheduler.html', redirect: '/architecture/apscheduler.html' },
     // Expire: Oct 2025.
     { path: '/apscheduler.html', redirect: '/architecture/apscheduler.html' },
     // Expire: Aug 2021.
