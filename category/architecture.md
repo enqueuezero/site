@@ -45,7 +45,7 @@ As a result, if you want your system continuously grow, do horizontal scale!
 
 The layered architecture has several other names, such as onion architecture, the clean architecture, etc. The basic theory is, you organize the components layer by layer in which only the upstream layer can make calls to the downstream layers.
 
-### [Microservices Architecture](/microservices-architecture.html)
+### [Microservices Architecture](/architecture/microservices.html)
 
 Microservices architecture is an architectural style that structured applications as a set of loosely decoupled services. The advantage of microservices architecture is it enables large and complex application to continuously scale and evolve.
 
@@ -153,7 +153,7 @@ Sidecar is a term for a one-wheeled device attached to the side of a motorcycle.
 * The independent process or container co-locate with the supporting application.
 * Provide a generic interface for sending data whatever the programming language of the app is.
 
-### [Status Site](/status-site.html)
+### [Status Site](/architecture/status-site.html)
 
 The status site is an individual website listing the particular component statuses that make up the product.
 

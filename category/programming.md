@@ -46,7 +46,7 @@ This article describes File Access Permissions in UNIX. Here, file means regular
 
 When we talk about File Access Permissions, people always think of the nine permission bits of each file - `rwxrwxrwx`. However, these permission bits are not the whole thing. The missing part are file IDs and process IDs. To complete the analysis of File Access Permissions,  we need both file and process. In this article, we describe file IDs, permission bits, and process IDs, and finally introduce a typical example.
 
-## [Fuzzy Search](/fuzzy-search.html)
+## [Fuzzy Search](/concepts/fuzzy-search.html)
 
 Fuzzy search can be applied whenever there is a search box. Under the hood, the fuzzy
 search requires approximate string matching. Among all algorithms, the Bitap algorithm
