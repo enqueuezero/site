@@ -1,5 +1,6 @@
 ---
 title: Release
+permalink: /architecture/release.html
 ---
 
 # Release

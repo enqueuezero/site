@@ -1,5 +1,6 @@
 ---
 title: Reliability
+permalink: /architecture/reliability.html
 ---
 
 # Reliability

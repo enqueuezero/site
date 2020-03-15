@@ -1,5 +1,6 @@
 ---
 title: Scalability
+permalink: /architecture/scalability.html
 ---
 
 # Scalability
