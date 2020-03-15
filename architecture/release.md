@@ -150,4 +150,4 @@ It could contain below changes.
 
 ## References
 
-* [What to expect when you re expecting a new code release](http://www.testingjournals.com/code-release-document/)
+* [What to expect when you re expecting a new code release](https://www.testingjournals.com/code-release-document/)

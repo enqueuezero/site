@@ -113,7 +113,7 @@ digraph G {
 
 ## References
 
-* [Netflix: What Happens When You Press Play?](http://highscalability.com/blog/2017/12/11/netflix-what-happens-when-you-press-play.html)
+* [Netflix: What Happens When You Press Play?](https://highscalability.com/blog/2017/12/11/netflix-what-happens-when-you-press-play.html)
 * [Rethinking Netflix’s Edge Load Balancing](https://medium.com/netflix-techblog/netflix-edge-load-balancing-695308b5548c)
 * [Netflix’s Production Technology = Voltron](https://medium.com/netflix-techblog/netflixs-production-technology-voltron-ab0e091d232d)
 * [Streaming Video Experimentation at Netflix: Visualizing Practical and Statistical Significance](https://medium.com/netflix-techblog/streaming-video-experimentation-at-netflix-visualizing-practical-and-statistical-significance-7117420f4e9a)

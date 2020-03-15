@@ -173,7 +173,7 @@ Synchronous code is simple to read but less performant. Asynchronous code is fru
 
 * [Asynchronous vs synchronous execution waht does it really mean](https://stackoverflow.com/questions/748175/asynchronous-vs-synchronous-execution-what-does-it-really-mean)
 * [Asynchronous python](https://hackernoon.com/asynchronous-python-45df84b82434)
-* [Tornado async guide](http://www.tornadoweb.org/en/stable/guide/async.html)
+* [Tornado async guide](https://www.tornadoweb.org/en/stable/guide/async.html)
 * [aiohttp](https://aiohttp.readthedocs.io/en/stable/)
 * [Futures and promises](https://en.wikipedia.org/wiki/Futures_and_promises)
 * [Nodejs blocking vs nonblocking](https://nodejs.org/en/docs/guides/blocking-vs-non-blocking/)

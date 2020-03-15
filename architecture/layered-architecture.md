@@ -124,7 +124,7 @@ In general, no name in the upper layer is allowed to appear in the lower layer, 
 In layered architecture, a layer serves the layer above it and is served by the layer below it. [1] The data flow is simple and easy to trace by always making calls from top to bottom in a single direction. Such architecture leads to a clean and elegant design.
 
 [1]: https://en.wikipedia.org/wiki/OSI_model
-[onion architecture]: http://blog.thedigitalgroup.com/understanding-onion-architecture
+[onion architecture]: https://blog.thedigitalgroup.com/understanding-onion-architecture
 [the clean architecture]: https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html
 [leaky abstraction]: https://en.wikipedia.org/wiki/Leaky_abstraction
 

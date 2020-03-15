@@ -88,6 +88,6 @@ It's recommended mounting `volumes` for data persistence, especially like MySQL,
 
 Depending on the case, it can be used in production only when you have one server and have no SLA requirement. [Use Compose in production](https://docs.docker.com/compose/production/)
 
-People mix Compose with Kubernetes, so there comes [Kompose](http://kompose.io/).
+People mix Compose with Kubernetes, so there comes [Kompose](https://kompose.io/).
 
 [^caveat-1]: https://stackoverflow.com/questions/29480099/docker-compose-vs-dockerfile-which-is-better

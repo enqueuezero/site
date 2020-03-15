@@ -4,7 +4,7 @@ title: ripgrep
 
 # ripgrep
 
-ripgrep is a line-oriented search tool that recursively searches your current directory for a regex pattern while respecting your `.gitignore` rules. It's a replacement of searching tools like [The Silver Searcher](https://geoff.greer.fm/ag/), [ack](https://beyondgrep.com/), [grep](http://linuxcommand.org/lc3_man_pages/grep1.html).
+ripgrep is a line-oriented search tool that recursively searches your current directory for a regex pattern while respecting your `.gitignore` rules. It's a replacement of searching tools like [The Silver Searcher](https://geoff.greer.fm/ag/), [ack](https://beyondgrep.com/), [grep](https://linuxcommand.org/lc3_man_pages/grep1.html).
 
 [[toc]]
 

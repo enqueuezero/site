@@ -20,7 +20,7 @@ Before container era, we usually use visualization technology to limit and contr
 
 ### What is a container?
 
-A container is a set of processes just like other processes you launched from the shell, except that it's being isolated in its [namespace](http://man7.org/linux/man-pages/man7/namespaces.7.html), [cgroups](http://man7.org/linux/man-pages/man7/cgroups.7.html), and [union filesystem](https://en.wikipedia.org/wiki/UnionFS). It has everything it needs in its isolation: code, runtime, system tools, system libraries, settings and so on.
+A container is a set of processes just like other processes you launched from the shell, except that it's being isolated in its [namespace](https://man7.org/linux/man-pages/man7/namespaces.7.html), [cgroups](https://man7.org/linux/man-pages/man7/cgroups.7.html), and [union filesystem](https://en.wikipedia.org/wiki/UnionFS). It has everything it needs in its isolation: code, runtime, system tools, system libraries, settings and so on.
 
 Docker is the dominant container option. However, there're various competitors such as CoreOS rkt, Ubuntu LXD. People standardize the container into the [OCI specs](https://www.opencontainers.org/) and love to have various implementations.
 
@@ -210,7 +210,7 @@ RUN apk add --no-cache packageA packageB \
     && make install
 ```
 
-Check this topic in the awesome [Container Best Practises](http://docs.projectatomic.io/container-best-practices/).
+Check this topic in the awesome [Container Best Practises](https://docs.projectatomic.io/container-best-practices/).
 
 ### Persist data via volumes
 
@@ -241,10 +241,10 @@ A container is merely an OS process, except that it's being isolated, secured, a
 ## References
 
 * [What even is container](https://jvns.ca/blog/2016/10/10/what-even-is-a-container/)
-* [Manpage: unshare](http://man7.org/linux/man-pages/man1/unshare.1.html)
-* [Manpage: nsenter](http://man7.org/linux/man-pages/man1/nsenter.1.html)
-* [Manpage: namespaces](http://man7.org/linux/man-pages/man7/namespaces.7.html)
-* [Manpage: cgroups](http://man7.org/linux/man-pages/man7/cgroups.7.html)
+* [Manpage: unshare](https://man7.org/linux/man-pages/man1/unshare.1.html)
+* [Manpage: nsenter](https://man7.org/linux/man-pages/man1/nsenter.1.html)
+* [Manpage: namespaces](https://man7.org/linux/man-pages/man7/namespaces.7.html)
+* [Manpage: cgroups](https://man7.org/linux/man-pages/man7/cgroups.7.html)
 * [Why do you need to run sshd in container](https://blog.docker.com/2014/06/why-you-dont-need-to-run-sshd-in-docker/)
 * [Linux namespaces](https://medium.com/@teddyking/linux-namespaces-850489d3ccf)
 * [Wikipedia: UnionFS](https://en.wikipedia.org/wiki/UnionFS)

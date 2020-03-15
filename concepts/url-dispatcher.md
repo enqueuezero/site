@@ -80,7 +80,7 @@ Some web frameworks even support the glob pattern. For example,
 
 #### Function-based Resolution
 
-To make the resolution more generic, a function-based solution is often used as a supplement solution. For example, in [Sinatra](http://sinatrarb.com/intro.html), you can add an extra function to the url resolution:
+To make the resolution more generic, a function-based solution is often used as a supplement solution. For example, in [Sinatra](https://sinatrarb.com/intro.html), you can add an extra function to the url resolution:
 
 ```
 set(:probability) { |value| condition { rand <= value } }
@@ -94,7 +94,7 @@ get '/win_a_car' do
 end
 ```
 
-We can even use data in the headers or domain. For example, in [Google App Engine](https://cloud.google.com/appengine/docs/standard/java/how-requests-are-routed), you can dispatch requests to `http://simple-sample.appspot.com/mobile/` and `http://simple-sample.appspot.com/work/` by rules defined in below code.
+We can even use data in the headers or domain. For example, in [Google App Engine](https://cloud.google.com/appengine/docs/standard/java/how-requests-are-routed), you can dispatch requests to `https://simple-sample.appspot.com/mobile/` and `https://simple-sample.appspot.com/work/` by rules defined in below code.
 
 ```
 dispatch:
@@ -219,9 +219,9 @@ Web framework routes URLs to functions based on a pre-registered URL rules. It's
 ## References
 
 * https://www.w3.org/Provider/Style/URI
-* http://t-code.pl/blog/2016/11/Towards-server-side-routing-with-URI-Templates/
+* https://t-code.pl/blog/2016/11/Towards-server-side-routing-with-URI-Templates/
 * https://tools.ietf.org/html/rfc6570
 * https://docs.djangoproject.com/en/2.0/topics/http/urls/
-* http://sinatrarb.com/intro.html
-* http://flask.pocoo.org/docs/0.12/api/#url-route-registrations
+* https://sinatrarb.com/intro.html
+* https://flask.pocoo.org/docs/0.12/api/#url-route-registrations
 * https://opensource.zalando.com/skipper/reference/architecture/

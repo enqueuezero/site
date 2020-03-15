@@ -183,7 +183,7 @@ Last but not least, I want to say great thanks to my funders. It's so amazing th
 
 Dear my funders, there is a tremendous change on UI this week!
 
-It's based on [Pelican](http://docs.getpelican.com/) and theme `Medius`. Almost all old posts have been migrated into the new blog. Besides, I added Disqus comment widget and tagging system.
+It's based on [Pelican](https://docs.getpelican.com/) and theme `Medius`. Almost all old posts have been migrated into the new blog. Besides, I added Disqus comment widget and tagging system.
 
 Below is a sample screenshot.
 
@@ -245,7 +245,7 @@ Hello everyone, two weeks passed. Now I bring all ya some new posts.
 
 * [Language Grammar](/language-grammar.html). In this post, I introduced BNF, EBNF, ABNF. Maybe I should also put Lex/Yacc as well? Some references like Python / Go official EBNF representation are included. I also embed a tiny tutorial on how to implement a small language.
 
-* [AO](http://github.com/soasme/ao). Reimplemented Language VM interpreter. Support raise / catch error. The weather of Cook Islands was not good and thus I have plenty of time thinking syntax. Finally I presented this solution: `value or error = call()`. It's just like Golang or Haskell but looks like in more plain English.
+* [AO](https://github.com/soasme/ao). Reimplemented Language VM interpreter. Support raise / catch error. The weather of Cook Islands was not good and thus I have plenty of time thinking syntax. Finally I presented this solution: `value or error = call()`. It's just like Golang or Haskell but looks like in more plain English.
 
 A little bit unpleased that I didn't create funny animated creation. Maybe next time.
 

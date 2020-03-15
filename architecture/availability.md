@@ -110,7 +110,7 @@ If possible, combining the two to make the availability as accurate as possible.
 
 After collecting the measurement, it's vital how to report those data to customers.
 
-A status page website is a common sense in the industry. You can check [statuspage.io](http://statuspage.io/) or [status.io](https://status.io/). These are useful tools not just reporting availability but also enabling customers to integrate their favorite tools.
+A status page website is a common sense in the industry. You can check [statuspage.io](https://statuspage.io/) or [status.io](https://status.io/). These are useful tools not just reporting availability but also enabling customers to integrate their favorite tools.
 
 It's important to let customers know something like it exists. For example, [GitHub](https://github.com) made an [announcement](https://blog.github.com/2018-12-11-introducing-the-new-github-status-site/) on a new Status Site.
 

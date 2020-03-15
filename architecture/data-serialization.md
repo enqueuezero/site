@@ -294,7 +294,7 @@ Serializing CSV are pretty easy in Python 3:
 
 ## References
 
-* [Avro](http://avro.apache.org/docs/current/)
+* [Avro](https://avro.apache.org/docs/current/)
 * [Comparison of data serialization formats](https://en.wikipedia.org/wiki/Comparison_of_data_serialization_formats)
 * [Don't pickle your data](https://www.benfrederickson.com/dont-pickle-your-data/)
 * [How do I read and write with msgpack](https://stackoverflow.com/questions/43442194/how-do-i-read-and-write-with-msgpack/43442195)
@@ -304,8 +304,8 @@ Serializing CSV are pretty easy in Python 3:
 * [Protocol Buffers](https://developers.google.com/protocol-buffers/)
 * [Protocol Buffers, Avro, Thrift & MessagePack](https://www.igvita.com/2011/08/01/protocol-buffers-avro-thrift-messagepack/)
 * [Python Manual - json](https://docs.python.org/2/library/json.html)
-* [Python Serialization](http://jmoiron.net/blog/python-serialization/)
-* [Ruby Manual - Markshal](http://ruby-doc.org/core-2.0.0/Marshal.html)
+* [Python Serialization](https://jmoiron.net/blog/python-serialization/)
+* [Ruby Manual - Markshal](https://ruby-doc.org/core-2.0.0/Marshal.html)
 * [What does Serializable mean](https://stackoverflow.com/questions/3429921/what-does-serializable-mean)
 * [What is code serialization](https://stackoverflow.com/questions/447898/what-is-object-serialization)
 * [Wikipedia - Serialization](https://en.wikipedia.org/wiki/Serialization)

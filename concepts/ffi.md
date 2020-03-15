@@ -132,7 +132,7 @@ use @fwrite[U64](ptr: Pointer[U8] tag, size: U64, count: U64, stream: Pointer[U8
 
 ### C - libffi
 
-libffi a C library for FFI. Many VM languages written in C language use libffi to perform FFI calls.  Below code comes from [libffi simple example](http://www.chiark.greenend.org.uk/doc/libffi-dev/html/Simple-Example.html#Simple-Example):
+libffi a C library for FFI. Many VM languages written in C language use libffi to perform FFI calls.  Below code comes from [libffi simple example](https://www.chiark.greenend.org.uk/doc/libffi-dev/html/Simple-Example.html#Simple-Example):
 
 ```c
 #include <stdio.h>
@@ -206,7 +206,7 @@ Type conversion impacts performance but the impact is small considering below ca
 * Very fast: implement slow operations in C, and then make FFI calls in VM languages.
 * Fastest: implement everything in C, or in assembly if you like. :)
 
-The example in [LuaJit FFI](http://luajit.org/ext_ffi.html) shows LuaJit FFI call is 110x faster than in pure Lua interpreter.
+The example in [LuaJit FFI](https://luajit.org/ext_ffi.html) shows LuaJit FFI call is 110x faster than in pure Lua interpreter.
 
 ### C Headers Copy-n-Paste v/s Semantic Signature
 
@@ -246,7 +246,7 @@ void (*uv_walk_cb)(uv_handle_t* handle, void* arg);
 void uv_walk(uv_loop_t* loop, uv_walk_cb walk_cb, void* arg);
 ```
 
-It's essential to have a way to map VM functions into FFI functions. Luckily, we have [ffi_closure](http://www.chiark.greenend.org.uk/doc/libffi-dev/html/The-Closure-API.html#The-Closure-API) to achieve that. It enables arbitrary functions to be passed into an FFI call. You need to do below things:
+It's essential to have a way to map VM functions into FFI functions. Luckily, we have [ffi_closure](https://www.chiark.greenend.org.uk/doc/libffi-dev/html/The-Closure-API.html#The-Closure-API) to achieve that. It enables arbitrary functions to be passed into an FFI call. You need to do below things:
 
 * allocate memory for ffi_closure
 * set a ffi_closure pointer into the exchange.
@@ -280,12 +280,12 @@ If you have performance bottleneck when running the CPU-intensive calculation in
 
 * [Flexible runtime interface to shared libraries with libffi](https://eli.thegreenplace.net/2013/03/04/flexible-runtime-interface-to-shared-libraries-with-libffi)
 * [Why use FFI](https://github.com/ffi/ffi/wiki/Why-use-FFI)
-* [LuaJit - FFI](http://luajit.org/ext_ffi.html)
+* [LuaJit - FFI](https://luajit.org/ext_ffi.html)
 * [Python - CFFI](https://cffi.readthedocs.io/en/latest/overview.html)
-* [Using LibFFI](http://www.chiark.greenend.org.uk/doc/libffi-dev/html/Using-libffi.html#Using-libffi)
+* [Using LibFFI](https://www.chiark.greenend.org.uk/doc/libffi-dev/html/Using-libffi.html#Using-libffi)
 * [Java JNI example](https://stackoverflow.com/questions/5963266/call-c-function-from-java)
 * [Pony - FFI](https://tutorial.ponylang.org/c-ffi/)
 * [Rust - FFI](https://doc.rust-lang.org/book/first-edition/ffi.html)
 * [CommonLisp - FFI](https://common-lisp.net/project/cffi/manual/cffi-manual.html)
 * [Example of source code in this post](https://gist.github.com/soasme/1ddbf4de79e341cbf2e0cf7357a166f7)
-* [How libffi actually works?](http://techbrahmana.blogspot.com/2008/08/how-libffi-actually-works.html)
+* [How libffi actually works?](https://techbrahmana.blogspot.com/2008/08/how-libffi-actually-works.html)

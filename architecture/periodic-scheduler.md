@@ -30,7 +30,7 @@ Crontab is a Unix utility that gets installed in almost every Unix / Linux distr
 * In most Linux distros, per user crontab are typically stored in `/var/spool/cron/crontabs/{username}`.
 * The long-running process is a daemon called `crond`.
 
-Check the manual of [crontab](http://man7.org/linux/man-pages/man5/crontab.5.html).
+Check the manual of [crontab](https://man7.org/linux/man-pages/man5/crontab.5.html).
 
 ### Kubernetes CronJob
 

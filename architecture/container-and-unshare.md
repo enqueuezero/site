@@ -34,4 +34,4 @@ PID   USER     TIME  COMMAND
 
 Ignoring other things, we're doing a similar job here, that is to create a new namespace.
 
-Check manpage of [unshare.1](http://man7.org/linux/man-pages/man1/unshare.1.html).
+Check manpage of [unshare.1](https://man7.org/linux/man-pages/man1/unshare.1.html).

@@ -187,7 +187,7 @@ When job failed, it's unrealistic to keep trying running the job. It's usually t
 
 Below lists popular Job Queue frameworks.
 
-* [Celery](http://www.celeryproject.org/)
+* [Celery](https://www.celeryproject.org/)
     * Advantages
         * Popular.
     * Disadvantages
@@ -224,7 +224,7 @@ Below lists popular Job Queue frameworks.
         * Rich document
     * Disadvantages
         *  thread unsafety
-* [Resque](http://resque.github.io/)
+* [Resque](https://resque.github.io/)
     * Advantages
         * Beautiful web dashboard
         * Simple
@@ -241,7 +241,7 @@ Other solutions:
 
 * [Sucker Punch](https://github.com/brandonhilkert/sucker_punch)
 * [Girl Friday](https://github.com/mperham/girl_friday)
-* [JQM](http://jqm.readthedocs.io/en/master/)
+* [JQM](https://jqm.readthedocs.io/en/master/)
 * [Bee-Queue](https://github.com/bee-queue/bee-queue)
 * [Bull](https://github.com/OptimalBits/bull)
 * [Kue](https://github.com/Automattic/kue)

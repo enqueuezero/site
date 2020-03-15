@@ -18,4 +18,4 @@ It's worth noting that namespace doesn't limit access to physical resources such
 
 One major use case of the namespace is to isolate processes belonging to a container from other containers or the system namespace.
 
-Each process has a `/proc/[pid]/ns/` subdirectory. Go and check one in your Linux system! And also check the man page of [namespaces.7](http://man7.org/linux/man-pages/man7/namespaces.7.html).
+Each process has a `/proc/[pid]/ns/` subdirectory. Go and check one in your Linux system! And also check the man page of [namespaces.7](https://man7.org/linux/man-pages/man7/namespaces.7.html).

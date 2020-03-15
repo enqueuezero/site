@@ -42,4 +42,4 @@ PID   USER     TIME  COMMAND
     5 root      0:00 ps aux
 ```
 
-Check manpage of [nsenter.1](http://man7.org/linux/man-pages/man1/nsenter.1.html).
+Check manpage of [nsenter.1](https://man7.org/linux/man-pages/man1/nsenter.1.html).

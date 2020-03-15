@@ -21,7 +21,7 @@ A: Reporting via [GitHub Issue](https://github.com/soasme/EnqueueZero/issues) or
 
 ## LICENSE
 
-![forthebadge cc-nc-sa](http://ForTheBadge.com/images/badges/cc-nc-sa.svg)
+![forthebadge cc-nc-sa](https://ForTheBadge.com/images/badges/cc-nc-sa.svg)
 
 Enqueue Zero (c) by Enqueue Zero Limited, 2020
 
@@ -31,7 +31,7 @@ Enqueue Zero, including all its posts, is licensed under a
 Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 
 You should have received a copy of the license along with this
-work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
+work. If not, see <https://creativecommons.org/licenses/by-nc-sa/4.0/>.
 
 [Enqueue Zero]: https://enqueuezero.com/
 [soasme/EnqueueZero]: https://github.com/soasme/EnqueueZero
