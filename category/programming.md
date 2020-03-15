@@ -98,13 +98,13 @@ The SLA, SLO, and SLI are related concepts though they're different concepts.
 * SLO or service level object is a goal that service provider wants to reach.
 * SLI or service level indicator is a measurement the service provider uses for the goal.
 
-## [Timezone](/timezone.html)
+## [Timezone](/concepts/timezone.html)
 
 As the earth is a sphere, different places in the world will have different clocks. Human invented timezone to split the globe into 24 areas by regions. The UTC or Coordinated Universal Time is the primary time standard by which the world regulates clocks and time.
 
 Programmers need to be aware of the timezone and what it means to the time they handle. In this case, the timezone libraries can help to ease the problem.
 
-## [URL Dispatcher](/url-dispatcher.html)
+## [URL Dispatcher](/concepts/url-dispatcher.html)
 
 Most modern web frameworks provide a component called `Router` or `URLDispatcher` to resolve a function or method to handle requests to URLs.
 
@@ -115,7 +115,7 @@ There are many means to determine which function to execute for an URL.
 * Directory Resolution
 * Function Resolution
 
-## [WSGI](/wsgi.html)
+## [WSGI](/concepts/wsgi.html)
 
 WSGI or Web Server Gateway Interface is a specification of [PEP 3333] that defines how the web server communicates with Python web applications.
 

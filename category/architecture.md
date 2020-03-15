@@ -141,11 +141,11 @@ Using crontab is the easiest way to schedule periodic jobs. The limitation is th
 
 * [Raft and The Nature of Time](/raft-and-the-nature-of-time.html)
 
-### [Sharding](/sharding.html)
+### [Sharding](/concepts/sharding.html)
 
 Sharding is a type of database partitioning technique that manages the subsets of data on several server hosts. It solves SPOF problem and single server resource limitation but introduces sharding logic to be implemented. Data sharding can be simple or complex depending on the sharding strategy.
 
-### [Sidecar](/sidecar.html)
+### [Sidecar](/concepts/sidecar.html)
 
 Sidecar is a term for a one-wheeled device attached to the side of a motorcycle. In engineering, it signifies a deployment model that one or more separate processes or containers deployed along with the application. The solution is:
 
@@ -170,7 +170,7 @@ It has below goals:
 
 The status site shows the statuses of components of the product. It's about to be transparent to users. Users know exactly where to look where there is downtime and staffs will be acting on the information they know is up-to-date.
 
-### [Time-consuming Jobs](/time-consuming-jobs.html)
+### [Time-consuming Jobs](/concepts/time-consuming-jobs.html)
 
 It's impossible to achieve both goals without changing the execution model, to keep the system responsive all the time and to complete the time-consuming jobs.
 

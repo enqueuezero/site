@@ -4,9 +4,15 @@ title: What's New?
 
 # Change Log
 
+This page displays the most recent site updates.
+
 ```sql
 >>> SELECT * from journals order by time desc;
 ```
+
+## 2020 Mar
+
+* Moved some posts under `/concepts`.
 
 ## 2019 Aug
 
@@ -25,16 +31,16 @@ title: What's New?
 ## 2019 Apr
 
 * Added Techshack Weekly Updates. [2019-14](/techshack.weekly/2019-14.html), [2019-15](/techshack.weekly/2019-15.html).
-* Added [Single-Assignment Store](/single-assignment-store.html).
+* Added [Single-Assignment Store](/concepts/single-assignment-store.html).
 
 ## 2019 March
 
 * Added [Deployment](/deployment.html).
 * Added Techshack Weekly Updates. [2019-09](/techshack.weekly/2019-09.html), [2010-10](/techshack.weekly/2019-10.html), [2019-11](/techshack.weekly/2019-11.html), [2019-12](/techshack.weekly/2019-12.html), [2019-13](/techshack.weekly/2019-13.html).
 * Added [Document Driven Development](/ddd.html).
-* Added [Access Token](/concrete-architecture/access-token.html).
+* Added [Access Token](/concepts/access-token.html).
 * Added chapters [Play around with Containers](/hands-on-cloud-native/container.html) and [Play around with GraphQL](/hands-on-cloud-native/graphql.html).
-* Added [Time Series](/concrete-architecture/time-series.html).
+* Added [Time Series](/architecture/time-series.html).
 * Reverted Patreon account. Thanks for all my funders. I've built habit of updating things constantly and there is not much need to motivate myself through money!
 
 ## 2019 February
@@ -51,7 +57,7 @@ title: What's New?
 * Added tool: [autojump](/utilities/autojump.html).
 * Added algorithm: [MurmurHash](/algorithms/murmur-hash.html).
 * Added [Kubernetes In a Nutshell](/kubernetes-in-a-nutshell.html). [Reddit discussion here](https://www.reddit.com/r/kubernetes/comments/abgzz5/kubernetes_in_a_nutshell/). The Page Views has reached 2000+.
-* Added [Skipper](/concrete-architecture/skipper.html)
+* Added [Skipper](/architecture/skipper.html)
 * Re-organize the architecture to "Concrete Architecture", and split it into three parts: architecture blocks, architecture styles and architecture examples.
 
 Some kudos:
@@ -98,8 +104,8 @@ New posts are added to the list:
 * [File Access Permission](https://enqueuezero.com/file-access-permission.html).
 * [Heat Map](https://enqueuezero.com/heatmap.html).
 * [Linked List](https://enqueuezero.com/linked-list.html).
-* [Sidecar](https://enqueuezero.com/sidecar.html).
-* [Sharding](https://enqueuezero.com/sharding.html).
+* [Sidecar](https://enqueuezero.com/concepts/sidecar.html).
+* [Sharding](https://enqueuezero.com/concepts/sharding.html).
 * [Ripgrep](https://enqueuezero.com/utilities/ripgrep.html).
 
 I also added a few posts that are not yet completed. They're a set of architecture-related posts.
@@ -162,8 +168,8 @@ First thing first, four posts have been made.
 
 * [Layered Architecture](/layered-architecture.html)
 * [Pseudo-Random Numbers](/pseudo-random-numbers.html)
-* [Apscheduler](/concrete-architecture/apscheduler.html)
-* [WSGI](/wsgi.html)
+* [Apscheduler](/architecture/apscheduler.html)
+* [WSGI](/concepts/wsgi.html)
 
 What's more, with the help of Pelican, now subscribing the RSS feed is getting easier: [https://enqueuezero.com/feeds/all.atom.xml](https://enqueuezero.com/feeds/all.atom.xml) . You may subscribe it in any RSS reader you want.
 
@@ -208,7 +214,7 @@ Besides, I have some other posts.
 
 * [The Difference Between SLA SLO and SLI](/the-difference-between-sli-slo-and-sla.html)
 * [Periodic Scheduler](/periodic-scheduler.html)
-* [Timezone](/timezone.html)
+* [Timezone](/concepts/timezone.html)
 
 Enjoy reading. :)
 
