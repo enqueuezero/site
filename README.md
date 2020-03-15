@@ -8,7 +8,7 @@ Kia ora! I am the creator of **Enqueue Zero** (<https://enqueuezero.com>), a sit
 explains code principles to Developers/DevOps/Sysadmins. This site is updated under
 a single man team since 2018.
 
-* [Architecture](/category/architecture.md) | [Algorithms](/category/algorithm.md) | [Programming](/category/programming.md) | [Utilities](/category/utility.md) | [Read the Fucking Source](/rtfs/) | [Reading](/category/techshack.md)
+* [Architecture](/category/architecture.md) | [Algorithms](/category/algorithm.md) | [Programming](/category/programming.md) | [Utilities](/category/utility.md)
 * [Changelog](/changelog.md)
 
 ## FAQ
@@ -24,7 +24,8 @@ A: Reporting via [GitHub Issue](https://github.com/soasme/EnqueueZero/issues) or
 ![forthebadge cc-nc-sa](http://ForTheBadge.com/images/badges/cc-nc-sa.svg)
 
 Enqueue Zero (c) by Enqueue Zero Limited, 2020
-Enqueue Zero (c) by Ju Lin, 2019
+
+Enqueue Zero (c) by Ju Lin, 2018-2019
 
 Enqueue Zero, including all its posts, is licensed under a
 Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
