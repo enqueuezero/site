@@ -10,47 +10,82 @@ date: 2018-09-15
 
 [[toc]]
 
-## Overview
+## Introduction
 
-APScheduler is a job scheduling framework that executes code either one-off or periodically. People often integrate it into an existing Python application for running interval jobs.
+APScheduler is a job scheduling library that schedules Python code to run either one-time or periodically. It's primarily used in websites, desktop applications, games, etc. It can be consider as a crontab in-process, except that it's not scheduling system commands but Python functions. The key takeaway is APScheduler is a library, not a command-line tool, not a daemon, not a service. It merely provide some building blocks for you to schedule your Python code. It has to run within the process of your application.
 
-In this post, we will cover below topics:
+A typical APScheduler instance will possibly house dozens or hundres of jobs, which are regular Python functions. There is no limit of the numbers of jobs an APScheduler instance can schedule; it only depends on the actual load of the machine that runs the APScheduler instance. By default, APScheduler stores all jobs in-memory. If you want your jobs survive from process restarts and keep triggerring from the last time there were triggered,  you can store these jobs in a database, such as any RDBMS, redis, MongoDB, etc.
 
-* What are the basic concepts of APScheduler?
-* How does object-oriented programming help extending the use cases?
-* How does the scheduler determine the next run time of jobs?
-* What if a job miss fired?
-* What if too many jobs running simultaneously?
+You must install APScheduler into the environment of your application, either globally or using virtualenv. 
 
-## Use
+```bash
+$ python3 -mvenv venv
+$ source venv/bin/activate
+$ pip install apscheduler
+```
 
-* Desktop application written in Python can sync data from server per-minute jobs.
-* Web application written in Python can renew hot-sale list every hour on a landing page.
-* Gaming server-side application written in Twisted (A Python network framework) can re-create monsters back to the scene every 5 minutes.
+Depending on how your applications runs, it can run as a thread, or an asyncio task, or else. When initialized, APScheduler doesn't do anything unless you add the Python functions as jobs. Once all the jobs are added, you need to "start" the scheduler. For a simple example of how to use APScheduler, here is a snippet of code that just works. Let's create a file `app.py`.
+
+```python
+from urllib.request import urlopen
+from apscheduler.schedulers.blocking import BlockingScheduler
+
+scheduler = BlockingScheduler()
+
+@scheduler.scheduled_job("interval", seconds=10)
+def keep_warm():
+    urlopen("https://enqueuezero.com", timeout=10)
+    
+scheduler.start()
+```
+
+This makes sure a url is requested every 10 seconds. The program runs as a blocking process. The jobs together with the APScheduler instance are the only thing running in the process. If you want to co-exist them with your application, you can consider using `BackgroundScheduler`, `AsyncIOScheduler`, etc. We'll discuss more later how to use APScheduler with some typical applications.
+
+Here are some examples in the wild.
+
 * Run it in AWS and replace Cronjob. [1]
 
-## Concepts
+## Object-Oriented Programming
+
+Below is the graph of the relations between all major classes in APScheduler codebase [2].
+
+![APScheduler Class Graph](/static/images/apscheduler-oo.png)
+
+* The `BaseScheduler`, `BaseExecutor`, `BaseJobStore` and `BaseTrigger` defines the common interfaces for Schedulers, Executors, JobStores, and Triggers. The subclasses of these base classes implement for a specific framework.
+* The scheduler manages executor and jobstore. The subclasses of the BaseScheduler run themselves in specific environments. For example, AsyncIOScheduler enables the scheduler running in an asyncio loop; BackgroundScheduler runs the scheduler in a thread. As the name suggested, the others are running as a blocking process, in a Qt loop, in a tornado loop,  in a twisted loop, or as a gevent greenlet.
+* The jobstore stores all of the jobs.
+* Each job has its trigger.
+
+Choosing a proper scheduler, job store(s), executor(s) and trigger(s) depends on the user's current technology stack.
+
+If all of the implementations cannot fit user's demand, then it's easy to follow the same pattern to extend them. [3]
+
+## Basic Concepts
 
 ### Job
 
-Job houses the functions to execute, the function parameters to pass in, and a bunch of controlling parameters.
+Job houses the functions to execute, the function parameters to pass in, and a bunch of scheduling parameters. The functions could be either a function object or an import string; the function arguments are essential for the function calls; and the scheduling parameters are for controlling scheduler behaviors.
 
-The functions could be either an imported function or a string of import path. The function arguments are essential for the execution. The controlling parameters are for controlling scheduler behaviors.
+In the below example, 
 
-In below example, `tick` is the Python function to scheduler, `args=(1, )` is the function parameter, and `trigger='interval', seconds=3` are the controlling parameters.
+* `tick` is the Python function to scheduler;
+* `args=(1, )` is the function parameter;
+* `trigger='interval', seconds=3` are the scheduling parameters.
 
 ```python
-def tick(parameter):
-    # do something
+def tick(parameter): print(parameter)
 
-scheduler.add_job(function, args=(1, ), trigger='interval', seconds=3, )
+scheduler.add_job(
+    function,
+    args=(1, ),
+    trigger='interval',
+    seconds=3
+)
 ```
 
 ### Trigger
 
-Triggers contain essential time information for the scheduler. Each job has its trigger. 
-
-The most important thing a trigger does is to tell the scheduler when is the next time this job should run.
+A trigger instructs the scheduler when is the next time a job should run. All  jobs have their own triggers.
 
 For example, in above example, if the job fires at `"2000-01-01T00:00:00Z"`, then the trigger with 3 seconds as interval should report that the next time is `"2000-01-01T00:00:03Z"`.
 
@@ -72,22 +107,6 @@ scheduler.add_job(function, args=(1, ), trigger='interval', seconds=3, jobstore=
 ### Executor
 
 Executors run the jobs. They manage the life cycles of jobs. By default, you can use thread or process as executors.
-
-## Object-Oriented Programming
-
-Below is the graph of the relations between all major classes in APScheduler codebase [2].
-
-![APScheduler Class Graph](/static/images/apscheduler-oo.png)
-
-* The `BaseScheduler`, `BaseExecutor`, `BaseJobStore` and `BaseTrigger` implements major functionalities of corespondent concepts.
-* The subclasses of base class adapt the base implementation to specific frameworks or libraries to cover more use cases.
-* The scheduler manages executor and jobstore.
-* The jobstore stores all of the jobs.
-* Each job has its trigger.
-
-Choosing a proper scheduler, job store(s), executor(s) and trigger(s) depends on the user's current technology stack.
-
-If all of the implementations cannot fit user's demand, then it's easy to follow the same pattern to extend them. [3]
 
 ## Executor Models
 
