@@ -52,13 +52,11 @@ Below is the graph of the relations between all major classes in APScheduler cod
 ![APScheduler Class Graph](/static/images/apscheduler-oo.png)
 
 * The `BaseScheduler`, `BaseExecutor`, `BaseJobStore` and `BaseTrigger` defines the common interfaces for Schedulers, Executors, JobStores, and Triggers. The subclasses of these base classes implement for a specific framework.
-* The scheduler manages executor and jobstore. The subclasses of the BaseScheduler run themselves in specific environments. For example, AsyncIOScheduler enables the scheduler running in an asyncio loop; BackgroundScheduler runs the scheduler in a thread. As the name suggested, the others are running as a blocking process, in a Qt loop, in a tornado loop,  in a twisted loop, or as a gevent greenlet.
-* The jobstore stores all of the jobs.
-* Each job has its trigger.
+* The **scheduler** manages **executor** and **jobstore**. The subclasses of the BaseScheduler enable the APScheduler instance running in specific environments. For example, AsyncIOScheduler enables the scheduler running in an asyncio loop; BackgroundScheduler runs the scheduler in a thread. As the name suggested, the others are running as a blocking process, in a Qt loop, in a tornado loop,  in a twisted loop, or as a gevent greenlet. Scheduler usually come with its own **executor**, for example, AsyncIOScheduler runs jobs via AsyncIOExecutor.
+* The **jobstore** stores all of the jobs. Similarly, you need to choose where to store these jobs. In-memory is the simplest solution, though all job states will be lost when the process restarts. Otherwise, you can choose Mongodb, Redis, Rethinkdb, Zookeeper, or any RDMBS that SQLAlchemy supports, such as SQLite, MySQL, Postgres, etc.
+* Every job has its own **trigger**. As shown earlier, "interval" is one of the triggers. You can also specify the trigger in the form of crontab syntax.
 
-Choosing a proper scheduler, job store(s), executor(s) and trigger(s) depends on the user's current technology stack.
-
-If all of the implementations cannot fit user's demand, then it's easy to follow the same pattern to extend them. [3]
+Choosing a proper scheduler, job store(s), executor(s) and trigger(s) depends on the user's current technology stack. If your demand is over all of the implementations, you need to extend those base classes. [3]
 
 ## Basic Concepts
 
@@ -119,13 +117,13 @@ In below two models, the scheduler internal method `process_jobs` trigger jobs a
 The sleep-process model is implemented in an infinite loop of sleeping and job processing.
 
 ```python
-timeout = DEFAULT
+wait_seconds = DEFAULT
 while True: 
-    sleep(timeout)
-    timeout = process_jobs()
+    sleep(wait_seconds)
+    wait_seconds = process_jobs()
 ```
 
-It's commonly seen in blocking applications. Please check to the implementation of [blocking.py](https://github.com/agronholm/apscheduler/blob/master/apscheduler/schedulers/blocking.py) for example.
+It's commonly seen in any blocking application. Please check to the implementation of [blocking.py](https://github.com/agronholm/apscheduler/blob/master/apscheduler/schedulers/blocking.py) for example.
 
 ### Callback Model
 
@@ -146,15 +144,14 @@ It's commonly seen in non-blocking applications. Please check the implementation
 
 ## Time Is of the Essence
 
-Although the scheduler is all about executing the job at a specific time, it doesn't guarantee the job will be executed definitely. That's one of the most important things you need to have in your mind. Two primary factors would affect it:
+Although the scheduler is all about executing the job at a specific time, it doesn't guarantee the job will be executed definitely. That's one of the most important things you need to have in your mind. Two factors affect it:
 
-* The scheduler implementation.
 * **Current running job numbers**.
 * **Current system load**.
 
-If the system load is high, the scheduler might choose to drop some jobs since it needs to execute new jobs. It's similar to the case of queueing-up.It's recommended not to put CPU-bound operations in the same machine of where APScheduler is running.
+If the system load is high, the scheduler process doesn't get enough CPU resource and thus some jobs don't get a chance to be triggered. The scheduler might choose to drop some jobs since it needs to execute new jobs. It's similar to the case of queueing-up.It's recommended not to put CPU-bound operations in the same machine of where APScheduler is running.
 
-Besides, the sleep operation depends on OS or VM scheduler, which is much low-level scheduler behind the scene. The OS does not guarantee it suspends the process exactly the same amount of time specified by `timeout`. [4]
+Besides, the operating system does not guarantee it suspends the process exactly the same amount of time specified by `timeout`. [4]
 
 ## Locking for Job State Modifications
 
