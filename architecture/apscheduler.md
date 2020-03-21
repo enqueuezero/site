@@ -39,7 +39,7 @@ def keep_warm():
 scheduler.start()
 ```
 
-This makes sure a url is requested every 10 seconds. The program runs as a blocking process. The jobs together with the APScheduler instance are the only thing running in the process. If you want to co-exist them with your application, you can consider using `BackgroundScheduler`, `AsyncIOScheduler`, etc. We'll discuss more later how to use APScheduler with some typical applications.
+This makes sure a url is requested every 10 seconds. The program runs as a blocking process. The jobs together with the APScheduler instance are the only thing running in the process. If you want to co-exist them with your application, you can consider using `BackgroundScheduler`, `AsyncIOScheduler`, etc.
 
 Here are some examples in the wild.
 
@@ -51,10 +51,7 @@ Below is the graph of the relations between all major classes in APScheduler cod
 
 ![APScheduler Class Graph](/static/images/apscheduler-oo.png)
 
-* The `BaseScheduler`, `BaseExecutor`, `BaseJobStore` and `BaseTrigger` defines the common interfaces for Schedulers, Executors, JobStores, and Triggers. The subclasses of these base classes implement for a specific framework.
-* The **scheduler** manages **executor** and **jobstore**. The subclasses of the BaseScheduler enable the APScheduler instance running in specific environments. For example, AsyncIOScheduler enables the scheduler running in an asyncio loop; BackgroundScheduler runs the scheduler in a thread. As the name suggested, the others are running as a blocking process, in a Qt loop, in a tornado loop,  in a twisted loop, or as a gevent greenlet. Scheduler usually come with its own **executor**, for example, AsyncIOScheduler runs jobs via AsyncIOExecutor.
-* The **jobstore** stores all of the jobs. Similarly, you need to choose where to store these jobs. In-memory is the simplest solution, though all job states will be lost when the process restarts. Otherwise, you can choose Mongodb, Redis, Rethinkdb, Zookeeper, or any RDMBS that SQLAlchemy supports, such as SQLite, MySQL, Postgres, etc.
-* Every job has its own **trigger**. As shown earlier, "interval" is one of the triggers. You can also specify the trigger in the form of crontab syntax.
+The `BaseScheduler`, `BaseExecutor`, `BaseJobStore` and `BaseTrigger` defines the common interfaces for Schedulers, Executors, JobStores, and Triggers. The subclasses of these base classes implement for a specific framework.
 
 Choosing a proper scheduler, job store(s), executor(s) and trigger(s) depends on the user's current technology stack. If your demand is over all of the implementations, you need to extend those base classes. [3]
 
@@ -83,7 +80,7 @@ scheduler.add_job(
 
 ### Trigger
 
-A trigger instructs the scheduler when is the next time a job should run. All  jobs have their own triggers.
+A trigger instructs the scheduler when is the next time a job should run. All  jobs have their own triggers. As shown earlier, "interval" is one of the triggers. You can also specify the trigger in the form of crontab syntax.
 
 For example, in above example, if the job fires at `"2000-01-01T00:00:00Z"`, then the trigger with 3 seconds as interval should report that the next time is `"2000-01-01T00:00:03Z"`.
 
@@ -91,9 +88,15 @@ For example, in above example, if the job fires at `"2000-01-01T00:00:00Z"`, the
 
 Schedulers rules all stuff. You can think of it as a stable API provided by APScheduler for configuring JobStores, Executors and adding jobs.
 
+The **scheduler** manages **executor** and **jobstore**. The subclasses of the BaseScheduler enable the APScheduler instance running in specific environments.
+
+For example, AsyncIOScheduler enables the scheduler running in an asyncio loop; BackgroundScheduler runs the scheduler in a thread. As the name suggested, the others are running as a blocking process, in a Qt loop, in a tornado loop,  in a twisted loop, or as a gevent greenlet. Scheduler usually come with its own **executor**, for example, AsyncIOScheduler runs jobs via AsyncIOExecutor.
+
 ### JobStore
 
 JobStore houses the scheduled jobs. Without any configuration, APScheduler saves them in memory. As shown in above code, `scheduler.add_job` won't trigger the function but save the job data into the memory.
+
+Similarly, you need to choose where to store these jobs. In-memory is the simplest solution, though all job states will be lost when the process restarts. Otherwise, you can choose Mongodb, Redis, Rethinkdb, Zookeeper, or any RDMBS that SQLAlchemy supports, such as SQLite, MySQL, Postgres, etc.
 
 In below example, APScheduler adds a JobStore named `sqlalchemy`. The job added later chooses `sqlalchemy` as its JobStore. The JobStore persists the job into an SQLite database.
 
@@ -106,15 +109,38 @@ scheduler.add_job(function, args=(1, ), trigger='interval', seconds=3, jobstore=
 
 Executors run the jobs. They manage the life cycles of jobs. By default, you can use thread or process as executors.
 
+## Framework Over Utility
+
+It's an intended design goal to make APScheduler a cross-platform, cross-application scheduler framework, rather than a daemon or service itself. It's meant to reside in an existing application.
+
+You can, of course, run APScheduler BlockingScheduler only and let it as a dedicated background service. But APScheduler always allows you to co-exist the job scheduling with you applications.
+
+The good part is it can extend itself to almost any use cases. The downside is that it needs you to do more development work.
+
+## Time Is of the Essence
+
+Although the scheduler is all about executing the job at a specific time, it doesn't guarantee the job will be executed definitely. Two factors may change the result:
+
+* **Current running job numbers**.
+* **Current system load**.
+
+If the system load is high, the scheduler process doesn't get enough CPU resource and thus some jobs don't get a chance to be triggered. It's recommended not to put CPU-bound operations at the same machine of where APScheduler is running.
+
+Or you have a fixed number of thread pool workers; when there are too many jobs firing at the same time, some jobs have to wait. It's similar to the case of queueing-up. It's recommended measuring the number and the latency of the scheduled jobs in the production. Scale up the machine or distribute jobs to different machines when the load gets high.
+
+Besides, the operating system does not guarantee it suspends the process exactly the same amount of time specified by `timeout`. [4]
+
 ## Executor Models
 
-There are two primary models of how scheduler schedules jobs in APScheduler.
+Internally, there are two primary models of how scheduler schedules jobs in APScheduler. You don't necessary need to know how it works in order to use. Despite of the different implementations, they have same interface and provide same functionality.
 
-In below two models, the scheduler internal method `process_jobs` trigger jobs and return seconds to sleep. The other function `sleep` or `run_after_timeout` would idle the scheduler for a few seconds.
+The scheduler has a method `process_jobs` triggerring jobs and returning how many seconds to sleep. 
+
+The other function `sleep` or `run_after_timeout` will idle the scheduler for a few seconds.
 
 ### Sleep-Process Model
 
-The sleep-process model is implemented in an infinite loop of sleeping and job processing.
+The sleep-process model is implemented as a while-loop of sleeping and job processing. Below is a pseudo code of how it works.
 
 ```python
 wait_seconds = DEFAULT
@@ -123,11 +149,11 @@ while True:
     wait_seconds = process_jobs()
 ```
 
-It's commonly seen in any blocking application. Please check to the implementation of [blocking.py](https://github.com/agronholm/apscheduler/blob/master/apscheduler/schedulers/blocking.py) for example.
+It waits a few seconds; then it processes jobs. Once the current tick is over, it sleep for a while when possible. It's commonly seen in any blocking application. Please check to the implementation of [blocking.py](https://github.com/agronholm/apscheduler/blob/master/apscheduler/schedulers/blocking.py) for example.
 
 ### Callback Model
 
-The callback model is implemented in a callback-chain convention.
+The callback model is implemented in a callback-chain convention. Below is a pseudo code of how it works.
 
 ```python
 def start(timeout=DEFAULT):
@@ -140,18 +166,7 @@ def wakeup():
 start()
 ```
 
-It's commonly seen in non-blocking applications. Please check the implementation of [tornado.py](https://github.com/agronholm/apscheduler/blob/master/apscheduler/schedulers/tornado.py) for example.
-
-## Time Is of the Essence
-
-Although the scheduler is all about executing the job at a specific time, it doesn't guarantee the job will be executed definitely. That's one of the most important things you need to have in your mind. Two factors affect it:
-
-* **Current running job numbers**.
-* **Current system load**.
-
-If the system load is high, the scheduler process doesn't get enough CPU resource and thus some jobs don't get a chance to be triggered. The scheduler might choose to drop some jobs since it needs to execute new jobs. It's similar to the case of queueing-up.It's recommended not to put CPU-bound operations in the same machine of where APScheduler is running.
-
-Besides, the operating system does not guarantee it suspends the process exactly the same amount of time specified by `timeout`. [4]
+It waits a few seconds, then it wakes up and processes jobs. Usually, there is an event loop running behind. It's commonly seen in non-blocking applications. Please check the implementation of [tornado.py](https://github.com/agronholm/apscheduler/blob/master/apscheduler/schedulers/tornado.py) for example.
 
 ## Locking for Job State Modifications
 
@@ -206,12 +221,6 @@ def report_error(event):
 
 scheduler.add_listener(report_error, EVENT_JOB_ERROR)
 ```
-
-## Framework Over Utility
-
-It's an intended design goal to make APScheduler a cross-platform, cross-application scheduler framework, rather than a daemon or service itself. It's meant to reside in an existing application. It says you need to integrate it into your codebase, instead of running it as a dedicated server.
-
-The good part is it can extend itself to almost any use cases. The sad part is that it needs you to do more development work.
 
 ## Conclusions
 
