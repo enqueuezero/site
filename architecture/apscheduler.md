@@ -12,9 +12,9 @@ date: 2018-09-15
 
 ## Introduction
 
-APScheduler is a job scheduling library that schedules Python code to run either one-time or periodically. It's primarily used in websites, desktop applications, games, etc. It can be consider as a crontab in-process, except that it's not scheduling system commands but Python functions. The key takeaway is APScheduler is a library, not a command-line tool, not a daemon, not a service. It merely provide some building blocks for you to schedule your Python code. It has to run within the process of your application.
+APScheduler is a job scheduling library that schedules Python code to run either one-time or periodically. It's primarily used in websites, desktop applications, games, etc. It can be considered as a crontab in-process, except that it's not scheduling OS commands but Python functions. The key takeaway is APScheduler is a library, not a command-line tool, not a daemon, not a service. It merely provides some building blocks for you to schedule your Python code. It has to run within the process of your application.
 
-A typical APScheduler instance will possibly house dozens or hundres of jobs, which are regular Python functions. There is no limit of the numbers of jobs an APScheduler instance can schedule; it only depends on the actual load of the machine that runs the APScheduler instance. By default, APScheduler stores all jobs in-memory. If you want your jobs survive from process restarts and keep triggerring from the last time there were triggered,  you can store these jobs in a database, such as any RDBMS, redis, MongoDB, etc.
+A typical APScheduler instance houses tens of jobs, which execute regular Python functions. There is no limit on the numbers of jobs an APScheduler instance can schedule; it only depends on the actual load of the machine. By default, APScheduler stores all jobs in-memory. If you want your jobs survive from process restarts and keep triggerring from the last time there were triggered,  you can store these jobs in a database, such as any RDBMS, redis, MongoDB, etc.
 
 You must install APScheduler into the environment of your application, either globally or using virtualenv. 
 
@@ -39,7 +39,7 @@ def keep_warm():
 scheduler.start()
 ```
 
-This makes sure a url is requested every 10 seconds. The program runs as a blocking process. The jobs together with the APScheduler instance are the only thing running in the process. If you want to co-exist them with your application, you can consider using `BackgroundScheduler`, `AsyncIOScheduler`, etc.
+This makes sure a url is requested every 10 seconds. The program runs as a blocking process. If you want to co-exist them with your application, you can consider using `BackgroundScheduler`, `AsyncIOScheduler`, etc.
 
 Here are some examples in the wild.
 
@@ -51,9 +51,9 @@ Below is the graph of the relations between all major classes in APScheduler cod
 
 ![APScheduler Class Graph](/static/images/apscheduler-oo.png)
 
-The `BaseScheduler`, `BaseExecutor`, `BaseJobStore` and `BaseTrigger` defines the common interfaces for Schedulers, Executors, JobStores, and Triggers. The subclasses of these base classes implement for a specific framework.
+The `BaseScheduler`, `BaseExecutor`, `BaseJobStore` and `BaseTrigger` defines the interfaces for Schedulers, Executors, JobStores, and Triggers. The subclasses of these base classes implement for each specific framework.
 
-Choosing a proper scheduler, job store(s), executor(s) and trigger(s) depends on the user's current technology stack. If your demand is over all of the implementations, you need to extend those base classes. [3]
+Choosing which scheduler, job store(s), executor(s) and trigger(s) to use depends on the user's current technology stack. If your demand is over all of the implementations, you need to extend those base classes. [3]
 
 ## Basic Concepts
 
