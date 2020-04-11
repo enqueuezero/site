@@ -10,6 +10,10 @@ This page displays the most recent site updates.
 >>> SELECT * from journals order by time desc;
 ```
 
+## 2020 Apr
+
+* Added [An Introduction to Terraform](/utilities/terraform.html).
+
 ## 2020 Mar
 
 * Moved some posts under `/concepts`.
