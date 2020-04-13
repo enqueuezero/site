@@ -2,7 +2,6 @@
 title: Load
 permalink: /load.html
 category: Architecture
-tags: load
 date: 2018-07-14
 ---
 

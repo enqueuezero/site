@@ -2,7 +2,6 @@
 title: The Difference between SLI, SLO, and SLA
 permalink: /the-difference-between-sli-slo-and-sla.html
 category: Programming
-tags: sla
 date: 2018-08-20
 ---
 

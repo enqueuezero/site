@@ -2,7 +2,6 @@
 title: Linked List
 permalink: /linked-list.html
 category: Programming
-tags: data-structure
 date: 2018-11-25
 ---
 

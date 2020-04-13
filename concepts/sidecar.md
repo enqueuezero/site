@@ -3,7 +3,6 @@ title: Sidecar
 permalink: /concepts/sidecar.html
 date: 2018-11-25
 category: Architecture
-tags: cloud
 ---
 
 # Sidecar

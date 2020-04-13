@@ -2,7 +2,6 @@
 title: Lock-free Queues
 permalink: /lock-free-queues.html
 category: Programming
-tags: queue
 date: 2018-06-21
 ---
 

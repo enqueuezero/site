@@ -2,7 +2,6 @@
 title: Count Distinct
 permalink: /count-distinct.html
 category: Algorithm
-tags: algorithm
 date: 2018-05-31
 ---
 

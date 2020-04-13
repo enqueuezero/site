@@ -2,7 +2,6 @@
 title: The Architecture of SQLAlchemy
 date: 2018-10-01
 category: Architecture
-tags: database, architecture
 ---
 
 # The Architecture of SQLAlchemy

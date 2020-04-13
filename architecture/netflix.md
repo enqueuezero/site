@@ -2,7 +2,6 @@
 title: The Architecture of Netflix
 permalink: /architecture/netflix.html
 category: Architecture
-tags: architecture
 date: 2018-10-08
 status: draft
 ---

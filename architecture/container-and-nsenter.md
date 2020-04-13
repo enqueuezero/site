@@ -2,7 +2,6 @@
 title: Container and nsenter
 permalink: /container-and-nsenter.html
 category: Programming
-tags: container
 date: 2018-07-26
 ---
 

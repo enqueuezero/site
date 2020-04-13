@@ -2,7 +2,6 @@
 title: Container and unshare
 permalink: /container-and-unshare.html
 category: Programming
-tags: container
 date: 2018-07-26
 ---
 

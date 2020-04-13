@@ -2,7 +2,6 @@
 title: Container
 permalink: /container.html
 category: Computer Science
-tags: container
 date: 2018-07-24
 ---
 

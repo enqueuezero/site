@@ -2,7 +2,6 @@
 title: Data Serialization
 permalink: /data-serialization.html
 category: Architecture
-tags: serialization, rpc, json
 date: 2018-06-04
 ---
 

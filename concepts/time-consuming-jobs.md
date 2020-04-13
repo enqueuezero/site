@@ -2,7 +2,6 @@
 title: Time-consuming Jobs
 permalink: /concepts/time-consuming-jobs.html
 category: Architecture
-tags: job
 date: 2018-06-07
 ---
 

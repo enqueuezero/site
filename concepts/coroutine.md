@@ -3,7 +3,6 @@ title: Coroutine
 permalink: /concepts/coroutine.html
 date: 2018-07-15
 category: Computer Science
-tags: coroutine
 ---
 
 # Coroutine

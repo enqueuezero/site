@@ -2,7 +2,6 @@
 title: Raft and Unreliable Network
 permalink: /raft-and-unreliable-network.html
 category: Architecture
-tags: raft, network
 date: 2018-08-14
 ---
 

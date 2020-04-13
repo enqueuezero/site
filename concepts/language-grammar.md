@@ -2,7 +2,6 @@
 title: Language Grammar
 permalink: /language-grammar.html
 category: Programming
-tags: language
 date: 2018-07-03
 ---
 

@@ -2,7 +2,6 @@
 title: SQL Index
 permalink: /concepts/sql-index.html
 category: Computer Science
-tags: sql
 date: 2018-06-03
 ---
 

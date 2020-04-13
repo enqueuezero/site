@@ -2,7 +2,6 @@
 title: Container and Namespace
 permalink: /container-and-namespace.html
 category: Programming
-tags: container
 date: 2018-07-26
 ---
 

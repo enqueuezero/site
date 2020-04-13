@@ -2,7 +2,6 @@
 title: Pseudo-Random Numbers
 permalink: /pseudo-random-numbers.html
 category: Programming
-tags: random
 date: 2018-09-11
 ---
 

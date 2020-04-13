@@ -2,7 +2,6 @@
 title: In-Memory Database
 permalink: /in-memory-database.html
 category: Architecture
-tags: database
 date: 2018-06-11
 ---
 

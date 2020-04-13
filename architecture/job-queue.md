@@ -2,7 +2,6 @@
 title: Job Queue
 permalink: /job-queue.html
 category: Architecture
-tags: queue
 date: 2018-06-06
 ---
 

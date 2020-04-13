@@ -3,7 +3,6 @@ title: Container and Cgroups
 permalink: /container-and-cgroups.html
 date: 2018-07-28
 category: Programming
-tags: container, cgroups, docker
 ---
 
 # Container and Cgroups

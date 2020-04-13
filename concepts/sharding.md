@@ -2,7 +2,6 @@
 title: Sharding
 permalink: /concepts/sharding.html
 category: Architecture
-tags: database
 date: 2018-12-09
 ---
 

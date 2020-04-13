@@ -3,7 +3,6 @@ title: Kubernetes In a Nutshell
 permalink: /kubernetes-in-a-nutshell.html
 published: true
 description: Kubernetes is a complicated system that has dozens of concepts. This article provides a set of concepts acting as a quick reference.
-tags: enqueuezero, kubernetes
 ---
 
 # Kubernetes In a Nutshell

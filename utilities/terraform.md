@@ -1,5 +1,6 @@
 ---
 title: An Introduction to Terraform
+tags: [terraform]
 ---
 
 # An Introduction to Terraform

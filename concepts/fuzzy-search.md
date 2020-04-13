@@ -2,7 +2,6 @@
 title: Fuzzy Search
 permalink: /concepts/fuzzy-search.html
 category: Programming
-tags: string, search
 ---
 
 # Fuzzy Search

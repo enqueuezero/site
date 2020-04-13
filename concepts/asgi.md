@@ -2,7 +2,6 @@
 title: ASGI
 permalink: /concepts/asgi.html
 category: Computer Science
-tags: web
 date: 2018-09-22
 ---
 

@@ -2,7 +2,6 @@
 title: Periodic Scheduler
 permalink: /periodic-scheduler.html
 category: Architecture
-tags: scheduler
 date: 2018-08-21
 ---
 

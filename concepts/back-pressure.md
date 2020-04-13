@@ -3,7 +3,6 @@ title: Back-Pressure
 permalink: /concepts/back-pressure.html
 date: 2018-06-25
 category: Architecture
-tags: reactive
 ---
 
 # Back-pressure
