@@ -2,6 +2,14 @@ language: node_js
 node_js: 11
 sudo: true
 install:
-    - yarn install
+  - yarn install
 script:
-    - make build && cd .vuepress/dist && git init && git add -A && git commit -m'deploy' && git push -fq https://${GITHUB_TOKEN}@github.com/enqueuezero/site.git master:gh-pages > /dev/null
+  - make build
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: .vuepress/dist
+  github_token: $GITHUB_TOKEN # Set in the Travis settings page of your repository, as a secure variable
+  keep_history: false
+  on:
+    branch: master
