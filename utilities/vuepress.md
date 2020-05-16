@@ -67,7 +67,7 @@ It's important to me that you like this project.
 :::
 
 // Highlight
-``` js{1}
+```js{1}
 var i;
 i = 1;
 console.log(i);
