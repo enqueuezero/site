@@ -123,5 +123,9 @@ if x > len(xs) && xs[i] != x {
 
 ## Conclusion
 
-Binary search narrows down the range [i, j) that might includes the target step by step.
+Binary search narrows down the range `[i, j)` that might includes the target step by step.
 Each step halves the range. Having that in mind, binary search algorithm has no mystery.
+
+Tip: I suspect 90% of the programmers can't implement it correctly for the first time, me included. Several years after graduated, I still couldn't do it right and had two errors. It's strongly recommended you implement the binary search algorithm from scratch without any hints.
+
+[![asciicast](https://asciinema.org/a/330850.svg)](https://asciinema.org/a/330850)
