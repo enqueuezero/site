@@ -71,9 +71,6 @@ It's important to me that you like this project.
 var i;
 i = 1;
 console.log(i);
-
-// Import
-<<< @/filepath
 ```
 
 ## Extend markdown

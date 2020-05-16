@@ -14,9 +14,6 @@ module.exports = {
   markdown: {
     // options for markdown-it-anchor
     anchor: { permalink: true },
-    extendMarkdown: (md) => {
-      // TOOD: integrate mermaid
-    }
   },
   plugins: [
     [
