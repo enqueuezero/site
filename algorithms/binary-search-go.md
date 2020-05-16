@@ -41,7 +41,7 @@ To make the binary search algorithm more generic, a lot of implementations modif
 func Search(n int, f func (int) bool)
 ```
 
-This change make it possible to ignore which type of `xs` it is. We choose the latter in this article.
+This change makes it possible to ignore which type of `xs` it is. We choose the latter in this article.
 
 ## Variables
 
