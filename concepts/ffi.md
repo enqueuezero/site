@@ -115,13 +115,13 @@ Everything expressed in Common Lisp is just in S-expression, even when you're wr
 
 In Pony, you can use FFI directly. The FFI call syntax is very much like a function call with little difference. Below example shows how to call a file write operation directly.
 
-```pony
+```
 @fwrite[U64](data.cstring(), U64(1), data.size(), _handle)
 ```
 
 Calling FFI without predefined signatures looks convenient. Nonetheless, it's very dangerous. Without the signature, it might cause some potential bugs. And hence, it's still recommended defining signature first. Pony declare function signature via 'use' keyword.
 
-```pony
+```
 // define FFI signature
 use @fwrite[U64](ptr: Pointer[U8] tag, size: U64, count: U64, stream: Pointer[U8] tag)
 
