@@ -11,6 +11,6 @@ The data buffer, as you might guess, is just a contiguous block of memory having
 
 In the below diagram, a NumPy array object contains a `buf` and some metadata, the former of which is a pointer to the actual data buffer, a contiguous block of memory.
 
-![NumPy Aray Basic](/static/images/NumPy-Array-Basic.png)
+![NumPy Aray Basic](/static/images/NumPy-Array-Basic.svg)
 
 Such a decision improves the performance. It allows sharing the same data buffer, yet derives a different array by presenting a new view with different metadata (e.g., strides, byte order, shape, etc). This technique is called "views". We can have different views of a same data buffer, each of which becomes a new array object. Creating such an object is faster than a full copy. Many operations in NumPy, such as slicing, transposing, are merely manipulating shapes and strides; the data buffer remains intact.
