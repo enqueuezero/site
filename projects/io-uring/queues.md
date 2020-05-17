@@ -1,9 +1,9 @@
 ---
-title: The Architecture of io_uring
-permalink: /architecture/io-uring.html
+title: The Queues of io_uring
+permalink: /projects/io-uring/queues.html
 ---
 
-# The Architecture of io_uring
+# The Queues of io_uring
 
 io_uring is asynchronous I/O programming for Linux. Traditionally, we do async via select, poll, epoll, ugly aio, etc. However, they're meant for sockets and pipes. For high performant applications, since Kernel 5.6, when even file I/O becomes the bottleneck, io_uring is a better solution. io_uring provides a general interface handling both sockets and regular files.
 
@@ -16,15 +16,9 @@ These two ring buffers are shared between the kernel and user space, so the data
 
 Having that in mind, let's see how io_uring works.
 
+![](/static/images/io_uring-queues.png)
+
 1. Your program sets up two ring buffers at first.
 2. Enqueue Submission Queue Entry (SQE) to SQ.
 3. Kernal consumes SQEs and puts Completion Queue Events (CQE) to CQ.
 4. Your program consumes CQEs.
-
-The APIs for the above four steps are pretty straightforward:
-
-1. `io_uring_setup()`
-2. `io_uring_enter()`
-3. `io_uring_wait_cqe()`
-4. `io_uring_cqe_seen()`
-
