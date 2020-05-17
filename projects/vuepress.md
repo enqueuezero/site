@@ -1,5 +1,6 @@
 ---
 title: VuePress
+permalink: /projects/vuepress.html
 ---
 
 # VuePress

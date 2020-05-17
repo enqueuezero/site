@@ -6,8 +6,8 @@ title: What's New?
 
 This page displays the most recent site updates.
 
-```sql
->>> SELECT * from journals order by time desc;
+```
+> SELECT * from journals order by time desc;
 ```
 
 ## 2020 May
@@ -17,7 +17,7 @@ This page displays the most recent site updates.
 
 ## 2020 Apr
 
-* Added [An Introduction to Terraform](/utilities/terraform.html).
+* Added [An Introduction to Terraform](/projects/terraform.html).
 
 ## 2020 Mar
 
@@ -64,7 +64,7 @@ This page displays the most recent site updates.
 
 * Happy New Year! :)
 * Added Techshack Weekly Updates. [2019-01](/techshack.weekly/2019-01.html), [2019-02](/techshack.weekly/2019-02.html), [2019-03](/techshack.weekly/2019-03.html), [2019-04](/techshack.weekly/2019-04.html)
-* Added tool: [autojump](/utilities/autojump.html).
+* Added tool: [autojump](/projects/autojump.html).
 * Added algorithm: [MurmurHash](/algorithms/murmur-hash.html).
 * Added [Kubernetes In a Nutshell](/kubernetes-in-a-nutshell.html). [Reddit discussion here](https://www.reddit.com/r/kubernetes/comments/abgzz5/kubernetes_in_a_nutshell/). The Page Views has reached 2000+.
 * Added [Skipper](/architecture/skipper.html)
@@ -116,7 +116,7 @@ New posts are added to the list:
 * [Linked List](https://enqueuezero.com/linked-list.html).
 * [Sidecar](https://enqueuezero.com/concepts/sidecar.html).
 * [Sharding](https://enqueuezero.com/concepts/sharding.html).
-* [Ripgrep](https://enqueuezero.com/utilities/ripgrep.html).
+* [Ripgrep](https://enqueuezero.com/projects/ripgrep.html).
 
 I also added a few posts that are not yet completed. They're a set of architecture-related posts.
 
@@ -138,11 +138,11 @@ Hope you like one of the posts. And more importantly, let me know if anything ca
 
 Dear my readers, this is the update of the week 45 of 2018.
 
-We have two new posts added into a new category - Utility. I'll introduce more tools
+We have two new posts added into a new category - Project. I'll introduce more tools
 that are interesting or proved to be practical in this section.
 
-* [VuePress](https://enqueuezero.com/utilities/vuepress.html)
-* [Docker Compose](https://enqueuezero.com/utilities/docker-compose.html)
+* [VuePress](https://enqueuezero.com/projects/vuepress.html)
+* [Docker Compose](https://enqueuezero.com/projects/docker-compose.html)
 
 A new post about [Fuzzy Search](https://enqueuezero.com/fuzzy-search.html) introduces
 approximate string matching algorithms and some common solutions.

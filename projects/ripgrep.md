@@ -1,5 +1,6 @@
 ---
 title: ripgrep
+permalink: /projects/ripgrep.html
 ---
 
 # ripgrep

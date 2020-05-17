@@ -1,5 +1,6 @@
 ---
 title: autojump
+permalink: /projects/autojump.html
 ---
 
 # autojump

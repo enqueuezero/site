@@ -1,6 +1,6 @@
 ---
 title: An Introduction to Terraform
-tags: [terraform]
+permalink: /projects/terraform.html
 ---
 
 # An Introduction to Terraform

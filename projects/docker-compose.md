@@ -1,5 +1,6 @@
 ---
 title: Docker Compose
+permalink: /projects/docker-compose.html
 ---
 
 
