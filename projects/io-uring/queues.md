@@ -16,7 +16,7 @@ These two ring buffers are shared between the kernel and user space, so the data
 
 Having that in mind, let's see how io_uring works.
 
-![](/static/images/io_uring-queues.png)
+![](/static/images/io_uring-queues.svg)
 
 1. Your program sets up two ring buffers at first.
 2. Enqueue Submission Queue Entry (SQE) to SQ.
