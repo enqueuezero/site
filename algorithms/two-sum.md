@@ -83,7 +83,18 @@ Given dict D, array nums,
 
 We can produce below code. Note that the first highlighted code satisfies `exist i` condition, and the second highlighted code satisfies `any j` condition.
 
-<<< @/algorithms/two-sum-2.py{4,5,6,7,9}
+```python
+def twoSum(nums, target):
+    D = {}
+    for j in range(len(nums)):
+        if target - nums[j] in D:
+            # i = D.get(nums[i]) = D.get(target - nums[j])
+            i = D.get(target - nums[j])
+            return [i, j]
+        else:
+            D[nums[j]] = j
+    raise Exception("twoSum not found")
+```
 
 By analyzing this piece of code, the time complexity is O(n) and the space complexity is O(n). Therefore it's a better solution than our brute-force solution.
 

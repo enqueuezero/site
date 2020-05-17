@@ -52,6 +52,4 @@ The performance of all three statements is somewhat related to the number of ind
 
 We might have created multiple indexes on a table but have no clue which index to use. Apply with a wrong index might get the query slower than expected, as database will possibly scan much more rows. In MySQL, we can prefix a query with `EXPLAIN` to check if the engine chooses the index we want. Redesign the indexes or optimize the query if it doesn't match.
 
-```
-EXPLAIN SELECT name FROM product where category_id=1 and sub_category_id=2;
-```
+    EXPLAIN SELECT name FROM product where category_id=1 and sub_category_id=2;
