@@ -29,13 +29,13 @@ scheduler = BackgroundScheduler()
 
 jobs = [...] # define all of your jobs here
 
-# How many slots are assigned to the current machine.
+# The slots are assigned to the current machine.
 assigned_slots = [int(s) for s in os.environ["APSCHEDULER_ASSIGNED_SLOTS"].split(",")]
 
 # How many slots in total.
 total_slots = int(os.environ[APSCHEDULER_TOTAL_SLOTS])
 
-# Only load jobs whose slots are assigned 
+# Only load jobs whose slots are assigned to the current machine
 for job in jobs:
     if (hash(job["id"]) % total_slots) in assigned_slots:
         scheduler.add_job(**job)
@@ -50,14 +50,14 @@ To get a more evenly distributed load, the `APSCHEDULER_ASSIGNED_SLOTS` can be a
 * For machine 3, `export APSCHEDULER_ASSIGNED_SLOTS=8,9,10,11`
 * For machine 4, `export APSCHEDULER_ASSIGNED_SLOTS=12,13,14,15`
 
-If one of the machine is more powerful, it's totally okay to assign more slots to it. For example,
+If one of the machine can serve more jobs, it's okay to assign more slots to it. For example,
 
 * For machine 1, `export APSCHEDULER_ASSIGNED_SLOTS=0,1,2,3,4,5,6`
 * For machine 2, `export APSCHEDULER_ASSIGNED_SLOTS=7,8,9`
 * For machine 3, `export APSCHEDULER_ASSIGNED_SLOTS=10,11,12`
 * For machine 4, `export APSCHEDULER_ASSIGNED_SLOTS=13,14,15`
 
-If it's acceptable to run a job twice, we can even assign duplicated slots to two machines. For example, say, we set `APSCHEDULER_TOTAL_SLOTS=16`, and
+If it's acceptable to run a job twice, we can even assign duplicated slots to two machines. Hooray, we have high availability for the APScheduler cluster. For example, say, we set `APSCHEDULER_TOTAL_SLOTS=16`, and
 
 * For machine 1, `export APSCHEDULER_ASSIGNED_SLOTS=0,1,2,3`
 * For machine 2, `export APSCHEDULER_ASSIGNED_SLOTS=4,5,6,7`
