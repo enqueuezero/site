@@ -1,9 +1,9 @@
 ---
-title: Binary Search
+title: Binary Search In Go
 permalink: /algorithms/binary-search-go.html
 ---
 
-# Binary Search In Golang
+# Binary Search In Go
 
 ## Overview
 
