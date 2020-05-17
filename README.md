@@ -8,7 +8,7 @@ Kia ora! I am the creator of **Enqueue Zero** (<https://enqueuezero.com>), a sit
 explains code principles to Developers/DevOps/Sysadmins. This site is updated under
 a single man team since 2018.
 
-* [Architecture](/category/architecture.md) | [Algorithms](/category/algorithm.md) | [Programming](/category/programming.md) | [Utilities](/category/utility.md)
+* [Architecture](/category/architecture.md) | [Algorithms](/category/algorithm.md) | [Programming](/category/programming.md) | [Projects](/category/projects.md)
 * [Changelog](/changelog.md)
 
 ## FAQ
