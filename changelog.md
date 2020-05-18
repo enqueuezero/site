@@ -17,8 +17,10 @@ This page displays the most recent site updates.
 * Added [Binary Search In Go](/algorithms/binary-search-go.html).
 * Added [An Introduction to APScheduler](/projects/apscheduler/intro.html).
 * Added [Hashing APScheduler Jobs](/projects/apscheduler/hashing.html).
+* Added [Use APScheduler With Gunicorn](/projects/apscheduler/gunicorn.html).
 * Added [APScheduler Blocking Scheduler](/projects/apscheduler/blocking.html).
 * Added [APScheduler Background Scheduler](/projects/apscheduler/background.html).
+* Added [APScheduler Tips and Tricks](/projects/apscheduler/).
 
 ## 2020 Apr
 
