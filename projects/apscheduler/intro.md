@@ -1,8 +1,7 @@
 ---
 title: An Introduction to APScheduler
 permalink: /projects/apscheduler/intro.html
-prev: false
-next: /projects/apscheduler/oop.html
+prev: /projects/apscheduler/
 ---
 
 # An Introduction to APScheduler

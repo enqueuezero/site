@@ -1,6 +1,7 @@
 ---
 title: Object-Oriented Programming in APScheduler
 permalink: /projects/apscheduler/oop.html
+prev: /projects/apscheduler/
 ---
 
 # Object-Oriented Programming in APScheduler

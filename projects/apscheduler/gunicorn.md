@@ -1,6 +1,7 @@
 ---
 title: Run APScheduler With Gunicorn
 permalink: /projects/apscheduler/gunicorn.html
+prev: /projects/apscheduler/
 ---
 
 # Run APScheduler With Gunicorn

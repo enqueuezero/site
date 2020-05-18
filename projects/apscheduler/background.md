@@ -1,6 +1,7 @@
 ---
 title: APScheduler Background Scheduler
 permalink: /projects/apscheduler/background.html
+prev: /projects/apscheduler/
 ---
 
 # APScheduler Background Scheduler

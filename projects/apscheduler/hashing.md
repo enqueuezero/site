@@ -1,6 +1,7 @@
 ---
 title: Hashing APScheduler Jobs
 permalink: /projects/apscheduler/hashing.html
+prev: /projects/apscheduler/
 ---
 
 # Hashing APScheduler Jobs

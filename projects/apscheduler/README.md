@@ -7,11 +7,11 @@ permalink: /projects/apscheduler/
 
 *APScheduler Tips and Tricks* is a collection of tips and trips to APScheduler explaining how to use it under different scenarios.
 
-* [An Introduction to APScheduler](intro.html)
-* [APScheduler Background Scheduler](background.html)
-* [APScheduler Blocking Scheduler](blocking.html)
-* [Object-Oriented Programming in APScheduler](oop.html)
-* [Use APScheduler With Gunicorn](gunicorn.html)
-* [Hashing APScheduler Jobs](hashing.html)
+* [Introduction](intro.html)
+* [Background Scheduler](background.html)
+* [Blocking Scheduler](blocking.html)
+* [Object-Oriented Programming](oop.html)
+* [Use With Gunicorn](gunicorn.html)
+* [Distribute Workloads - Hashing](hashing.html)
 
 [APScheduler]: https://apscheduler.readthedocs.io/en/stable/index.html

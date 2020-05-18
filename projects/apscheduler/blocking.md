@@ -1,6 +1,7 @@
 ---
 title: APScheduler Blocking Scheduler
 permalink: /projects/apscheduler/blocking.html
+prev: /projects/apscheduler/
 ---
 
 # APScheduler Blocking Scheduler
