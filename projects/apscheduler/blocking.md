@@ -1,9 +1,9 @@
 ---
-title: Blocking APScheduler
+title: APScheduler Blocking Scheduler
 permalink: /projects/apscheduler/blocking.html
 ---
 
-# Blocking APScheduler
+# APScheduler Blocking Scheduler
 
 `BlockingScheduler` is one of the very basic scheduler provided by APScheduler.
 It runs forever once started, unless notified by system signals or errors.
@@ -23,7 +23,7 @@ def tick():
 def main():
     sched.add_job(tick, 'interval', seconds=3)
     try:
-        scheduler.start()
+        sched.start()
     except (KeyboardInterrupt, SystemExit):
         pass
 

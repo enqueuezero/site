@@ -12,10 +12,13 @@ This page displays the most recent site updates.
 
 ## 2020 May
 
-* Added [Hashing APScheduler Jobs](/projects/apscheduler/hashing.html).
 * Added [The Data Structure of NumPy Arrays](/projects/numpy/data.html).
 * Added [The Queues of io_uring](/projects/io-uring/queues.html).
 * Added [Binary Search In Go](/algorithms/binary-search-go.html).
+* Added [An Introduction to APScheduler](/projects/apscheduler/intro.html).
+* Added [Hashing APScheduler Jobs](/projects/apscheduler/hashing.html).
+* Added [APScheduler Blocking Scheduler](/projects/apscheduler/blocking.html).
+* Added [APScheduler Background Scheduler](/projects/apscheduler/background.html).
 
 ## 2020 Apr
 
