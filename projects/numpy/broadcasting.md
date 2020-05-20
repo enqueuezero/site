@@ -17,7 +17,7 @@ array([[[1., 1.],
         [1., 1.]]])
 ```
 
-Generally speaking, broadcasting is an handy shortcut to map a scalar to a 1D array. In the above example, it allows to express a tedious `x + np.ones((2,2,2))` to a simple `1`.
+Generally speaking, broadcasting is an handy shortcut to map a scalar to a 1D array. In the above example, it allows to express a tedious `x + np.ones((2,2,2))` to a simple `x + 1`.
 
 When applying to higher dimensions, starting from the trailing shape element, if either one of the dimensions has only one value, NumPy expands it to n elements like the other array has. For example,
 
