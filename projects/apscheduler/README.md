@@ -1,11 +1,11 @@
 ---
-title: APScheduler Tips and Tricks
+title: Advanced Guide To APScheduler
 permalink: /projects/apscheduler/
 ---
 
 [APScheduler] is a Python schedule library designed for running code either just once or periodically.
 
-*APScheduler Tips and Tricks* is a collection of tips and trips to APScheduler explaining how to use it under different scenarios.
+*Advanced Guide to APScheduler* is a collection of tips and trips to APScheduler explaining how to use it under different scenarios.
 
 * [Introduction](intro.html)
 * [Background Scheduler](background.html)

@@ -1,11 +1,11 @@
 ---
-title: The Strides of NumPy Array
-permalink: /projects/numpy/strides.html
+title: The Stride of NumPy Array
+permalink: /projects/numpy/stride.html
 ---
 
-# The Strides of NumPy Array
+# The Stride of NumPy Array
 
-Strides is a tuple of integer numbers, each of which indicates the bytes for a particular dimension. NumPy uses *strides* to tell how many bytes to jump in the data buffer 
+A stride is a tuple of integer numbers, each of which indicates the bytes for a particular dimension. NumPy uses *strides* to tell how many bytes to jump in the data buffer.
 
 For example, we have a two-dimensional NumPy array.
 
