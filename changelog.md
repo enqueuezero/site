@@ -16,6 +16,7 @@ This page displays the most recent site updates.
 * Added [The Data Structure of NumPy Arrays](/projects/numpy/data.html).
 * Added [The Stride of NumPy Arrays](/projects/numpy/stride.html).
 * Added [The Shape of NumPy Arrays](/projects/numpy/shape.html).
+* Added [Broadcasting In NumPy](/projects/numpy/broadcasting.html).
 * Added [The Queues of io_uring](/projects/io-uring/queues.html).
 * Added [Binary Search In Go](/algorithms/binary-search-go.html).
 * Added [An Introduction to APScheduler](/projects/apscheduler/intro.html).
