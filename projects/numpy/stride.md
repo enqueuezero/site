@@ -1,6 +1,7 @@
 ---
 title: The Stride of NumPy Array
 permalink: /projects/numpy/stride.html
+prev: /projects/numpy/
 ---
 
 # The Stride of NumPy Array

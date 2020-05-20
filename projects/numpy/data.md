@@ -1,6 +1,7 @@
 ---
 title: The Data Structure of NumPy Arrays
 permalink: /projects/numpy/data.html
+prev: /projects/numpy/
 ---
 
 ## The Data Structure Of NumPy Arrays

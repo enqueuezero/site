@@ -10,8 +10,9 @@ permalink: /projects/numpy/
 *Advanced Guide to NumPy* is a series of articles deep diving into NumPy.
 Check out the full list below.
 
-* [Data Structure](data.html)
+* [Creation](creation.html)
+* [Data](data.html)
 * [Shape](shape.html)
-* [Strides](stride.html)
+* [Stride](stride.html)
 
 [NumPy]: https://numpy.org/

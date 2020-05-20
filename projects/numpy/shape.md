@@ -1,6 +1,7 @@
 ---
 title: The Shape of NumPy Arrays
 permalink: /projects/numpy/shape.html
+prev: /projects/numpy/
 ---
 
 # The Shape of NumPy Arrays
@@ -29,8 +30,6 @@ Reshaping the array is through the `.reshape()` method. It creates a new array w
 >>> y.shape
 (3,3)
 ```
-
-![](/static/images/NumPy-Strides.svg)
 
 When reshaping, one and exact one of the number in the shape tuple can be -1. NumPy can infer the unspecified value -1. So, if you see the code of `.reshape((..., -1, ...))`, don't be fooled; it actually asks NumPy to calculate the unknown shape value.
 

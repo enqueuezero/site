@@ -12,6 +12,7 @@ This page displays the most recent site updates.
 
 ## 2020 May
 
+* Added [The Creation of NumPy Arrays](/projects/numpy/creationdat  html).
 * Added [The Data Structure of NumPy Arrays](/projects/numpy/data.html).
 * Added [The Stride of NumPy Arrays](/projects/numpy/stride.html).
 * Added [The Shape of NumPy Arrays](/projects/numpy/shape.html).

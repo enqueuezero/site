@@ -1,6 +1,7 @@
 ---
 title: The Creation of NumPy Arrays
 permalink: /projects/numpy/creation.html
+prev: /projects/numpy/
 ---
 
 # The Creation of NumPy Arrays
