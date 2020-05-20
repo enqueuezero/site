@@ -14,6 +14,6 @@ Check out the full list below.
 * [Data](data.html)
 * [Shape](shape.html)
 * [Stride](stride.html)
-* [Broadcasting](Broadcasting.html)
+* [Broadcasting](broadcasting.html)
 
 [NumPy]: https://numpy.org/
