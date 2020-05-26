@@ -5,7 +5,7 @@ permalink: /projects/numpy/broadcasting.html
 
 # Broadcasting In NumPy
 
-In NumPy, there is a need to operate arithmetic operation on two arrays having different dimentions. In the following example, x has shape (2,2,2), while 1 is just a scalar value. Thanks to the broadcasting, it still works.
+In NumPy, there is a need to operate arithmetic operation on two arrays having different dimensions. In the following example, x has shape (2,2,2), while 1 is just a scalar value. Thanks to the broadcasting, it still works.
 
 ```python
 >>> x = np.zeros((2,2,2))
