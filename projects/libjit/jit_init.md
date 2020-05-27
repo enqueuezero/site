@@ -35,14 +35,15 @@ jit:
 ```
 (Edit "Makefile". Append to the last.)
 
-By running the command "make jit", libjit should be installed under the project "dist" directory.
+By running the command "make jit", libjit should be installed under the project "dist" directory. You may inspect what files are inside the "dist" directory if you're interested.
 
 ```bash{1}
 $ make jit
+... (very long output)
 ```
 (Run on terminal.)
 
-Since the command "gcc" doesn't know we have installed libjit, we need to tell gcc where to find libjit headers and where to link libjit shared object files.
+Since the command "gcc" doesn't know we have installed libjit, we need to tell gcc where to find libjit headers and where to link libjit shared object files. Gcc option `-I` specifies where to find additional ".h" files; option `-L` specifies where to find the library ".a" files; option `-l` specifies which library is to be linked after compiling.
 
 ```bash{2}
 PWD = $(shell pwd)
@@ -58,7 +59,7 @@ Now, the scene has setup.
 
 To use libjit, we first include "jit/jit.h" file in our header file. It allows us calling any libjit function in ".c" files.
 
-```diff{2}
+```c{2}
 #include <stdlib.h>
 #include <jit/jit.h>
 
@@ -66,7 +67,7 @@ To use libjit, we first include "jit/jit.h" file in our header file. It allows u
 ```
 (Edit "ju.h", insert a line.)
 
-We can now call libjit functions in `main(()`.
+We can now call libjit functions in `main()`.
 
 ```c{4,5}
 #include "ju.h"
