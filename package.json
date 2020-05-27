@@ -1,4 +1,7 @@
 {
+  "resolutions": {
+    "watchpack": "1.6.1"
+  },
   "dependencies": {
     "markdown-it-mermaid": "^0.2.5",
     "vuepress": "^1.5.0"
