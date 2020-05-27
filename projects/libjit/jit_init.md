@@ -1,11 +1,12 @@
 ---
-title: Crafting Just-In-Time
-permalink: /projects/libjit/init.html
+title: JIT Uncover - Init
+permalink: /projects/libjit/jit-init.html
+prev: getting_started.md
 ---
 
-# Crafting JIT - Init
+# JIT Uncover - Initialize Libjit
 
-To use the JIT, we first include "jit/jit.h" file in our header file.
+To use libjit, we first include "jit/jit.h" file in our header file.
 
 ```diff{2}
  #include <stdlib.h>
@@ -41,7 +42,7 @@ jit:
 
 By running the command "make jit", libjit should be installed under the project "dist" directory.
 
-```bash
+```bash{1}
 $ make jit
 autoreconf: Entering directory `.'
 autoreconf: configure.ac: not using Gettext
@@ -52,7 +53,7 @@ make[3]: Nothing to be done for `install-data-am'.
 
 Since the command "gcc" doesn't know we have installed libjit, we need to tell gcc where to find libjit headers and where to link libjit shared object files.
 
-```bash{1}
+```bash{2}
 PWD = $(shell pwd)
 CFLAGS = -I$(PWD)/dist/usr/local/include -L$(PWD)/dist/usr/local/lib -ljit -lm
 HOSTCC = gcc -g -Wall -pedantic -Wcast-qual
@@ -70,5 +71,42 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 ```
+(Edit "src/main.c". Add two lines.)
 
-Re-run "make" command should bring us the next available version of "bin/ju". From now on, at the end of each article in this series, we can always re-run "make" to validate and check-in our progress.
+The function `jit_context_create()` is usually the first function to call when using libjit. It initializes the library and prepares for JIT operations. All later function calls are attached to this context.
+
+The function `jit_context_destroy()` is called once JIT context is no longer needed. In our program, it means our JIT interpreter has done its works.
+
+To make our program robust, we need to handle a special case: `jit_context_create()` returns NULL if out of memory. It can be achieved by quitting the program with an non-zero exit code.
+
+:::tip
+In programming, out of memory (OOM) is an often undesired state a program might falls in since operating system refuses to allocate memory to the program. There is nothing for the program to recover thus crashing being the only option.
+:::
+
+Let's wrap this exiting logic into a function `ju_oom()`.
+
+```c{3}
+#include <jit/jit.h>
+
+void ju_oom();
+
+#endif
+```
+(Edit "src/ju.h". Insert "ju_oom()".)
+
+```c{3,4,5,6,10,11,12}
+#include "ju.h"
+
+void ju_oom() {
+    fputs("error: out of memory.\n", stderr);
+    exit(1);
+}
+
+int main(int argc, char* argv[]) {
+    jit_context_t ctx = jit_context_create();
+    if (ctx == NULL) {
+        ju_oom();
+    }
+    jit_context_destroy(ctx);
+```
+(Edit "src/main.c". Add `ju_oom()`.)
