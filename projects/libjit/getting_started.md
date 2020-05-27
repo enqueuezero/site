@@ -60,6 +60,7 @@ $ bin/ju
 $ echo $?
 0
 ```
+(Run on terminal.)
 
 As of now, the c code is compiled successfully, since the last exit code is 0.
 
