@@ -73,6 +73,11 @@ Applying back-pressure is one effective technique to handle high-load. We tend t
 
 A container is merely an OS process, except that it's being isolated, secured, and limited. All values added to the process make the container the dominant technology in the cloud era.
 
+#### [Container and Clone](/container-and-cgroups.html)
+
+The most essential system call of creating a Linux container is `clone()`. With flags set to `CLONE_NEWNS|CLONE_NEWPID|CLONE_NEWUSER|...`,
+the cloned process is placed into some dedicated namespaces, such as file system, pid, user, etc.
+
 #### [Container and CGroups](/container-and-cgroups.html)
 
 CGroups is a Kernel feature that organizes processes into hierarchical groups to limit and monitor their system usage such as CPU, memory, disk, network and so on.
