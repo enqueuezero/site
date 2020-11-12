@@ -8,9 +8,9 @@ permalink: /projects/apscheduler/
 *Advanced Guide to APScheduler* is a collection of tips and trips to APScheduler explaining how to use it under different scenarios.
 
 * [Introduction](intro.html)
+* [Concepts](concepts.html)
 * [Background Scheduler](background.html)
 * [Blocking Scheduler](blocking.html)
-* [Object-Oriented Programming](oop.html)
 * [Use With Gunicorn](gunicorn.html)
 * [Distribute Workloads - Hashing](hashing.html)
 
