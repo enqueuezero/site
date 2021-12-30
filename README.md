@@ -5,7 +5,7 @@ title: Home
 # Enqueue Zero
 
 Kia ora! I am the creator of **Enqueue Zero** (<https://enqueuezero.com>), a site that
-explains code principles to Developers/DevOps/Sysadmins. This site is updated under
+explains code principles to Developers / DevOps/ Sys Admins. This site is updated under
 a single man team since 2018.
 
 * [Architecture](/category/architecture.md) | [Algorithms](/category/algorithm.md) | [Programming](/category/programming.md) | [Projects](/projects/README.md)
