@@ -43,6 +43,7 @@ There are plenty of great Terraform getting started articles over the Internet. 
 * [Hello Terraform!](https://livebook.manning.com/book/terraform-in-action/chapter-1/v-6/64) (AWS)
 
 * [Getting started with Terraform](https://www.redpill-linpro.com/techblog/2018/08/14/getting-started-with-terraform.html) (AWS)
+* [Terraform Tutorial – Getting Started With Terraform on AWS](https://spacelift.io/blog/terraform-tutorial) (AWS)
 
 If you ever walked through all the code and command executions, you should have provisioned and destroyed some infrastructure components. You should also have a sense of some important concepts: providers, resources, data sources, apply, destroy, state, backend, etc. We'll dive deeper into these concepts next.
 
